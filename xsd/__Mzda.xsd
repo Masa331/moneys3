@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="__Comtypes.xsd"/>
+	<xs:include schemaLocation="__Seznamy.xsd"/>
+	<xs:include schemaLocation="__Zamestnanec.xsd"/>
+	<xs:complexType name="mzdaType">
+		<xs:annotation>
+			<xs:documentation>Specifikace mzdy</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Zamestnanec" type="zamestnanecType">
+				<xs:annotation>
+					<xs:documentation>Zaměstnanec</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mesic">
+				<xs:annotation>
+					<xs:documentation>Měsíc zpracování mzdy</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Rok" type="xs:gYear">
+				<xs:annotation>
+					<xs:documentation>Rok zpracování mzdy</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PracDnu" type="celeCisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pracovní fond - dnů (bez svátků připadajících na pracovní den)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PracHod" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pracovní fond - hodin (bez svátků připadajících na pracovní den)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OdprDnu" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Odpracováno dnů (bez svátků připadajících na pracovní den)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OdprHod" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Odpracováno hodin (bez svátků připadajících na pracovní den)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OdprSvDnu" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Počet odpracovaných dnů ve svátcích (svatky připadající na pracovní den, ve kterých zaměstnanec pracoval)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OdprSvHod" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Počet odpracovaných hodin ve svátcích (svatky připadající na pracovní den, ve kterých zaměstnanec pracoval)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SeznamNepritomnosti" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Seznam nepřítomností spadajících do mzdového období (viz Mesic a Rok)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Nepritomnost" type="nepritomnostType" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Nepřítomnost</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SeznamMzPriplatku" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Seznam mzdových přípllatků</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MzPriplatek" maxOccurs="8">
+							<xs:annotation>
+								<xs:documentation>Mzdový příplatek</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="TypPriplatku" type="typPriplatkuType">
+										<xs:annotation>
+											<xs:documentation>Typ příplatku</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="PripHodin" type="cisloType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Počet odpracovaných hodin</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nepritomnostType">
+		<xs:annotation>
+			<xs:documentation>Specifikace nepřítomnosti</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Typ">
+				<xs:annotation>
+					<xs:documentation>Typ nepřítomnosti:
+
+P = Plánovaná dovolená
+D = Dovolená
+G = Paragraf
+V = Neplacené volno
+A = Neomluvená absence
+N = Nemoc
+K = Karanténa
+O = OČR
+M = Mateřská dovolená (PPM)
+R = Další mateřská dovolená (RP)
+J = Voj., civilní služba
+E = Dny před nástupem</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="1"/>
+						<xs:enumeration value="P"/>
+						<xs:enumeration value="D"/>
+						<xs:enumeration value="G"/>
+						<xs:enumeration value="V"/>
+						<xs:enumeration value="A"/>
+						<xs:enumeration value="N"/>
+						<xs:enumeration value="K"/>
+						<xs:enumeration value="O"/>
+						<xs:enumeration value="M"/>
+						<xs:enumeration value="R"/>
+						<xs:enumeration value="J"/>
+						<xs:enumeration value="E"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Zacatek">
+				<xs:annotation>
+					<xs:documentation>Začátek nepřítomnosti.
+
+Poznámka: v elementu je možné uvést skutečný začátek nepřítomnosti, který může spadat do jiného období, než je období zpracování mzdy. Pokud je při importu této nepřítomnosti nalezena časově předcházející nepřítomnost, tak se automaticky zaškrtne přepínač "Pokračování minulé nepřítomnosti".</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:date"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Konec" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Konec nepřítomnosti
+
+Poznámka: pokud není známý konec nepřítomnost (např. nepřítomnost stále pokračuje), tak je možné element vynechat. Program automaticky dosadí poslední den v měsíci.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:date"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DatPorodu" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Datum porodu u mateřské dovolené (PPM)
+
+Element se prozatím neexportuje ani neimportuje.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OdpHodZ" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Odpracováno hodin v den začátku nepřítomnosti</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OdpHodK" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Odpracováno hodin v den konce nepřítomnosti</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KalDnu" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Počet kalendářních dnů nepřítomnosti</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PracDnu" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Fond pracovních dnů nepřítomnosti</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hodin" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Fond pracovních hodin nepřítomnosti</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SvatDnu" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Počet dnů svátků v nepřítomnosti připadajících na pracovní den</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SvatHod" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Počet pracovních hodin ve svátcích nepřítomnosti připadajících na pracovní den</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PokracNepr" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element určuje, zda je nepřítomnost pokračováním časově předcházející nepřítomnosti téhož typu.
+
+Element se prozatím neexportuje ani neimportuje.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NahrMzdy" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element určuje, zda se bude pro nepřítomnost počítat náhrada mzdy za nemoc (karanténu).
+
+Element se prozatím neexportuje ani neimportuje.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrepocDny" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element určuje, zda se u nepřítomnosti typu "dovolená" přepočítává Fond pracovních dnů z Fondu pracovních hodin a Počet dnů svátků z Počtu pracovních hodin ve svátcích.
+
+Poznámka k importu: pokud jsou na vstupu uvedeny dny i hodiny a element nabývá hodnoty 0, tak se tyto údaje převezmou ze vstupního souboru. Pokud je element roven hodnotě 1, tak program vypočítá dny na základě hodin a ignoruje dny na vstupu. V současném stavu je přepínač na dovolené vždy odkšrtnutý.
+
+Element se prozatím neexportuje ani neimportuje.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pozn" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Poznámka
+
+Element se prozatím neexportuje ani neimportuje.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

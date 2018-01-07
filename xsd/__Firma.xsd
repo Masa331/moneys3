@@ -1,0 +1,1705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="__Comtypes.xsd"/>
+	<xs:complexType name="firmaType">
+		<xs:annotation>
+			<xs:documentation>Specifikace adresy v adresáři firem</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="38"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Nazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - provozovna
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SkupinaID" type="cisloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vnitřní identifigace skupiny IMPORT: nová NE, oprava NE,EXPORT: NE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Adresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adresa provozovny IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObchNazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - obchodní jméno
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ObchAdresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Obchodní adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FaktNazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - fakturační adersa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FaktAdresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Fakturační adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tel" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telefonní spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fax" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Faxové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mobil" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Číslo na mobilní telefon - ignoruje se tag Klap IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMail" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>E-Mailové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="WWW" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adersa webové stránky firmy IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Spojeni" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ostatní informace ke spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ICO" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IČO IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DIC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CZ: DIČ SK: IČDPH : IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DICSK" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pouze SK verze: DIČ IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PlatceDPH" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli je firma plátcem DPH IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FyzOsoba" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli je firma  fyzická osoba IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KodDanUr" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód DÚ IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Banka" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Ucet" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Účet bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodBanky" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="VSymb" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Variabilní symbol
+bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecSym" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Specifický symbol bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Cinnosti" type="vycetType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Zkratky činností IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdrKlice" type="vycetType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Zkratky adresních klíčů IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ceny" type="vycetType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Zkratky cenových hladin IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ceniky" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Zkratky ceníků
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Kredit" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak uplatnění kreditu IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KreditVal" type="castkaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Hodnota kreditu IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SplatPoh" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak uplatňování splatnosti pohledávek IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SplatZav" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak uplatňování splatnosti závazků IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SplPohDni" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Splatnost pohledávek po dni IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value="6"/>
+						<xs:fractionDigits value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SplZavDni" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Splatnost závazků po dni IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value="6"/>
+						<xs:fractionDigits value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Sleva" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Procentuální výše slevy IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value="15"/>
+						<xs:fractionDigits value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FlagSleva" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli uplatňovat slevu IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mail" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli posílat poštu IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Zprava" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Zpráva IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Poznamka" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Poznámka IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KodPartn" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód partnera IMPORT: nová ANO, oprava NE, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ISDOC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Údaje pro potřeby elektronické fakturace ISDOC</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="OznacDok" use="optional">
+						<xs:annotation>
+							<xs:documentation>Označení dokumentu, kterým dal příjemce vystaviteli souhlas s elektronickou formou faktury</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="IdZboziKupujici" use="optional"/>
+					<xs:attribute name="Katalog" use="optional"/>
+					<xs:attribute name="UzivCode" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="eshop" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pouze pro adresy určené pro XML el.obchod. EXPORT: ANO, IMPORT: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="IN_Export" type="xs:unsignedByte">
+							<xs:annotation>
+								<xs:documentation>číslo typu el.obchodu</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Changed" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>příznak změny, při importu = true jen u nových adres. EXPORT: ANO, po exportu se nastaví na false IMPORT: ANO, </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Id" type="xs:long" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>ID adresy na el.obchodu, EXPORT: ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Jmeno" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Jméno uživatele na el.obchodu EXPORT:ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="25"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_Heslo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Heslo uživatele na el.obchodu EXPORT:ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_Dealer" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>příznak dealera, vylučuje nastavení příznaku IN_Soukrom EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_DSkup" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Cenová hladina dealera EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_IndSlev" type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sleva EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Soukrom" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Příznak soukromé osoby, vylučuje příznak IN_Dealer EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_DSkupZkratka" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Zkratka cenové hladiny dealera EXPORT:ano, IMPORT: NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Osoba" type="osobaType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SeznamBankSpojeni" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="BankSpojeni" type="bankSpojeniType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Skupina" type="skupinaFiremType" minOccurs="0"/>
+			<xs:element name="Vlajky" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Global" type="VlajkaType" minOccurs="0"/>
+						<xs:element name="User" type="VlajkaType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Dokumenty" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Seznam připojených dokumentů
+IMPORT: ANO
+EXPORT: NE</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Dokument" type="xs:string" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Jméno souboru (bez cesty). Soubor se musí nacházet ve stejném adresáři (ZIP souboru) jako importovaný XML dokument.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dokladFirmaType">
+		<xs:annotation>
+			<xs:documentation>Specifikace adresy dodavatele nebo odběratele na dokladu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ObchNazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - obchodní jméno
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ObchAdresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Obchodní adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FaktNazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - fakturační adersa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ICO" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IČO IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DIC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CZ: DIČ SK: IČDPH : IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DICSK" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pouze SK verze: DIČ IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FaktAdresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Fakturační adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="38"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Nazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - provozovna
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Adresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adresa provozovny IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tel" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telefonní spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fax" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Faxové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mobil" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Číslo na mobilní telefon - ignoruje se tag Klap IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMail" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>E-Mailové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="WWW" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adersa webové stránky firmy IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PlatceDPH" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli je firma plátcem DPH IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FyzOsoba" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli je firma  fyzická osoba IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Banka" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Ucet" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Účet bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodBanky" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="VSymb" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Variabilní symbol
+bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecSym" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Specifický symbol bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodPartn" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód partnera IMPORT: nová ANO, oprava NE, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ISDOC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Údaje pro potřeby elektronické fakturace ISDOC.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="OznacDok" use="optional">
+						<xs:annotation>
+							<xs:documentation>Označení dokumentu, kterým dal příjemce vystaviteli souhlas s elektronickou formou faktury</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="IdZboziKupujici" use="optional"/>
+					<xs:attribute name="IdZboziProdejce1" use="optional"/>
+					<xs:attribute name="IdZboziProdejce2" use="optional"/>
+					<xs:attribute name="IdZboziProdejce3" use="optional"/>
+					<xs:attribute name="Katalog" use="optional"/>
+					<xs:attribute name="UzivCode" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="eshop" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pouze pro adresy určené pro XML el.obchod. EXPORT: ANO, IMPORT: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="IN_Export" type="xs:unsignedByte">
+							<xs:annotation>
+								<xs:documentation>číslo typu el.obchodu</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Changed" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>příznak změny, při importu = true jen u nových adres. EXPORT: ANO, po exportu se nastaví na false IMPORT: ANO, </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Id" type="xs:long" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>ID adresy na el.obchodu, EXPORT: ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Jmeno" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Jméno uživatele na el.obchodu EXPORT:ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="25"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_Heslo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Heslo uživatele na el.obchodu EXPORT:ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_Dealer" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>příznak dealera, vylučuje nastavení příznaku IN_Soukrom EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_DSkup" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Cenová hladina dealera EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_IndSlev" type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sleva EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Soukrom" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Příznak soukromé osoby, vylučuje příznak IN_Dealer EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_DSkupZkratka" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Zkratka cenové hladiny dealera EXPORT:ano, IMPORT: NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="skDokladFirmaType">
+		<xs:annotation>
+			<xs:documentation>Specifikace adresy dodavatele nebo odběratele na skladovém dokladu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ObchNazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - obchodní jméno
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ObchAdresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Obchodní adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FaktNazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - fakturační adersa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FaktAdresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Fakturační adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ICO" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IČO IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DIC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CZ: DIČ SK: IČDPH : IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DICSK" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pouze SK verze: DIČ IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="GUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="38"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Nazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - provozovna
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Adresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adresa provozovny IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tel" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telefonní spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fax" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Faxové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mobil" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Číslo na mobilní telefon - ignoruje se tag Klap IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMail" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>E-Mailové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="WWW" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adersa webové stránky firmy IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PlatceDPH" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli je firma plátcem DPH IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FyzOsoba" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli je firma  fyzická osoba IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Banka" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Ucet" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Účet bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodBanky" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="VSymb" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Variabilní symbol
+bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecSym" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Specifický symbol bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodPartn" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód partnera IMPORT: nová ANO, oprava NE, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="eshop" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pouze pro adresy určené pro XML el.obchod. EXPORT: ANO, IMPORT: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="IN_Export" type="xs:unsignedByte">
+							<xs:annotation>
+								<xs:documentation>číslo typu el.obchodu</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Changed" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>příznak změny, při importu = true jen u nových adres. EXPORT: ANO, po exportu se nastaví na false IMPORT: ANO, </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Id" type="xs:long" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>ID adresy na el.obchodu, EXPORT: ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Jmeno" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Jméno uživatele na el.obchodu EXPORT:ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="25"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_Heslo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Heslo uživatele na el.obchodu EXPORT:ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_Dealer" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>příznak dealera, vylučuje nastavení příznaku IN_Soukrom EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_DSkup" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Cenová hladina dealera EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_IndSlev" type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sleva EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Soukrom" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Příznak soukromé osoby, vylučuje příznak IN_Dealer EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_DSkupZkratka" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Zkratka cenové hladiny dealera EXPORT:ano, IMPORT: NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="konecPrijFirmaType">
+		<xs:annotation>
+			<xs:documentation>Specifikace adresy konečného příjemce na dokladu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Nazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - provozovna
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Adresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adresa provozovny IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="38"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Tel" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telefonní spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fax" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Faxové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mobil" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Číslo na mobilní telefon - ignoruje se tag Klap IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMail" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>E-Mailové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="WWW" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adersa webové stránky firmy IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ICO" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IČO IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DIC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CZ: DIČ SK: IČDPH : IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DICSK" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pouze SK verze: DIČ IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PlatceDPH" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli je firma plátcem DPH IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FyzOsoba" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli je firma  fyzická osoba IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Banka" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Ucet" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Účet bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodBanky" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="VSymb" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Variabilní symbol
+bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecSym" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Specifický symbol bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodPartn" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód partnera IMPORT: nová ANO, oprava NE, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="eshop" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pouze pro adresy určené pro XML el.obchod. EXPORT: ANO, IMPORT: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="IN_Export" type="xs:unsignedByte">
+							<xs:annotation>
+								<xs:documentation>číslo typu el.obchodu</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Changed" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>příznak změny, při importu = true jen u nových adres. EXPORT: ANO, po exportu se nastaví na false IMPORT: ANO, </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Id" type="xs:long" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>ID adresy na el.obchodu, EXPORT: ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Jmeno" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Jméno uživatele na el.obchodu EXPORT:ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="25"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_Heslo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Heslo uživatele na el.obchodu EXPORT:ANO, IMPORT:ANO</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_Dealer" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>příznak dealera, vylučuje nastavení příznaku IN_Soukrom EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_DSkup" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Cenová hladina dealera EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="IN_IndSlev" type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Sleva EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_Soukrom" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Příznak soukromé osoby, vylučuje příznak IN_Dealer EXPORT:ANO, IMPORT:NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="IN_DSkupZkratka" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Zkratka cenové hladiny dealera EXPORT:ano, IMPORT: NE</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mojeFirmaType">
+		<xs:annotation>
+			<xs:documentation>Specifikace domácí adresy v konfiguraci agendy</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Nazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - provozovna
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Adresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adresa provozovny IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObchNazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - obchodní jméno
+IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ObchAdresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Obchodní adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FaktNazev" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název - fakturační adersa IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FaktAdresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Fakturační adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tel" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telefonní spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fax" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Faxové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mobil" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Číslo na mobilní telefon - ignoruje se tag Klap IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMail" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>E-Mailové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="WWW" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adersa webové stránky firmy IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ICO" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IČO IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DIC" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CZ: DIČ SK: IČDPH : IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DICSK" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pouze SK verze: DIČ IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Banka" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Ucet" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Účet bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodBanky" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód banky bankovního spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodPartn" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód partnera IMPORT: nová ANO, oprava NE, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FyzOsoba" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli je firma  fyzická osoba IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MenaSymb" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Symbol domácí měny</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="MenaKod" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ISO kód domácí měny</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="osobaType">
+		<xs:sequence>
+			<xs:element name="Osloveni" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Oslovení IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TitulPred" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Titul před jménemIMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TitulZa" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Titul za jménem IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Jmeno" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Jméno IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Prijmeni" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příjmení IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DatNar" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Datum narození
+IMPORT: nová ANO, oprava ANO,
+ExportEmbedded: NE, 
+ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pohlavi" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pohlaví (muž - 1, žena - 0) IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Funkce" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Funkce ve firmě IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Adresa" type="adresaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Privátní adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tel" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telefonní spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fax" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Faxové spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mobil" type="telefonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Číslo na mobilní telefon - ignoruje se tag Klap IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Spojeni" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ostatní informace ke spojení IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="EMail" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>E-Mailová adresa IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Mail" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak jestli posílat poštu IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: NE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MailDatum" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Datum posledního mailu IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: NE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pozn" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Poznámka IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KodPartn" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód partnera IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="GUID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>GUID osoby MPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Jednatel" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Příznak toho, zda se jedná o jednatele (může jím být max. jedna kont.osoba) IMPORT(nová:ANO,oprava:ANO) EXPORT(ANO)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="adresaType">
+		<xs:sequence>
+			<xs:element name="Ulice" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Misto" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PSC" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Stat" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodStatu" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Dvouznakový Kód státu podle ISO 3166-1</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="telefonType">
+		<xs:sequence>
+			<xs:element name="Pred" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Cislo" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Klap" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="skupinaFiremType">
+		<xs:sequence>
+			<xs:element name="Zkratka" type="zkratkaType">
+				<xs:annotation>
+					<xs:documentation>Zkratka skupiny IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Nazev" type="popisType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Název skupiny IMPORT: nová ANO, oprava ANO, ExportEmbedded: ANO, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Poznamka" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Poznámka IMPORT: nová ANO, oprava ANO, ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bankSpojeniType">
+		<xs:sequence>
+			<xs:element name="Ucet" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Účet bankovního spojení ExportEmbedded: NE ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KodBanky" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Kód banky bankovního spojení  ExportEmbedded: NE, ExportStandalone: ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Mena" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Měna účtu. ExportEmbedded:NE, ExportStandalone:ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Ucel" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Účel účtu, info editované userem. ExportEmbedded:NE,ExportStandalone:ANO</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

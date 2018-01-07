@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="__Firma.xsd"/>
+	<xs:include schemaLocation="__Zasoba.xsd"/>
+	<xs:include schemaLocation="__Comtypes.xsd"/>
+	<xs:complexType name="skupinaKusovnikType">
+		<xs:sequence>
+			<xs:element name="Zkratka" type="zkratkaType"/>
+			<xs:element name="Nazev" type="popisType" minOccurs="0"/>
+			<xs:element name="Poznamka" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="variantaKusovnikType">
+		<xs:sequence>
+			<xs:element name="Nazev" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="popisType">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Poznamka" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="headerKusovnikType">
+		<xs:sequence>
+			<xs:element name="Cislo" type="xs:integer"/>
+			<xs:element name="Druh">
+				<xs:annotation>
+					<xs:documentation>Může obsahovat "M"-materiál
+"O"-operace
+"S"-sada</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Typ">
+				<xs:annotation>
+					<xs:documentation>Může obsahovat
+"V"-vyrobek
+"J"-material
+"R"-operace ruční
+"K"-kooperace
+"S"-opearce strojová
+"X"-smíšená sada</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Skupina" type="skupinaKusovnikType" minOccurs="0"/>
+			<xs:element name="CisKarty" type="xs:integer" minOccurs="0"/>
+			<xs:element name="Zkratka" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Popis" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="NakladMat" type="castkaType" minOccurs="0"/>
+			<xs:element name="NakladMzd" type="castkaType" minOccurs="0"/>
+			<xs:element name="NakladKoop" type="castkaType" minOccurs="0"/>
+			<xs:element name="NakladStr" type="castkaType" minOccurs="0"/>
+			<xs:element name="Vyuziti" type="xs:byte" minOccurs="0"/>
+			<xs:element name="Kalendar" type="xs:byte" minOccurs="0"/>
+			<xs:element name="DesMist" type="xs:byte" minOccurs="0"/>
+			<xs:element name="VarKus" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="PriceMask" type="xs:byte" minOccurs="0"/>
+			<xs:element name="TimeMask" type="xs:byte" minOccurs="0"/>
+			<xs:element name="IDUziv" type="xs:integer" minOccurs="0"/>
+			<xs:element name="DatumZmeny" type="xs:date" minOccurs="0"/>
+			<xs:element name="CasZmeny" type="xs:time" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="childKusovnikType">
+		<xs:sequence>
+			<xs:element name="Cislo" type="xs:integer"/>
+			<xs:element name="Typ">
+				<xs:annotation>
+					<xs:documentation>Může obsahovat
+"V"-vyrobek
+"J"-material
+"R"-operace ruční
+"K"-kooperace
+"S"-opearce strojová
+"  X"-sada</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CisKarty" type="xs:integer" minOccurs="0"/>
+			<xs:element name="Varianta" type="xs:integer" minOccurs="0"/>
+			<xs:element name="Rezie" type="xs:integer" minOccurs="0"/>
+			<xs:element name="Poradi" type="xs:integer" minOccurs="0"/>
+			<xs:element name="Povaha" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CilZdroj" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PevnaCena" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Cena" type="castkaType" minOccurs="0"/>
+			<xs:element name="PocetMJ" type="mnozstviType" minOccurs="0"/>
+			<xs:element name="PocetMJFix" type="mnozstviType" minOccurs="0"/>
+			<xs:element name="Kapacita" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="Time" type="mnozstviType" minOccurs="0"/>
+			<xs:element name="TimeFix" type="mnozstviType" minOccurs="0"/>
+			<xs:element name="StartTime" type="mnozstviType" minOccurs="0"/>
+			<xs:element name="LastTime" type="mnozstviType" minOccurs="0"/>
+			<xs:element name="StartOper" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="PodilCeny" type="procentoType" minOccurs="0"/>
+			<xs:element name="Sklad" type="skladType" minOccurs="0"/>
+			<xs:element name="PoziceVykr" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Zakazka" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Stav" type="xs:string" minOccurs="0"/>
+			<xs:element name="Poznamka" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="komponentaKusovnikType">
+		<xs:sequence>
+			<xs:element name="Child" type="childKusovnikType"/>
+			<xs:element name="Reference">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="TypKusovnik" type="kusovnikType"/>
+						<xs:element name="Vzor" type="vzorKomponentaType"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="vzorKomponentaType">
+		<xs:sequence>
+			<xs:element name="Header" type="headerKusovnikType"/>
+			<xs:element name="Child" type="childKusovnikType"/>
+			<xs:element name="KmKarta" type="kmKartaType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kusovnikType">
+		<xs:sequence>
+			<xs:element name="Header" type="headerKusovnikType"/>
+			<xs:element name="Child" type="childKusovnikType"/>
+			<xs:element name="SeznamKomponent" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Komponenta" type="komponentaKusovnikType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

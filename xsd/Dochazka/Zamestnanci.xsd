@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Schéma popisuje strukturu XML dokumentu určeného pro export zaměstnanců z programu Money do docházkového systému.
+      Autor: Marek Vykydal
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>Schéma popisuje strukturu XML dokumentu určeného pro export zaměstnanců z programu Money do docházkového systému.</xs:documentation>
+	</xs:annotation>
+	<xs:element name="MoneyData">
+		<xs:annotation>
+			<xs:documentation>Kořenový element dokumentu</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SeznamZamestnancu" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Seznam zaměstnanců</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Zamestnanec" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Zaměstnanec</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="zamestnanec"/>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="messageID" type="xs:decimal" use="optional">
+				<xs:annotation>
+					<xs:documentation>Číslo dávky</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="KodAgendy" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Kód agendy</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="HospRokOd" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>Hospodářský rok - od</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="HospRokDo" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>Hospodářský rok - do</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="description" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Popis XML přenosu</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ExpZkratka" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Zkratka XML přenosu</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ExpDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>Datum exportu</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ExpTime" type="xs:time" use="optional">
+				<xs:annotation>
+					<xs:documentation>Čas exportu</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="VyberZaznamu" use="optional">
+				<xs:annotation>
+					<xs:appinfo>Způsob exportu:
+ (0 = exportují se všechny záznamy nebo pouze vybrané, 
+4 = nové a změněné od data a času poslední dávky)</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="1"/>
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="zamestnanec">
+		<xs:annotation>
+			<xs:documentation>Identifikace zaměstnance</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OsobniCislo">
+				<xs:annotation>
+					<xs:documentation>Osobní číslo zaměstnance</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Prijmeni" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Příjmení zaměstnance</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Jmeno" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Jméno zaměstnance</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Titul" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Titul zaměstnance</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Funkce" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pracovní funkce, zařazení</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PracPomer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Pracovní poměr</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Zkratka">
+							<xs:annotation>
+								<xs:documentation>Zkrácený název nebo číslo pracovního poměru</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Popis" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Slovní popis pracovního poměru</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="KodCinnosti" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Kód činnosti
+
+Poznámka: prvním znakem v ködu činnosti je Druh činnosti</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="3"/>
+									<xs:pattern value="[A-Z0-9\s][DMNPRV\+\s][S\+\s]"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Stredisko" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Středisko</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Zkratka">
+							<xs:annotation>
+								<xs:documentation>Zkrácený název nebo číslo střediska</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Popis" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Slovní popis střediska</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DatumNastup" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Datum vstupu do zaměstnání</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatumOdchod" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Datum ukončení zaměstnání</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

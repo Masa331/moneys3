@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="t_kc">
+		<xs:annotation>
+			<xs:documentation>Kontrolní hash.(použito na více místech)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9|a-f]{32}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ct_podani">
+		<xs:annotation>
+			<xs:documentation>vyčleněno kvůli přehlednosti</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="Cislo" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Podací číslo.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="KC" type="t_kc" use="required">
+			<xs:annotation>
+				<xs:documentation>Kontrolní číslo podání.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Datum" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>Datum a čas podání souboru.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Heslo" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Heslo pro přístup k informacím o stavu zpracování souboru.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ZAREP" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Informace zda obsahuje ZAREP.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Email" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Email uživatele pro odeslání souboru.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sha" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Kontrolní součet původního kompletního souboru tak, jak byl obdržen spočítaný algoritmem SHA.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ct_kontrola">
+		<xs:annotation>
+			<xs:documentation>vyčleněno kvůli přehlednosti</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Soubor">
+				<xs:complexType>
+					<xs:attribute name="KC" type="t_kc" use="required">
+						<xs:annotation>
+							<xs:documentation>Kontrolní číslo souboru.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Nazev" use="required">
+						<xs:annotation>
+							<xs:documentation>Název souboru.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="[A-Z]{3}[A-Z|0-9]{3}-[0-9]{10}-[0-9]{8}-[0-9]{6}(.xml)?"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="c_ufo" use="required">
+						<xs:annotation>
+							<xs:documentation>Duplikace hodnoty z obsahu souboru</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="3"/>
+								<xs:fractionDigits value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="Delka" use="required">
+						<xs:annotation>
+							<xs:documentation>Délka bytového pole písemnosti</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:long"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Certifikaty" minOccurs="0"/>
+			<xs:element name="Aplikace" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="KC" type="t_kc" use="required">
+						<xs:annotation>
+							<xs:documentation>Kontrolní číslo aplikace (kontroly).</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Verze" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Verze aplikace.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Datum" type="xs:dateTime" use="optional">
+						<xs:annotation>
+							<xs:documentation>Datum kontroly souboru </xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="obecnePisemnost">
+		<xs:annotation>
+			<xs:documentation>zde, v tomto schematu se kontroluje jen root</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any processContents="lax" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute processContents="lax"/>
+	</xs:complexType>
+	<xs:element name="Pisemnost">
+		<xs:annotation>
+			<xs:documentation>jen náčrt schématu pisemnosti pro preparsing</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="Data" type="xs:hexBinary"/>
+					<xs:element name="Kontrola" type="ct_kontrola"/>
+					<xs:element name="Podani" type="ct_podani"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:choice id="typyPisemnosti">
+						<xs:element name="DPRZA1" type="obecnePisemnost"/>
+						<xs:element name="DPRZA2" type="obecnePisemnost"/>
+						<xs:element name="DPRZA3" type="obecnePisemnost"/>
+						<xs:element name="DPRPM1" type="obecnePisemnost"/>
+						<xs:element name="DPRPM2" type="obecnePisemnost"/>
+						<xs:element name="DPHDP2" type="obecnePisemnost"/>
+						<xs:element name="DPHDP1" type="obecnePisemnost"/>
+						<xs:element name="DPHKH1" type="obecnePisemnost"/>
+						<xs:element name="DPHDAP" type="obecnePisemnost"/>
+						<xs:element name="DPHSHV" type="obecnePisemnost"/>
+						<xs:element name="DPFDP3" type="obecnePisemnost"/>
+						<xs:element name="DPFDP2" type="obecnePisemnost"/>
+						<xs:element name="DPFDP1" type="obecnePisemnost"/>
+						<xs:element name="DPFDAP" type="obecnePisemnost"/>
+						<xs:element name="DPFDB1" type="obecnePisemnost"/>
+						<xs:element name="DPFDPB" type="obecnePisemnost"/>
+						<xs:element name="DPFDPA" type="obecnePisemnost"/>
+						<xs:element name="DPPDP5" type="obecnePisemnost"/>
+						<xs:element name="DPPDP4" type="obecnePisemnost"/>
+						<xs:element name="DPPDP3" type="obecnePisemnost"/>
+						<xs:element name="DPPDP2" type="obecnePisemnost"/>
+						<xs:element name="DPPDP1" type="obecnePisemnost"/>
+						<xs:element name="DPPDAP" type="obecnePisemnost"/>
+						<xs:element name="DPZVD4" type="obecnePisemnost"/>
+						<xs:element name="DPZVD3" type="obecnePisemnost"/>
+						<xs:element name="DPZVD2" type="obecnePisemnost"/>
+						<xs:element name="DPZVDA" type="obecnePisemnost"/>
+						<xs:element name="DSLDP1" type="obecnePisemnost"/>
+						<xs:element name="DSLDAP" type="obecnePisemnost"/>
+						<xs:element name="DNEDP3" type="obecnePisemnost"/>
+						<xs:element name="DNEDP2" type="obecnePisemnost"/>
+						<xs:element name="DNEDAP" type="obecnePisemnost"/>
+						<xs:element name="RHLOZN" type="obecnePisemnost"/>
+						<xs:element name="MPDHPZ" type="obecnePisemnost"/>
+						<xs:element name="DADPIS" type="obecnePisemnost"/>
+						<xs:element name="DADSOB" type="obecnePisemnost"/>
+						<xs:element name="IRSJRF" type="obecnePisemnost"/>
+						<xs:element name="IRSJRZ" type="obecnePisemnost"/>
+					</xs:choice>
+					<xs:element name="Kontrola" type="ct_kontrola" minOccurs="0"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:anyAttribute processContents="lax"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
