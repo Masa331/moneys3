@@ -1,5 +1,4 @@
-require "moneys3/version"
+require 'moneys3/version'
 
-module Moneys3
-  # Your code goes here...
+module MoneyS3
 end

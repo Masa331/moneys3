@@ -1,3 +1,3 @@
-module Moneys3
-  VERSION = "0.1.0"
+module MoneyS3
+  VERSION = '0.0.1'
 end
