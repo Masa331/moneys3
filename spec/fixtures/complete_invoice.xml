@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<MoneyData ICAgendy="00000001" KodAgendy="" HospRokOd="2017-01-01" HospRokDo="2017-12-31" description="faktury přijaté a vydané" ExpZkratka="_FP+FV" ExpDate="2017-09-13" ExpTime="09:30:00" VyberZaznamu="0">
+  <SeznamFaktVyd>
+    <FaktVyd>
+      <Doklad>171372</Doklad>
+      <GUID>{EAEAFE6E-8DF3-4E81-83B9-688C9519A55E}</GUID>
+      <Rada>rr1</Rada>
+      <CisRada>372</CisRada>
+      <UDoklad>BP17374</UDoklad>
+      <Popis>Objednávka č. 1005 z mujshop.cz</Popis>
+      <Vystaveno>2017-08-03</Vystaveno>
+      <DatUcPr>2017-08-03</DatUcPr>
+      <PlnenoDPH>2017-08-03</PlnenoDPH>
+      <Splatno>2017-08-17</Splatno>
+      <Uhrazeno>2017-08-11</Uhrazeno>
+      <DatSkPoh>2017-08-03</DatSkPoh>
+      <KodDPH>19Ř01,02</KodDPH>
+      <ZjednD>0</ZjednD>
+      <VarSymbol>20171005</VarSymbol>
+      <CObjednavk>20171005</CObjednavk>
+      <Ucet>BAN</Ucet>
+      <Druh>N</Druh>
+      <Dobropis>0</Dobropis>
+      <ZpDopravy>přepravní služba</ZpDopravy>
+      <Uhrada>dobírkou</Uhrada>
+      <PredKontac>FV001</PredKontac>
+      <Cinnost>MALOOBCHOD</Cinnost>
+      <SazbaDPH1>15</SazbaDPH1>
+      <SazbaDPH2>21</SazbaDPH2>
+      <Proplatit>0</Proplatit>
+      <Vyuctovano>0</Vyuctovano>
+      <SouhrnDPH>
+        <Zaklad0>0</Zaklad0>
+        <Zaklad5>0</Zaklad5>
+        <Zaklad22>301.65</Zaklad22>
+        <DPH5>0</DPH5>
+        <DPH22>63.35</DPH22>
+        <SeznamDalsiSazby>
+          <DalsiSazba>
+            <Popis>druhá snížená</Popis>
+            <HladinaDPH>1</HladinaDPH>
+            <Sazba>10</Sazba>
+            <Zaklad>0</Zaklad>
+            <DPH>0</DPH>
+          </DalsiSazba>
+        </SeznamDalsiSazby>
+      </SouhrnDPH>
+      <Celkem>365</Celkem>
+      <Typ>PRODEJ FA5</Typ>
+      <Vystavil>J. Novak</Vystavil>
+      <PriUhrZbyv>0</PriUhrZbyv>
+      <TextPredFa>Fakturujeme Vám:</TextPredFa>
+      <TextZaFa>text za fa</TextZaFa>
+      <ValutyProp>0</ValutyProp>
+      <SumZaloha>0</SumZaloha>
+      <SumZalohaC>0</SumZalohaC>
+      <DodOdb>
+        <ObchNazev>Petra Lolová</ObchNazev>
+        <ObchAdresa>
+          <Ulice>Školní 659/28</Ulice>
+          <Misto>Praha 14</Misto>
+          <PSC>46014</PSC>
+          <Stat>Česká republika</Stat>
+        </ObchAdresa>
+        <FaktNazev>Jan Maly</FaktNazev>
+        <FaktAdresa>
+          <Ulice>Na hrachu 659/28</Ulice>
+          <Misto>Praha 14</Misto>
+          <PSC>46014</PSC>
+          <Stat>Česká republika</Stat>
+        </FaktAdresa>
+        <EMail>novak@nekde.cz</EMail>
+      </DodOdb>
+      <KonecPrij>
+        <Nazev>Petra Lolova</Nazev>
+        <Adresa>
+          <Ulice>Na Machovne 659/28</Ulice>
+          <Misto>Brno 14</Misto>
+          <PSC>46014</PSC>
+          <Stat>Česká republika</Stat>
+        </Adresa>
+        <EMail>nekdo@nekde.cz</EMail>
+      </KonecPrij>
+      <DopravTuz>0</DopravTuz>
+      <DopravZahr>0</DopravZahr>
+      <Sleva>0</Sleva>
+      <SeznamPolozek>
+        <Polozka>
+          <Popis>Kartáček texturovací střední</Popis>
+          <PocetMJ>1</PocetMJ>
+          <SazbaDPH>21</SazbaDPH>
+          <Cena>47.94</Cena>
+          <CenaTyp>0</CenaTyp>
+          <Sleva>0</Sleva>
+          <Poradi>1</Poradi>
+          <Valuty>0</Valuty>
+          <CenaPoSleve>1</CenaPoSleve>
+          <SklPolozka>
+            <CenovaHlad>Základní</CenovaHlad>
+            <Vratka>0</Vratka>
+            <UcetMD>000000</UcetMD>
+            <UcetD>132000</UcetD>
+            <Hmotnost>0.01</Hmotnost>
+            <Sklad>
+              <Nazev>PRODEJNA</Nazev>
+              <KodSkladu>UL</KodSkladu>
+              <GUID>{0B1WR-B080-4836-á029-AA12AA719DF2}</GUID>
+              <CenikSklad>0</CenikSklad>
+            </Sklad>
+            <KmKarta>
+              <Popis>Kartáček texturovací střední</Popis>
+              <Zkrat>Kartáček střední</Zkrat>
+              <MJ>ks</MJ>
+              <UzivCode>110296</UzivCode>
+              <GUID>{D6C17C34-3F95-41á7-99A4-áE3B972F7902}</GUID>
+              <TypZarDoby>N</TypZarDoby>
+              <ZarDoba>0</ZarDoba>
+              <EvVyrCis>0</EvVyrCis>
+              <DesMist>0</DesMist>
+              <Obrazek2>cesta_k_foto</Obrazek2>
+              <Hmotnost>0.01</Hmotnost>
+              <Objem>0</Objem>
+              <TypKarty>jednoducha</TypKarty>
+            </KmKarta>
+          </SklPolozka>
+        </Polozka>
+      </SeznamPolozek>
+      <SeznamUhrad>
+        <Uhrada>
+          <Prijem>1</Prijem>
+          <Poradi>378</Poradi>
+          <Datum>2017-08-11</Datum>
+          <DatUplDPH>2017-08-11</DatUplDPH>
+          <Castka>365</Castka>
+          <ZpusobUhr>3</ZpusobUhr>
+          <DokladUhr>
+            <IDDokladu>376</IDDokladu>
+            <CisloDokladu>BP17374</CisloDokladu>
+            <DruhDokladu>B</DruhDokladu>
+            <Rok>2017</Rok>
+          </DokladUhr>
+          <DokladHraz>
+            <IDDokladu>397</IDDokladu>
+            <CisloDokladu>171372</CisloDokladu>
+            <DruhDokladu>FV</DruhDokladu>
+            <Rok>2017</Rok>
+          </DokladHraz>
+          <SeznamPDUhrad>
+            <Uhrada_PDUhrada>
+              <Poradi>378</Poradi>
+              <Kontace>FV001</Kontace>
+              <Cinnost>MALOOBCHOD</Cinnost>
+              <Zaklad>301.65</Zaklad>
+              <DPHZS>63.35</DPHZS>
+              <DPHSS>0</DPHSS>
+              <WLZaklady>0</WLZaklady>
+              <WLDPH1>0</WLDPH1>
+              <WLDPH2>0</WLDPH2>
+            </Uhrada_PDUhrada>
+          </SeznamPDUhrad>
+        </Uhrada>
+      </SeznamUhrad>
+      <MojeFirma>
+        <Nazev>XML FAKTURY s.r.o.</Nazev>
+        <Adresa>
+          <Ulice>Novakova 574/4</Ulice>
+          <Misto>Ústí nad Orlici</Misto>
+          <PSC>40003</PSC>
+          <Stat>Česká republika</Stat>
+          <KodStatu>CZ</KodStatu>
+        </Adresa>
+        <ObchNazev>XML FAKTURY s.r.o.</ObchNazev>
+        <ObchAdresa>
+          <Ulice>Novakovka 574/4</Ulice>
+          <Misto>Ústí nad Orlici</Misto>
+          <PSC>40003</PSC>
+          <Stat>Česká republika</Stat>
+          <KodStatu>CZ</KodStatu>
+        </ObchAdresa>
+        <FaktNazev>XML FAKTURY s.r.o.</FaktNazev>
+        <FaktAdresa>
+          <Ulice>Raisova 574/4</Ulice>
+          <Misto>Ústí nad Orlici</Misto>
+          <PSC>40003</PSC>
+          <Stat>Česká republika</Stat>
+          <KodStatu>CZ</KodStatu>
+        </FaktAdresa>
+        <Tel>
+          <Pred>+420</Pred>
+          <Cislo>111222333</Cislo>
+          <Klap/>
+        </Tel>
+        <Fax>
+          <Pred>+420</Pred>
+          <Cislo>111222444</Cislo>
+          <Klap/>
+        </Fax>
+        <Mobil>
+          <Pred/>
+          <Cislo/>
+        </Mobil>
+        <EMail>info@mujshop.cz</EMail>
+        <WWW>www.mujshop.cz</WWW>
+        <ICO>00000001</ICO>
+        <DIC>CZ00000001</DIC>
+        <Banka>Československá obchodní banka, a.s.</Banka>
+        <Ucet>205 096 789</Ucet>
+        <KodBanky>0300</KodBanky>
+        <KodPartn/>
+        <FyzOsoba>0</FyzOsoba>
+        <MenaSymb>Kč</MenaSymb>
+        <MenaKod>CZK</MenaKod>
+      </MojeFirma>
+      <SeznamVazeb>
+        <Vazba>
+          <Typ>PR</Typ>
+          <Doklad>
+            <Druh>OP</Druh>
+            <Cislo>OP17426</Cislo>
+            <PrijatDokl>20171005</PrijatDokl>
+            <VarSymbol>20171005</VarSymbol>
+            <Vystaveno>2017-08-01</Vystaveno>
+          </Doklad>
+        </Vazba>
+      </SeznamVazeb>
+    </FaktVyd>
+
+    <FaktVyd>
+      <Doklad>111999</Doklad>
+      <GUID>{111-111-222-222-333}</GUID>
+    </FaktVyd>
+  </SeznamFaktVyd>
+</MoneyData>
