@@ -1,5 +1,4 @@
 require 'ox'
-require 'money_s3/version'
 require 'money_s3/money_data'
 
 module MoneyS3
