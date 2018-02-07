@@ -1,37 +1,56 @@
 # MoneyS3
 
-MoneyS3 XML parser and builder
+Simple parser and builder for MoneyS3 XML data
 
-## Installation
+Content:
+1. [About](#about)
+    1. [Naming](#naming)
+    2. [What's missing](#whats-missing)
+2. [Api](#api)
+    1. [Parsers](#parsers)
+    2. [Builder](#builder)
+3. [Performance](#performance)
+4. [External links](#external-links)
+5. [License](#license)
 
-Add this line to your application's Gemfile:
+## About
 
-```ruby
-gem 'moneys3'
-```
+WIP
 
-And then execute:
+### Naming
 
-    $ bundle
+WIP
 
-Or install it yourself as:
+#### Method names
 
-    $ gem install moneys3
+WIP
 
-## Usage
+#### Class names
 
-TODO: Write usage instructions here
+WIP
 
-## Development
+### Missing parts
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+WIP
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## Api
 
-## Contributing
+### Parsing a document
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/moneys3.
+WIP
+
+### Creating a document
+
+WIP
+
+## Performance
+
+WIP
+
+## External links
+
+WIP
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).

@@ -1,10 +1,9 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "money_s3/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "money_s3"
-  spec.version       = MoneyS3::VERSION
+  spec.version       = '0.1.0'
   spec.authors       = ["Premysl Donat"]
   spec.email         = ["pdonat@seznam.cz"]
 
