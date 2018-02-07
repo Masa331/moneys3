@@ -10,10 +10,12 @@ module MoneyS3
 
       raw =
         if content.is_a? Array
-          content.last
+          content.shift
+          content.inject({}) { |memo, member| memo.merge(member) }
         else
           content
         end
+
       MoneyData.new(raw)
     end
   end
