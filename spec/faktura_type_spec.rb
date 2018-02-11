@@ -256,4 +256,15 @@ RSpec.describe MoneyS3::FakturaType do
     # its('prepr_trida') { is_expected.to eq '' }
     # its('prepravce') { is_expected.to eq '' }
   end
+
+  describe 'invoice with multiple items' do
+    let(:raw) { File.read('./spec/fixtures/multiple_items_invoice.xml') }
+    let(:parsed) { MoneyS3.parse(raw) }
+    subject(:invoice) { parsed.seznam_fakt_vyd.first }
+
+    it 'is parsed right' do
+      expect(subject.seznam_polozek.first.popis).to eq 'popis_1'
+      expect(subject.seznam_polozek.last.popis).to eq 'popis_2'
+    end
+  end
 end

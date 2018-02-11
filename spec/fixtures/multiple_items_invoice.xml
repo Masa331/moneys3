@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<MoneyData ICAgendy="00000001" KodAgendy="" HospRokOd="2017-01-01" HospRokDo="2017-12-31" description="faktury přijaté a vydané" ExpZkratka="_FP+FV" ExpDate="2017-09-13" ExpTime="09:30:00" VyberZaznamu="0">
+  <SeznamFaktVyd>
+    <FaktVyd>
+      <Doklad>171372</Doklad>
+      <SeznamPolozek>
+        <Polozka>
+          <Popis>popis_1</Popis>
+        </Polozka>
+        <Polozka>
+          <Popis>popis_2</Popis>
+        </Polozka>
+      </SeznamPolozek>
+    </FaktVyd>
+  </SeznamFaktVyd>
+</MoneyData>

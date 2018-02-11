@@ -378,13 +378,13 @@ module MoneyS3
     end
 
     def seznam_polozek
-      elements = raw[:SeznamPolozek]
+      elements = raw[:SeznamPolozek][:Polozka]
       if elements.is_a? Hash
         elements = [elements]
       end
 
       elements.map do |raw|
-        PolFakturyType.new(raw[:Polozka])
+        PolFakturyType.new(raw)
       end
     end
 
