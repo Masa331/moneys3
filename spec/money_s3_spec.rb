@@ -9,6 +9,7 @@ RSpec.describe MoneyS3::FakturaType do
     context 'file with multiple agendas inside' do
       it 'is parsed correctly' do
         expect(parsed.seznam_fakt_vyd.last.doklad).to eq '171372'
+        expect(parsed.seznam_fakt_vyd_dpp.last.doklad).to eq '118008'
       end
     end
   end

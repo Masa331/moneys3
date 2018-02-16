@@ -5,5 +5,9 @@
       <Doklad>171372</Doklad>
     </FaktVyd>
   </SeznamFaktVyd>
-  <SeznamFaktVyd_DPP/>
+  <SeznamFaktVyd_DPP>
+    <FaktVyd_DPP>
+      <Doklad>118008</Doklad>
+    </FaktVyd_DPP>
+  </SeznamFaktVyd_DPP>
 </MoneyData>
