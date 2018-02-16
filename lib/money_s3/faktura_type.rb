@@ -378,7 +378,7 @@ module MoneyS3
     end
 
     def seznam_polozek
-      elements = raw[:SeznamPolozek][:Polozka]
+      elements = raw.dig(:SeznamPolozek, :Polozka) || []
       if elements.is_a? Hash
         elements = [elements]
       end

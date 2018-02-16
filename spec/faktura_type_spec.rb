@@ -267,4 +267,14 @@ RSpec.describe MoneyS3::FakturaType do
       expect(subject.seznam_polozek.last.popis).to eq 'popis_2'
     end
   end
+
+  describe 'invoice with no items' do
+    let(:raw) { File.read('./spec/fixtures/no_items_invoice.xml') }
+    let(:parsed) { MoneyS3.parse(raw) }
+    subject(:invoice) { parsed.seznam_fakt_vyd.first }
+
+    it 'is parsed right' do
+      expect(subject.seznam_polozek).to eq []
+    end
+  end
 end
