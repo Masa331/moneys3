@@ -2,6 +2,9 @@ require 'money_s3/base_element'
 require 'money_s3/souhrn_dph_pol_type'
 require 'money_s3/seznam_vc'
 require 'money_s3/slozeni'
+require 'money_s3/sklad_type'
+require 'money_s3/km_karta_type'
+require 'money_s3/neskl_polozka'
 
 module MoneyS3
   class PolObjednType
@@ -127,6 +130,24 @@ module MoneyS3
       element_xml = at :Slozeni
 
       Slozeni.new(element_xml) if element_xml
+    end
+
+    def neskl_polozka
+      element_xml = at :NesklPolozka
+
+      NesklPolozka.new(element_xml) if element_xml
+    end
+
+    def sklad
+      element_xml = at :Sklad
+
+      SkladType.new(element_xml) if element_xml
+    end
+
+    def km_karta
+      element_xml = at :KmKarta
+
+      KmKartaType.new(element_xml) if element_xml
     end
   end
 end

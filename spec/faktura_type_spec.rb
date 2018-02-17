@@ -188,6 +188,29 @@ RSpec.describe MoneyS3::FakturaType do
       end
     end
 
+    describe 'seznam_zal_polozek' do
+      subject(:polozka) { parsed.seznam_fakt_vyd.first.seznam_zal_polozek.first }
+
+      its('popis') { is_expected.to eq 'Konzultace' }
+      its('pocet_mj') { is_expected.to eq '1' }
+      its('zbyva_mj') { is_expected.to eq '0' }
+      its('cena') { is_expected.to eq '5000' }
+      its('sazba_dph') { is_expected.to eq '0' }
+      its('typ_ceny') { is_expected.to eq '0' }
+      its('sleva') { is_expected.to eq '0' }
+      its('vystaveno') { is_expected.to eq '2018-01-07' }
+      its('vyridit_do') { is_expected.to eq '2018-01-14' }
+      its('vyrizeno') { is_expected.to eq '2018-01-07' }
+      its('poradi') { is_expected.to eq '1' }
+      its('valuty') { is_expected.to eq '0' }
+      its('hmotnost') { is_expected.to eq '0' }
+      its('cena_po_sleve') { is_expected.to eq '1' }
+      its('pred_pc') { is_expected.to eq '0' }
+
+      its('neskl_polozka.typ_zar_doby') { is_expected.to eq 'N' }
+      its('neskl_polozka.zar_doba') { is_expected.to eq '6' }
+    end
+
     its('moje_firma.nazev') { is_expected.to eq 'XML FAKTURY s.r.o.' }
     its('moje_firma.adresa.ulice') { is_expected.to eq 'Novakova 574/4' }
     its('moje_firma.adresa.misto') { is_expected.to eq 'Ústí nad Orlici' }

@@ -125,6 +125,29 @@
           </SklPolozka>
         </Polozka>
       </SeznamPolozek>
+      <SeznamZalPolozek>
+        <Polozka>
+          <Popis>Konzultace</Popis>
+          <PocetMJ>1</PocetMJ>
+          <ZbyvaMJ>0</ZbyvaMJ>
+          <Cena>5000</Cena>
+          <SazbaDPH>0</SazbaDPH>
+          <TypCeny>0</TypCeny>
+          <Sleva>0</Sleva>
+          <Vystaveno>2018-01-07</Vystaveno>
+          <Vyridit_do>2018-01-14</Vyridit_do>
+          <Vyrizeno>2018-01-07</Vyrizeno>
+          <Poradi>1</Poradi>
+          <Valuty>0</Valuty>
+          <Hmotnost>0</Hmotnost>
+          <CenaPoSleve>1</CenaPoSleve>
+          <PredPC>0</PredPC>
+          <NesklPolozka>
+            <TypZarDoby>N</TypZarDoby>
+            <ZarDoba>6</ZarDoba>
+          </NesklPolozka>
+        </Polozka>
+      </SeznamZalPolozek>
       <SeznamUhrad>
         <Uhrada>
           <Prijem>1</Prijem>

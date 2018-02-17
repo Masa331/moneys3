@@ -10,7 +10,7 @@ require 'money_s3/prepr_dopln_udaj_type'
 require 'money_s3/prepr_dopln_udaj_type'
 require 'money_s3/prepr_dopln_udaj_type'
 require 'money_s3/prepr_seznamsluzeb'
-require 'money_s3/seznam_zal_polozek'
+require 'money_s3/pol_objedn_type'
 require 'money_s3/uhrada_type'
 require 'money_s3/moje_firma_type'
 require 'money_s3/seznam_nep_plateb'
@@ -389,9 +389,14 @@ module MoneyS3
     end
 
     def seznam_zal_polozek
-      element_xml = at :SeznamZalPolozek
+      elements = raw.dig(:SeznamZalPolozek, :Polozka) || []
+      if elements.is_a? Hash
+        elements = [elements]
+      end
 
-      SeznamZalPolozek.new(element_xml) if element_xml
+      elements.map do |raw|
+        PolObjednType.new(raw)
+      end
     end
 
     def seznam_uhrad
