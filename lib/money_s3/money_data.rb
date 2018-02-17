@@ -6,7 +6,7 @@ module MoneyS3
     include BaseElement
 
     def seznam_fakt_vyd
-      elements = raw[:SeznamFaktVyd][:FaktVyd]
+      elements = raw.dig(:SeznamFaktVyd, :FaktVyd) || []
       if elements.is_a? Hash
         elements = [elements]
       end
@@ -17,7 +17,7 @@ module MoneyS3
     end
 
     def seznam_fakt_vyd_dpp
-      elements = raw[:SeznamFaktVyd_DPP][:FaktVyd_DPP]
+      elements = raw.dig(:SeznamFaktVyd_DPP, :FaktVyd_DPP) || []
       if elements.is_a? Hash
         elements = [elements]
       end
