@@ -7,7 +7,7 @@ RSpec.describe MoneyS3::FakturaType do
     let(:parsed) { MoneyS3.parse(raw) }
     subject(:invoice) { parsed.seznam_fakt_vyd.first }
 
-    # its('zpusob_uctovani') { is_expected.to eq '' }
+    its('zpusob_uctovani') { is_expected.to eq '1' }
     its('vystaveno') { is_expected.to eq '2017-08-03' }
     its('dat_uc_pr') { is_expected.to eq '2017-08-03' }
     its('plneno_dph') { is_expected.to eq '2017-08-03' }
@@ -25,8 +25,8 @@ RSpec.describe MoneyS3::FakturaType do
     # its('date_upom_l') { is_expected.to eq '' }
     # its('datum_its') { is_expected.to eq '' }
     # its('vyridit_nej') { is_expected.to eq '' }
-    # its('vyridit_do') { is_expected.to eq '' }
-    # its('vyrizeno') { is_expected.to eq '' }
+    its('vyridit_do') { is_expected.to eq '2018-01-14' }
+    its('vyrizeno') { is_expected.to eq '2018-01-07' }
     its('doklad') { is_expected.to eq '171372' }
     # its('ev_cis_dokl') { is_expected.to eq '' }
     its('guid') { is_expected.to eq '{EAEAFE6E-8DF3-4E81-83B9-688C9519A55E}' }
@@ -37,13 +37,13 @@ RSpec.describe MoneyS3::FakturaType do
     # its('ucel_zd_pl') { is_expected.to eq '' }
     its('plnen_dph') { is_expected.to eq nil }
     its('var_symbol') { is_expected.to eq '20171005' }
-    # its('spec_symbol') { is_expected.to eq '' }
+    its('spec_symbol') { is_expected.to eq '123456' }
     # its('prijat_dokl') { is_expected.to eq '' }
-    # its('par_symbol') { is_expected.to eq '' }
+    its('par_symbol') { is_expected.to eq 'parov798' }
     # its('puv_doklad') { is_expected.to eq '' }
     its('c_objednavk') { is_expected.to eq '20171005' }
     its('druh') { is_expected.to eq 'N' }
-    # its('dobr_duzp') { is_expected.to eq '' }
+    its('dobr_duzp') { is_expected.to eq '2018-01-07' }
     its('zp_dopravy') { is_expected.to eq 'přepravní služba' }
     its('uhrada') { is_expected.to eq 'dobírkou' }
     # its('stat_moss') { is_expected.to eq '' }
@@ -79,13 +79,35 @@ RSpec.describe MoneyS3::FakturaType do
     its('doprav_zahr') { is_expected.to eq '0' }
     its('sleva') { is_expected.to eq '0' }
     # its('pojisteno') { is_expected.to eq '' }
-    # its('valuty') { is_expected.to eq '' }
+
+    describe 'valuty' do
+      subject(:valuty) { parsed.seznam_fakt_vyd.first.valuty }
+
+      its('mena.kod') { is_expected.to eq 'EUR' }
+      its('mena.mnozstvi') { is_expected.to eq '1' }
+      its('mena.kurs') { is_expected.to eq '26.13' }
+
+      its('souhrn_dph.zaklad0') { is_expected.to eq '569.51' }
+      its('souhrn_dph.zaklad5') { is_expected.to eq '0' }
+      its('souhrn_dph.zaklad22') { is_expected.to eq '0' }
+      its('souhrn_dph.dph5') { is_expected.to eq '0' }
+      its('souhrn_dph.dph22') { is_expected.to eq '0' }
+
+      its('souhrn_dph.seznam_dalsi_sazby.first.popis') { is_expected.to eq 'druhá snížená' }
+      its('souhrn_dph.seznam_dalsi_sazby.first.hladina_dph') { is_expected.to eq '1' }
+      its('souhrn_dph.seznam_dalsi_sazby.first.sazba') { is_expected.to eq '10' }
+      its('souhrn_dph.seznam_dalsi_sazby.first.zaklad') { is_expected.to eq '0' }
+      its('souhrn_dph.seznam_dalsi_sazby.first.dph') { is_expected.to eq '0' }
+
+      its('celkem') { is_expected.to eq '569.51' }
+    end
 
     its('dod_odb.obch_nazev') { is_expected.to eq 'Petra Lolová' }
     its('dod_odb.obch_adresa.ulice') { is_expected.to eq 'Školní 659/28' }
     its('dod_odb.obch_adresa.misto') { is_expected.to eq 'Praha 14' }
     its('dod_odb.obch_adresa.psc') { is_expected.to eq '46014' }
     its('dod_odb.obch_adresa.stat') { is_expected.to eq 'Česká republika' }
+
     its('dod_odb.fakt_nazev') { is_expected.to eq 'Jan Maly' }
     its('dod_odb.fakt_adresa.ulice') { is_expected.to eq 'Na hrachu 659/28' }
     its('dod_odb.fakt_adresa.misto') { is_expected.to eq 'Praha 14' }
@@ -266,7 +288,6 @@ RSpec.describe MoneyS3::FakturaType do
       its('doklad.vystaveno') { is_expected.to eq '2017-08-01' }
     end
 
-    # its('seznam_zal_polozek') { is_expected.to eq '' }
     # its('seznam_nep_plateb') { is_expected.to eq '' }
     # its('vlajky') { is_expected.to eq '' }
     # its('dokumenty') { is_expected.to eq '' }

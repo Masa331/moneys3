@@ -18,6 +18,7 @@
       <ZjednD>0</ZjednD>
       <VarSymbol>20171005</VarSymbol>
       <CObjednavk>20171005</CObjednavk>
+      <ZpusobUctovani>1</ZpusobUctovani>
       <Ucet>BAN</Ucet>
       <Druh>N</Druh>
       <Dobropis>0</Dobropis>
@@ -46,6 +47,30 @@
         </SeznamDalsiSazby>
       </SouhrnDPH>
       <Celkem>365</Celkem>
+      <Valuty>
+        <Mena>
+          <Kod>EUR</Kod>
+          <Mnozstvi>1</Mnozstvi>
+          <Kurs>26.13</Kurs>
+        </Mena>
+        <SouhrnDPH>
+          <Zaklad0>569.51</Zaklad0>
+          <Zaklad5>0</Zaklad5>
+          <Zaklad22>0</Zaklad22>
+          <DPH5>0</DPH5>
+          <DPH22>0</DPH22>
+          <SeznamDalsiSazby>
+            <DalsiSazba>
+              <Popis>druhá snížená</Popis>
+              <HladinaDPH>1</HladinaDPH>
+              <Sazba>10</Sazba>
+              <Zaklad>0</Zaklad>
+              <DPH>0</DPH>
+            </DalsiSazba>
+          </SeznamDalsiSazby>
+        </SouhrnDPH>
+        <Celkem>569.51</Celkem>
+      </Valuty>
       <Typ>PRODEJ FA5</Typ>
       <Vystavil>J. Novak</Vystavil>
       <PriUhrZbyv>0</PriUhrZbyv>
@@ -84,6 +109,11 @@
       <DopravTuz>0</DopravTuz>
       <DopravZahr>0</DopravZahr>
       <Sleva>0</Sleva>
+      <Vyridit_do>2018-01-14</Vyridit_do>
+      <Vyrizeno>2018-01-07</Vyrizeno>
+      <SpecSymbol>123456</SpecSymbol>
+      <ParSymbol>parov798</ParSymbol>
+      <DobrDUZP>2018-01-07</DobrDUZP>
       <SeznamPolozek>
         <Polozka>
           <Popis>Kartáček texturovací střední</Popis>
