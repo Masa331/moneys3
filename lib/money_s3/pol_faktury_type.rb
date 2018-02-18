@@ -2,6 +2,7 @@ require 'money_s3/base_element'
 require 'money_s3/souhrn_dph_pol_type'
 require 'money_s3/neskl_polozka'
 require 'money_s3/pol_skl_dokl_type'
+require 'money_s3/seznam_vazeb'
 
 module MoneyS3
   class PolFakturyType
@@ -80,32 +81,19 @@ module MoneyS3
     end
 
     def souhrn_dph
-      element_xml = at :SouhrnDPH
-
-      SouhrnDPHPolType.new(element_xml) if element_xml
+      submodel_at(SouhrnDPHPolType, :SouhrnDPH)
     end
 
     def neskl_polozka
-      element_xml = at :NesklPolozka
-
-      NesklPolozka.new(element_xml) if element_xml
+      submodel_at(NesklPolozka, :NesklPolozka)
     end
 
     def skl_polozka
-      element_xml = at :SklPolozka
-
-      PolSklDoklType.new(element_xml) if element_xml
+      submodel_at(PolSklDoklType, :SklPolozka)
     end
 
     def seznam_vazeb
-      elements = raw[:SeznamVazeb]
-      if elements.is_a? Hash
-        elements = [elements]
-      end
-
-      elements.map do |raw|
-        VazbaType.new(raw[:Vazba])
-      end
+      submodel_at(SeznamVazeb, :SeznamVazeb)
     end
   end
 end

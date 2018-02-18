@@ -80,21 +80,15 @@ module MoneyS3
     end
 
     def uc_pohyb_m
-      element_xml = at :UcPohybM
-
-      UctyPohybuType.new(element_xml) if element_xml
+      submodel_at(UctyPohybuType, :UcPohybM)
     end
 
     def uc_pohyb_z
-      element_xml = at :UcPohybZ
-
-      UctyPohybuType.new(element_xml) if element_xml
+      submodel_at(UctyPohybuType, :UcPohybZ)
     end
 
     def uc_pohyb_v
-      element_xml = at :UcPohybV
-
-      UctyPohybuType.new(element_xml) if element_xml
+      submodel_at(UctyPohybuType, :UcPohybV)
     end
   end
 end

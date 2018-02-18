@@ -14,9 +14,7 @@ module MoneyS3
     end
 
     def parametr
-      element_xml = at :Parametr
-
-      ParametrType.new(element_xml) if element_xml
+      submodel_at(ParametrType, :Parametr)
     end
   end
 end

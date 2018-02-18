@@ -1,5 +1,6 @@
 require 'money_s3/base_element'
 require 'money_s3/dokl_ref_type'
+require 'money_s3/doklad_hraz'
 require 'money_s3/valuty_hraz'
 require 'money_s3/valuty_uhr'
 require 'money_s3/kurz_rozd'
@@ -42,48 +43,27 @@ module MoneyS3
     end
 
     def doklad_uhr
-      element_xml = at :DokladUhr
-
-      DoklRefType.new(element_xml) if element_xml
+      submodel_at(DoklRefType, :DokladUhr)
     end
 
     def doklad_hraz
-      element_xml = at :DokladHraz
-
-      DoklRefType.new(element_xml) if element_xml
+      submodel_at(DokladHraz, :DokladHraz)
     end
 
     def valuty_hraz
-      element_xml = at :ValutyHraz
-
-      ValutyHraz.new(element_xml) if element_xml
+      submodel_at(ValutyHraz, :ValutyHraz)
     end
 
     def valuty_uhr
-      element_xml = at :ValutyUhr
-
-      ValutyUhr.new(element_xml) if element_xml
+      submodel_at(ValutyUhr, :ValutyUhr)
     end
 
     def kurz_rozd
-      element_xml = at :KurzRozd
-
-      KurzRozd.new(element_xml) if element_xml
+      submodel_at(KurzRozd, :KurzRozd)
     end
 
     def seznam_pd_uhrad
-      # element_xml = at :SeznamPDUhrad
-      #
-      # SeznamPDUhrad.new(element_xml) if element_xml
-
-      elements = raw[:SeznamPDUhrad]
-      if elements.is_a? Hash
-        elements = [elements]
-      end
-
-      elements.map do |raw|
-        UhradaPduhrada.new(raw[:Uhrada_PDUhrada])
-      end
+      array_of_at(UhradaPduhrada, [:SeznamPDUhrad, :Uhrada_PDUhrada])
     end
   end
 end

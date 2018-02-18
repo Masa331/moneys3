@@ -7,15 +7,11 @@ module MoneyS3
     include BaseElement
 
     def global
-      element_xml = at :Global
-
-      VlajkaType.new(element_xml) if element_xml
+      submodel_at(VlajkaType, :Global)
     end
 
     def user
-      element_xml = at :User
-
-      VlajkaType.new(element_xml) if element_xml
+      submodel_at(VlajkaType, :User)
     end
   end
 end

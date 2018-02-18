@@ -1,9 +1,8 @@
 require 'money_s3/base_element'
 require 'money_s3/konfigurace'
 require 'money_s3/definice_ceny'
-require 'money_s3/slozeni'
-require 'money_s3/seznam_parametru_karty'
-require 'money_s3/dokumenty'
+require 'money_s3/komponenta_type'
+require 'money_s3/parametr_karta_type'
 
 module MoneyS3
   class KmKartaType
@@ -150,33 +149,23 @@ module MoneyS3
     end
 
     def konfigurace
-      element_xml = at :konfigurace
-
-      Konfigurace.new(element_xml) if element_xml
+      submodel_at(Konfigurace, :konfigurace)
     end
 
     def definice_ceny
-      element_xml = at :definiceCeny
-
-      DefiniceCeny.new(element_xml) if element_xml
+      submodel_at(DefiniceCeny, :definiceCeny)
     end
 
     def slozeni
-      element_xml = at :Slozeni
-
-      Slozeni.new(element_xml) if element_xml
+      array_of_at(KomponentaType, [:Slozeni, :Komponenta])
     end
 
     def seznam_parametru_karty
-      element_xml = at :SeznamParametruKarty
-
-      SeznamParametruKarty.new(element_xml) if element_xml
+      array_of_at(ParametrKartaType, [:SeznamParametruKarty, :ParametrKarty])
     end
 
     def dokumenty
-      element_xml = at :Dokumenty
-
-      Dokumenty.new(element_xml) if element_xml
+      array_of_at(String, [:Dokumenty, :Dokument])
     end
   end
 end

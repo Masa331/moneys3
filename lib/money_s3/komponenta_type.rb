@@ -12,21 +12,15 @@ module MoneyS3
     end
 
     def stav_zasoby
-      element_xml = at :StavZasoby
-
-      StavZasobyType.new(element_xml) if element_xml
+      submodel_at(StavZasobyType, :StavZasoby)
     end
 
     def km_karta
-      element_xml = at :KmKarta
-
-      KmKartaType.new(element_xml) if element_xml
+      submodel_at(KmKartaType, :KmKarta)
     end
 
     def sklad
-      element_xml = at :Sklad
-
-      SkladType.new(element_xml) if element_xml
+      submodel_at(SkladType, :Sklad)
     end
   end
 end

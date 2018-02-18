@@ -1,10 +1,10 @@
 require 'money_s3/base_element'
 require 'money_s3/souhrn_dph_pol_type'
-require 'money_s3/seznam_vc'
-require 'money_s3/slozeni'
 require 'money_s3/sklad_type'
 require 'money_s3/km_karta_type'
 require 'money_s3/neskl_polozka'
+require 'money_s3/vyrobni_cislo_type'
+require 'money_s3/sub_pol_obj_type'
 
 module MoneyS3
   class PolObjednType
@@ -115,39 +115,27 @@ module MoneyS3
     end
 
     def souhrn_dph
-      element_xml = at :SouhrnDPH
-
-      SouhrnDPHPolType.new(element_xml) if element_xml
-    end
-
-    def seznam_vc
-      element_xml = at :SeznamVC
-
-      SeznamVC.new(element_xml) if element_xml
-    end
-
-    def slozeni
-      element_xml = at :Slozeni
-
-      Slozeni.new(element_xml) if element_xml
-    end
-
-    def neskl_polozka
-      element_xml = at :NesklPolozka
-
-      NesklPolozka.new(element_xml) if element_xml
+      submodel_at(SouhrnDPHPolType, :SouhrnDPH)
     end
 
     def sklad
-      element_xml = at :Sklad
-
-      SkladType.new(element_xml) if element_xml
+      submodel_at(SkladType, :Sklad)
     end
 
     def km_karta
-      element_xml = at :KmKarta
+      submodel_at(KmKartaType, :KmKarta)
+    end
 
-      KmKartaType.new(element_xml) if element_xml
+    def neskl_polozka
+      submodel_at(NesklPolozka, :NesklPolozka)
+    end
+
+    def seznam_vc
+      array_of_at(VyrobniCisloType, [:SeznamVC, :VyrobniCislo])
+    end
+
+    def slozeni
+      array_of_at(SubPolObjType, [:Slozeni, :SubPolozka])
     end
   end
 end

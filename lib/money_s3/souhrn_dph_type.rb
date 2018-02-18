@@ -26,14 +26,7 @@ module MoneyS3
     end
 
     def seznam_dalsi_sazby
-      elements = raw[:SeznamDalsiSazby]
-      if elements.is_a? Hash
-        elements = [elements]
-      end
-
-      elements.map do |raw|
-        DalsiSazba.new(raw[:DalsiSazba])
-      end
+      array_of_at(DalsiSazba, [:SeznamDalsiSazby, :DalsiSazba])
     end
   end
 end

@@ -2,7 +2,7 @@ require 'money_s3/base_element'
 require 'money_s3/eet_type'
 
 module MoneyS3
-  class DoklRefType
+  class DokladHraz
     include BaseElement
 
     def id_dokladu

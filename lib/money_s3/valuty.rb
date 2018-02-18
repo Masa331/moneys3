@@ -11,15 +11,11 @@ module MoneyS3
     end
 
     def mena
-      element_xml = at :Mena
-
-      MenaType.new(element_xml) if element_xml
+      submodel_at(MenaType, :Mena)
     end
 
     def souhrn_dph
-      element_xml = at :SouhrnDPH
-
-      SouhrnDPHType.new(element_xml) if element_xml
+      submodel_at(SouhrnDPHType, :SouhrnDPH)
     end
   end
 end

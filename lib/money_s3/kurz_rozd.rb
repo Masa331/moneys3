@@ -22,9 +22,7 @@ module MoneyS3
     end
 
     def doklad
-      element_xml = at :Doklad
-
-      DoklRefType.new(element_xml) if element_xml
+      submodel_at(DoklRefType, :Doklad)
     end
   end
 end

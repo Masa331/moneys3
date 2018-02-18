@@ -8,10 +8,9 @@ require 'money_s3/telefon_type'
 require 'money_s3/isdoc'
 require 'money_s3/eshop'
 require 'money_s3/osoba_type'
-require 'money_s3/seznam_bank_spojeni'
 require 'money_s3/skupina_firem_type'
 require 'money_s3/vlajky'
-require 'money_s3/dokumenty'
+require 'money_s3/bank_spojeni_type'
 
 module MoneyS3
   class FirmaType
@@ -158,81 +157,55 @@ module MoneyS3
     end
 
     def adresa
-      element_xml = at :Adresa
-
-      AdresaType.new(element_xml) if element_xml
+      submodel_at(AdresaType, :Adresa)
     end
 
     def obch_adresa
-      element_xml = at :ObchAdresa
-
-      AdresaType.new(element_xml) if element_xml
+      submodel_at(AdresaType, :ObchAdresa)
     end
 
     def fakt_adresa
-      element_xml = at :FaktAdresa
-
-      AdresaType.new(element_xml) if element_xml
+      submodel_at(AdresaType, :FaktAdresa)
     end
 
     def tel
-      element_xml = at :Tel
-
-      TelefonType.new(element_xml) if element_xml
+      submodel_at(TelefonType, :Tel)
     end
 
     def fax
-      element_xml = at :Fax
-
-      TelefonType.new(element_xml) if element_xml
+      submodel_at(TelefonType, :Fax)
     end
 
     def mobil
-      element_xml = at :Mobil
-
-      TelefonType.new(element_xml) if element_xml
+      submodel_at(TelefonType, :Mobil)
     end
 
     def isdoc
-      element_xml = at :ISDOC
-
-      ISDOC.new(element_xml) if element_xml
+      submodel_at(ISDOC, :ISDOC)
     end
 
     def eshop
-      element_xml = at :eshop
-
-      Eshop.new(element_xml) if element_xml
+      submodel_at(Eshop, :eshop)
     end
 
     def osoba
-      element_xml = at :Osoba
-
-      OsobaType.new(element_xml) if element_xml
-    end
-
-    def seznam_bank_spojeni
-      element_xml = at :SeznamBankSpojeni
-
-      SeznamBankSpojeni.new(element_xml) if element_xml
+      submodel_at(OsobaType, :Osoba)
     end
 
     def skupina
-      element_xml = at :Skupina
-
-      SkupinaFiremType.new(element_xml) if element_xml
+      submodel_at(SkupinaFiremType, :Skupina)
     end
 
     def vlajky
-      element_xml = at :Vlajky
+      submodel_at(Vlajky, :Vlajky)
+    end
 
-      Vlajky.new(element_xml) if element_xml
+    def seznam_bank_spojeni
+      array_of_at(BankSpojeniType, [:SeznamBankSpojeni, :BankSpojeni])
     end
 
     def dokumenty
-      element_xml = at :Dokumenty
-
-      Dokumenty.new(element_xml) if element_xml
+      array_of_at(String, [:Dokumenty, :Dokument])
     end
   end
 end

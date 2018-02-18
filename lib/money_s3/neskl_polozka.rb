@@ -74,9 +74,7 @@ module MoneyS3
     end
 
     def dodavatel
-      element_xml = at :Dodavatel
-
-      FirmaType.new(element_xml) if element_xml
+      submodel_at(FirmaType, :Dodavatel)
     end
   end
 end

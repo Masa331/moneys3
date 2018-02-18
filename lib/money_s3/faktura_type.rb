@@ -1,4 +1,5 @@
 require 'money_s3/base_element'
+require 'money_s3/souhrn_dph_type'
 require 'money_s3/valuty'
 require 'money_s3/doklad_firma_type'
 require 'money_s3/konec_prij_firma_type'
@@ -9,15 +10,14 @@ require 'money_s3/typ_zasilky_type'
 require 'money_s3/prepr_dopln_udaj_type'
 require 'money_s3/prepr_dopln_udaj_type'
 require 'money_s3/prepr_dopln_udaj_type'
-require 'money_s3/prepr_seznamsluzeb'
+require 'money_s3/moje_firma_type'
+require 'money_s3/vlajky'
+require 'money_s3/prepr_dopln_udaj_type'
+require 'money_s3/pol_faktury_type'
 require 'money_s3/pol_objedn_type'
 require 'money_s3/uhrada_type'
-require 'money_s3/moje_firma_type'
-require 'money_s3/seznam_nep_plateb'
-require 'money_s3/vlajky'
+require 'money_s3/nep_platba_type'
 require 'money_s3/vazba_type'
-require 'money_s3/dokumenty'
-require 'money_s3/pol_faktury_type'
 
 module MoneyS3
   class FakturaType
@@ -187,6 +187,10 @@ module MoneyS3
       at :SazbaDPH2
     end
 
+    def celkem
+      at :Celkem
+    end
+
     def typ
       at :Typ
     end
@@ -307,14 +311,12 @@ module MoneyS3
       at :Pojisteno
     end
 
-    def celkem
-      at :Celkem
+    def souhrn_dph
+      submodel_at(SouhrnDPHType, :SouhrnDPH)
     end
 
     def valuty
-      element_xml = at :Valuty
-
-      Valuty.new(element_xml) if element_xml
+      submodel_at(Valuty, :Valuty)
     end
 
     def dod_odb
@@ -322,57 +324,47 @@ module MoneyS3
     end
 
     def konec_prij
-      element_xml = at :KonecPrij
-
-      KonecPrijFirmaType.new(element_xml) if element_xml
+      submodel_at(KonecPrijFirmaType, :KonecPrij)
     end
 
     def import
-      element_xml = at :Import
-
-      Import.new(element_xml) if element_xml
+      submodel_at(Import, :Import)
     end
 
     def eshop
-      element_xml = at :eshop
-
-      Eshop.new(element_xml) if element_xml
+      submodel_at(Eshop, :eshop)
     end
 
     def prepravce
-      element_xml = at :Prepravce
-
-      PrepravceType.new(element_xml) if element_xml
+      submodel_at(PrepravceType, :Prepravce)
     end
 
     def typ_zasillky
-      element_xml = at :TypZasillky
-
-      TypZasilkyType.new(element_xml) if element_xml
+      submodel_at(TypZasilkyType, :TypZasillky)
     end
 
     def prepr_vyplatne
-      element_xml = at :Prepr_Vyplatne
-
-      PreprDoplnUdajType.new(element_xml) if element_xml
+      submodel_at(PreprDoplnUdajType, :Prepr_Vyplatne)
     end
 
     def prepr_uhrada_dobirky
-      element_xml = at :Prepr_UhradaDobirky
-
-      PreprDoplnUdajType.new(element_xml) if element_xml
+      submodel_at(PreprDoplnUdajType, :Prepr_UhradaDobirky)
     end
 
     def prepr_trida
-      element_xml = at :Prepr_Trida
+      submodel_at(PreprDoplnUdajType, :Prepr_Trida)
+    end
 
-      PreprDoplnUdajType.new(element_xml) if element_xml
+    def moje_firma
+      submodel_at(MojeFirmaType, :MojeFirma)
+    end
+
+    def vlajky
+      submodel_at(Vlajky, :Vlajky)
     end
 
     def prepr_seznam_sluzeb
-      element_xml = at :Prepr_SeznamSluzeb
-
-      PreprSeznamsluzeb.new(element_xml) if element_xml
+      array_of_at(PreprDoplnUdajType, [:Prepr_SeznamSluzeb, :Prepr_Sluzba])
     end
 
     def seznam_polozek
@@ -380,66 +372,23 @@ module MoneyS3
     end
 
     def seznam_zal_polozek
-      elements = raw.dig(:SeznamZalPolozek, :Polozka) || []
-      if elements.is_a? Hash
-        elements = [elements]
-      end
-
-      elements.map do |raw|
-        PolObjednType.new(raw)
-      end
+      array_of_at(PolObjednType, [:SeznamZalPolozek, :Polozka])
     end
 
     def seznam_uhrad
-      elements = raw[:SeznamUhrad]
-      if elements.is_a? Hash
-        elements = [elements]
-      end
-
-      elements.map do |raw|
-        UhradaType.new(raw[:Uhrada])
-      end
-    end
-
-    def moje_firma
-      element_xml = at :MojeFirma
-
-      MojeFirmaType.new(element_xml) if element_xml
+      array_of_at(UhradaType, [:SeznamUhrad, :Uhrada])
     end
 
     def seznam_nep_plateb
-      element_xml = at :SeznamNepPlateb
-
-      SeznamNepPlateb.new(element_xml) if element_xml
-    end
-
-    def vlajky
-      element_xml = at :Vlajky
-
-      Vlajky.new(element_xml) if element_xml
+      array_of_at(NepPlatbaType, [:SeznamNepPlateb, :NepPlatba])
     end
 
     def seznam_vazeb
-      elements = raw[:SeznamVazeb]
-      if elements.is_a? Hash
-        elements = [elements]
-      end
-
-      elements.map do |raw|
-        VazbaType.new(raw[:Vazba])
-      end
+      array_of_at(VazbaType, [:SeznamVazeb, :Vazba])
     end
 
     def dokumenty
-      element_xml = at :Dokumenty
-
-      Dokumenty.new(element_xml) if element_xml
-    end
-
-    def souhrn_dph
-      element_xml = at :SouhrnDPH
-
-      SouhrnDPHType.new(element_xml) if element_xml
+      array_of_at(String, [:Dokumenty, :Dokument])
     end
   end
 end

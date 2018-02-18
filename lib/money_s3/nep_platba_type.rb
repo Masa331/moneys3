@@ -14,9 +14,7 @@ module MoneyS3
     end
 
     def platidlo
-      element_xml = at :Platidlo
-
-      NepPlatidloType.new(element_xml) if element_xml
+      submodel_at(NepPlatidloType, :Platidlo)
     end
   end
 end

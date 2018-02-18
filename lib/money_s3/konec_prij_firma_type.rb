@@ -70,33 +70,23 @@ module MoneyS3
     end
 
     def adresa
-      element_xml = at :Adresa
-
-      AdresaType.new(element_xml) if element_xml
+      submodel_at(AdresaType, :Adresa)
     end
 
     def tel
-      element_xml = at :Tel
-
-      TelefonType.new(element_xml) if element_xml
+      submodel_at(TelefonType, :Tel)
     end
 
     def fax
-      element_xml = at :Fax
-
-      TelefonType.new(element_xml) if element_xml
+      submodel_at(TelefonType, :Fax)
     end
 
     def mobil
-      element_xml = at :Mobil
-
-      TelefonType.new(element_xml) if element_xml
+      submodel_at(TelefonType, :Mobil)
     end
 
     def eshop
-      element_xml = at :eshop
-
-      Eshop.new(element_xml) if element_xml
+      submodel_at(Eshop, :eshop)
     end
   end
 end

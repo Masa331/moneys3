@@ -22,9 +22,7 @@ module MoneyS3
     end
 
     def valuty
-      element_xml = at :Valuty
-
-      Valuty.new(element_xml) if element_xml
+      submodel_at(Valuty, :Valuty)
     end
   end
 end

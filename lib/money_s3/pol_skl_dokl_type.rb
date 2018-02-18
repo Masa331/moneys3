@@ -1,9 +1,9 @@
 require 'money_s3/base_element'
-require 'money_s3/seznam_vc'
-require 'money_s3/seznam_dodavek'
 require 'money_s3/sklad_type'
 require 'money_s3/km_karta_type'
-require 'money_s3/slozeni'
+require 'money_s3/vyrobni_cislo_type'
+require 'money_s3/dodavka_type'
+require 'money_s3/def_sub_pol_type'
 
 module MoneyS3
   class PolSklDoklType
@@ -101,34 +101,24 @@ module MoneyS3
       at :RezimEET
     end
 
-    def seznam_vc
-      element_xml = at :SeznamVC
-
-      SeznamVC.new(element_xml) if element_xml
-    end
-
-    def seznam_dodavek
-      element_xml = at :SeznamDodavek
-
-      SeznamDodavek.new(element_xml) if element_xml
-    end
-
     def sklad
-      element_xml = at :Sklad
-
-      SkladType.new(element_xml) if element_xml
+      submodel_at(SkladType, :Sklad)
     end
 
     def km_karta
-      element_xml = at :KmKarta
+      submodel_at(KmKartaType, :KmKarta)
+    end
 
-      KmKartaType.new(element_xml) if element_xml
+    def seznam_vc
+      array_of_at(VyrobniCisloType, [:SeznamVC, :VyrobniCislo])
+    end
+
+    def seznam_dodavek
+      array_of_at(DodavkaType, [:SeznamDodavek, :Dodavka])
     end
 
     def slozeni
-      element_xml = at :Slozeni
-
-      Slozeni.new(element_xml) if element_xml
+      array_of_at(DefSubPolType, [:Slozeni, :SubPolozka])
     end
   end
 end

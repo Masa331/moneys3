@@ -14,9 +14,7 @@ module MoneyS3
     end
 
     def doklad
-      element_xml = at :Doklad
-
-      Doklad.new(element_xml) if element_xml
+      submodel_at(Doklad, :Doklad)
     end
   end
 end

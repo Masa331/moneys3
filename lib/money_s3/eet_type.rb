@@ -83,15 +83,11 @@ module MoneyS3
     end
 
     def castky
-      element_xml = at :Castky
-
-      Castky.new(element_xml) if element_xml
+      submodel_at(Castky, :Castky)
     end
 
     def vysledek_odesl
-      element_xml = at :VysledekOdesl
-
-      VysledekOdesl.new(element_xml) if element_xml
+      submodel_at(VysledekOdesl, :VysledekOdesl)
     end
   end
 end
