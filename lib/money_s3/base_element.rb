@@ -16,6 +16,23 @@ module MoneyS3
       raw[locator]
     end
 
+    def submodel_at(klass, locator)
+      element_xml = at locator
+
+      klass.new(element_xml) if element_xml
+    end
+
+    def array_of_at(klass, locator)
+      elements = raw.dig(*locator) || []
+      if elements.is_a? Hash
+        elements = [elements]
+      end
+
+      elements.map do |raw|
+        klass.new(raw)
+      end
+    end
+
     def all(locator)
       return [] if raw.nil?
 

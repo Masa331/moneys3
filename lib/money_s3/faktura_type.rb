@@ -318,9 +318,7 @@ module MoneyS3
     end
 
     def dod_odb
-      element_xml = at :DodOdb
-
-      DokladFirmaType.new(element_xml) if element_xml
+      submodel_at(DokladFirmaType, :DodOdb)
     end
 
     def konec_prij
@@ -378,14 +376,7 @@ module MoneyS3
     end
 
     def seznam_polozek
-      elements = raw.dig(:SeznamPolozek, :Polozka) || []
-      if elements.is_a? Hash
-        elements = [elements]
-      end
-
-      elements.map do |raw|
-        PolFakturyType.new(raw)
-      end
+      array_of_at(PolFakturyType, [:SeznamPolozek, :Polozka])
     end
 
     def seznam_zal_polozek
