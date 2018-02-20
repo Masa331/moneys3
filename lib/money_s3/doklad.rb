@@ -35,5 +35,17 @@ module MoneyS3
     def plneno_dph
       at :PlnenoDPH
     end
+
+    def to_h
+      { druh: druh,
+        cislo: cislo,
+        guid: guid,
+        prijat_dokl: prijat_dokl,
+        var_symbol: var_symbol,
+        vystaveno: vystaveno,
+        dat_uc_pr: dat_uc_pr,
+        plneno_dph: plneno_dph
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

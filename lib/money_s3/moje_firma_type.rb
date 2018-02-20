@@ -93,5 +93,30 @@ module MoneyS3
     def mobil
       submodel_at(TelefonType, :Mobil)
     end
+
+    def to_h
+      { nazev: nazev,
+        obch_nazev: obch_nazev,
+        fakt_nazev: fakt_nazev,
+        e_mail: e_mail,
+        www: www,
+        ico: ico,
+        dic: dic,
+        dicsk: dicsk,
+        banka: banka,
+        ucet: ucet,
+        kod_banky: kod_banky,
+        kod_partn: kod_partn,
+        fyz_osoba: fyz_osoba,
+        mena_symb: mena_symb,
+        mena_kod: mena_kod,
+        adresa: adresa.to_h,
+        obch_adresa: obch_adresa.to_h,
+        fakt_adresa: fakt_adresa.to_h,
+        tel: tel.to_h,
+        fax: fax.to_h,
+        mobil: mobil.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

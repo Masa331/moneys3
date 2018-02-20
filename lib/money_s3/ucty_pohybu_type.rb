@@ -35,5 +35,17 @@ module MoneyS3
     def uc_preb
       at :UcPreb
     end
+
+    def to_h
+      { uc_prodejk: uc_prodejk,
+        uc_prijemk: uc_prijemk,
+        uc_vydejky: uc_vydejky,
+        uc_vyrobky: uc_vyrobky,
+        uc_v_dod_lst: uc_v_dod_lst,
+        uc_p_dod_lst: uc_p_dod_lst,
+        uc_manko: uc_manko,
+        uc_preb: uc_preb
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

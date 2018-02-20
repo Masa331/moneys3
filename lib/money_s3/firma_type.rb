@@ -207,5 +207,57 @@ module MoneyS3
     def dokumenty
       array_of_at(String, [:Dokumenty, :Dokument])
     end
+
+    def to_h
+      { guid: guid,
+        nazev: nazev,
+        skupina_id: skupina_id,
+        obch_nazev: obch_nazev,
+        fakt_nazev: fakt_nazev,
+        e_mail: e_mail,
+        www: www,
+        spojeni: spojeni,
+        ico: ico,
+        dic: dic,
+        dicsk: dicsk,
+        platce_dph: platce_dph,
+        fyz_osoba: fyz_osoba,
+        kod_dan_ur: kod_dan_ur,
+        banka: banka,
+        ucet: ucet,
+        kod_banky: kod_banky,
+        v_symb: v_symb,
+        spec_sym: spec_sym,
+        cinnosti: cinnosti,
+        adr_klice: adr_klice,
+        ceny: ceny,
+        ceniky: ceniky,
+        kredit: kredit,
+        kredit_val: kredit_val,
+        splat_poh: splat_poh,
+        splat_zav: splat_zav,
+        spl_poh_dni: spl_poh_dni,
+        spl_zav_dni: spl_zav_dni,
+        sleva: sleva,
+        flag_sleva: flag_sleva,
+        mail: mail,
+        zprava: zprava,
+        poznamka: poznamka,
+        kod_partn: kod_partn,
+        adresa: adresa.to_h,
+        obch_adresa: obch_adresa.to_h,
+        fakt_adresa: fakt_adresa.to_h,
+        tel: tel.to_h,
+        fax: fax.to_h,
+        mobil: mobil.to_h,
+        isdoc: isdoc.to_h,
+        eshop: eshop.to_h,
+        osoba: osoba.to_h,
+        skupina: skupina.to_h,
+        vlajky: vlajky.to_h,
+        seznam_bank_spojeni: seznam_bank_spojeni.map(&:to_h),
+        dokumenty: dokumenty
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

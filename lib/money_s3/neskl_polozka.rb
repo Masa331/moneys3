@@ -76,5 +76,27 @@ module MoneyS3
     def dodavatel
       submodel_at(FirmaType, :Dodavatel)
     end
+
+    def to_h
+      { zkrat: zkrat,
+        mj: mj,
+        uziv_code: uziv_code,
+        katalog: katalog,
+        bar_code: bar_code,
+        zaloha: zaloha,
+        zdan_zaloha: zdan_zaloha,
+        konec_odpocet: konec_odpocet,
+        typ_zar_doby: typ_zar_doby,
+        zar_doba: zar_doba,
+        protizapis: protizapis,
+        plneno_dph: plneno_dph,
+        hmotnost: hmotnost,
+        vyrobni_cis: vyrobni_cis,
+        dat_exp: dat_exp,
+        dat_nakupu: dat_nakupu,
+        predm_pln: predm_pln,
+        dodavatel: dodavatel.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

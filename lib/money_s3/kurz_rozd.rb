@@ -24,5 +24,14 @@ module MoneyS3
     def doklad
       submodel_at(DoklRefType, :Doklad)
     end
+
+    def to_h
+      { typ: typ,
+        preceneni: preceneni,
+        castka: castka,
+        kr_poradi: kr_poradi,
+        doklad: doklad.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

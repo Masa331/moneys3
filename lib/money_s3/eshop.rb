@@ -31,5 +31,16 @@ module MoneyS3
     def in_poznamk
       at :IN_Poznamk
     end
+
+    def to_h
+      { in_export: in_export,
+        in_changed: in_changed,
+        in_fak_cis: in_fak_cis,
+        in_req_stor: in_req_stor,
+        in_yes_stor: in_yes_stor,
+        in_shop_id: in_shop_id,
+        in_poznamk: in_poznamk
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

@@ -15,5 +15,12 @@ module MoneyS3
     def objednano
       at :Objednano
     end
+
+    def to_h
+      { zasoba: zasoba,
+        rezervace: rezervace,
+        objednano: objednano
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

@@ -47,5 +47,20 @@ module MoneyS3
     def wldph2
       at :WLDPH2
     end
+
+    def to_h
+      { poradi: poradi,
+        kontace: kontace,
+        stredisko: stredisko,
+        zakazka: zakazka,
+        cinnost: cinnost,
+        zaklad: zaklad,
+        dphzs: dphzs,
+        dphss: dphss,
+        wl_zaklady: wl_zaklady,
+        wldph1: wldph1,
+        wldph2: wldph2
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

@@ -95,5 +95,31 @@ module MoneyS3
     def seznam_vazeb
       submodel_at(SeznamVazeb, :SeznamVazeb)
     end
+
+    def to_h
+      { popis: popis,
+        poznamka: poznamka,
+        pocet_mj: pocet_mj,
+        sazba_dph: sazba_dph,
+        cena: cena,
+        cena_typ: cena_typ,
+        sleva: sleva,
+        cinnost: cinnost,
+        poradi: poradi,
+        kod_dph: kod_dph,
+        stredisko: stredisko,
+        zakazka: zakazka,
+        predkontac: predkontac,
+        valuty: valuty,
+        cena_po_sleve: cena_po_sleve,
+        zvl_rezim: zvl_rezim,
+        zvl_dph: zvl_dph,
+        rezim_eet: rezim_eet,
+        souhrn_dph: souhrn_dph.to_h,
+        neskl_polozka: neskl_polozka.to_h,
+        skl_polozka: skl_polozka.to_h,
+        seznam_vazeb: seznam_vazeb.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

@@ -89,5 +89,30 @@ module MoneyS3
     def vysledek_odesl
       submodel_at(VysledekOdesl, :VysledekOdesl)
     end
+
+    def to_h
+      { eet_odesl: eet_odesl,
+        prod_misto: prod_misto,
+        uuid: uuid,
+        dat_odesl: dat_odesl,
+        cas_odesl: cas_odesl,
+        prvni_zasl: prvni_zasl,
+        dic_popl: dic_popl,
+        dic_pover: dic_pover,
+        provozovna: provozovna,
+        pokl_zariz: pokl_zariz,
+        porad_cis: porad_cis,
+        dat_trzby: dat_trzby,
+        cas_trzby: cas_trzby,
+        rezim: rezim,
+        pkp: pkp,
+        bkp: bkp,
+        fik: fik,
+        cert_pkp: cert_pkp,
+        cert_eet: cert_eet,
+        castky: castky.to_h,
+        vysledek_odesl: vysledek_odesl.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

@@ -120,5 +120,37 @@ module MoneyS3
     def slozeni
       array_of_at(DefSubPolType, [:Slozeni, :SubPolozka])
     end
+
+    def to_h
+      { nazev: nazev,
+        pocet_mj: pocet_mj,
+        cena: cena,
+        valuty: valuty,
+        dph: dph,
+        cena_typ: cena_typ,
+        sleva: sleva,
+        cinnost: cinnost,
+        zakazka: zakazka,
+        stredisko: stredisko,
+        cenova_hlad: cenova_hlad,
+        poznamka: poznamka,
+        vratka: vratka,
+        ucet_md: ucet_md,
+        ucet_d: ucet_d,
+        kod_statu_puv: kod_statu_puv,
+        typ_transakce: typ_transakce,
+        hmotnost: hmotnost,
+        poriz_cena: poriz_cena,
+        cena_po_sleve: cena_po_sleve,
+        zvl_rezim: zvl_rezim,
+        zvl_dph: zvl_dph,
+        rezim_eet: rezim_eet,
+        sklad: sklad.to_h,
+        km_karta: km_karta.to_h,
+        seznam_vc: seznam_vc.map(&:to_h),
+        seznam_dodavek: seznam_dodavek.map(&:to_h),
+        slozeni: slozeni.map(&:to_h)
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

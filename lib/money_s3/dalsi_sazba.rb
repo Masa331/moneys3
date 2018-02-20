@@ -23,5 +23,14 @@ module MoneyS3
     def dph
       at :DPH
     end
+
+    def to_h
+      { popis: popis,
+        hladina_dph: hladina_dph,
+        sazba: sazba,
+        zaklad: zaklad,
+        dph: dph
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

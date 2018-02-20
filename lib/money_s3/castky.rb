@@ -59,5 +59,23 @@ module MoneyS3
     def cerp_zuct
       at :CerpZuct
     end
+
+    def to_h
+      { celkem: celkem,
+        zaklad_0: zaklad_0,
+        zaklad_1: zaklad_1,
+        zaklad_2: zaklad_2,
+        zaklad_3: zaklad_3,
+        dph_1: dph_1,
+        dph_2: dph_2,
+        dph_3: dph_3,
+        cest_sluzba: cest_sluzba,
+        pouz_zb_1: pouz_zb_1,
+        pouz_zb_2: pouz_zb_2,
+        pouz_zb_3: pouz_zb_3,
+        urc_cerp_zct: urc_cerp_zct,
+        cerp_zuct: cerp_zuct
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

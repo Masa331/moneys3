@@ -65,5 +65,23 @@ module MoneyS3
     def seznam_pd_uhrad
       array_of_at(UhradaPduhrada, [:SeznamPDUhrad, :Uhrada_PDUhrada])
     end
+
+    def to_h
+      { prijem: prijem,
+        poradi: poradi,
+        rok_poradi: rok_poradi,
+        datum: datum,
+        dat_upl_dph: dat_upl_dph,
+        castka: castka,
+        zpusob_uhr: zpusob_uhr,
+        platidlo: platidlo,
+        doklad_uhr: doklad_uhr.to_h,
+        doklad_hraz: doklad_hraz.to_h,
+        valuty_hraz: valuty_hraz.to_h,
+        valuty_uhr: valuty_uhr.to_h,
+        kurz_rozd: kurz_rozd.to_h,
+        seznam_pd_uhrad: seznam_pd_uhrad.map(&:to_h)
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

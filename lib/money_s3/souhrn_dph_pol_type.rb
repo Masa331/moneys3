@@ -24,5 +24,14 @@ module MoneyS3
     def valuty
       submodel_at(Valuty, :Valuty)
     end
+
+    def to_h
+      { zaklad_mj: zaklad_mj,
+        dph_mj: dph_mj,
+        zaklad: zaklad,
+        dph: dph,
+        valuty: valuty.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

@@ -15,5 +15,12 @@ module MoneyS3
     def klap
       at :Klap
     end
+
+    def to_h
+      { pred: pred,
+        cislo: cislo,
+        klap: klap
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

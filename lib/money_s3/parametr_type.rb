@@ -31,5 +31,16 @@ module MoneyS3
     def hodnoty
       at :Hodnoty
     end
+
+    def to_h
+      { id: id,
+        nazev: nazev,
+        druh: druh,
+        typ: typ,
+        mj: mj,
+        uziv_code: uziv_code,
+        hodnoty: hodnoty
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

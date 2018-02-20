@@ -16,5 +16,12 @@ module MoneyS3
     def platidlo
       submodel_at(NepPlatidloType, :Platidlo)
     end
+
+    def to_h
+      { mnozstvi_mj: mnozstvi_mj,
+        castka: castka,
+        platidlo: platidlo.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

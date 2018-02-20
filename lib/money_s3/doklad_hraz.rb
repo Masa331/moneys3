@@ -24,5 +24,14 @@ module MoneyS3
     def eet
       submodel_at(EETType, :EET)
     end
+
+    def to_h
+      { id_dokladu: id_dokladu,
+        cislo_dokladu: cislo_dokladu,
+        druh_dokladu: druh_dokladu,
+        rok: rok,
+        eet: eet.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

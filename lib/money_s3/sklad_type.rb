@@ -90,5 +90,30 @@ module MoneyS3
     def uc_pohyb_v
       submodel_at(UctyPohybuType, :UcPohybV)
     end
+
+    def to_h
+      { nazev: nazev,
+        kod_skladu: kod_skladu,
+        guid: guid,
+        cenik_sklad: cenik_sklad,
+        platno_od: platno_od,
+        platno_do: platno_do,
+        minus: minus,
+        neupoz: neupoz,
+        vyber_cen: vyber_cen,
+        vyber_dod: vyber_dod,
+        zpusob: zpusob,
+        prod_ceny_d: prod_ceny_d,
+        prepocet: prepocet,
+        ceny: ceny,
+        uc_vyrobk_vv: uc_vyrobk_vv,
+        prodejk_vz: prodejk_vz,
+        v_dod_lst_vz: v_dod_lst_vz,
+        p_dod_lst_vz: p_dod_lst_vz,
+        uc_pohyb_m: uc_pohyb_m.to_h,
+        uc_pohyb_z: uc_pohyb_z.to_h,
+        uc_pohyb_v: uc_pohyb_v.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

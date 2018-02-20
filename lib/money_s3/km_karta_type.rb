@@ -167,5 +167,49 @@ module MoneyS3
     def dokumenty
       array_of_at(String, [:Dokumenty, :Dokument])
     end
+
+    def to_h
+      { popis: popis,
+        zkrat: zkrat,
+        pozn: pozn,
+        mj: mj,
+        uziv_code: uziv_code,
+        guid: guid,
+        katalog: katalog,
+        bar_code: bar_code,
+        bc_typ: bc_typ,
+        typ_zar_doby: typ_zar_doby,
+        zar_doba: zar_doba,
+        ev_druhy: ev_druhy,
+        ev_vyr_cis: ev_vyr_cis,
+        des_mist: des_mist,
+        obrazek: obrazek,
+        obrazek2: obrazek2,
+        zarovnat: zarovnat,
+        zarovnat2: zarovnat2,
+        ceny: ceny,
+        nastav: nastav,
+        popis1: popis1,
+        pozn1: pozn1,
+        popis2: popis2,
+        pozn2: pozn2,
+        popis3: popis3,
+        pozn3: pozn3,
+        hmotnost: hmotnost,
+        objem: objem,
+        kod_kn: kod_kn,
+        predm_pln: predm_pln,
+        kod_statu: kod_statu,
+        typ_karty: typ_karty,
+        zboz_kuch: zboz_kuch,
+        i_dokl_pol: i_dokl_pol,
+        i_dokl_agend: i_dokl_agend,
+        konfigurace: konfigurace.to_h,
+        definice_ceny: definice_ceny.to_h,
+        slozeni: slozeni.map(&:to_h),
+        seznam_parametru_karty: seznam_parametru_karty.map(&:to_h),
+        dokumenty: dokumenty
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

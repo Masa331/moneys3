@@ -22,5 +22,13 @@ module MoneyS3
     def sklad
       submodel_at(SkladType, :Sklad)
     end
+
+    def to_h
+      { poc_mj: poc_mj,
+        stav_zasoby: stav_zasoby.to_h,
+        km_karta: km_karta.to_h,
+        sklad: sklad.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

@@ -28,5 +28,15 @@ module MoneyS3
     def seznam_dalsi_sazby
       array_of_at(DalsiSazba, [:SeznamDalsiSazby, :DalsiSazba])
     end
+
+    def to_h
+      { zaklad0: zaklad0,
+        zaklad5: zaklad5,
+        zaklad22: zaklad22,
+        dph5: dph5,
+        dph22: dph22,
+        seznam_dalsi_sazby: seznam_dalsi_sazby.map(&:to_h)
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

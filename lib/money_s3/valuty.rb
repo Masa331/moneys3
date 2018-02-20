@@ -17,5 +17,12 @@ module MoneyS3
     def souhrn_dph
       submodel_at(SouhrnDPHType, :SouhrnDPH)
     end
+
+    def to_h
+      { celkem: celkem,
+        mena: mena.to_h,
+        souhrn_dph: souhrn_dph.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

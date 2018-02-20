@@ -16,5 +16,12 @@ module MoneyS3
     def parametr
       submodel_at(ParametrType, :Parametr)
     end
+
+    def to_h
+      { poradi: poradi,
+        value: value,
+        parametr: parametr.to_h
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

@@ -23,5 +23,14 @@ module MoneyS3
     def kod_statu
       at :KodStatu
     end
+
+    def to_h
+      { ulice: ulice,
+        misto: misto,
+        psc: psc,
+        stat: stat,
+        kod_statu: kod_statu
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

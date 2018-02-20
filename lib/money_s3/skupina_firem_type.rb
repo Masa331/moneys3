@@ -15,5 +15,12 @@ module MoneyS3
     def poznamka
       at :Poznamka
     end
+
+    def to_h
+      { zkratka: zkratka,
+        nazev: nazev,
+        poznamka: poznamka
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

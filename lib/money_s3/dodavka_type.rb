@@ -19,5 +19,13 @@ module MoneyS3
     def cena
       at :Cena
     end
+
+    def to_h
+      { oznaceni: oznaceni,
+        dat_exp: dat_exp,
+        pocet_mj: pocet_mj,
+        cena: cena
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end

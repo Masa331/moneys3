@@ -19,5 +19,13 @@ module MoneyS3
     def error_description
       at :ErrorDescription
     end
+
+    def to_h
+      { error_type_coded: error_type_coded,
+        error_type_other: error_type_other,
+        error_code: error_code,
+        error_description: error_description
+      }.delete_if { |k, v| v.nil? || v.empty? }
+    end
   end
 end
