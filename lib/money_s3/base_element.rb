@@ -23,7 +23,9 @@ module MoneyS3
     end
 
     def array_of_at(klass, locator)
-      elements = raw.dig(*locator) || []
+      return EMPTY_ARRAY if raw.nil?
+
+      elements = raw.dig(*locator) || EMPTY_ARRAY
       if elements.is_a?(Hash) || elements.is_a?(String)
         elements = [elements]
       end
@@ -34,7 +36,7 @@ module MoneyS3
     end
 
     def all(locator)
-      return [] if raw.nil?
+      return EMPTY_ARRAY if raw.nil?
 
       result = raw[locator]
 
