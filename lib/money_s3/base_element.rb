@@ -24,7 +24,7 @@ module MoneyS3
 
     def array_of_at(klass, locator)
       elements = raw.dig(*locator) || []
-      if elements.is_a? Hash
+      if elements.is_a?(Hash) || elements.is_a?(String)
         elements = [elements]
       end
 
