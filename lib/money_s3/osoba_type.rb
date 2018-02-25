@@ -1,8 +1,6 @@
 require 'money_s3/base_element'
 require 'money_s3/adresa_type'
 require 'money_s3/telefon_type'
-require 'money_s3/telefon_type'
-require 'money_s3/telefon_type'
 
 module MoneyS3
   class OsobaType

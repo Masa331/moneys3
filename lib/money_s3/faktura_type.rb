@@ -1,5 +1,4 @@
 require 'money_s3/base_element'
-require 'money_s3/souhrn_dph_type'
 require 'money_s3/valuty'
 require 'money_s3/doklad_firma_type'
 require 'money_s3/konec_prij_firma_type'
@@ -8,10 +7,9 @@ require 'money_s3/eshop'
 require 'money_s3/prepravce_type'
 require 'money_s3/typ_zasilky_type'
 require 'money_s3/prepr_dopln_udaj_type'
-require 'money_s3/prepr_dopln_udaj_type'
-require 'money_s3/prepr_dopln_udaj_type'
 require 'money_s3/moje_firma_type'
 require 'money_s3/vlajky'
+require 'money_s3/souhrn_dph_type'
 require 'money_s3/prepr_dopln_udaj_type'
 require 'money_s3/pol_faktury_type'
 require 'money_s3/pol_objedn_type'
@@ -187,10 +185,6 @@ module MoneyS3
       at :SazbaDPH2
     end
 
-    def celkem
-      at :Celkem
-    end
-
     def typ
       at :Typ
     end
@@ -311,8 +305,8 @@ module MoneyS3
       at :Pojisteno
     end
 
-    def souhrn_dph
-      submodel_at(SouhrnDPHType, :SouhrnDPH)
+    def celkem
+      at :Celkem
     end
 
     def valuty
@@ -361,6 +355,10 @@ module MoneyS3
 
     def vlajky
       submodel_at(Vlajky, :Vlajky)
+    end
+
+    def souhrn_dph
+      submodel_at(SouhrnDPHType, :SouhrnDPH)
     end
 
     def prepr_seznam_sluzeb
@@ -433,7 +431,6 @@ module MoneyS3
         vyuctovano: vyuctovano,
         sazba_dph1: sazba_dph1,
         sazba_dph2: sazba_dph2,
-        celkem: celkem,
         typ: typ,
         vystavil: vystavil,
         prik_uhrady: prik_uhrady,
@@ -464,7 +461,7 @@ module MoneyS3
         i_doklad_id: i_doklad_id,
         i_dokl_agend: i_dokl_agend,
         pojisteno: pojisteno,
-        souhrn_dph: souhrn_dph.to_h,
+        celkem: celkem,
         valuty: valuty.to_h,
         dod_odb: dod_odb.to_h,
         konec_prij: konec_prij.to_h,
@@ -477,6 +474,7 @@ module MoneyS3
         prepr_trida: prepr_trida.to_h,
         moje_firma: moje_firma.to_h,
         vlajky: vlajky.to_h,
+        souhrn_dph: souhrn_dph.to_h,
         prepr_seznam_sluzeb: prepr_seznam_sluzeb.map(&:to_h),
         seznam_polozek: seznam_polozek.map(&:to_h),
         seznam_zal_polozek: seznam_zal_polozek.map(&:to_h),

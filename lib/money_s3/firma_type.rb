@@ -1,15 +1,11 @@
 require 'money_s3/base_element'
 require 'money_s3/adresa_type'
-require 'money_s3/adresa_type'
-require 'money_s3/adresa_type'
-require 'money_s3/telefon_type'
-require 'money_s3/telefon_type'
 require 'money_s3/telefon_type'
 require 'money_s3/isdoc'
 require 'money_s3/eshop'
-require 'money_s3/osoba_type'
 require 'money_s3/skupina_firem_type'
 require 'money_s3/vlajky'
+require 'money_s3/osoba_type'
 require 'money_s3/bank_spojeni_type'
 
 module MoneyS3
@@ -188,16 +184,16 @@ module MoneyS3
       submodel_at(Eshop, :eshop)
     end
 
-    def osoba
-      submodel_at(OsobaType, :Osoba)
-    end
-
     def skupina
       submodel_at(SkupinaFiremType, :Skupina)
     end
 
     def vlajky
       submodel_at(Vlajky, :Vlajky)
+    end
+
+    def osoba
+      array_of_at(OsobaType, [:Osoba])
     end
 
     def seznam_bank_spojeni
@@ -252,9 +248,9 @@ module MoneyS3
         mobil: mobil.to_h,
         isdoc: isdoc.to_h,
         eshop: eshop.to_h,
-        osoba: osoba.to_h,
         skupina: skupina.to_h,
         vlajky: vlajky.to_h,
+        osoba: osoba.map(&:to_h),
         seznam_bank_spojeni: seznam_bank_spojeni.map(&:to_h),
         dokumenty: dokumenty
       }.delete_if { |k, v| v.nil? || v.empty? }

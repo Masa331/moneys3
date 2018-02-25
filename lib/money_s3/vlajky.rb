@@ -1,6 +1,5 @@
 require 'money_s3/base_element'
 require 'money_s3/vlajka_type'
-require 'money_s3/vlajka_type'
 
 module MoneyS3
   class Vlajky

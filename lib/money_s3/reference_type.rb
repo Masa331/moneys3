@@ -1,16 +1,15 @@
 require 'money_s3/base_element'
-require 'money_s3/id'
 
 module MoneyS3
   class ReferenceType
     include BaseElement
 
     def id
-      submodel_at(ID, :ID)
+      array_of_at(String, [:ID])
     end
 
     def to_h
-      { id: id.to_h
+      { id: id
       }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end

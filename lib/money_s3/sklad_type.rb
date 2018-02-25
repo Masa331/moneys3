@@ -1,7 +1,5 @@
 require 'money_s3/base_element'
 require 'money_s3/ucty_pohybu_type'
-require 'money_s3/ucty_pohybu_type'
-require 'money_s3/ucty_pohybu_type'
 
 module MoneyS3
   class SkladType
