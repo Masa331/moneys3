@@ -1,5 +1,6 @@
 require 'ox'
-require 'money_s3/money_data'
+require 'money_s3/parsers/money_data'
+require 'money_s3/builders/money_data'
 
 module MoneyS3
   def self.parse(raw)
@@ -16,7 +17,11 @@ module MoneyS3
           content
         end
 
-      MoneyData.new(raw)
+      Parsers::MoneyData.new(raw)
     end
+  end
+
+  def self.build(data)
+    Builders::MoneyData.new(data, 'MoneyData').to_xml
   end
 end

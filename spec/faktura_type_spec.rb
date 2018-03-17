@@ -1,11 +1,11 @@
 require 'spec_helper'
 require 'money_s3'
 
-RSpec.describe MoneyS3::FakturaType do
+RSpec.describe MoneyS3::Parsers::FakturaType do
   describe 'complete invoice' do
     let(:raw) { File.read('./spec/fixtures/complete_invoice.xml') }
     let(:parsed) { MoneyS3.parse(raw) }
-    subject(:invoice) { parsed.seznam_fakt_vyd.first }
+    subject(:invoice) { parsed.seznam_fakt_vyd.fakt_vyd.first }
 
     its('zpusob_uctovani') { is_expected.to eq '1' }
     its('vystaveno') { is_expected.to eq '2017-08-03' }
@@ -81,7 +81,7 @@ RSpec.describe MoneyS3::FakturaType do
     # its('pojisteno') { is_expected.to eq '' }
 
     describe 'valuty' do
-      subject(:valuty) { parsed.seznam_fakt_vyd.first.valuty }
+      subject(:valuty) { parsed.seznam_fakt_vyd.fakt_vyd.first.valuty }
 
       its('mena.kod') { is_expected.to eq 'EUR' }
       its('mena.mnozstvi') { is_expected.to eq '1' }
@@ -129,7 +129,7 @@ RSpec.describe MoneyS3::FakturaType do
     its('souhrn_dph.dph22') { is_expected.to eq '63.35' }
 
     describe 'dalsi sazba' do
-      subject(:sazba) { parsed.seznam_fakt_vyd.first.souhrn_dph.seznam_dalsi_sazby.first }
+      subject(:sazba) { parsed.seznam_fakt_vyd.fakt_vyd.first.souhrn_dph.seznam_dalsi_sazby.first }
 
       its('popis') { is_expected.to eq 'druhá snížená' }
       its('hladina_dph') { is_expected.to eq '1' }
@@ -139,7 +139,7 @@ RSpec.describe MoneyS3::FakturaType do
     end
 
     describe 'polozka' do
-      subject(:polozka) { parsed.seznam_fakt_vyd.first.seznam_polozek.first }
+      subject(:polozka) { parsed.seznam_fakt_vyd.fakt_vyd.first.seznam_polozek.first }
 
       its('popis') { is_expected.to eq 'Kartáček texturovací střední' }
       its('pocet_mj') { is_expected.to eq '1' }
@@ -176,7 +176,7 @@ RSpec.describe MoneyS3::FakturaType do
     end
 
     describe 'uhrada' do
-      subject(:uhrada) { parsed.seznam_fakt_vyd.first.seznam_uhrad.first }
+      subject(:uhrada) { parsed.seznam_fakt_vyd.fakt_vyd.first.seznam_uhrad.first }
 
       its('prijem') { is_expected.to eq '1' }
       its('poradi') { is_expected.to eq '378' }
@@ -196,7 +196,7 @@ RSpec.describe MoneyS3::FakturaType do
       its('doklad_hraz.rok') { is_expected.to eq '2017' }
 
       describe 'uhrada' do
-        subject(:pd_uhrada) { parsed.seznam_fakt_vyd.first.seznam_uhrad.first.seznam_pd_uhrad.first }
+        subject(:pd_uhrada) { parsed.seznam_fakt_vyd.fakt_vyd.first.seznam_uhrad.first.seznam_pd_uhrad.first }
 
         its('poradi') { is_expected.to eq '378' }
         its('kontace') { is_expected.to eq 'FV001' }
@@ -211,7 +211,7 @@ RSpec.describe MoneyS3::FakturaType do
     end
 
     describe 'seznam_zal_polozek' do
-      subject(:polozka) { parsed.seznam_fakt_vyd.first.seznam_zal_polozek.first }
+      subject(:polozka) { parsed.seznam_fakt_vyd.fakt_vyd.first.seznam_zal_polozek.first }
 
       its('popis') { is_expected.to eq 'Konzultace' }
       its('pocet_mj') { is_expected.to eq '1' }
@@ -278,7 +278,7 @@ RSpec.describe MoneyS3::FakturaType do
     its('moje_firma.mena_kod') { is_expected.to eq 'CZK' }
 
     describe 'seznam vazeb' do
-      subject(:vazba) { parsed.seznam_fakt_vyd.first.seznam_vazeb.first }
+      subject(:vazba) { parsed.seznam_fakt_vyd.fakt_vyd.first.seznam_vazeb.first }
 
       its('typ') { is_expected.to eq 'PR' }
       its('doklad.druh') { is_expected.to eq 'OP' }
@@ -304,7 +304,7 @@ RSpec.describe MoneyS3::FakturaType do
   describe 'invoice with multiple items' do
     let(:raw) { File.read('./spec/fixtures/multiple_items_invoice.xml') }
     let(:parsed) { MoneyS3.parse(raw) }
-    subject(:invoice) { parsed.seznam_fakt_vyd.first }
+    subject(:invoice) { parsed.seznam_fakt_vyd.fakt_vyd.first }
 
     it 'is parsed right' do
       expect(subject.seznam_polozek.first.popis).to eq 'popis_1'
@@ -315,7 +315,7 @@ RSpec.describe MoneyS3::FakturaType do
   describe 'invoice with no items' do
     let(:raw) { File.read('./spec/fixtures/no_items_invoice.xml') }
     let(:parsed) { MoneyS3.parse(raw) }
-    subject(:invoice) { parsed.seznam_fakt_vyd.first }
+    subject(:invoice) { parsed.seznam_fakt_vyd.fakt_vyd.first }
 
     it 'is parsed right' do
       expect(subject.seznam_polozek).to eq []
