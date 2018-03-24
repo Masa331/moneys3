@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def kurz_listek
-        array_of_at(KurzListek, [:KurzListek])
+        array_of_at(KurzListek, ['KurzListek'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:kurz_listek] = kurz_listek.map(&:to_h) if raw.key? :KurzListek
+        hash[:kurz_listek] = kurz_listek.map(&:to_h) if has? 'KurzListek'
 
         hash
       end

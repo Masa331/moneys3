@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def dl_vyd
-        array_of_at(DLVyd, [:DLVyd])
+        array_of_at(DLVyd, ['DLVyd'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:dl_vyd] = dl_vyd.map(&:to_h) if raw.key? :DLVyd
+        hash[:dl_vyd] = dl_vyd.map(&:to_h) if has? 'DLVyd'
 
         hash
       end

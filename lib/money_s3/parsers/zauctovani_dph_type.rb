@@ -7,53 +7,54 @@ module MoneyS3
       include BaseParser
 
       def zkrat
-        at :Zkrat
+        at 'Zkrat'
       end
 
       def typ
-        at :Typ
+        at 'Typ'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def sd_uc_md
-        at :SDUcMD
+        at 'SDUcMD'
       end
 
       def sd_uc_d
-        at :SDUcD
+        at 'SDUcD'
       end
 
       def zd_uc_md
-        at :ZDUcMD
+        at 'ZDUcMD'
       end
 
       def zd_uc_d
-        at :ZDUcD
+        at 'ZDUcD'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def seznam_obdobi_dph
-        array_of_at(ObdobiDPH, [:SeznamObdobiDPH, :ObdobiDPH])
+        array_of_at(ObdobiDPH, ['SeznamObdobiDPH', 'ObdobiDPH'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zkrat] = zkrat if raw.key? :Zkrat
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:sd_uc_md] = sd_uc_md if raw.key? :SDUcMD
-        hash[:sd_uc_d] = sd_uc_d if raw.key? :SDUcD
-        hash[:zd_uc_md] = zd_uc_md if raw.key? :ZDUcMD
-        hash[:zd_uc_d] = zd_uc_d if raw.key? :ZDUcD
-        hash[:pozn] = pozn if raw.key? :Pozn
-        hash[:seznam_obdobi_dph] = seznam_obdobi_dph.map(&:to_h) if raw.key? :SeznamObdobiDPH
+        hash[:zkrat] = zkrat if has? 'Zkrat'
+        hash[:typ] = typ if has? 'Typ'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:sd_uc_md] = sd_uc_md if has? 'SDUcMD'
+        hash[:sd_uc_d] = sd_uc_d if has? 'SDUcD'
+        hash[:zd_uc_md] = zd_uc_md if has? 'ZDUcMD'
+        hash[:zd_uc_d] = zd_uc_d if has? 'ZDUcD'
+        hash[:pozn] = pozn if has? 'Pozn'
+        hash[:seznam_obdobi_dph] = seznam_obdobi_dph.map(&:to_h) if has? 'SeznamObdobiDPH'
 
         hash
       end

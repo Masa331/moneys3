@@ -6,63 +6,64 @@ module MoneyS3
       include BaseParser
 
       def poradi
-        at :Poradi
+        at 'Poradi'
       end
 
       def kontace
-        at :Kontace
+        at 'Kontace'
       end
 
       def stredisko
-        at :Stredisko
+        at 'Stredisko'
       end
 
       def zakazka
-        at :Zakazka
+        at 'Zakazka'
       end
 
       def cinnost
-        at :Cinnost
+        at 'Cinnost'
       end
 
       def zaklad
-        at :Zaklad
+        at 'Zaklad'
       end
 
       def dphzs
-        at :DPHZS
+        at 'DPHZS'
       end
 
       def dphss
-        at :DPHSS
+        at 'DPHSS'
       end
 
       def wl_zaklady
-        at :WLZaklady
+        at 'WLZaklady'
       end
 
       def wldph1
-        at :WLDPH1
+        at 'WLDPH1'
       end
 
       def wldph2
-        at :WLDPH2
+        at 'WLDPH2'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:poradi] = poradi if raw.key? :Poradi
-        hash[:kontace] = kontace if raw.key? :Kontace
-        hash[:stredisko] = stredisko if raw.key? :Stredisko
-        hash[:zakazka] = zakazka if raw.key? :Zakazka
-        hash[:cinnost] = cinnost if raw.key? :Cinnost
-        hash[:zaklad] = zaklad if raw.key? :Zaklad
-        hash[:dphzs] = dphzs if raw.key? :DPHZS
-        hash[:dphss] = dphss if raw.key? :DPHSS
-        hash[:wl_zaklady] = wl_zaklady if raw.key? :WLZaklady
-        hash[:wldph1] = wldph1 if raw.key? :WLDPH1
-        hash[:wldph2] = wldph2 if raw.key? :WLDPH2
+        hash[:poradi] = poradi if has? 'Poradi'
+        hash[:kontace] = kontace if has? 'Kontace'
+        hash[:stredisko] = stredisko if has? 'Stredisko'
+        hash[:zakazka] = zakazka if has? 'Zakazka'
+        hash[:cinnost] = cinnost if has? 'Cinnost'
+        hash[:zaklad] = zaklad if has? 'Zaklad'
+        hash[:dphzs] = dphzs if has? 'DPHZS'
+        hash[:dphss] = dphss if has? 'DPHSS'
+        hash[:wl_zaklady] = wl_zaklady if has? 'WLZaklady'
+        hash[:wldph1] = wldph1 if has? 'WLDPH1'
+        hash[:wldph2] = wldph2 if has? 'WLDPH2'
 
         hash
       end

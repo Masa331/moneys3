@@ -7,43 +7,44 @@ module MoneyS3
       include BaseParser
 
       def cislo_d
-        at :CisloD
+        at 'CisloD'
       end
 
       def inv_id
-        at :InvID
+        at 'InvID'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def prac
-        at :Prac
+        at 'Prac'
       end
 
       def kontr
-        at :Kontr
+        at 'Kontr'
       end
 
       def poznamka
-        at :Poznamka
+        at 'Poznamka'
       end
 
       def polozka
-        array_of_at(PolInvDoklType, [:Polozka])
+        array_of_at(PolInvDoklType, ['Polozka'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:cislo_d] = cislo_d if raw.key? :CisloD
-        hash[:inv_id] = inv_id if raw.key? :InvID
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:prac] = prac if raw.key? :Prac
-        hash[:kontr] = kontr if raw.key? :Kontr
-        hash[:poznamka] = poznamka if raw.key? :Poznamka
-        hash[:polozka] = polozka.map(&:to_h) if raw.key? :Polozka
+        hash[:cislo_d] = cislo_d if has? 'CisloD'
+        hash[:inv_id] = inv_id if has? 'InvID'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:prac] = prac if has? 'Prac'
+        hash[:kontr] = kontr if has? 'Kontr'
+        hash[:poznamka] = poznamka if has? 'Poznamka'
+        hash[:polozka] = polozka.map(&:to_h) if has? 'Polozka'
 
         hash
       end

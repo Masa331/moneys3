@@ -6,49 +6,18 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :id
-          element = Ox::Element.new('ID')
-          element << attributes[:id] if attributes[:id]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :nazev
-          element = Ox::Element.new('Nazev')
-          element << attributes[:nazev] if attributes[:nazev]
-          root << element
-        end
-
-        if attributes.key? :druh
-          element = Ox::Element.new('Druh')
-          element << attributes[:druh] if attributes[:druh]
-          root << element
-        end
-
-        if attributes.key? :typ
-          element = Ox::Element.new('Typ')
-          element << attributes[:typ] if attributes[:typ]
-          root << element
-        end
-
-        if attributes.key? :mj
-          element = Ox::Element.new('MJ')
-          element << attributes[:mj] if attributes[:mj]
-          root << element
-        end
-
-        if attributes.key? :uziv_code
-          element = Ox::Element.new('UzivCode')
-          element << attributes[:uziv_code] if attributes[:uziv_code]
-          root << element
-        end
-
-        if attributes.key? :hodnoty
-          element = Ox::Element.new('Hodnoty')
-          element << attributes[:hodnoty] if attributes[:hodnoty]
-          root << element
-        end
+        root << build_element('ID', data[:id]) if data.key? :id
+        root << build_element('Nazev', data[:nazev]) if data.key? :nazev
+        root << build_element('Druh', data[:druh]) if data.key? :druh
+        root << build_element('Typ', data[:typ]) if data.key? :typ
+        root << build_element('MJ', data[:mj]) if data.key? :mj
+        root << build_element('UzivCode', data[:uziv_code]) if data.key? :uziv_code
+        root << build_element('Hodnoty', data[:hodnoty]) if data.key? :hodnoty
 
         root
       end

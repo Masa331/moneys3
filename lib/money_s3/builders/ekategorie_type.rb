@@ -8,45 +8,24 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :id
-          element = Ox::Element.new('ID')
-          element << attributes[:id] if attributes[:id]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :name
-          element = Ox::Element.new('Name')
-          element << attributes[:name] if attributes[:name]
-          root << element
+        root << build_element('ID', data[:id]) if data.key? :id
+        root << build_element('Name', data[:name]) if data.key? :name
+        root << build_element('Descript', data[:descript]) if data.key? :descript
+        root << build_element('IN_Changed', data[:in_changed]) if data.key? :in_changed
+        root << build_element('NoPublic', data[:no_public]) if data.key? :no_public
+
+        if data.key? :e_shop_info
+          root << EShopInfo.new('eShopInfo', data[:e_shop_info]).builder
         end
 
-        if attributes.key? :descript
-          element = Ox::Element.new('Descript')
-          element << attributes[:descript] if attributes[:descript]
-          root << element
-        end
-
-        if attributes.key? :in_changed
-          element = Ox::Element.new('IN_Changed')
-          element << attributes[:in_changed] if attributes[:in_changed]
-          root << element
-        end
-
-        if attributes.key? :no_public
-          element = Ox::Element.new('NoPublic')
-          element << attributes[:no_public] if attributes[:no_public]
-          root << element
-        end
-
-        if attributes.key? :e_shop_info
-          root << EShopInfo.new(attributes[:e_shop_info], 'eShopInfo').builder
-        end
-
-        if attributes.key? :seznam_podr_kategorii
+        if data.key? :seznam_podr_kategorii
           element = Ox::Element.new('SeznamPodrKategorii')
-          attributes[:seznam_podr_kategorii].each { |i| element << EkategorieType.new(i, 'eKategorie').builder }
+          data[:seznam_podr_kategorii].each { |i| element << EkategorieType.new('eKategorie', i).builder }
           root << element
         end
 

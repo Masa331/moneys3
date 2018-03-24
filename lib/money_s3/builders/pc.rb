@@ -9,88 +9,47 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :dealer_skupina
-          element = Ox::Element.new('DealerSkupina')
-          element << attributes[:dealer_skupina] if attributes[:dealer_skupina]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :sdph
-          element = Ox::Element.new('SDPH')
-          element << attributes[:sdph] if attributes[:sdph]
-          root << element
+        root << build_element('DealerSkupina', data[:dealer_skupina]) if data.key? :dealer_skupina
+        root << build_element('SDPH', data[:sdph]) if data.key? :sdph
+        root << build_element('Zaok', data[:zaok]) if data.key? :zaok
+        root << build_element('ZpusobZao', data[:zpusob_zao]) if data.key? :zpusob_zao
+        root << build_element('VypPrCeny', data[:vyp_pr_ceny]) if data.key? :vyp_pr_ceny
+        root << build_element('VychA', data[:vych_a]) if data.key? :vych_a
+        root << build_element('ZpusobZmA', data[:zpusob_zm_a]) if data.key? :zpusob_zm_a
+        root << build_element('VychB', data[:vych_b]) if data.key? :vych_b
+        root << build_element('ZpusobZmB', data[:zpusob_zm_b]) if data.key? :zpusob_zm_b
+
+        if data.key? :hladina
+          root << CenovaHladinaType.new('Hladina', data[:hladina]).builder
         end
 
-        if attributes.key? :zaok
-          element = Ox::Element.new('Zaok')
-          element << attributes[:zaok] if attributes[:zaok]
-          root << element
+        if data.key? :mena
+          root << MenaType.new('Mena', data[:mena]).builder
         end
 
-        if attributes.key? :zpusob_zao
-          element = Ox::Element.new('ZpusobZao')
-          element << attributes[:zpusob_zao] if attributes[:zpusob_zao]
-          root << element
+        if data.key? :cena1
+          root << CenaType.new('Cena1', data[:cena1]).builder
         end
 
-        if attributes.key? :vyp_pr_ceny
-          element = Ox::Element.new('VypPrCeny')
-          element << attributes[:vyp_pr_ceny] if attributes[:vyp_pr_ceny]
-          root << element
+        if data.key? :cena2
+          root << CenaType.new('Cena2', data[:cena2]).builder
         end
 
-        if attributes.key? :vych_a
-          element = Ox::Element.new('VychA')
-          element << attributes[:vych_a] if attributes[:vych_a]
-          root << element
+        if data.key? :cena3
+          root << CenaType.new('Cena3', data[:cena3]).builder
         end
 
-        if attributes.key? :zpusob_zm_a
-          element = Ox::Element.new('ZpusobZmA')
-          element << attributes[:zpusob_zm_a] if attributes[:zpusob_zm_a]
-          root << element
+        if data.key? :cena4
+          root << CenaType.new('Cena4', data[:cena4]).builder
         end
 
-        if attributes.key? :vych_b
-          element = Ox::Element.new('VychB')
-          element << attributes[:vych_b] if attributes[:vych_b]
-          root << element
-        end
-
-        if attributes.key? :zpusob_zm_b
-          element = Ox::Element.new('ZpusobZmB')
-          element << attributes[:zpusob_zm_b] if attributes[:zpusob_zm_b]
-          root << element
-        end
-
-        if attributes.key? :hladina
-          root << CenovaHladinaType.new(attributes[:hladina], 'Hladina').builder
-        end
-
-        if attributes.key? :mena
-          root << MenaType.new(attributes[:mena], 'Mena').builder
-        end
-
-        if attributes.key? :cena1
-          root << CenaType.new(attributes[:cena1], 'Cena1').builder
-        end
-
-        if attributes.key? :cena2
-          root << CenaType.new(attributes[:cena2], 'Cena2').builder
-        end
-
-        if attributes.key? :cena3
-          root << CenaType.new(attributes[:cena3], 'Cena3').builder
-        end
-
-        if attributes.key? :cena4
-          root << CenaType.new(attributes[:cena4], 'Cena4').builder
-        end
-
-        if attributes.key? :cena5
-          root << CenaType.new(attributes[:cena5], 'Cena5').builder
+        if data.key? :cena5
+          root << CenaType.new('Cena5', data[:cena5]).builder
         end
 
         root

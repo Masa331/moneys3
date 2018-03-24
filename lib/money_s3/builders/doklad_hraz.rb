@@ -7,34 +7,18 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :id_dokladu
-          element = Ox::Element.new('IDDokladu')
-          element << attributes[:id_dokladu] if attributes[:id_dokladu]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :cislo_dokladu
-          element = Ox::Element.new('CisloDokladu')
-          element << attributes[:cislo_dokladu] if attributes[:cislo_dokladu]
-          root << element
-        end
+        root << build_element('IDDokladu', data[:id_dokladu]) if data.key? :id_dokladu
+        root << build_element('CisloDokladu', data[:cislo_dokladu]) if data.key? :cislo_dokladu
+        root << build_element('DruhDokladu', data[:druh_dokladu]) if data.key? :druh_dokladu
+        root << build_element('Rok', data[:rok]) if data.key? :rok
 
-        if attributes.key? :druh_dokladu
-          element = Ox::Element.new('DruhDokladu')
-          element << attributes[:druh_dokladu] if attributes[:druh_dokladu]
-          root << element
-        end
-
-        if attributes.key? :rok
-          element = Ox::Element.new('Rok')
-          element << attributes[:rok] if attributes[:rok]
-          root << element
-        end
-
-        if attributes.key? :eet
-          root << EETType.new(attributes[:eet], 'EET').builder
+        if data.key? :eet
+          root << EETType.new('EET', data[:eet]).builder
         end
 
         root

@@ -8,128 +8,37 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :eet_odesl
-          element = Ox::Element.new('EETOdesl')
-          element << attributes[:eet_odesl] if attributes[:eet_odesl]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :prod_misto
-          element = Ox::Element.new('ProdMisto')
-          element << attributes[:prod_misto] if attributes[:prod_misto]
-          root << element
+        root << build_element('EETOdesl', data[:eet_odesl]) if data.key? :eet_odesl
+        root << build_element('ProdMisto', data[:prod_misto]) if data.key? :prod_misto
+        root << build_element('UUID', data[:uuid]) if data.key? :uuid
+        root << build_element('DatOdesl', data[:dat_odesl]) if data.key? :dat_odesl
+        root << build_element('CasOdesl', data[:cas_odesl]) if data.key? :cas_odesl
+        root << build_element('PrvniZasl', data[:prvni_zasl]) if data.key? :prvni_zasl
+        root << build_element('DICPopl', data[:dic_popl]) if data.key? :dic_popl
+        root << build_element('DICPover', data[:dic_pover]) if data.key? :dic_pover
+        root << build_element('Provozovna', data[:provozovna]) if data.key? :provozovna
+        root << build_element('PoklZariz', data[:pokl_zariz]) if data.key? :pokl_zariz
+        root << build_element('PoradCis', data[:porad_cis]) if data.key? :porad_cis
+        root << build_element('DatTrzby', data[:dat_trzby]) if data.key? :dat_trzby
+        root << build_element('CasTrzby', data[:cas_trzby]) if data.key? :cas_trzby
+        root << build_element('Rezim', data[:rezim]) if data.key? :rezim
+        root << build_element('PKP', data[:pkp]) if data.key? :pkp
+        root << build_element('BKP', data[:bkp]) if data.key? :bkp
+        root << build_element('FIK', data[:fik]) if data.key? :fik
+        root << build_element('CertPKP', data[:cert_pkp]) if data.key? :cert_pkp
+        root << build_element('CertEET', data[:cert_eet]) if data.key? :cert_eet
+
+        if data.key? :castky
+          root << Castky.new('Castky', data[:castky]).builder
         end
 
-        if attributes.key? :uuid
-          element = Ox::Element.new('UUID')
-          element << attributes[:uuid] if attributes[:uuid]
-          root << element
-        end
-
-        if attributes.key? :dat_odesl
-          element = Ox::Element.new('DatOdesl')
-          element << attributes[:dat_odesl] if attributes[:dat_odesl]
-          root << element
-        end
-
-        if attributes.key? :cas_odesl
-          element = Ox::Element.new('CasOdesl')
-          element << attributes[:cas_odesl] if attributes[:cas_odesl]
-          root << element
-        end
-
-        if attributes.key? :prvni_zasl
-          element = Ox::Element.new('PrvniZasl')
-          element << attributes[:prvni_zasl] if attributes[:prvni_zasl]
-          root << element
-        end
-
-        if attributes.key? :dic_popl
-          element = Ox::Element.new('DICPopl')
-          element << attributes[:dic_popl] if attributes[:dic_popl]
-          root << element
-        end
-
-        if attributes.key? :dic_pover
-          element = Ox::Element.new('DICPover')
-          element << attributes[:dic_pover] if attributes[:dic_pover]
-          root << element
-        end
-
-        if attributes.key? :provozovna
-          element = Ox::Element.new('Provozovna')
-          element << attributes[:provozovna] if attributes[:provozovna]
-          root << element
-        end
-
-        if attributes.key? :pokl_zariz
-          element = Ox::Element.new('PoklZariz')
-          element << attributes[:pokl_zariz] if attributes[:pokl_zariz]
-          root << element
-        end
-
-        if attributes.key? :porad_cis
-          element = Ox::Element.new('PoradCis')
-          element << attributes[:porad_cis] if attributes[:porad_cis]
-          root << element
-        end
-
-        if attributes.key? :dat_trzby
-          element = Ox::Element.new('DatTrzby')
-          element << attributes[:dat_trzby] if attributes[:dat_trzby]
-          root << element
-        end
-
-        if attributes.key? :cas_trzby
-          element = Ox::Element.new('CasTrzby')
-          element << attributes[:cas_trzby] if attributes[:cas_trzby]
-          root << element
-        end
-
-        if attributes.key? :rezim
-          element = Ox::Element.new('Rezim')
-          element << attributes[:rezim] if attributes[:rezim]
-          root << element
-        end
-
-        if attributes.key? :pkp
-          element = Ox::Element.new('PKP')
-          element << attributes[:pkp] if attributes[:pkp]
-          root << element
-        end
-
-        if attributes.key? :bkp
-          element = Ox::Element.new('BKP')
-          element << attributes[:bkp] if attributes[:bkp]
-          root << element
-        end
-
-        if attributes.key? :fik
-          element = Ox::Element.new('FIK')
-          element << attributes[:fik] if attributes[:fik]
-          root << element
-        end
-
-        if attributes.key? :cert_pkp
-          element = Ox::Element.new('CertPKP')
-          element << attributes[:cert_pkp] if attributes[:cert_pkp]
-          root << element
-        end
-
-        if attributes.key? :cert_eet
-          element = Ox::Element.new('CertEET')
-          element << attributes[:cert_eet] if attributes[:cert_eet]
-          root << element
-        end
-
-        if attributes.key? :castky
-          root << Castky.new(attributes[:castky], 'Castky').builder
-        end
-
-        if attributes.key? :vysledek_odesl
-          root << VysledekOdesl.new(attributes[:vysledek_odesl], 'VysledekOdesl').builder
+        if data.key? :vysledek_odesl
+          root << VysledekOdesl.new('VysledekOdesl', data[:vysledek_odesl]).builder
         end
 
         root

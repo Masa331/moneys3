@@ -7,46 +7,20 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :cislo_d
-          element = Ox::Element.new('CisloD')
-          element << attributes[:cislo_d] if attributes[:cislo_d]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :inv_id
-          element = Ox::Element.new('InvID')
-          element << attributes[:inv_id] if attributes[:inv_id]
-          root << element
-        end
+        root << build_element('CisloD', data[:cislo_d]) if data.key? :cislo_d
+        root << build_element('InvID', data[:inv_id]) if data.key? :inv_id
+        root << build_element('Popis', data[:popis]) if data.key? :popis
+        root << build_element('Prac', data[:prac]) if data.key? :prac
+        root << build_element('Kontr', data[:kontr]) if data.key? :kontr
+        root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
 
-        if attributes.key? :popis
-          element = Ox::Element.new('Popis')
-          element << attributes[:popis] if attributes[:popis]
-          root << element
-        end
-
-        if attributes.key? :prac
-          element = Ox::Element.new('Prac')
-          element << attributes[:prac] if attributes[:prac]
-          root << element
-        end
-
-        if attributes.key? :kontr
-          element = Ox::Element.new('Kontr')
-          element << attributes[:kontr] if attributes[:kontr]
-          root << element
-        end
-
-        if attributes.key? :poznamka
-          element = Ox::Element.new('Poznamka')
-          element << attributes[:poznamka] if attributes[:poznamka]
-          root << element
-        end
-
-        if attributes.key? :polozka
-          attributes[:polozka].each { |i| root << PolInvDoklType.new(i, 'Polozka').builder }
+        if data.key? :polozka
+          data[:polozka].each { |i| root << PolInvDoklType.new('Polozka', i).builder }
         end
 
         root

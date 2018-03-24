@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def cenova_hladina
-        array_of_at(CenovaHladina, [:CenovaHladina])
+        array_of_at(CenovaHladina, ['CenovaHladina'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:cenova_hladina] = cenova_hladina.map(&:to_h) if raw.key? :CenovaHladina
+        hash[:cenova_hladina] = cenova_hladina.map(&:to_h) if has? 'CenovaHladina'
 
         hash
       end

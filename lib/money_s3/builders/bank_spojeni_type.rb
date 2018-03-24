@@ -6,31 +6,15 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :ucet
-          element = Ox::Element.new('Ucet')
-          element << attributes[:ucet] if attributes[:ucet]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :kod_banky
-          element = Ox::Element.new('KodBanky')
-          element << attributes[:kod_banky] if attributes[:kod_banky]
-          root << element
-        end
-
-        if attributes.key? :mena
-          element = Ox::Element.new('Mena')
-          element << attributes[:mena] if attributes[:mena]
-          root << element
-        end
-
-        if attributes.key? :ucel
-          element = Ox::Element.new('Ucel')
-          element << attributes[:ucel] if attributes[:ucel]
-          root << element
-        end
+        root << build_element('Ucet', data[:ucet]) if data.key? :ucet
+        root << build_element('KodBanky', data[:kod_banky]) if data.key? :kod_banky
+        root << build_element('Mena', data[:mena]) if data.key? :mena
+        root << build_element('Ucel', data[:ucel]) if data.key? :ucel
 
         root
       end

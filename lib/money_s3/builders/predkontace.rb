@@ -6,79 +6,23 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :zkrat
-          element = Ox::Element.new('Zkrat')
-          element << attributes[:zkrat] if attributes[:zkrat]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :typ
-          element = Ox::Element.new('Typ')
-          element << attributes[:typ] if attributes[:typ]
-          root << element
-        end
-
-        if attributes.key? :popis
-          element = Ox::Element.new('Popis')
-          element << attributes[:popis] if attributes[:popis]
-          root << element
-        end
-
-        if attributes.key? :uc_md
-          element = Ox::Element.new('UcMD')
-          element << attributes[:uc_md] if attributes[:uc_md]
-          root << element
-        end
-
-        if attributes.key? :uc_d
-          element = Ox::Element.new('UcD')
-          element << attributes[:uc_d] if attributes[:uc_d]
-          root << element
-        end
-
-        if attributes.key? :zauct_dph
-          element = Ox::Element.new('ZauctDPH')
-          element << attributes[:zauct_dph] if attributes[:zauct_dph]
-          root << element
-        end
-
-        if attributes.key? :uctovat_led
-          element = Ox::Element.new('UctovatLed')
-          element << attributes[:uctovat_led] if attributes[:uctovat_led]
-          root << element
-        end
-
-        if attributes.key? :typ_ceny
-          element = Ox::Element.new('TypCeny')
-          element << attributes[:typ_ceny] if attributes[:typ_ceny]
-          root << element
-        end
-
-        if attributes.key? :uc_led_md
-          element = Ox::Element.new('UcLedMD')
-          element << attributes[:uc_led_md] if attributes[:uc_led_md]
-          root << element
-        end
-
-        if attributes.key? :uc_led_d
-          element = Ox::Element.new('UcLedD')
-          element << attributes[:uc_led_d] if attributes[:uc_led_d]
-          root << element
-        end
-
-        if attributes.key? :cleneni
-          element = Ox::Element.new('Cleneni')
-          element << attributes[:cleneni] if attributes[:cleneni]
-          root << element
-        end
-
-        if attributes.key? :pozn
-          element = Ox::Element.new('Pozn')
-          element << attributes[:pozn] if attributes[:pozn]
-          root << element
-        end
+        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
+        root << build_element('Typ', data[:typ]) if data.key? :typ
+        root << build_element('Popis', data[:popis]) if data.key? :popis
+        root << build_element('UcMD', data[:uc_md]) if data.key? :uc_md
+        root << build_element('UcD', data[:uc_d]) if data.key? :uc_d
+        root << build_element('ZauctDPH', data[:zauct_dph]) if data.key? :zauct_dph
+        root << build_element('UctovatLed', data[:uctovat_led]) if data.key? :uctovat_led
+        root << build_element('TypCeny', data[:typ_ceny]) if data.key? :typ_ceny
+        root << build_element('UcLedMD', data[:uc_led_md]) if data.key? :uc_led_md
+        root << build_element('UcLedD', data[:uc_led_d]) if data.key? :uc_led_d
+        root << build_element('Cleneni', data[:cleneni]) if data.key? :cleneni
+        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
 
         root
       end

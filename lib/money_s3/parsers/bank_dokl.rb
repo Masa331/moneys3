@@ -13,213 +13,214 @@ module MoneyS3
       include BaseParser
 
       def vydej
-        at :Vydej
+        at 'Vydej'
       end
 
       def doklad
-        at :Doklad
+        at 'Doklad'
       end
 
       def ev_cis_dokl
-        at :EvCisDokl
+        at 'EvCisDokl'
       end
 
       def zpusob_uctovani
-        at :ZpusobUctovani
+        at 'ZpusobUctovani'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def dat_uc_pr
-        at :DatUcPr
+        at 'DatUcPr'
       end
 
       def dat_vyst
-        at :DatVyst
+        at 'DatVyst'
       end
 
       def dat_plat
-        at :DatPlat
+        at 'DatPlat'
       end
 
       def dat_pln
-        at :DatPln
+        at 'DatPln'
       end
 
       def dat_upl_dph
-        at :DatUplDPH
+        at 'DatUplDPH'
       end
 
       def vypis
-        at :Vypis
+        at 'Vypis'
       end
 
       def id_polozky
-        at :IDPolozky
+        at 'IDPolozky'
       end
 
       def ad_ucet
-        at :AdUcet
+        at 'AdUcet'
       end
 
       def ad_kod
-        at :AdKod
+        at 'AdKod'
       end
 
       def prijat_dokl
-        at :PrijatDokl
+        at 'PrijatDokl'
       end
 
       def var_sym
-        at :VarSym
+        at 'VarSym'
       end
 
       def par_sym
-        at :ParSym
+        at 'ParSym'
       end
 
       def kon_sym
-        at :KonSym
+        at 'KonSym'
       end
 
       def spec_sym
-        at :SpecSym
+        at 'SpecSym'
       end
 
       def pr_kont
-        at :PrKont
+        at 'PrKont'
       end
 
       def cleneni
-        at :Cleneni
+        at 'Cleneni'
       end
 
       def stred
-        at :Stred
+        at 'Stred'
       end
 
       def zakazka
-        at :Zakazka
+        at 'Zakazka'
       end
 
       def cinnost
-        at :Cinnost
+        at 'Cinnost'
       end
 
       def stat_moss
-        at :StatMOSS
+        at 'StatMOSS'
       end
 
       def s_sazba
-        at :SSazba
+        at 'SSazba'
       end
 
       def z_sazba
-        at :ZSazba
+        at 'ZSazba'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def d_rada
-        at :DRada
+        at 'DRada'
       end
 
       def d_cislo
-        at :DCislo
+        at 'DCislo'
       end
 
       def vyst
-        at :Vyst
+        at 'Vyst'
       end
 
       def typ_dokl
-        at :TypDokl
+        at 'TypDokl'
       end
 
       def celkem
-        at :Celkem
+        at 'Celkem'
       end
 
       def adresa
-        submodel_at(DokladFirmaType, :Adresa)
+        submodel_at(DokladFirmaType, 'Adresa')
       end
 
       def valuty
-        submodel_at(Valuty, :Valuty)
+        submodel_at(Valuty, 'Valuty')
       end
 
       def ucet
-        submodel_at(Ucet, :Ucet)
+        submodel_at(Ucet, 'Ucet')
       end
 
       def vlajky
-        submodel_at(Vlajky, :Vlajky)
+        submodel_at(Vlajky, 'Vlajky')
       end
 
       def souhrn_dph
-        submodel_at(SouhrnDPHType, :SouhrnDPH)
+        submodel_at(SouhrnDPHType, 'SouhrnDPH')
       end
 
       def seznam_norm_polozek
-        array_of_at(NormPolozUDType, [:SeznamNormPolozek, :NormPolozka])
+        array_of_at(NormPolozUDType, ['SeznamNormPolozek', 'NormPolozka'])
       end
 
       def seznam_rozuct_polozek
-        array_of_at(RozuctPolozUDType, [:SeznamRozuctPolozek, :RozuctPolozka])
+        array_of_at(RozuctPolozUDType, ['SeznamRozuctPolozek', 'RozuctPolozka'])
       end
 
       def dokumenty
-        array_of_at(String, [:Dokumenty, :Dokument])
+        array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:vydej] = vydej if raw.key? :Vydej
-        hash[:doklad] = doklad if raw.key? :Doklad
-        hash[:ev_cis_dokl] = ev_cis_dokl if raw.key? :EvCisDokl
-        hash[:zpusob_uctovani] = zpusob_uctovani if raw.key? :ZpusobUctovani
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:dat_uc_pr] = dat_uc_pr if raw.key? :DatUcPr
-        hash[:dat_vyst] = dat_vyst if raw.key? :DatVyst
-        hash[:dat_plat] = dat_plat if raw.key? :DatPlat
-        hash[:dat_pln] = dat_pln if raw.key? :DatPln
-        hash[:dat_upl_dph] = dat_upl_dph if raw.key? :DatUplDPH
-        hash[:vypis] = vypis if raw.key? :Vypis
-        hash[:id_polozky] = id_polozky if raw.key? :IDPolozky
-        hash[:ad_ucet] = ad_ucet if raw.key? :AdUcet
-        hash[:ad_kod] = ad_kod if raw.key? :AdKod
-        hash[:prijat_dokl] = prijat_dokl if raw.key? :PrijatDokl
-        hash[:var_sym] = var_sym if raw.key? :VarSym
-        hash[:par_sym] = par_sym if raw.key? :ParSym
-        hash[:kon_sym] = kon_sym if raw.key? :KonSym
-        hash[:spec_sym] = spec_sym if raw.key? :SpecSym
-        hash[:pr_kont] = pr_kont if raw.key? :PrKont
-        hash[:cleneni] = cleneni if raw.key? :Cleneni
-        hash[:stred] = stred if raw.key? :Stred
-        hash[:zakazka] = zakazka if raw.key? :Zakazka
-        hash[:cinnost] = cinnost if raw.key? :Cinnost
-        hash[:stat_moss] = stat_moss if raw.key? :StatMOSS
-        hash[:s_sazba] = s_sazba if raw.key? :SSazba
-        hash[:z_sazba] = z_sazba if raw.key? :ZSazba
-        hash[:pozn] = pozn if raw.key? :Pozn
-        hash[:d_rada] = d_rada if raw.key? :DRada
-        hash[:d_cislo] = d_cislo if raw.key? :DCislo
-        hash[:vyst] = vyst if raw.key? :Vyst
-        hash[:typ_dokl] = typ_dokl if raw.key? :TypDokl
-        hash[:celkem] = celkem if raw.key? :Celkem
-        hash[:adresa] = adresa.to_h if raw.key? :Adresa
-        hash[:valuty] = valuty.to_h if raw.key? :Valuty
-        hash[:ucet] = ucet.to_h if raw.key? :Ucet
-        hash[:vlajky] = vlajky.to_h if raw.key? :Vlajky
-        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
-        hash[:seznam_norm_polozek] = seznam_norm_polozek.map(&:to_h) if raw.key? :SeznamNormPolozek
-        hash[:seznam_rozuct_polozek] = seznam_rozuct_polozek.map(&:to_h) if raw.key? :SeznamRozuctPolozek
-        hash[:dokumenty] = dokumenty if raw.key? :Dokumenty
+        hash[:vydej] = vydej if has? 'Vydej'
+        hash[:doklad] = doklad if has? 'Doklad'
+        hash[:ev_cis_dokl] = ev_cis_dokl if has? 'EvCisDokl'
+        hash[:zpusob_uctovani] = zpusob_uctovani if has? 'ZpusobUctovani'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:dat_uc_pr] = dat_uc_pr if has? 'DatUcPr'
+        hash[:dat_vyst] = dat_vyst if has? 'DatVyst'
+        hash[:dat_plat] = dat_plat if has? 'DatPlat'
+        hash[:dat_pln] = dat_pln if has? 'DatPln'
+        hash[:dat_upl_dph] = dat_upl_dph if has? 'DatUplDPH'
+        hash[:vypis] = vypis if has? 'Vypis'
+        hash[:id_polozky] = id_polozky if has? 'IDPolozky'
+        hash[:ad_ucet] = ad_ucet if has? 'AdUcet'
+        hash[:ad_kod] = ad_kod if has? 'AdKod'
+        hash[:prijat_dokl] = prijat_dokl if has? 'PrijatDokl'
+        hash[:var_sym] = var_sym if has? 'VarSym'
+        hash[:par_sym] = par_sym if has? 'ParSym'
+        hash[:kon_sym] = kon_sym if has? 'KonSym'
+        hash[:spec_sym] = spec_sym if has? 'SpecSym'
+        hash[:pr_kont] = pr_kont if has? 'PrKont'
+        hash[:cleneni] = cleneni if has? 'Cleneni'
+        hash[:stred] = stred if has? 'Stred'
+        hash[:zakazka] = zakazka if has? 'Zakazka'
+        hash[:cinnost] = cinnost if has? 'Cinnost'
+        hash[:stat_moss] = stat_moss if has? 'StatMOSS'
+        hash[:s_sazba] = s_sazba if has? 'SSazba'
+        hash[:z_sazba] = z_sazba if has? 'ZSazba'
+        hash[:pozn] = pozn if has? 'Pozn'
+        hash[:d_rada] = d_rada if has? 'DRada'
+        hash[:d_cislo] = d_cislo if has? 'DCislo'
+        hash[:vyst] = vyst if has? 'Vyst'
+        hash[:typ_dokl] = typ_dokl if has? 'TypDokl'
+        hash[:celkem] = celkem if has? 'Celkem'
+        hash[:adresa] = adresa.to_h if has? 'Adresa'
+        hash[:valuty] = valuty.to_h if has? 'Valuty'
+        hash[:ucet] = ucet.to_h if has? 'Ucet'
+        hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
+        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
+        hash[:seznam_norm_polozek] = seznam_norm_polozek.map(&:to_h) if has? 'SeznamNormPolozek'
+        hash[:seznam_rozuct_polozek] = seznam_rozuct_polozek.map(&:to_h) if has? 'SeznamRozuctPolozek'
+        hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash
       end

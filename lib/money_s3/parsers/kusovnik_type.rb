@@ -9,23 +9,24 @@ module MoneyS3
       include BaseParser
 
       def header
-        submodel_at(HeaderKusovnikType, :Header)
+        submodel_at(HeaderKusovnikType, 'Header')
       end
 
       def child
-        submodel_at(ChildKusovnikType, :Child)
+        submodel_at(ChildKusovnikType, 'Child')
       end
 
       def seznam_komponent
-        array_of_at(KomponentaKusovnikType, [:SeznamKomponent, :Komponenta])
+        array_of_at(KomponentaKusovnikType, ['SeznamKomponent', 'Komponenta'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:header] = header.to_h if raw.key? :Header
-        hash[:child] = child.to_h if raw.key? :Child
-        hash[:seznam_komponent] = seznam_komponent.map(&:to_h) if raw.key? :SeznamKomponent
+        hash[:header] = header.to_h if has? 'Header'
+        hash[:child] = child.to_h if has? 'Child'
+        hash[:seznam_komponent] = seznam_komponent.map(&:to_h) if has? 'SeznamKomponent'
 
         hash
       end

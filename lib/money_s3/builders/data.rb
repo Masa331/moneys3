@@ -7,14 +7,17 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :fakt_vyd
-          root << FakturaType.new(attributes[:fakt_vyd], 'FaktVyd').builder
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :fakt_prij
-          root << FakturaType.new(attributes[:fakt_prij], 'FaktPrij').builder
+        if data.key? :fakt_vyd
+          root << FakturaType.new('FaktVyd', data[:fakt_vyd]).builder
+        end
+
+        if data.key? :fakt_prij
+          root << FakturaType.new('FaktPrij', data[:fakt_prij]).builder
         end
 
         root

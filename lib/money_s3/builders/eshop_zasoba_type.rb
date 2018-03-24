@@ -7,40 +7,19 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :in_export
-          element = Ox::Element.new('IN_Export')
-          element << attributes[:in_export] if attributes[:in_export]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :in_changed
-          element = Ox::Element.new('IN_Changed')
-          element << attributes[:in_changed] if attributes[:in_changed]
-          root << element
-        end
+        root << build_element('IN_Export', data[:in_export]) if data.key? :in_export
+        root << build_element('IN_Changed', data[:in_changed]) if data.key? :in_changed
+        root << build_element('IN_Deleted', data[:in_deleted]) if data.key? :in_deleted
+        root << build_element('CisKarty', data[:cis_karty]) if data.key? :cis_karty
+        root << build_element('CisSkladu', data[:cis_skladu]) if data.key? :cis_skladu
 
-        if attributes.key? :in_deleted
-          element = Ox::Element.new('IN_Deleted')
-          element << attributes[:in_deleted] if attributes[:in_deleted]
-          root << element
-        end
-
-        if attributes.key? :cis_karty
-          element = Ox::Element.new('CisKarty')
-          element << attributes[:cis_karty] if attributes[:cis_karty]
-          root << element
-        end
-
-        if attributes.key? :cis_skladu
-          element = Ox::Element.new('CisSkladu')
-          element << attributes[:cis_skladu] if attributes[:cis_skladu]
-          root << element
-        end
-
-        if attributes.key? :e_skup
-          attributes[:e_skup].each { |i| root << EkategorieZasobaType.new(i, 'eSkup').builder }
+        if data.key? :e_skup
+          data[:e_skup].each { |i| root << EkategorieZasobaType.new('eSkup', i).builder }
         end
 
         root

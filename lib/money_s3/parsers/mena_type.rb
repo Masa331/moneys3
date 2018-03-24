@@ -6,23 +6,24 @@ module MoneyS3
       include BaseParser
 
       def kod
-        at :Kod
+        at 'Kod'
       end
 
       def mnozstvi
-        at :Mnozstvi
+        at 'Mnozstvi'
       end
 
       def kurs
-        at :Kurs
+        at 'Kurs'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:kod] = kod if raw.key? :Kod
-        hash[:mnozstvi] = mnozstvi if raw.key? :Mnozstvi
-        hash[:kurs] = kurs if raw.key? :Kurs
+        hash[:kod] = kod if has? 'Kod'
+        hash[:mnozstvi] = mnozstvi if has? 'Mnozstvi'
+        hash[:kurs] = kurs if has? 'Kurs'
 
         hash
       end

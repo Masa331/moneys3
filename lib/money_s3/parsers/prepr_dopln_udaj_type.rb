@@ -6,23 +6,24 @@ module MoneyS3
       include BaseParser
 
       def zkrat
-        at :Zkrat
+        at 'Zkrat'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def poznamka
-        at :Poznamka
+        at 'Poznamka'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zkrat] = zkrat if raw.key? :Zkrat
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:zkrat] = zkrat if has? 'Zkrat'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:poznamka] = poznamka if has? 'Poznamka'
 
         hash
       end

@@ -6,68 +6,69 @@ module MoneyS3
       include BaseParser
 
       def zkrat
-        at :Zkrat
+        at 'Zkrat'
       end
 
       def typ
-        at :Typ
+        at 'Typ'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def uc_md
-        at :UcMD
+        at 'UcMD'
       end
 
       def uc_d
-        at :UcD
+        at 'UcD'
       end
 
       def zauct_dph
-        at :ZauctDPH
+        at 'ZauctDPH'
       end
 
       def uctovat_led
-        at :UctovatLed
+        at 'UctovatLed'
       end
 
       def typ_ceny
-        at :TypCeny
+        at 'TypCeny'
       end
 
       def uc_led_md
-        at :UcLedMD
+        at 'UcLedMD'
       end
 
       def uc_led_d
-        at :UcLedD
+        at 'UcLedD'
       end
 
       def cleneni
-        at :Cleneni
+        at 'Cleneni'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zkrat] = zkrat if raw.key? :Zkrat
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:uc_md] = uc_md if raw.key? :UcMD
-        hash[:uc_d] = uc_d if raw.key? :UcD
-        hash[:zauct_dph] = zauct_dph if raw.key? :ZauctDPH
-        hash[:uctovat_led] = uctovat_led if raw.key? :UctovatLed
-        hash[:typ_ceny] = typ_ceny if raw.key? :TypCeny
-        hash[:uc_led_md] = uc_led_md if raw.key? :UcLedMD
-        hash[:uc_led_d] = uc_led_d if raw.key? :UcLedD
-        hash[:cleneni] = cleneni if raw.key? :Cleneni
-        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:zkrat] = zkrat if has? 'Zkrat'
+        hash[:typ] = typ if has? 'Typ'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:uc_md] = uc_md if has? 'UcMD'
+        hash[:uc_d] = uc_d if has? 'UcD'
+        hash[:zauct_dph] = zauct_dph if has? 'ZauctDPH'
+        hash[:uctovat_led] = uctovat_led if has? 'UctovatLed'
+        hash[:typ_ceny] = typ_ceny if has? 'TypCeny'
+        hash[:uc_led_md] = uc_led_md if has? 'UcLedMD'
+        hash[:uc_led_d] = uc_led_d if has? 'UcLedD'
+        hash[:cleneni] = cleneni if has? 'Cleneni'
+        hash[:pozn] = pozn if has? 'Pozn'
 
         hash
       end

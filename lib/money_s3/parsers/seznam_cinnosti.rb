@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def cinnost
-        array_of_at(Cinnost, [:Cinnost])
+        array_of_at(Cinnost, ['Cinnost'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:cinnost] = cinnost.map(&:to_h) if raw.key? :Cinnost
+        hash[:cinnost] = cinnost.map(&:to_h) if has? 'Cinnost'
 
         hash
       end

@@ -6,33 +6,34 @@ module MoneyS3
       include BaseParser
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def hladina_dph
-        at :HladinaDPH
+        at 'HladinaDPH'
       end
 
       def sazba
-        at :Sazba
+        at 'Sazba'
       end
 
       def zaklad
-        at :Zaklad
+        at 'Zaklad'
       end
 
       def dph
-        at :DPH
+        at 'DPH'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:hladina_dph] = hladina_dph if raw.key? :HladinaDPH
-        hash[:sazba] = sazba if raw.key? :Sazba
-        hash[:zaklad] = zaklad if raw.key? :Zaklad
-        hash[:dph] = dph if raw.key? :DPH
+        hash[:popis] = popis if has? 'Popis'
+        hash[:hladina_dph] = hladina_dph if has? 'HladinaDPH'
+        hash[:sazba] = sazba if has? 'Sazba'
+        hash[:zaklad] = zaklad if has? 'Zaklad'
+        hash[:dph] = dph if has? 'DPH'
 
         hash
       end

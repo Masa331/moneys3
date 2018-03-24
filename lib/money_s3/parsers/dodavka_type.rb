@@ -6,28 +6,29 @@ module MoneyS3
       include BaseParser
 
       def oznaceni
-        at :Oznaceni
+        at 'Oznaceni'
       end
 
       def dat_exp
-        at :DatExp
+        at 'DatExp'
       end
 
       def pocet_mj
-        at :PocetMJ
+        at 'PocetMJ'
       end
 
       def cena
-        at :Cena
+        at 'Cena'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:oznaceni] = oznaceni if raw.key? :Oznaceni
-        hash[:dat_exp] = dat_exp if raw.key? :DatExp
-        hash[:pocet_mj] = pocet_mj if raw.key? :PocetMJ
-        hash[:cena] = cena if raw.key? :Cena
+        hash[:oznaceni] = oznaceni if has? 'Oznaceni'
+        hash[:dat_exp] = dat_exp if has? 'DatExp'
+        hash[:pocet_mj] = pocet_mj if has? 'PocetMJ'
+        hash[:cena] = cena if has? 'Cena'
 
         hash
       end

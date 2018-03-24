@@ -6,18 +6,19 @@ module MoneyS3
       include BaseParser
 
       def chyba
-        at :Chyba
+        at 'Chyba'
       end
 
       def varovani
-        array_of_at(String, [:Varovani])
+        array_of_at(String, ['Varovani'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:chyba] = chyba if raw.key? :Chyba
-        hash[:varovani] = varovani if raw.key? :Varovani
+        hash[:chyba] = chyba if has? 'Chyba'
+        hash[:varovani] = varovani if has? 'Varovani'
 
         hash
       end

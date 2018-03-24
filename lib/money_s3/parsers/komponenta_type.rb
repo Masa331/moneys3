@@ -9,28 +9,29 @@ module MoneyS3
       include BaseParser
 
       def poc_mj
-        at :PocMJ
+        at 'PocMJ'
       end
 
       def stav_zasoby
-        submodel_at(StavZasobyType, :StavZasoby)
+        submodel_at(StavZasobyType, 'StavZasoby')
       end
 
       def km_karta
-        submodel_at(KmKartaType, :KmKarta)
+        submodel_at(KmKartaType, 'KmKarta')
       end
 
       def sklad
-        submodel_at(SkladType, :Sklad)
+        submodel_at(SkladType, 'Sklad')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:poc_mj] = poc_mj if raw.key? :PocMJ
-        hash[:stav_zasoby] = stav_zasoby.to_h if raw.key? :StavZasoby
-        hash[:km_karta] = km_karta.to_h if raw.key? :KmKarta
-        hash[:sklad] = sklad.to_h if raw.key? :Sklad
+        hash[:poc_mj] = poc_mj if has? 'PocMJ'
+        hash[:stav_zasoby] = stav_zasoby.to_h if has? 'StavZasoby'
+        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
+        hash[:sklad] = sklad.to_h if has? 'Sklad'
 
         hash
       end

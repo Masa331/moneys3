@@ -6,91 +6,25 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :celkem
-          element = Ox::Element.new('Celkem')
-          element << attributes[:celkem] if attributes[:celkem]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :zaklad_0
-          element = Ox::Element.new('Zaklad_0')
-          element << attributes[:zaklad_0] if attributes[:zaklad_0]
-          root << element
-        end
-
-        if attributes.key? :zaklad_1
-          element = Ox::Element.new('Zaklad_1')
-          element << attributes[:zaklad_1] if attributes[:zaklad_1]
-          root << element
-        end
-
-        if attributes.key? :zaklad_2
-          element = Ox::Element.new('Zaklad_2')
-          element << attributes[:zaklad_2] if attributes[:zaklad_2]
-          root << element
-        end
-
-        if attributes.key? :zaklad_3
-          element = Ox::Element.new('Zaklad_3')
-          element << attributes[:zaklad_3] if attributes[:zaklad_3]
-          root << element
-        end
-
-        if attributes.key? :dph_1
-          element = Ox::Element.new('DPH_1')
-          element << attributes[:dph_1] if attributes[:dph_1]
-          root << element
-        end
-
-        if attributes.key? :dph_2
-          element = Ox::Element.new('DPH_2')
-          element << attributes[:dph_2] if attributes[:dph_2]
-          root << element
-        end
-
-        if attributes.key? :dph_3
-          element = Ox::Element.new('DPH_3')
-          element << attributes[:dph_3] if attributes[:dph_3]
-          root << element
-        end
-
-        if attributes.key? :cest_sluzba
-          element = Ox::Element.new('CestSluzba')
-          element << attributes[:cest_sluzba] if attributes[:cest_sluzba]
-          root << element
-        end
-
-        if attributes.key? :pouz_zb_1
-          element = Ox::Element.new('PouzZb_1')
-          element << attributes[:pouz_zb_1] if attributes[:pouz_zb_1]
-          root << element
-        end
-
-        if attributes.key? :pouz_zb_2
-          element = Ox::Element.new('PouzZb_2')
-          element << attributes[:pouz_zb_2] if attributes[:pouz_zb_2]
-          root << element
-        end
-
-        if attributes.key? :pouz_zb_3
-          element = Ox::Element.new('PouzZb_3')
-          element << attributes[:pouz_zb_3] if attributes[:pouz_zb_3]
-          root << element
-        end
-
-        if attributes.key? :urc_cerp_zct
-          element = Ox::Element.new('UrcCerpZct')
-          element << attributes[:urc_cerp_zct] if attributes[:urc_cerp_zct]
-          root << element
-        end
-
-        if attributes.key? :cerp_zuct
-          element = Ox::Element.new('CerpZuct')
-          element << attributes[:cerp_zuct] if attributes[:cerp_zuct]
-          root << element
-        end
+        root << build_element('Celkem', data[:celkem]) if data.key? :celkem
+        root << build_element('Zaklad_0', data[:zaklad_0]) if data.key? :zaklad_0
+        root << build_element('Zaklad_1', data[:zaklad_1]) if data.key? :zaklad_1
+        root << build_element('Zaklad_2', data[:zaklad_2]) if data.key? :zaklad_2
+        root << build_element('Zaklad_3', data[:zaklad_3]) if data.key? :zaklad_3
+        root << build_element('DPH_1', data[:dph_1]) if data.key? :dph_1
+        root << build_element('DPH_2', data[:dph_2]) if data.key? :dph_2
+        root << build_element('DPH_3', data[:dph_3]) if data.key? :dph_3
+        root << build_element('CestSluzba', data[:cest_sluzba]) if data.key? :cest_sluzba
+        root << build_element('PouzZb_1', data[:pouz_zb_1]) if data.key? :pouz_zb_1
+        root << build_element('PouzZb_2', data[:pouz_zb_2]) if data.key? :pouz_zb_2
+        root << build_element('PouzZb_3', data[:pouz_zb_3]) if data.key? :pouz_zb_3
+        root << build_element('UrcCerpZct', data[:urc_cerp_zct]) if data.key? :urc_cerp_zct
+        root << build_element('CerpZuct', data[:cerp_zuct]) if data.key? :cerp_zuct
 
         root
       end

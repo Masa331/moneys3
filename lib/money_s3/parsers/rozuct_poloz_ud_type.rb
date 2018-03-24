@@ -7,78 +7,79 @@ module MoneyS3
       include BaseParser
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def castka
-        at :Castka
+        at 'Castka'
       end
 
       def stred
-        at :Stred
+        at 'Stred'
       end
 
       def zakazka
-        at :Zakazka
+        at 'Zakazka'
       end
 
       def cinnost
-        at :Cinnost
+        at 'Cinnost'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def typ_cena
-        at :TypCena
+        at 'TypCena'
       end
 
       def sazba_dph
-        at :SazbaDPH
+        at 'SazbaDPH'
       end
 
       def uc_md
-        at :UcMD
+        at 'UcMD'
       end
 
       def uc_d
-        at :UcD
+        at 'UcD'
       end
 
       def pohyb
-        at :Pohyb
+        at 'Pohyb'
       end
 
       def par_sym
-        at :ParSym
+        at 'ParSym'
       end
 
       def var_sym
-        at :VarSym
+        at 'VarSym'
       end
 
       def adresa
-        submodel_at(FirmaType, :Adresa)
+        submodel_at(FirmaType, 'Adresa')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:castka] = castka if raw.key? :Castka
-        hash[:stred] = stred if raw.key? :Stred
-        hash[:zakazka] = zakazka if raw.key? :Zakazka
-        hash[:cinnost] = cinnost if raw.key? :Cinnost
-        hash[:pozn] = pozn if raw.key? :Pozn
-        hash[:typ_cena] = typ_cena if raw.key? :TypCena
-        hash[:sazba_dph] = sazba_dph if raw.key? :SazbaDPH
-        hash[:uc_md] = uc_md if raw.key? :UcMD
-        hash[:uc_d] = uc_d if raw.key? :UcD
-        hash[:pohyb] = pohyb if raw.key? :Pohyb
-        hash[:par_sym] = par_sym if raw.key? :ParSym
-        hash[:var_sym] = var_sym if raw.key? :VarSym
-        hash[:adresa] = adresa.to_h if raw.key? :Adresa
+        hash[:popis] = popis if has? 'Popis'
+        hash[:castka] = castka if has? 'Castka'
+        hash[:stred] = stred if has? 'Stred'
+        hash[:zakazka] = zakazka if has? 'Zakazka'
+        hash[:cinnost] = cinnost if has? 'Cinnost'
+        hash[:pozn] = pozn if has? 'Pozn'
+        hash[:typ_cena] = typ_cena if has? 'TypCena'
+        hash[:sazba_dph] = sazba_dph if has? 'SazbaDPH'
+        hash[:uc_md] = uc_md if has? 'UcMD'
+        hash[:uc_d] = uc_d if has? 'UcD'
+        hash[:pohyb] = pohyb if has? 'Pohyb'
+        hash[:par_sym] = par_sym if has? 'ParSym'
+        hash[:var_sym] = var_sym if has? 'VarSym'
+        hash[:adresa] = adresa.to_h if has? 'Adresa'
 
         hash
       end

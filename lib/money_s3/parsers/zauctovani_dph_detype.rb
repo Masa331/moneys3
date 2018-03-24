@@ -7,43 +7,44 @@ module MoneyS3
       include BaseParser
 
       def zkrat
-        at :Zkrat
+        at 'Zkrat'
       end
 
       def typ
-        at :Typ
+        at 'Typ'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def poh_dss
-        at :PohDSS
+        at 'PohDSS'
       end
 
       def poh_dzs
-        at :PohDZS
+        at 'PohDZS'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def seznam_obdobi_dph
-        array_of_at(ObdobiDPH, [:SeznamObdobiDPH, :ObdobiDPH])
+        array_of_at(ObdobiDPH, ['SeznamObdobiDPH', 'ObdobiDPH'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zkrat] = zkrat if raw.key? :Zkrat
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:poh_dss] = poh_dss if raw.key? :PohDSS
-        hash[:poh_dzs] = poh_dzs if raw.key? :PohDZS
-        hash[:pozn] = pozn if raw.key? :Pozn
-        hash[:seznam_obdobi_dph] = seznam_obdobi_dph.map(&:to_h) if raw.key? :SeznamObdobiDPH
+        hash[:zkrat] = zkrat if has? 'Zkrat'
+        hash[:typ] = typ if has? 'Typ'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:poh_dss] = poh_dss if has? 'PohDSS'
+        hash[:poh_dzs] = poh_dzs if has? 'PohDZS'
+        hash[:pozn] = pozn if has? 'Pozn'
+        hash[:seznam_obdobi_dph] = seznam_obdobi_dph.map(&:to_h) if has? 'SeznamObdobiDPH'
 
         hash
       end

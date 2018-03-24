@@ -6,48 +6,49 @@ module MoneyS3
       include BaseParser
 
       def id_user
-        at :IDUser
+        at 'IDUser'
       end
 
       def name_user
-        at :NameUser
+        at 'NameUser'
       end
 
       def id_flag
-        at :IDFlag
+        at 'IDFlag'
       end
 
       def title
-        at :Title
+        at 'Title'
       end
 
       def enabled
-        at :Enabled
+        at 'Enabled'
       end
 
       def remark
-        at :Remark
+        at 'Remark'
       end
 
       def rf_width
-        at :RFWidth
+        at 'RFWidth'
       end
 
       def rf_height
-        at :RFHeight
+        at 'RFHeight'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:id_user] = id_user if raw.key? :IDUser
-        hash[:name_user] = name_user if raw.key? :NameUser
-        hash[:id_flag] = id_flag if raw.key? :IDFlag
-        hash[:title] = title if raw.key? :Title
-        hash[:enabled] = enabled if raw.key? :Enabled
-        hash[:remark] = remark if raw.key? :Remark
-        hash[:rf_width] = rf_width if raw.key? :RFWidth
-        hash[:rf_height] = rf_height if raw.key? :RFHeight
+        hash[:id_user] = id_user if has? 'IDUser'
+        hash[:name_user] = name_user if has? 'NameUser'
+        hash[:id_flag] = id_flag if has? 'IDFlag'
+        hash[:title] = title if has? 'Title'
+        hash[:enabled] = enabled if has? 'Enabled'
+        hash[:remark] = remark if has? 'Remark'
+        hash[:rf_width] = rf_width if has? 'RFWidth'
+        hash[:rf_height] = rf_height if has? 'RFHeight'
 
         hash
       end

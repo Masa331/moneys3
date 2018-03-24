@@ -7,23 +7,24 @@ module MoneyS3
       include BaseParser
 
       def typ
-        at :Typ
+        at 'Typ'
       end
 
       def pod_typ
-        at :PodTyp
+        at 'PodTyp'
       end
 
       def doklad
-        submodel_at(Doklad, :Doklad)
+        submodel_at(Doklad, 'Doklad')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:pod_typ] = pod_typ if raw.key? :PodTyp
-        hash[:doklad] = doklad.to_h if raw.key? :Doklad
+        hash[:typ] = typ if has? 'Typ'
+        hash[:pod_typ] = pod_typ if has? 'PodTyp'
+        hash[:doklad] = doklad.to_h if has? 'Doklad'
 
         hash
       end

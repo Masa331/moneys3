@@ -7,18 +7,19 @@ module MoneyS3
       include BaseParser
 
       def prip_hodin
-        at :PripHodin
+        at 'PripHodin'
       end
 
       def typ_priplatku
-        submodel_at(TypPriplatkuType, :TypPriplatku)
+        submodel_at(TypPriplatkuType, 'TypPriplatku')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:prip_hodin] = prip_hodin if raw.key? :PripHodin
-        hash[:typ_priplatku] = typ_priplatku.to_h if raw.key? :TypPriplatku
+        hash[:prip_hodin] = prip_hodin if has? 'PripHodin'
+        hash[:typ_priplatku] = typ_priplatku.to_h if has? 'TypPriplatku'
 
         hash
       end

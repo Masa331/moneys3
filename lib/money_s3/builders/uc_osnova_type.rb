@@ -6,97 +6,26 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :ucet
-          element = Ox::Element.new('Ucet')
-          element << attributes[:ucet] if attributes[:ucet]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :nazev
-          element = Ox::Element.new('Nazev')
-          element << attributes[:nazev] if attributes[:nazev]
-          root << element
-        end
-
-        if attributes.key? :typ
-          element = Ox::Element.new('Typ')
-          element << attributes[:typ] if attributes[:typ]
-          root << element
-        end
-
-        if attributes.key? :saldo
-          element = Ox::Element.new('Saldo')
-          element << attributes[:saldo] if attributes[:saldo]
-          root << element
-        end
-
-        if attributes.key? :radek
-          element = Ox::Element.new('Radek')
-          element << attributes[:radek] if attributes[:radek]
-          root << element
-        end
-
-        if attributes.key? :uc_prev
-          element = Ox::Element.new('UcPrev')
-          element << attributes[:uc_prev] if attributes[:uc_prev]
-          root << element
-        end
-
-        if attributes.key? :pozn
-          element = Ox::Element.new('Pozn')
-          element << attributes[:pozn] if attributes[:pozn]
-          root << element
-        end
-
-        if attributes.key? :radek_zkr
-          element = Ox::Element.new('RadekZkr')
-          element << attributes[:radek_zkr] if attributes[:radek_zkr]
-          root << element
-        end
-
-        if attributes.key? :druh_uctu
-          element = Ox::Element.new('DruhUctu')
-          element << attributes[:druh_uctu] if attributes[:druh_uctu]
-          root << element
-        end
-
-        if attributes.key? :ucet_typ
-          element = Ox::Element.new('UcetTyp')
-          element << attributes[:ucet_typ] if attributes[:ucet_typ]
-          root << element
-        end
-
-        if attributes.key? :ucet_pod_typ
-          element = Ox::Element.new('UcetPodTyp')
-          element << attributes[:ucet_pod_typ] if attributes[:ucet_pod_typ]
-          root << element
-        end
-
-        if attributes.key? :vnitro
-          element = Ox::Element.new('Vnitro')
-          element << attributes[:vnitro] if attributes[:vnitro]
-          root << element
-        end
-
-        if attributes.key? :technicky
-          element = Ox::Element.new('Technicky')
-          element << attributes[:technicky] if attributes[:technicky]
-          root << element
-        end
-
-        if attributes.key? :opravky
-          element = Ox::Element.new('Opravky')
-          element << attributes[:opravky] if attributes[:opravky]
-          root << element
-        end
-
-        if attributes.key? :druh_cin
-          element = Ox::Element.new('DruhCin')
-          element << attributes[:druh_cin] if attributes[:druh_cin]
-          root << element
-        end
+        root << build_element('Ucet', data[:ucet]) if data.key? :ucet
+        root << build_element('Nazev', data[:nazev]) if data.key? :nazev
+        root << build_element('Typ', data[:typ]) if data.key? :typ
+        root << build_element('Saldo', data[:saldo]) if data.key? :saldo
+        root << build_element('Radek', data[:radek]) if data.key? :radek
+        root << build_element('UcPrev', data[:uc_prev]) if data.key? :uc_prev
+        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
+        root << build_element('RadekZkr', data[:radek_zkr]) if data.key? :radek_zkr
+        root << build_element('DruhUctu', data[:druh_uctu]) if data.key? :druh_uctu
+        root << build_element('UcetTyp', data[:ucet_typ]) if data.key? :ucet_typ
+        root << build_element('UcetPodTyp', data[:ucet_pod_typ]) if data.key? :ucet_pod_typ
+        root << build_element('Vnitro', data[:vnitro]) if data.key? :vnitro
+        root << build_element('Technicky', data[:technicky]) if data.key? :technicky
+        root << build_element('Opravky', data[:opravky]) if data.key? :opravky
+        root << build_element('DruhCin', data[:druh_cin]) if data.key? :druh_cin
 
         root
       end

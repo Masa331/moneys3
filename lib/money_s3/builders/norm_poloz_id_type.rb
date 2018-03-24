@@ -6,91 +6,25 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :poradi
-          element = Ox::Element.new('Poradi')
-          element << attributes[:poradi] if attributes[:poradi]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :popis
-          element = Ox::Element.new('Popis')
-          element << attributes[:popis] if attributes[:popis]
-          root << element
-        end
-
-        if attributes.key? :zkratka
-          element = Ox::Element.new('Zkratka')
-          element << attributes[:zkratka] if attributes[:zkratka]
-          root << element
-        end
-
-        if attributes.key? :cena
-          element = Ox::Element.new('Cena')
-          element << attributes[:cena] if attributes[:cena]
-          root << element
-        end
-
-        if attributes.key? :cena_typ
-          element = Ox::Element.new('CenaTyp')
-          element << attributes[:cena_typ] if attributes[:cena_typ]
-          root << element
-        end
-
-        if attributes.key? :sazba_dph
-          element = Ox::Element.new('SazbaDPH')
-          element << attributes[:sazba_dph] if attributes[:sazba_dph]
-          root << element
-        end
-
-        if attributes.key? :text_mj
-          element = Ox::Element.new('TextMJ')
-          element << attributes[:text_mj] if attributes[:text_mj]
-          root << element
-        end
-
-        if attributes.key? :pocet_mj
-          element = Ox::Element.new('PocetMJ')
-          element << attributes[:pocet_mj] if attributes[:pocet_mj]
-          root << element
-        end
-
-        if attributes.key? :pr_kont
-          element = Ox::Element.new('PrKont')
-          element << attributes[:pr_kont] if attributes[:pr_kont]
-          root << element
-        end
-
-        if attributes.key? :cleneni
-          element = Ox::Element.new('Cleneni')
-          element << attributes[:cleneni] if attributes[:cleneni]
-          root << element
-        end
-
-        if attributes.key? :stred
-          element = Ox::Element.new('Stred')
-          element << attributes[:stred] if attributes[:stred]
-          root << element
-        end
-
-        if attributes.key? :zakazka
-          element = Ox::Element.new('Zakazka')
-          element << attributes[:zakazka] if attributes[:zakazka]
-          root << element
-        end
-
-        if attributes.key? :cinnost
-          element = Ox::Element.new('Cinnost')
-          element << attributes[:cinnost] if attributes[:cinnost]
-          root << element
-        end
-
-        if attributes.key? :poznamka
-          element = Ox::Element.new('Poznamka')
-          element << attributes[:poznamka] if attributes[:poznamka]
-          root << element
-        end
+        root << build_element('Poradi', data[:poradi]) if data.key? :poradi
+        root << build_element('Popis', data[:popis]) if data.key? :popis
+        root << build_element('Zkratka', data[:zkratka]) if data.key? :zkratka
+        root << build_element('Cena', data[:cena]) if data.key? :cena
+        root << build_element('CenaTyp', data[:cena_typ]) if data.key? :cena_typ
+        root << build_element('SazbaDPH', data[:sazba_dph]) if data.key? :sazba_dph
+        root << build_element('TextMJ', data[:text_mj]) if data.key? :text_mj
+        root << build_element('PocetMJ', data[:pocet_mj]) if data.key? :pocet_mj
+        root << build_element('PrKont', data[:pr_kont]) if data.key? :pr_kont
+        root << build_element('Cleneni', data[:cleneni]) if data.key? :cleneni
+        root << build_element('Stred', data[:stred]) if data.key? :stred
+        root << build_element('Zakazka', data[:zakazka]) if data.key? :zakazka
+        root << build_element('Cinnost', data[:cinnost]) if data.key? :cinnost
+        root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
 
         root
       end

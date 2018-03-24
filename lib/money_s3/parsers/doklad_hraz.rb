@@ -7,33 +7,34 @@ module MoneyS3
       include BaseParser
 
       def id_dokladu
-        at :IDDokladu
+        at 'IDDokladu'
       end
 
       def cislo_dokladu
-        at :CisloDokladu
+        at 'CisloDokladu'
       end
 
       def druh_dokladu
-        at :DruhDokladu
+        at 'DruhDokladu'
       end
 
       def rok
-        at :Rok
+        at 'Rok'
       end
 
       def eet
-        submodel_at(EETType, :EET)
+        submodel_at(EETType, 'EET')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:id_dokladu] = id_dokladu if raw.key? :IDDokladu
-        hash[:cislo_dokladu] = cislo_dokladu if raw.key? :CisloDokladu
-        hash[:druh_dokladu] = druh_dokladu if raw.key? :DruhDokladu
-        hash[:rok] = rok if raw.key? :Rok
-        hash[:eet] = eet.to_h if raw.key? :EET
+        hash[:id_dokladu] = id_dokladu if has? 'IDDokladu'
+        hash[:cislo_dokladu] = cislo_dokladu if has? 'CisloDokladu'
+        hash[:druh_dokladu] = druh_dokladu if has? 'DruhDokladu'
+        hash[:rok] = rok if has? 'Rok'
+        hash[:eet] = eet.to_h if has? 'EET'
 
         hash
       end

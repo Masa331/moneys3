@@ -10,241 +10,70 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :popis
-          element = Ox::Element.new('Popis')
-          element << attributes[:popis] if attributes[:popis]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :zkrat
-          element = Ox::Element.new('Zkrat')
-          element << attributes[:zkrat] if attributes[:zkrat]
-          root << element
+        root << build_element('Popis', data[:popis]) if data.key? :popis
+        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
+        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
+        root << build_element('MJ', data[:mj]) if data.key? :mj
+        root << build_element('UzivCode', data[:uziv_code]) if data.key? :uziv_code
+        root << build_element('GUID', data[:guid]) if data.key? :guid
+        root << build_element('Katalog', data[:katalog]) if data.key? :katalog
+        root << build_element('BarCode', data[:bar_code]) if data.key? :bar_code
+        root << build_element('BCTyp', data[:bc_typ]) if data.key? :bc_typ
+        root << build_element('TypZarDoby', data[:typ_zar_doby]) if data.key? :typ_zar_doby
+        root << build_element('ZarDoba', data[:zar_doba]) if data.key? :zar_doba
+        root << build_element('EvDruhy', data[:ev_druhy]) if data.key? :ev_druhy
+        root << build_element('EvVyrCis', data[:ev_vyr_cis]) if data.key? :ev_vyr_cis
+        root << build_element('DesMist', data[:des_mist]) if data.key? :des_mist
+        root << build_element('Obrazek', data[:obrazek]) if data.key? :obrazek
+        root << build_element('Obrazek2', data[:obrazek2]) if data.key? :obrazek2
+        root << build_element('Zarovnat', data[:zarovnat]) if data.key? :zarovnat
+        root << build_element('Zarovnat2', data[:zarovnat2]) if data.key? :zarovnat2
+        root << build_element('Ceny', data[:ceny]) if data.key? :ceny
+        root << build_element('Nastav', data[:nastav]) if data.key? :nastav
+        root << build_element('Popis1', data[:popis1]) if data.key? :popis1
+        root << build_element('Pozn1', data[:pozn1]) if data.key? :pozn1
+        root << build_element('Popis2', data[:popis2]) if data.key? :popis2
+        root << build_element('Pozn2', data[:pozn2]) if data.key? :pozn2
+        root << build_element('Popis3', data[:popis3]) if data.key? :popis3
+        root << build_element('Pozn3', data[:pozn3]) if data.key? :pozn3
+        root << build_element('Hmotnost', data[:hmotnost]) if data.key? :hmotnost
+        root << build_element('Objem', data[:objem]) if data.key? :objem
+        root << build_element('KodKN', data[:kod_kn]) if data.key? :kod_kn
+        root << build_element('PredmPln', data[:predm_pln]) if data.key? :predm_pln
+        root << build_element('KodStatu', data[:kod_statu]) if data.key? :kod_statu
+        root << build_element('TypKarty', data[:typ_karty]) if data.key? :typ_karty
+        root << build_element('ZbozKuch', data[:zboz_kuch]) if data.key? :zboz_kuch
+        root << build_element('iDoklPol', data[:i_dokl_pol]) if data.key? :i_dokl_pol
+        root << build_element('iDoklAgend', data[:i_dokl_agend]) if data.key? :i_dokl_agend
+
+        if data.key? :konfigurace
+          root << Konfigurace.new('konfigurace', data[:konfigurace]).builder
         end
 
-        if attributes.key? :pozn
-          element = Ox::Element.new('Pozn')
-          element << attributes[:pozn] if attributes[:pozn]
-          root << element
+        if data.key? :definice_ceny
+          root << DefiniceCeny.new('definiceCeny', data[:definice_ceny]).builder
         end
 
-        if attributes.key? :mj
-          element = Ox::Element.new('MJ')
-          element << attributes[:mj] if attributes[:mj]
-          root << element
-        end
-
-        if attributes.key? :uziv_code
-          element = Ox::Element.new('UzivCode')
-          element << attributes[:uziv_code] if attributes[:uziv_code]
-          root << element
-        end
-
-        if attributes.key? :guid
-          element = Ox::Element.new('GUID')
-          element << attributes[:guid] if attributes[:guid]
-          root << element
-        end
-
-        if attributes.key? :katalog
-          element = Ox::Element.new('Katalog')
-          element << attributes[:katalog] if attributes[:katalog]
-          root << element
-        end
-
-        if attributes.key? :bar_code
-          element = Ox::Element.new('BarCode')
-          element << attributes[:bar_code] if attributes[:bar_code]
-          root << element
-        end
-
-        if attributes.key? :bc_typ
-          element = Ox::Element.new('BCTyp')
-          element << attributes[:bc_typ] if attributes[:bc_typ]
-          root << element
-        end
-
-        if attributes.key? :typ_zar_doby
-          element = Ox::Element.new('TypZarDoby')
-          element << attributes[:typ_zar_doby] if attributes[:typ_zar_doby]
-          root << element
-        end
-
-        if attributes.key? :zar_doba
-          element = Ox::Element.new('ZarDoba')
-          element << attributes[:zar_doba] if attributes[:zar_doba]
-          root << element
-        end
-
-        if attributes.key? :ev_druhy
-          element = Ox::Element.new('EvDruhy')
-          element << attributes[:ev_druhy] if attributes[:ev_druhy]
-          root << element
-        end
-
-        if attributes.key? :ev_vyr_cis
-          element = Ox::Element.new('EvVyrCis')
-          element << attributes[:ev_vyr_cis] if attributes[:ev_vyr_cis]
-          root << element
-        end
-
-        if attributes.key? :des_mist
-          element = Ox::Element.new('DesMist')
-          element << attributes[:des_mist] if attributes[:des_mist]
-          root << element
-        end
-
-        if attributes.key? :obrazek
-          element = Ox::Element.new('Obrazek')
-          element << attributes[:obrazek] if attributes[:obrazek]
-          root << element
-        end
-
-        if attributes.key? :obrazek2
-          element = Ox::Element.new('Obrazek2')
-          element << attributes[:obrazek2] if attributes[:obrazek2]
-          root << element
-        end
-
-        if attributes.key? :zarovnat
-          element = Ox::Element.new('Zarovnat')
-          element << attributes[:zarovnat] if attributes[:zarovnat]
-          root << element
-        end
-
-        if attributes.key? :zarovnat2
-          element = Ox::Element.new('Zarovnat2')
-          element << attributes[:zarovnat2] if attributes[:zarovnat2]
-          root << element
-        end
-
-        if attributes.key? :ceny
-          element = Ox::Element.new('Ceny')
-          element << attributes[:ceny] if attributes[:ceny]
-          root << element
-        end
-
-        if attributes.key? :nastav
-          element = Ox::Element.new('Nastav')
-          element << attributes[:nastav] if attributes[:nastav]
-          root << element
-        end
-
-        if attributes.key? :popis1
-          element = Ox::Element.new('Popis1')
-          element << attributes[:popis1] if attributes[:popis1]
-          root << element
-        end
-
-        if attributes.key? :pozn1
-          element = Ox::Element.new('Pozn1')
-          element << attributes[:pozn1] if attributes[:pozn1]
-          root << element
-        end
-
-        if attributes.key? :popis2
-          element = Ox::Element.new('Popis2')
-          element << attributes[:popis2] if attributes[:popis2]
-          root << element
-        end
-
-        if attributes.key? :pozn2
-          element = Ox::Element.new('Pozn2')
-          element << attributes[:pozn2] if attributes[:pozn2]
-          root << element
-        end
-
-        if attributes.key? :popis3
-          element = Ox::Element.new('Popis3')
-          element << attributes[:popis3] if attributes[:popis3]
-          root << element
-        end
-
-        if attributes.key? :pozn3
-          element = Ox::Element.new('Pozn3')
-          element << attributes[:pozn3] if attributes[:pozn3]
-          root << element
-        end
-
-        if attributes.key? :hmotnost
-          element = Ox::Element.new('Hmotnost')
-          element << attributes[:hmotnost] if attributes[:hmotnost]
-          root << element
-        end
-
-        if attributes.key? :objem
-          element = Ox::Element.new('Objem')
-          element << attributes[:objem] if attributes[:objem]
-          root << element
-        end
-
-        if attributes.key? :kod_kn
-          element = Ox::Element.new('KodKN')
-          element << attributes[:kod_kn] if attributes[:kod_kn]
-          root << element
-        end
-
-        if attributes.key? :predm_pln
-          element = Ox::Element.new('PredmPln')
-          element << attributes[:predm_pln] if attributes[:predm_pln]
-          root << element
-        end
-
-        if attributes.key? :kod_statu
-          element = Ox::Element.new('KodStatu')
-          element << attributes[:kod_statu] if attributes[:kod_statu]
-          root << element
-        end
-
-        if attributes.key? :typ_karty
-          element = Ox::Element.new('TypKarty')
-          element << attributes[:typ_karty] if attributes[:typ_karty]
-          root << element
-        end
-
-        if attributes.key? :zboz_kuch
-          element = Ox::Element.new('ZbozKuch')
-          element << attributes[:zboz_kuch] if attributes[:zboz_kuch]
-          root << element
-        end
-
-        if attributes.key? :i_dokl_pol
-          element = Ox::Element.new('iDoklPol')
-          element << attributes[:i_dokl_pol] if attributes[:i_dokl_pol]
-          root << element
-        end
-
-        if attributes.key? :i_dokl_agend
-          element = Ox::Element.new('iDoklAgend')
-          element << attributes[:i_dokl_agend] if attributes[:i_dokl_agend]
-          root << element
-        end
-
-        if attributes.key? :konfigurace
-          root << Konfigurace.new(attributes[:konfigurace], 'konfigurace').builder
-        end
-
-        if attributes.key? :definice_ceny
-          root << DefiniceCeny.new(attributes[:definice_ceny], 'definiceCeny').builder
-        end
-
-        if attributes.key? :slozeni
+        if data.key? :slozeni
           element = Ox::Element.new('Slozeni')
-          attributes[:slozeni].each { |i| element << KomponentaType.new(i, 'Komponenta').builder }
+          data[:slozeni].each { |i| element << KomponentaType.new('Komponenta', i).builder }
           root << element
         end
 
-        if attributes.key? :seznam_parametru_karty
+        if data.key? :seznam_parametru_karty
           element = Ox::Element.new('SeznamParametruKarty')
-          attributes[:seznam_parametru_karty].each { |i| element << ParametrKartaType.new(i, 'ParametrKarty').builder }
+          data[:seznam_parametru_karty].each { |i| element << ParametrKartaType.new('ParametrKarty', i).builder }
           root << element
         end
 
-        if attributes.key? :dokumenty
+        if data.key? :dokumenty
           element = Ox::Element.new('Dokumenty')
-          attributes[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
+          data[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
           root << element
         end
 

@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def zamestnanec
-        array_of_at(ZamestnanecType, [:Zamestnanec])
+        array_of_at(ZamestnanecType, ['Zamestnanec'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zamestnanec] = zamestnanec.map(&:to_h) if raw.key? :Zamestnanec
+        hash[:zamestnanec] = zamestnanec.map(&:to_h) if has? 'Zamestnanec'
 
         hash
       end

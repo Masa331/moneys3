@@ -7,10 +7,13 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
+        end
 
-        if attributes.key? :dl_prij
-          attributes[:dl_prij].each { |i| root << DLPrij.new(i, 'DLPrij').builder }
+        if data.key? :dl_prij
+          data[:dl_prij].each { |i| root << DLPrij.new('DLPrij', i).builder }
         end
 
         root

@@ -7,113 +7,114 @@ module MoneyS3
       include BaseParser
 
       def nazev
-        at :Nazev
+        at 'Nazev'
       end
 
       def kod_skladu
-        at :KodSkladu
+        at 'KodSkladu'
       end
 
       def guid
-        at :GUID
+        at 'GUID'
       end
 
       def cenik_sklad
-        at :CenikSklad
+        at 'CenikSklad'
       end
 
       def platno_od
-        at :PlatnoOd
+        at 'PlatnoOd'
       end
 
       def platno_do
-        at :PlatnoDo
+        at 'PlatnoDo'
       end
 
       def minus
-        at :Minus
+        at 'Minus'
       end
 
       def neupoz
-        at :Neupoz
+        at 'Neupoz'
       end
 
       def vyber_cen
-        at :Vyber_cen
+        at 'Vyber_cen'
       end
 
       def vyber_dod
-        at :Vyber_dod
+        at 'Vyber_dod'
       end
 
       def zpusob
-        at :Zpusob
+        at 'Zpusob'
       end
 
       def prod_ceny_d
-        at :ProdCenyD
+        at 'ProdCenyD'
       end
 
       def prepocet
-        at :Prepocet
+        at 'Prepocet'
       end
 
       def ceny
-        at :Ceny
+        at 'Ceny'
       end
 
       def uc_vyrobk_vv
-        at :UcVyrobkVV
+        at 'UcVyrobkVV'
       end
 
       def prodejk_vz
-        at :ProdejkVz
+        at 'ProdejkVz'
       end
 
       def v_dod_lst_vz
-        at :VDodLstVz
+        at 'VDodLstVz'
       end
 
       def p_dod_lst_vz
-        at :PDodLstVz
+        at 'PDodLstVz'
       end
 
       def uc_pohyb_m
-        submodel_at(UctyPohybuType, :UcPohybM)
+        submodel_at(UctyPohybuType, 'UcPohybM')
       end
 
       def uc_pohyb_z
-        submodel_at(UctyPohybuType, :UcPohybZ)
+        submodel_at(UctyPohybuType, 'UcPohybZ')
       end
 
       def uc_pohyb_v
-        submodel_at(UctyPohybuType, :UcPohybV)
+        submodel_at(UctyPohybuType, 'UcPohybV')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:nazev] = nazev if raw.key? :Nazev
-        hash[:kod_skladu] = kod_skladu if raw.key? :KodSkladu
-        hash[:guid] = guid if raw.key? :GUID
-        hash[:cenik_sklad] = cenik_sklad if raw.key? :CenikSklad
-        hash[:platno_od] = platno_od if raw.key? :PlatnoOd
-        hash[:platno_do] = platno_do if raw.key? :PlatnoDo
-        hash[:minus] = minus if raw.key? :Minus
-        hash[:neupoz] = neupoz if raw.key? :Neupoz
-        hash[:vyber_cen] = vyber_cen if raw.key? :Vyber_cen
-        hash[:vyber_dod] = vyber_dod if raw.key? :Vyber_dod
-        hash[:zpusob] = zpusob if raw.key? :Zpusob
-        hash[:prod_ceny_d] = prod_ceny_d if raw.key? :ProdCenyD
-        hash[:prepocet] = prepocet if raw.key? :Prepocet
-        hash[:ceny] = ceny if raw.key? :Ceny
-        hash[:uc_vyrobk_vv] = uc_vyrobk_vv if raw.key? :UcVyrobkVV
-        hash[:prodejk_vz] = prodejk_vz if raw.key? :ProdejkVz
-        hash[:v_dod_lst_vz] = v_dod_lst_vz if raw.key? :VDodLstVz
-        hash[:p_dod_lst_vz] = p_dod_lst_vz if raw.key? :PDodLstVz
-        hash[:uc_pohyb_m] = uc_pohyb_m.to_h if raw.key? :UcPohybM
-        hash[:uc_pohyb_z] = uc_pohyb_z.to_h if raw.key? :UcPohybZ
-        hash[:uc_pohyb_v] = uc_pohyb_v.to_h if raw.key? :UcPohybV
+        hash[:nazev] = nazev if has? 'Nazev'
+        hash[:kod_skladu] = kod_skladu if has? 'KodSkladu'
+        hash[:guid] = guid if has? 'GUID'
+        hash[:cenik_sklad] = cenik_sklad if has? 'CenikSklad'
+        hash[:platno_od] = platno_od if has? 'PlatnoOd'
+        hash[:platno_do] = platno_do if has? 'PlatnoDo'
+        hash[:minus] = minus if has? 'Minus'
+        hash[:neupoz] = neupoz if has? 'Neupoz'
+        hash[:vyber_cen] = vyber_cen if has? 'Vyber_cen'
+        hash[:vyber_dod] = vyber_dod if has? 'Vyber_dod'
+        hash[:zpusob] = zpusob if has? 'Zpusob'
+        hash[:prod_ceny_d] = prod_ceny_d if has? 'ProdCenyD'
+        hash[:prepocet] = prepocet if has? 'Prepocet'
+        hash[:ceny] = ceny if has? 'Ceny'
+        hash[:uc_vyrobk_vv] = uc_vyrobk_vv if has? 'UcVyrobkVV'
+        hash[:prodejk_vz] = prodejk_vz if has? 'ProdejkVz'
+        hash[:v_dod_lst_vz] = v_dod_lst_vz if has? 'VDodLstVz'
+        hash[:p_dod_lst_vz] = p_dod_lst_vz if has? 'PDodLstVz'
+        hash[:uc_pohyb_m] = uc_pohyb_m.to_h if has? 'UcPohybM'
+        hash[:uc_pohyb_z] = uc_pohyb_z.to_h if has? 'UcPohybZ'
+        hash[:uc_pohyb_v] = uc_pohyb_v.to_h if has? 'UcPohybV'
 
         hash
       end

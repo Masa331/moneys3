@@ -8,44 +8,23 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :popis
-          element = Ox::Element.new('Popis')
-          element << attributes[:popis] if attributes[:popis]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :poc_mj
-          element = Ox::Element.new('PocMJ')
-          element << attributes[:poc_mj] if attributes[:poc_mj]
-          root << element
+        root << build_element('Popis', data[:popis]) if data.key? :popis
+        root << build_element('PocMJ', data[:poc_mj]) if data.key? :poc_mj
+        root << build_element('Poradi', data[:poradi]) if data.key? :poradi
+        root << build_element('DruhKomp', data[:druh_komp]) if data.key? :druh_komp
+        root << build_element('Symetric', data[:symetric]) if data.key? :symetric
+
+        if data.key? :km_karta
+          root << KmKartaType.new('KmKarta', data[:km_karta]).builder
         end
 
-        if attributes.key? :poradi
-          element = Ox::Element.new('Poradi')
-          element << attributes[:poradi] if attributes[:poradi]
-          root << element
-        end
-
-        if attributes.key? :druh_komp
-          element = Ox::Element.new('DruhKomp')
-          element << attributes[:druh_komp] if attributes[:druh_komp]
-          root << element
-        end
-
-        if attributes.key? :symetric
-          element = Ox::Element.new('Symetric')
-          element << attributes[:symetric] if attributes[:symetric]
-          root << element
-        end
-
-        if attributes.key? :km_karta
-          root << KmKartaType.new(attributes[:km_karta], 'KmKarta').builder
-        end
-
-        if attributes.key? :sklad
-          root << SkladType.new(attributes[:sklad], 'Sklad').builder
+        if data.key? :sklad
+          root << SkladType.new('Sklad', data[:sklad]).builder
         end
 
         root

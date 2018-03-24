@@ -22,6 +22,21 @@ RSpec.describe MoneyS3 do
         expect(parsed.seznam_fakt_vyd_dpp).to eq []
       end
     end
+
+    context 'data with attributes' do
+      let(:raw) { File.read('./spec/fixtures/invoices_with_attributes.xml') }
+      let(:parsed) { MoneyS3.parse(raw) }
+
+      it 'is parsed correctly' do
+        expect(parsed.seznam_fakt_vyd.fakt_vyd.size).to eq 2
+
+        expect(parsed.seznam_fakt_vyd.fakt_vyd.first.attributes).to eq({ version: '1' })
+        expect(parsed.seznam_fakt_vyd.fakt_vyd.first.doklad).to eq('123')
+
+        expect(parsed.seznam_fakt_vyd.fakt_vyd.last.attributes).to eq({ version: '2' })
+        expect(parsed.seznam_fakt_vyd.fakt_vyd.last.doklad).to eq('456')
+      end
+    end
   end
 
   describe '::build' do
@@ -33,6 +48,23 @@ RSpec.describe MoneyS3 do
         |<MoneyData>
         |  <SeznamFaktVyd>
         |    <FaktVyd>
+        |      <Doklad>123</Doklad>
+        |    </FaktVyd>
+        |  </SeznamFaktVyd>
+        |</MoneyData> })
+    end
+
+    it 'creates xml with attributes if given' do
+      invoice_with_attributes = MoneyS3::WithAttributes.new({ doklad: '123' })
+      invoice_with_attributes.attributes = { version: '1' }
+      with_attributes = MoneyS3::WithAttributes.new({ fakt_vyd: [invoice_with_attributes] })
+      xml = MoneyS3.build({ seznam_fakt_vyd: with_attributes }).strip
+
+      expect(xml).to eq_multiline(%{
+        |<?xml version="1.0"?>
+        |<MoneyData>
+        |  <SeznamFaktVyd>
+        |    <FaktVyd version="1">
         |      <Doklad>123</Doklad>
         |    </FaktVyd>
         |  </SeznamFaktVyd>
@@ -57,6 +89,18 @@ RSpec.describe MoneyS3 do
 
   it 'output from builder is same as input for parser when used together' do
     raw = File.read('./spec/fixtures/complete_invoice.xml')
+
+    parsed = MoneyS3.parse(raw)
+    builded = MoneyS3.build(parsed.to_h)
+
+    lines1 = raw.lines.sort
+    lines2 = builded.force_encoding('UTF-8').lines.sort
+
+    expect(lines1).to eq lines2
+  end
+
+  it 'output from builder is same as input for parser when used together' do
+    raw = File.read('./spec/fixtures/empty_data_set.xml')
 
     parsed = MoneyS3.parse(raw)
     builded = MoneyS3.build(parsed.to_h)

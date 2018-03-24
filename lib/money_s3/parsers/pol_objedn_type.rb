@@ -12,168 +12,169 @@ module MoneyS3
       include BaseParser
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def poznamka
-        at :Poznamka
+        at 'Poznamka'
       end
 
       def pocet_mj
-        at :PocetMJ
+        at 'PocetMJ'
       end
 
       def zbyva_mj
-        at :ZbyvaMJ
+        at 'ZbyvaMJ'
       end
 
       def cena
-        at :Cena
+        at 'Cena'
       end
 
       def sazba_dph
-        at :SazbaDPH
+        at 'SazbaDPH'
       end
 
       def typ_ceny
-        at :TypCeny
+        at 'TypCeny'
       end
 
       def sleva
-        at :Sleva
+        at 'Sleva'
       end
 
       def vystaveno
-        at :Vystaveno
+        at 'Vystaveno'
       end
 
       def vyridit_nej
-        at :VyriditNej
+        at 'VyriditNej'
       end
 
       def vyridit_do
-        at :Vyridit_do
+        at 'Vyridit_do'
       end
 
       def vyrizeno
-        at :Vyrizeno
+        at 'Vyrizeno'
       end
 
       def poradi
-        at :Poradi
+        at 'Poradi'
       end
 
       def stredisko
-        at :Stredisko
+        at 'Stredisko'
       end
 
       def zakazka
-        at :Zakazka
+        at 'Zakazka'
       end
 
       def cinnost
-        at :Cinnost
+        at 'Cinnost'
       end
 
       def cenova_hlad
-        at :CenovaHlad
+        at 'CenovaHlad'
       end
 
       def valuty
-        at :Valuty
+        at 'Valuty'
       end
 
       def kod_statu_puv
-        at :KodStatuPuv
+        at 'KodStatuPuv'
       end
 
       def typ_transakce
-        at :TypTransakce
+        at 'TypTransakce'
       end
 
       def hmotnost
-        at :Hmotnost
+        at 'Hmotnost'
       end
 
       def cena_po_sleve
-        at :CenaPoSleve
+        at 'CenaPoSleve'
       end
 
       def zvl_rezim
-        at :ZvlRezim
+        at 'ZvlRezim'
       end
 
       def zvl_dph
-        at :ZvlDPH
+        at 'ZvlDPH'
       end
 
       def rezim_eet
-        at :RezimEET
+        at 'RezimEET'
       end
 
       def pred_pc
-        at :PredPC
+        at 'PredPC'
       end
 
       def souhrn_dph
-        submodel_at(SouhrnDPHPolType, :SouhrnDPH)
+        submodel_at(SouhrnDPHPolType, 'SouhrnDPH')
       end
 
       def sklad
-        submodel_at(SkladType, :Sklad)
+        submodel_at(SkladType, 'Sklad')
       end
 
       def km_karta
-        submodel_at(KmKartaType, :KmKarta)
+        submodel_at(KmKartaType, 'KmKarta')
       end
 
       def neskl_polozka
-        submodel_at(NesklPolozka, :NesklPolozka)
+        submodel_at(NesklPolozka, 'NesklPolozka')
       end
 
       def seznam_vc
-        array_of_at(VyrobniCisloType, [:SeznamVC, :VyrobniCislo])
+        array_of_at(VyrobniCisloType, ['SeznamVC', 'VyrobniCislo'])
       end
 
       def slozeni
-        array_of_at(SubPolObjType, [:Slozeni, :SubPolozka])
+        array_of_at(SubPolObjType, ['Slozeni', 'SubPolozka'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:poznamka] = poznamka if raw.key? :Poznamka
-        hash[:pocet_mj] = pocet_mj if raw.key? :PocetMJ
-        hash[:zbyva_mj] = zbyva_mj if raw.key? :ZbyvaMJ
-        hash[:cena] = cena if raw.key? :Cena
-        hash[:sazba_dph] = sazba_dph if raw.key? :SazbaDPH
-        hash[:typ_ceny] = typ_ceny if raw.key? :TypCeny
-        hash[:sleva] = sleva if raw.key? :Sleva
-        hash[:vystaveno] = vystaveno if raw.key? :Vystaveno
-        hash[:vyridit_nej] = vyridit_nej if raw.key? :VyriditNej
-        hash[:vyridit_do] = vyridit_do if raw.key? :Vyridit_do
-        hash[:vyrizeno] = vyrizeno if raw.key? :Vyrizeno
-        hash[:poradi] = poradi if raw.key? :Poradi
-        hash[:stredisko] = stredisko if raw.key? :Stredisko
-        hash[:zakazka] = zakazka if raw.key? :Zakazka
-        hash[:cinnost] = cinnost if raw.key? :Cinnost
-        hash[:cenova_hlad] = cenova_hlad if raw.key? :CenovaHlad
-        hash[:valuty] = valuty if raw.key? :Valuty
-        hash[:kod_statu_puv] = kod_statu_puv if raw.key? :KodStatuPuv
-        hash[:typ_transakce] = typ_transakce if raw.key? :TypTransakce
-        hash[:hmotnost] = hmotnost if raw.key? :Hmotnost
-        hash[:cena_po_sleve] = cena_po_sleve if raw.key? :CenaPoSleve
-        hash[:zvl_rezim] = zvl_rezim if raw.key? :ZvlRezim
-        hash[:zvl_dph] = zvl_dph if raw.key? :ZvlDPH
-        hash[:rezim_eet] = rezim_eet if raw.key? :RezimEET
-        hash[:pred_pc] = pred_pc if raw.key? :PredPC
-        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
-        hash[:sklad] = sklad.to_h if raw.key? :Sklad
-        hash[:km_karta] = km_karta.to_h if raw.key? :KmKarta
-        hash[:neskl_polozka] = neskl_polozka.to_h if raw.key? :NesklPolozka
-        hash[:seznam_vc] = seznam_vc.map(&:to_h) if raw.key? :SeznamVC
-        hash[:slozeni] = slozeni.map(&:to_h) if raw.key? :Slozeni
+        hash[:popis] = popis if has? 'Popis'
+        hash[:poznamka] = poznamka if has? 'Poznamka'
+        hash[:pocet_mj] = pocet_mj if has? 'PocetMJ'
+        hash[:zbyva_mj] = zbyva_mj if has? 'ZbyvaMJ'
+        hash[:cena] = cena if has? 'Cena'
+        hash[:sazba_dph] = sazba_dph if has? 'SazbaDPH'
+        hash[:typ_ceny] = typ_ceny if has? 'TypCeny'
+        hash[:sleva] = sleva if has? 'Sleva'
+        hash[:vystaveno] = vystaveno if has? 'Vystaveno'
+        hash[:vyridit_nej] = vyridit_nej if has? 'VyriditNej'
+        hash[:vyridit_do] = vyridit_do if has? 'Vyridit_do'
+        hash[:vyrizeno] = vyrizeno if has? 'Vyrizeno'
+        hash[:poradi] = poradi if has? 'Poradi'
+        hash[:stredisko] = stredisko if has? 'Stredisko'
+        hash[:zakazka] = zakazka if has? 'Zakazka'
+        hash[:cinnost] = cinnost if has? 'Cinnost'
+        hash[:cenova_hlad] = cenova_hlad if has? 'CenovaHlad'
+        hash[:valuty] = valuty if has? 'Valuty'
+        hash[:kod_statu_puv] = kod_statu_puv if has? 'KodStatuPuv'
+        hash[:typ_transakce] = typ_transakce if has? 'TypTransakce'
+        hash[:hmotnost] = hmotnost if has? 'Hmotnost'
+        hash[:cena_po_sleve] = cena_po_sleve if has? 'CenaPoSleve'
+        hash[:zvl_rezim] = zvl_rezim if has? 'ZvlRezim'
+        hash[:zvl_dph] = zvl_dph if has? 'ZvlDPH'
+        hash[:rezim_eet] = rezim_eet if has? 'RezimEET'
+        hash[:pred_pc] = pred_pc if has? 'PredPC'
+        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
+        hash[:sklad] = sklad.to_h if has? 'Sklad'
+        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
+        hash[:neskl_polozka] = neskl_polozka.to_h if has? 'NesklPolozka'
+        hash[:seznam_vc] = seznam_vc.map(&:to_h) if has? 'SeznamVC'
+        hash[:slozeni] = slozeni.map(&:to_h) if has? 'Slozeni'
 
         hash
       end

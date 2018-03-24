@@ -14,248 +14,249 @@ module MoneyS3
       include BaseParser
 
       def guid
-        at :GUID
+        at 'GUID'
       end
 
       def nazev
-        at :Nazev
+        at 'Nazev'
       end
 
       def skupina_id
-        at :SkupinaID
+        at 'SkupinaID'
       end
 
       def obch_nazev
-        at :ObchNazev
+        at 'ObchNazev'
       end
 
       def fakt_nazev
-        at :FaktNazev
+        at 'FaktNazev'
       end
 
       def e_mail
-        at :EMail
+        at 'EMail'
       end
 
       def www
-        at :WWW
+        at 'WWW'
       end
 
       def spojeni
-        at :Spojeni
+        at 'Spojeni'
       end
 
       def ico
-        at :ICO
+        at 'ICO'
       end
 
       def dic
-        at :DIC
+        at 'DIC'
       end
 
       def dicsk
-        at :DICSK
+        at 'DICSK'
       end
 
       def platce_dph
-        at :PlatceDPH
+        at 'PlatceDPH'
       end
 
       def fyz_osoba
-        at :FyzOsoba
+        at 'FyzOsoba'
       end
 
       def kod_dan_ur
-        at :KodDanUr
+        at 'KodDanUr'
       end
 
       def banka
-        at :Banka
+        at 'Banka'
       end
 
       def ucet
-        at :Ucet
+        at 'Ucet'
       end
 
       def kod_banky
-        at :KodBanky
+        at 'KodBanky'
       end
 
       def v_symb
-        at :VSymb
+        at 'VSymb'
       end
 
       def spec_sym
-        at :SpecSym
+        at 'SpecSym'
       end
 
       def cinnosti
-        at :Cinnosti
+        at 'Cinnosti'
       end
 
       def adr_klice
-        at :AdrKlice
+        at 'AdrKlice'
       end
 
       def ceny
-        at :Ceny
+        at 'Ceny'
       end
 
       def ceniky
-        at :Ceniky
+        at 'Ceniky'
       end
 
       def kredit
-        at :Kredit
+        at 'Kredit'
       end
 
       def kredit_val
-        at :KreditVal
+        at 'KreditVal'
       end
 
       def splat_poh
-        at :SplatPoh
+        at 'SplatPoh'
       end
 
       def splat_zav
-        at :SplatZav
+        at 'SplatZav'
       end
 
       def spl_poh_dni
-        at :SplPohDni
+        at 'SplPohDni'
       end
 
       def spl_zav_dni
-        at :SplZavDni
+        at 'SplZavDni'
       end
 
       def sleva
-        at :Sleva
+        at 'Sleva'
       end
 
       def flag_sleva
-        at :FlagSleva
+        at 'FlagSleva'
       end
 
       def mail
-        at :Mail
+        at 'Mail'
       end
 
       def zprava
-        at :Zprava
+        at 'Zprava'
       end
 
       def poznamka
-        at :Poznamka
+        at 'Poznamka'
       end
 
       def kod_partn
-        at :KodPartn
+        at 'KodPartn'
       end
 
       def adresa
-        submodel_at(AdresaType, :Adresa)
+        submodel_at(AdresaType, 'Adresa')
       end
 
       def obch_adresa
-        submodel_at(AdresaType, :ObchAdresa)
+        submodel_at(AdresaType, 'ObchAdresa')
       end
 
       def fakt_adresa
-        submodel_at(AdresaType, :FaktAdresa)
+        submodel_at(AdresaType, 'FaktAdresa')
       end
 
       def tel
-        submodel_at(TelefonType, :Tel)
+        submodel_at(TelefonType, 'Tel')
       end
 
       def fax
-        submodel_at(TelefonType, :Fax)
+        submodel_at(TelefonType, 'Fax')
       end
 
       def mobil
-        submodel_at(TelefonType, :Mobil)
+        submodel_at(TelefonType, 'Mobil')
       end
 
       def isdoc
-        submodel_at(ISDOC, :ISDOC)
+        submodel_at(ISDOC, 'ISDOC')
       end
 
       def eshop
-        submodel_at(Eshop, :eshop)
+        submodel_at(Eshop, 'eshop')
       end
 
       def skupina
-        submodel_at(SkupinaFiremType, :Skupina)
+        submodel_at(SkupinaFiremType, 'Skupina')
       end
 
       def vlajky
-        submodel_at(Vlajky, :Vlajky)
+        submodel_at(Vlajky, 'Vlajky')
       end
 
       def osoba
-        array_of_at(OsobaType, [:Osoba])
+        array_of_at(OsobaType, ['Osoba'])
       end
 
       def seznam_bank_spojeni
-        array_of_at(BankSpojeniType, [:SeznamBankSpojeni, :BankSpojeni])
+        array_of_at(BankSpojeniType, ['SeznamBankSpojeni', 'BankSpojeni'])
       end
 
       def dokumenty
-        array_of_at(String, [:Dokumenty, :Dokument])
+        array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:guid] = guid if raw.key? :GUID
-        hash[:nazev] = nazev if raw.key? :Nazev
-        hash[:skupina_id] = skupina_id if raw.key? :SkupinaID
-        hash[:obch_nazev] = obch_nazev if raw.key? :ObchNazev
-        hash[:fakt_nazev] = fakt_nazev if raw.key? :FaktNazev
-        hash[:e_mail] = e_mail if raw.key? :EMail
-        hash[:www] = www if raw.key? :WWW
-        hash[:spojeni] = spojeni if raw.key? :Spojeni
-        hash[:ico] = ico if raw.key? :ICO
-        hash[:dic] = dic if raw.key? :DIC
-        hash[:dicsk] = dicsk if raw.key? :DICSK
-        hash[:platce_dph] = platce_dph if raw.key? :PlatceDPH
-        hash[:fyz_osoba] = fyz_osoba if raw.key? :FyzOsoba
-        hash[:kod_dan_ur] = kod_dan_ur if raw.key? :KodDanUr
-        hash[:banka] = banka if raw.key? :Banka
-        hash[:ucet] = ucet if raw.key? :Ucet
-        hash[:kod_banky] = kod_banky if raw.key? :KodBanky
-        hash[:v_symb] = v_symb if raw.key? :VSymb
-        hash[:spec_sym] = spec_sym if raw.key? :SpecSym
-        hash[:cinnosti] = cinnosti if raw.key? :Cinnosti
-        hash[:adr_klice] = adr_klice if raw.key? :AdrKlice
-        hash[:ceny] = ceny if raw.key? :Ceny
-        hash[:ceniky] = ceniky if raw.key? :Ceniky
-        hash[:kredit] = kredit if raw.key? :Kredit
-        hash[:kredit_val] = kredit_val if raw.key? :KreditVal
-        hash[:splat_poh] = splat_poh if raw.key? :SplatPoh
-        hash[:splat_zav] = splat_zav if raw.key? :SplatZav
-        hash[:spl_poh_dni] = spl_poh_dni if raw.key? :SplPohDni
-        hash[:spl_zav_dni] = spl_zav_dni if raw.key? :SplZavDni
-        hash[:sleva] = sleva if raw.key? :Sleva
-        hash[:flag_sleva] = flag_sleva if raw.key? :FlagSleva
-        hash[:mail] = mail if raw.key? :Mail
-        hash[:zprava] = zprava if raw.key? :Zprava
-        hash[:poznamka] = poznamka if raw.key? :Poznamka
-        hash[:kod_partn] = kod_partn if raw.key? :KodPartn
-        hash[:adresa] = adresa.to_h if raw.key? :Adresa
-        hash[:obch_adresa] = obch_adresa.to_h if raw.key? :ObchAdresa
-        hash[:fakt_adresa] = fakt_adresa.to_h if raw.key? :FaktAdresa
-        hash[:tel] = tel.to_h if raw.key? :Tel
-        hash[:fax] = fax.to_h if raw.key? :Fax
-        hash[:mobil] = mobil.to_h if raw.key? :Mobil
-        hash[:isdoc] = isdoc.to_h if raw.key? :ISDOC
-        hash[:eshop] = eshop.to_h if raw.key? :eshop
-        hash[:skupina] = skupina.to_h if raw.key? :Skupina
-        hash[:vlajky] = vlajky.to_h if raw.key? :Vlajky
-        hash[:osoba] = osoba.map(&:to_h) if raw.key? :Osoba
-        hash[:seznam_bank_spojeni] = seznam_bank_spojeni.map(&:to_h) if raw.key? :SeznamBankSpojeni
-        hash[:dokumenty] = dokumenty if raw.key? :Dokumenty
+        hash[:guid] = guid if has? 'GUID'
+        hash[:nazev] = nazev if has? 'Nazev'
+        hash[:skupina_id] = skupina_id if has? 'SkupinaID'
+        hash[:obch_nazev] = obch_nazev if has? 'ObchNazev'
+        hash[:fakt_nazev] = fakt_nazev if has? 'FaktNazev'
+        hash[:e_mail] = e_mail if has? 'EMail'
+        hash[:www] = www if has? 'WWW'
+        hash[:spojeni] = spojeni if has? 'Spojeni'
+        hash[:ico] = ico if has? 'ICO'
+        hash[:dic] = dic if has? 'DIC'
+        hash[:dicsk] = dicsk if has? 'DICSK'
+        hash[:platce_dph] = platce_dph if has? 'PlatceDPH'
+        hash[:fyz_osoba] = fyz_osoba if has? 'FyzOsoba'
+        hash[:kod_dan_ur] = kod_dan_ur if has? 'KodDanUr'
+        hash[:banka] = banka if has? 'Banka'
+        hash[:ucet] = ucet if has? 'Ucet'
+        hash[:kod_banky] = kod_banky if has? 'KodBanky'
+        hash[:v_symb] = v_symb if has? 'VSymb'
+        hash[:spec_sym] = spec_sym if has? 'SpecSym'
+        hash[:cinnosti] = cinnosti if has? 'Cinnosti'
+        hash[:adr_klice] = adr_klice if has? 'AdrKlice'
+        hash[:ceny] = ceny if has? 'Ceny'
+        hash[:ceniky] = ceniky if has? 'Ceniky'
+        hash[:kredit] = kredit if has? 'Kredit'
+        hash[:kredit_val] = kredit_val if has? 'KreditVal'
+        hash[:splat_poh] = splat_poh if has? 'SplatPoh'
+        hash[:splat_zav] = splat_zav if has? 'SplatZav'
+        hash[:spl_poh_dni] = spl_poh_dni if has? 'SplPohDni'
+        hash[:spl_zav_dni] = spl_zav_dni if has? 'SplZavDni'
+        hash[:sleva] = sleva if has? 'Sleva'
+        hash[:flag_sleva] = flag_sleva if has? 'FlagSleva'
+        hash[:mail] = mail if has? 'Mail'
+        hash[:zprava] = zprava if has? 'Zprava'
+        hash[:poznamka] = poznamka if has? 'Poznamka'
+        hash[:kod_partn] = kod_partn if has? 'KodPartn'
+        hash[:adresa] = adresa.to_h if has? 'Adresa'
+        hash[:obch_adresa] = obch_adresa.to_h if has? 'ObchAdresa'
+        hash[:fakt_adresa] = fakt_adresa.to_h if has? 'FaktAdresa'
+        hash[:tel] = tel.to_h if has? 'Tel'
+        hash[:fax] = fax.to_h if has? 'Fax'
+        hash[:mobil] = mobil.to_h if has? 'Mobil'
+        hash[:isdoc] = isdoc.to_h if has? 'ISDOC'
+        hash[:eshop] = eshop.to_h if has? 'eshop'
+        hash[:skupina] = skupina.to_h if has? 'Skupina'
+        hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
+        hash[:osoba] = osoba.map(&:to_h) if has? 'Osoba'
+        hash[:seznam_bank_spojeni] = seznam_bank_spojeni.map(&:to_h) if has? 'SeznamBankSpojeni'
+        hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash
       end

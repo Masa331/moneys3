@@ -7,14 +7,17 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :km_karta
-          root << MessageType.new(attributes[:km_karta], 'KmKarta').builder
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :sklad
-          root << MessageType.new(attributes[:sklad], 'Sklad').builder
+        if data.key? :km_karta
+          root << MessageType.new('KmKarta', data[:km_karta]).builder
+        end
+
+        if data.key? :sklad
+          root << MessageType.new('Sklad', data[:sklad]).builder
         end
 
         root

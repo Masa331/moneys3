@@ -8,14 +8,17 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :child
-          root << ChildKusovnikType.new(attributes[:child], 'Child').builder
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :reference
-          root << Reference.new(attributes[:reference], 'Reference').builder
+        if data.key? :child
+          root << ChildKusovnikType.new('Child', data[:child]).builder
+        end
+
+        if data.key? :reference
+          root << Reference.new('Reference', data[:reference]).builder
         end
 
         root

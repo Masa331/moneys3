@@ -7,112 +7,31 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :zkrat
-          element = Ox::Element.new('Zkrat')
-          element << attributes[:zkrat] if attributes[:zkrat]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :mj
-          element = Ox::Element.new('MJ')
-          element << attributes[:mj] if attributes[:mj]
-          root << element
-        end
+        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
+        root << build_element('MJ', data[:mj]) if data.key? :mj
+        root << build_element('UzivCode', data[:uziv_code]) if data.key? :uziv_code
+        root << build_element('Katalog', data[:katalog]) if data.key? :katalog
+        root << build_element('BarCode', data[:bar_code]) if data.key? :bar_code
+        root << build_element('Zaloha', data[:zaloha]) if data.key? :zaloha
+        root << build_element('ZdanZaloha', data[:zdan_zaloha]) if data.key? :zdan_zaloha
+        root << build_element('KonecOdpocet', data[:konec_odpocet]) if data.key? :konec_odpocet
+        root << build_element('TypZarDoby', data[:typ_zar_doby]) if data.key? :typ_zar_doby
+        root << build_element('ZarDoba', data[:zar_doba]) if data.key? :zar_doba
+        root << build_element('Protizapis', data[:protizapis]) if data.key? :protizapis
+        root << build_element('PlnenoDPH', data[:plneno_dph]) if data.key? :plneno_dph
+        root << build_element('Hmotnost', data[:hmotnost]) if data.key? :hmotnost
+        root << build_element('VyrobniCis', data[:vyrobni_cis]) if data.key? :vyrobni_cis
+        root << build_element('DatExp', data[:dat_exp]) if data.key? :dat_exp
+        root << build_element('DatNakupu', data[:dat_nakupu]) if data.key? :dat_nakupu
+        root << build_element('PredmPln', data[:predm_pln]) if data.key? :predm_pln
 
-        if attributes.key? :uziv_code
-          element = Ox::Element.new('UzivCode')
-          element << attributes[:uziv_code] if attributes[:uziv_code]
-          root << element
-        end
-
-        if attributes.key? :katalog
-          element = Ox::Element.new('Katalog')
-          element << attributes[:katalog] if attributes[:katalog]
-          root << element
-        end
-
-        if attributes.key? :bar_code
-          element = Ox::Element.new('BarCode')
-          element << attributes[:bar_code] if attributes[:bar_code]
-          root << element
-        end
-
-        if attributes.key? :zaloha
-          element = Ox::Element.new('Zaloha')
-          element << attributes[:zaloha] if attributes[:zaloha]
-          root << element
-        end
-
-        if attributes.key? :zdan_zaloha
-          element = Ox::Element.new('ZdanZaloha')
-          element << attributes[:zdan_zaloha] if attributes[:zdan_zaloha]
-          root << element
-        end
-
-        if attributes.key? :konec_odpocet
-          element = Ox::Element.new('KonecOdpocet')
-          element << attributes[:konec_odpocet] if attributes[:konec_odpocet]
-          root << element
-        end
-
-        if attributes.key? :typ_zar_doby
-          element = Ox::Element.new('TypZarDoby')
-          element << attributes[:typ_zar_doby] if attributes[:typ_zar_doby]
-          root << element
-        end
-
-        if attributes.key? :zar_doba
-          element = Ox::Element.new('ZarDoba')
-          element << attributes[:zar_doba] if attributes[:zar_doba]
-          root << element
-        end
-
-        if attributes.key? :protizapis
-          element = Ox::Element.new('Protizapis')
-          element << attributes[:protizapis] if attributes[:protizapis]
-          root << element
-        end
-
-        if attributes.key? :plneno_dph
-          element = Ox::Element.new('PlnenoDPH')
-          element << attributes[:plneno_dph] if attributes[:plneno_dph]
-          root << element
-        end
-
-        if attributes.key? :hmotnost
-          element = Ox::Element.new('Hmotnost')
-          element << attributes[:hmotnost] if attributes[:hmotnost]
-          root << element
-        end
-
-        if attributes.key? :vyrobni_cis
-          element = Ox::Element.new('VyrobniCis')
-          element << attributes[:vyrobni_cis] if attributes[:vyrobni_cis]
-          root << element
-        end
-
-        if attributes.key? :dat_exp
-          element = Ox::Element.new('DatExp')
-          element << attributes[:dat_exp] if attributes[:dat_exp]
-          root << element
-        end
-
-        if attributes.key? :dat_nakupu
-          element = Ox::Element.new('DatNakupu')
-          element << attributes[:dat_nakupu] if attributes[:dat_nakupu]
-          root << element
-        end
-
-        if attributes.key? :predm_pln
-          element = Ox::Element.new('PredmPln')
-          element << attributes[:predm_pln] if attributes[:predm_pln]
-          root << element
-        end
-
-        if attributes.key? :dodavatel
-          root << FirmaType.new(attributes[:dodavatel], 'Dodavatel').builder
+        if data.key? :dodavatel
+          root << FirmaType.new('Dodavatel', data[:dodavatel]).builder
         end
 
         root

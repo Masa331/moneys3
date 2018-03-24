@@ -7,38 +7,39 @@ module MoneyS3
       include BaseParser
 
       def os_cislo
-        at :OsCislo
+        at 'OsCislo'
       end
 
       def jmeno
-        at :Jmeno
+        at 'Jmeno'
       end
 
       def stredisko
-        at :Stredisko
+        at 'Stredisko'
       end
 
       def dat_nastup
-        at :DatNastup
+        at 'DatNastup'
       end
 
       def dat_odchod
-        at :DatOdchod
+        at 'DatOdchod'
       end
 
       def seznam_mzdovych_obdobi
-        array_of_at(MzdoveObdobiType, [:SeznamMzdovychObdobi, :MzdoveObdobi])
+        array_of_at(MzdoveObdobiType, ['SeznamMzdovychObdobi', 'MzdoveObdobi'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:os_cislo] = os_cislo if raw.key? :OsCislo
-        hash[:jmeno] = jmeno if raw.key? :Jmeno
-        hash[:stredisko] = stredisko if raw.key? :Stredisko
-        hash[:dat_nastup] = dat_nastup if raw.key? :DatNastup
-        hash[:dat_odchod] = dat_odchod if raw.key? :DatOdchod
-        hash[:seznam_mzdovych_obdobi] = seznam_mzdovych_obdobi.map(&:to_h) if raw.key? :SeznamMzdovychObdobi
+        hash[:os_cislo] = os_cislo if has? 'OsCislo'
+        hash[:jmeno] = jmeno if has? 'Jmeno'
+        hash[:stredisko] = stredisko if has? 'Stredisko'
+        hash[:dat_nastup] = dat_nastup if has? 'DatNastup'
+        hash[:dat_odchod] = dat_odchod if has? 'DatOdchod'
+        hash[:seznam_mzdovych_obdobi] = seznam_mzdovych_obdobi.map(&:to_h) if has? 'SeznamMzdovychObdobi'
 
         hash
       end

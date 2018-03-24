@@ -7,28 +7,29 @@ module MoneyS3
       include BaseParser
 
       def banka
-        at :Banka
+        at 'Banka'
       end
 
       def por_cislo
-        at :PorCislo
+        at 'PorCislo'
       end
 
       def datum
-        at :Datum
+        at 'Datum'
       end
 
       def seznam_kurzu
-        array_of_at(KurzType, [:SeznamKurzu, :Kurz])
+        array_of_at(KurzType, ['SeznamKurzu', 'Kurz'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:banka] = banka if raw.key? :Banka
-        hash[:por_cislo] = por_cislo if raw.key? :PorCislo
-        hash[:datum] = datum if raw.key? :Datum
-        hash[:seznam_kurzu] = seznam_kurzu.map(&:to_h) if raw.key? :SeznamKurzu
+        hash[:banka] = banka if has? 'Banka'
+        hash[:por_cislo] = por_cislo if has? 'PorCislo'
+        hash[:datum] = datum if has? 'Datum'
+        hash[:seznam_kurzu] = seznam_kurzu.map(&:to_h) if has? 'SeznamKurzu'
 
         hash
       end

@@ -6,33 +6,34 @@ module MoneyS3
       include BaseParser
 
       def ulice
-        at :Ulice
+        at 'Ulice'
       end
 
       def misto
-        at :Misto
+        at 'Misto'
       end
 
       def psc
-        at :PSC
+        at 'PSC'
       end
 
       def stat
-        at :Stat
+        at 'Stat'
       end
 
       def kod_statu
-        at :KodStatu
+        at 'KodStatu'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:ulice] = ulice if raw.key? :Ulice
-        hash[:misto] = misto if raw.key? :Misto
-        hash[:psc] = psc if raw.key? :PSC
-        hash[:stat] = stat if raw.key? :Stat
-        hash[:kod_statu] = kod_statu if raw.key? :KodStatu
+        hash[:ulice] = ulice if has? 'Ulice'
+        hash[:misto] = misto if has? 'Misto'
+        hash[:psc] = psc if has? 'PSC'
+        hash[:stat] = stat if has? 'Stat'
+        hash[:kod_statu] = kod_statu if has? 'KodStatu'
 
         hash
       end

@@ -9,19 +9,22 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :header
-          root << HeaderKusovnikType.new(attributes[:header], 'Header').builder
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :child
-          root << ChildKusovnikType.new(attributes[:child], 'Child').builder
+        if data.key? :header
+          root << HeaderKusovnikType.new('Header', data[:header]).builder
         end
 
-        if attributes.key? :seznam_komponent
+        if data.key? :child
+          root << ChildKusovnikType.new('Child', data[:child]).builder
+        end
+
+        if data.key? :seznam_komponent
           element = Ox::Element.new('SeznamKomponent')
-          attributes[:seznam_komponent].each { |i| element << KomponentaKusovnikType.new(i, 'Komponenta').builder }
+          data[:seznam_komponent].each { |i| element << KomponentaKusovnikType.new('Komponenta', i).builder }
           root << element
         end
 

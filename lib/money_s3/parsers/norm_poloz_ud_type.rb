@@ -6,83 +6,84 @@ module MoneyS3
       include BaseParser
 
       def poradi
-        at :Poradi
+        at 'Poradi'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def cena
-        at :Cena
+        at 'Cena'
       end
 
       def valuty
-        at :Valuty
+        at 'Valuty'
       end
 
       def cena_typ
-        at :CenaTyp
+        at 'CenaTyp'
       end
 
       def sazba_dph
-        at :SazbaDPH
+        at 'SazbaDPH'
       end
 
       def text_mj
-        at :TextMJ
+        at 'TextMJ'
       end
 
       def pocet_mj
-        at :PocetMJ
+        at 'PocetMJ'
       end
 
       def pr_kont
-        at :PrKont
+        at 'PrKont'
       end
 
       def cleneni
-        at :Cleneni
+        at 'Cleneni'
       end
 
       def predm_pln
-        at :PredmPln
+        at 'PredmPln'
       end
 
       def stred
-        at :Stred
+        at 'Stred'
       end
 
       def zakazka
-        at :Zakazka
+        at 'Zakazka'
       end
 
       def cinnost
-        at :Cinnost
+        at 'Cinnost'
       end
 
       def poznamka
-        at :Poznamka
+        at 'Poznamka'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:poradi] = poradi if raw.key? :Poradi
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:cena] = cena if raw.key? :Cena
-        hash[:valuty] = valuty if raw.key? :Valuty
-        hash[:cena_typ] = cena_typ if raw.key? :CenaTyp
-        hash[:sazba_dph] = sazba_dph if raw.key? :SazbaDPH
-        hash[:text_mj] = text_mj if raw.key? :TextMJ
-        hash[:pocet_mj] = pocet_mj if raw.key? :PocetMJ
-        hash[:pr_kont] = pr_kont if raw.key? :PrKont
-        hash[:cleneni] = cleneni if raw.key? :Cleneni
-        hash[:predm_pln] = predm_pln if raw.key? :PredmPln
-        hash[:stred] = stred if raw.key? :Stred
-        hash[:zakazka] = zakazka if raw.key? :Zakazka
-        hash[:cinnost] = cinnost if raw.key? :Cinnost
-        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:poradi] = poradi if has? 'Poradi'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:cena] = cena if has? 'Cena'
+        hash[:valuty] = valuty if has? 'Valuty'
+        hash[:cena_typ] = cena_typ if has? 'CenaTyp'
+        hash[:sazba_dph] = sazba_dph if has? 'SazbaDPH'
+        hash[:text_mj] = text_mj if has? 'TextMJ'
+        hash[:pocet_mj] = pocet_mj if has? 'PocetMJ'
+        hash[:pr_kont] = pr_kont if has? 'PrKont'
+        hash[:cleneni] = cleneni if has? 'Cleneni'
+        hash[:predm_pln] = predm_pln if has? 'PredmPln'
+        hash[:stred] = stred if has? 'Stred'
+        hash[:zakazka] = zakazka if has? 'Zakazka'
+        hash[:cinnost] = cinnost if has? 'Cinnost'
+        hash[:poznamka] = poznamka if has? 'Poznamka'
 
         hash
       end
