@@ -103,31 +103,34 @@ module MoneyS3
       end
 
       def to_h
-        { cislo: cislo,
-          typ: typ,
-          cis_karty: cis_karty,
-          varianta: varianta,
-          rezie: rezie,
-          poradi: poradi,
-          povaha: povaha,
-          cil_zdroj: cil_zdroj,
-          pevna_cena: pevna_cena,
-          cena: cena,
-          pocet_mj: pocet_mj,
-          pocet_mj_fix: pocet_mj_fix,
-          kapacita: kapacita,
-          time: time,
-          time_fix: time_fix,
-          start_time: start_time,
-          last_time: last_time,
-          start_oper: start_oper,
-          podil_ceny: podil_ceny,
-          pozice_vykr: pozice_vykr,
-          zakazka: zakazka,
-          stav: stav,
-          poznamka: poznamka,
-          sklad: sklad.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:cislo] = cislo if raw.key? :Cislo
+        hash[:typ] = typ if raw.key? :Typ
+        hash[:cis_karty] = cis_karty if raw.key? :CisKarty
+        hash[:varianta] = varianta if raw.key? :Varianta
+        hash[:rezie] = rezie if raw.key? :Rezie
+        hash[:poradi] = poradi if raw.key? :Poradi
+        hash[:povaha] = povaha if raw.key? :Povaha
+        hash[:cil_zdroj] = cil_zdroj if raw.key? :CilZdroj
+        hash[:pevna_cena] = pevna_cena if raw.key? :PevnaCena
+        hash[:cena] = cena if raw.key? :Cena
+        hash[:pocet_mj] = pocet_mj if raw.key? :PocetMJ
+        hash[:pocet_mj_fix] = pocet_mj_fix if raw.key? :PocetMJFix
+        hash[:kapacita] = kapacita if raw.key? :Kapacita
+        hash[:time] = time if raw.key? :Time
+        hash[:time_fix] = time_fix if raw.key? :TimeFix
+        hash[:start_time] = start_time if raw.key? :StartTime
+        hash[:last_time] = last_time if raw.key? :LastTime
+        hash[:start_oper] = start_oper if raw.key? :StartOper
+        hash[:podil_ceny] = podil_ceny if raw.key? :PodilCeny
+        hash[:pozice_vykr] = pozice_vykr if raw.key? :PoziceVykr
+        hash[:zakazka] = zakazka if raw.key? :Zakazka
+        hash[:stav] = stav if raw.key? :Stav
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:sklad] = sklad.to_h if raw.key? :Sklad
+
+        hash
       end
     end
   end

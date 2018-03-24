@@ -68,21 +68,24 @@ module MoneyS3
       end
 
       def to_h
-        { prijem: prijem,
-          poradi: poradi,
-          rok_poradi: rok_poradi,
-          datum: datum,
-          dat_upl_dph: dat_upl_dph,
-          castka: castka,
-          zpusob_uhr: zpusob_uhr,
-          platidlo: platidlo,
-          doklad_uhr: doklad_uhr.to_h,
-          doklad_hraz: doklad_hraz.to_h,
-          valuty_hraz: valuty_hraz.to_h,
-          valuty_uhr: valuty_uhr.to_h,
-          kurz_rozd: kurz_rozd.to_h,
-          seznam_pd_uhrad: seznam_pd_uhrad.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:prijem] = prijem if raw.key? :Prijem
+        hash[:poradi] = poradi if raw.key? :Poradi
+        hash[:rok_poradi] = rok_poradi if raw.key? :RokPoradi
+        hash[:datum] = datum if raw.key? :Datum
+        hash[:dat_upl_dph] = dat_upl_dph if raw.key? :DatUplDPH
+        hash[:castka] = castka if raw.key? :Castka
+        hash[:zpusob_uhr] = zpusob_uhr if raw.key? :ZpusobUhr
+        hash[:platidlo] = platidlo if raw.key? :Platidlo
+        hash[:doklad_uhr] = doklad_uhr.to_h if raw.key? :DokladUhr
+        hash[:doklad_hraz] = doklad_hraz.to_h if raw.key? :DokladHraz
+        hash[:valuty_hraz] = valuty_hraz.to_h if raw.key? :ValutyHraz
+        hash[:valuty_uhr] = valuty_uhr.to_h if raw.key? :ValutyUhr
+        hash[:kurz_rozd] = kurz_rozd.to_h if raw.key? :KurzRozd
+        hash[:seznam_pd_uhrad] = seznam_pd_uhrad.map(&:to_h) if raw.key? :SeznamPDUhrad
+
+        hash
       end
     end
   end

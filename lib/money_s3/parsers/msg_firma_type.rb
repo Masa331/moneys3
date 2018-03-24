@@ -16,9 +16,12 @@ module MoneyS3
       end
 
       def to_h
-        { data: data.to_h,
-          osoba: osoba.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:data] = data.to_h if raw.key? :Data
+        hash[:osoba] = osoba.map(&:to_h) if raw.key? :Osoba
+
+        hash
       end
     end
   end

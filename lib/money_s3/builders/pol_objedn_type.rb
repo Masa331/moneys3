@@ -11,51 +11,190 @@ module MoneyS3
     class PolObjednType
       include BaseBuilder
 
-      attr_accessor :popis, :poznamka, :pocet_mj, :zbyva_mj, :cena, :sazba_dph, :typ_ceny, :sleva, :vystaveno, :vyridit_nej, :vyridit_do, :vyrizeno, :poradi, :stredisko, :zakazka, :cinnost, :cenova_hlad, :valuty, :kod_statu_puv, :typ_transakce, :hmotnost, :cena_po_sleve, :zvl_rezim, :zvl_dph, :rezim_eet, :pred_pc, :souhrn_dph, :sklad, :km_karta, :neskl_polozka, :seznam_vc, :slozeni
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('Poznamka') << poznamka) if poznamka
-        root << (Ox::Element.new('PocetMJ') << pocet_mj) if pocet_mj
-        root << (Ox::Element.new('ZbyvaMJ') << zbyva_mj) if zbyva_mj
-        root << (Ox::Element.new('Cena') << cena) if cena
-        root << (Ox::Element.new('SazbaDPH') << sazba_dph) if sazba_dph
-        root << (Ox::Element.new('TypCeny') << typ_ceny) if typ_ceny
-        root << (Ox::Element.new('Sleva') << sleva) if sleva
-        root << (Ox::Element.new('Vystaveno') << vystaveno) if vystaveno
-        root << (Ox::Element.new('VyriditNej') << vyridit_nej) if vyridit_nej
-        root << (Ox::Element.new('Vyridit_do') << vyridit_do) if vyridit_do
-        root << (Ox::Element.new('Vyrizeno') << vyrizeno) if vyrizeno
-        root << (Ox::Element.new('Poradi') << poradi) if poradi
-        root << (Ox::Element.new('Stredisko') << stredisko) if stredisko
-        root << (Ox::Element.new('Zakazka') << zakazka) if zakazka
-        root << (Ox::Element.new('Cinnost') << cinnost) if cinnost
-        root << (Ox::Element.new('CenovaHlad') << cenova_hlad) if cenova_hlad
-        root << (Ox::Element.new('Valuty') << valuty) if valuty
-        root << (Ox::Element.new('KodStatuPuv') << kod_statu_puv) if kod_statu_puv
-        root << (Ox::Element.new('TypTransakce') << typ_transakce) if typ_transakce
-        root << (Ox::Element.new('Hmotnost') << hmotnost) if hmotnost
-        root << (Ox::Element.new('CenaPoSleve') << cena_po_sleve) if cena_po_sleve
-        root << (Ox::Element.new('ZvlRezim') << zvl_rezim) if zvl_rezim
-        root << (Ox::Element.new('ZvlDPH') << zvl_dph) if zvl_dph
-        root << (Ox::Element.new('RezimEET') << rezim_eet) if rezim_eet
-        root << (Ox::Element.new('PredPC') << pred_pc) if pred_pc
-        root << SouhrnDPHPolType.new(souhrn_dph, 'SouhrnDPH').builder if souhrn_dph
-        root << SkladType.new(sklad, 'Sklad').builder if sklad
-        root << KmKartaType.new(km_karta, 'KmKarta').builder if km_karta
-        root << NesklPolozka.new(neskl_polozka, 'NesklPolozka').builder if neskl_polozka
-
-        if seznam_vc
-          element = Ox::Element.new('SeznamVC')
-          seznam_vc.each { |i| element << VyrobniCisloType.new(i, 'VyrobniCislo').builder }
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
           root << element
         end
 
-        if slozeni
+        if attributes.key? :poznamka
+          element = Ox::Element.new('Poznamka')
+          element << attributes[:poznamka] if attributes[:poznamka]
+          root << element
+        end
+
+        if attributes.key? :pocet_mj
+          element = Ox::Element.new('PocetMJ')
+          element << attributes[:pocet_mj] if attributes[:pocet_mj]
+          root << element
+        end
+
+        if attributes.key? :zbyva_mj
+          element = Ox::Element.new('ZbyvaMJ')
+          element << attributes[:zbyva_mj] if attributes[:zbyva_mj]
+          root << element
+        end
+
+        if attributes.key? :cena
+          element = Ox::Element.new('Cena')
+          element << attributes[:cena] if attributes[:cena]
+          root << element
+        end
+
+        if attributes.key? :sazba_dph
+          element = Ox::Element.new('SazbaDPH')
+          element << attributes[:sazba_dph] if attributes[:sazba_dph]
+          root << element
+        end
+
+        if attributes.key? :typ_ceny
+          element = Ox::Element.new('TypCeny')
+          element << attributes[:typ_ceny] if attributes[:typ_ceny]
+          root << element
+        end
+
+        if attributes.key? :sleva
+          element = Ox::Element.new('Sleva')
+          element << attributes[:sleva] if attributes[:sleva]
+          root << element
+        end
+
+        if attributes.key? :vystaveno
+          element = Ox::Element.new('Vystaveno')
+          element << attributes[:vystaveno] if attributes[:vystaveno]
+          root << element
+        end
+
+        if attributes.key? :vyridit_nej
+          element = Ox::Element.new('VyriditNej')
+          element << attributes[:vyridit_nej] if attributes[:vyridit_nej]
+          root << element
+        end
+
+        if attributes.key? :vyridit_do
+          element = Ox::Element.new('Vyridit_do')
+          element << attributes[:vyridit_do] if attributes[:vyridit_do]
+          root << element
+        end
+
+        if attributes.key? :vyrizeno
+          element = Ox::Element.new('Vyrizeno')
+          element << attributes[:vyrizeno] if attributes[:vyrizeno]
+          root << element
+        end
+
+        if attributes.key? :poradi
+          element = Ox::Element.new('Poradi')
+          element << attributes[:poradi] if attributes[:poradi]
+          root << element
+        end
+
+        if attributes.key? :stredisko
+          element = Ox::Element.new('Stredisko')
+          element << attributes[:stredisko] if attributes[:stredisko]
+          root << element
+        end
+
+        if attributes.key? :zakazka
+          element = Ox::Element.new('Zakazka')
+          element << attributes[:zakazka] if attributes[:zakazka]
+          root << element
+        end
+
+        if attributes.key? :cinnost
+          element = Ox::Element.new('Cinnost')
+          element << attributes[:cinnost] if attributes[:cinnost]
+          root << element
+        end
+
+        if attributes.key? :cenova_hlad
+          element = Ox::Element.new('CenovaHlad')
+          element << attributes[:cenova_hlad] if attributes[:cenova_hlad]
+          root << element
+        end
+
+        if attributes.key? :valuty
+          element = Ox::Element.new('Valuty')
+          element << attributes[:valuty] if attributes[:valuty]
+          root << element
+        end
+
+        if attributes.key? :kod_statu_puv
+          element = Ox::Element.new('KodStatuPuv')
+          element << attributes[:kod_statu_puv] if attributes[:kod_statu_puv]
+          root << element
+        end
+
+        if attributes.key? :typ_transakce
+          element = Ox::Element.new('TypTransakce')
+          element << attributes[:typ_transakce] if attributes[:typ_transakce]
+          root << element
+        end
+
+        if attributes.key? :hmotnost
+          element = Ox::Element.new('Hmotnost')
+          element << attributes[:hmotnost] if attributes[:hmotnost]
+          root << element
+        end
+
+        if attributes.key? :cena_po_sleve
+          element = Ox::Element.new('CenaPoSleve')
+          element << attributes[:cena_po_sleve] if attributes[:cena_po_sleve]
+          root << element
+        end
+
+        if attributes.key? :zvl_rezim
+          element = Ox::Element.new('ZvlRezim')
+          element << attributes[:zvl_rezim] if attributes[:zvl_rezim]
+          root << element
+        end
+
+        if attributes.key? :zvl_dph
+          element = Ox::Element.new('ZvlDPH')
+          element << attributes[:zvl_dph] if attributes[:zvl_dph]
+          root << element
+        end
+
+        if attributes.key? :rezim_eet
+          element = Ox::Element.new('RezimEET')
+          element << attributes[:rezim_eet] if attributes[:rezim_eet]
+          root << element
+        end
+
+        if attributes.key? :pred_pc
+          element = Ox::Element.new('PredPC')
+          element << attributes[:pred_pc] if attributes[:pred_pc]
+          root << element
+        end
+
+        if attributes.key? :souhrn_dph
+          root << SouhrnDPHPolType.new(attributes[:souhrn_dph], 'SouhrnDPH').builder
+        end
+
+        if attributes.key? :sklad
+          root << SkladType.new(attributes[:sklad], 'Sklad').builder
+        end
+
+        if attributes.key? :km_karta
+          root << KmKartaType.new(attributes[:km_karta], 'KmKarta').builder
+        end
+
+        if attributes.key? :neskl_polozka
+          root << NesklPolozka.new(attributes[:neskl_polozka], 'NesklPolozka').builder
+        end
+
+        if attributes.key? :seznam_vc
+          element = Ox::Element.new('SeznamVC')
+          attributes[:seznam_vc].each { |i| element << VyrobniCisloType.new(i, 'VyrobniCislo').builder }
+          root << element
+        end
+
+        if attributes.key? :slozeni
           element = Ox::Element.new('Slozeni')
-          slozeni.each { |i| element << SubPolObjType.new(i, 'SubPolozka').builder }
+          attributes[:slozeni].each { |i| element << SubPolObjType.new(i, 'SubPolozka').builder }
           root << element
         end
 

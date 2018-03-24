@@ -10,8 +10,11 @@ module MoneyS3
       end
 
       def to_h
-        { id: id
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:id] = id if raw.key? :ID
+
+        hash
       end
     end
   end

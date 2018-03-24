@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamInvDokl
       include BaseBuilder
 
-      attr_accessor :inv_doklad
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if inv_doklad
-          inv_doklad.each { |i| root << InvDoklType.new(i, 'InvDoklad').builder }
+        if attributes.key? :inv_doklad
+          attributes[:inv_doklad].each { |i| root << InvDoklType.new(i, 'InvDoklad').builder }
         end
 
         root

@@ -6,16 +6,36 @@ module MoneyS3
     class SouhrnDPHPolType
       include BaseBuilder
 
-      attr_accessor :zaklad_mj, :dph_mj, :zaklad, :dph, :valuty
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zaklad_MJ') << zaklad_mj) if zaklad_mj
-        root << (Ox::Element.new('DPH_MJ') << dph_mj) if dph_mj
-        root << (Ox::Element.new('Zaklad') << zaklad) if zaklad
-        root << (Ox::Element.new('DPH') << dph) if dph
-        root << Valuty.new(valuty, 'Valuty').builder if valuty
+        if attributes.key? :zaklad_mj
+          element = Ox::Element.new('Zaklad_MJ')
+          element << attributes[:zaklad_mj] if attributes[:zaklad_mj]
+          root << element
+        end
+
+        if attributes.key? :dph_mj
+          element = Ox::Element.new('DPH_MJ')
+          element << attributes[:dph_mj] if attributes[:dph_mj]
+          root << element
+        end
+
+        if attributes.key? :zaklad
+          element = Ox::Element.new('Zaklad')
+          element << attributes[:zaklad] if attributes[:zaklad]
+          root << element
+        end
+
+        if attributes.key? :dph
+          element = Ox::Element.new('DPH')
+          element << attributes[:dph] if attributes[:dph]
+          root << element
+        end
+
+        if attributes.key? :valuty
+          root << Valuty.new(attributes[:valuty], 'Valuty').builder
+        end
 
         root
       end

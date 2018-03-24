@@ -92,28 +92,31 @@ module MoneyS3
       end
 
       def to_h
-        { nazev: nazev,
-          obch_nazev: obch_nazev,
-          fakt_nazev: fakt_nazev,
-          e_mail: e_mail,
-          www: www,
-          ico: ico,
-          dic: dic,
-          dicsk: dicsk,
-          banka: banka,
-          ucet: ucet,
-          kod_banky: kod_banky,
-          kod_partn: kod_partn,
-          fyz_osoba: fyz_osoba,
-          mena_symb: mena_symb,
-          mena_kod: mena_kod,
-          adresa: adresa.to_h,
-          obch_adresa: obch_adresa.to_h,
-          fakt_adresa: fakt_adresa.to_h,
-          tel: tel.to_h,
-          fax: fax.to_h,
-          mobil: mobil.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:nazev] = nazev if raw.key? :Nazev
+        hash[:obch_nazev] = obch_nazev if raw.key? :ObchNazev
+        hash[:fakt_nazev] = fakt_nazev if raw.key? :FaktNazev
+        hash[:e_mail] = e_mail if raw.key? :EMail
+        hash[:www] = www if raw.key? :WWW
+        hash[:ico] = ico if raw.key? :ICO
+        hash[:dic] = dic if raw.key? :DIC
+        hash[:dicsk] = dicsk if raw.key? :DICSK
+        hash[:banka] = banka if raw.key? :Banka
+        hash[:ucet] = ucet if raw.key? :Ucet
+        hash[:kod_banky] = kod_banky if raw.key? :KodBanky
+        hash[:kod_partn] = kod_partn if raw.key? :KodPartn
+        hash[:fyz_osoba] = fyz_osoba if raw.key? :FyzOsoba
+        hash[:mena_symb] = mena_symb if raw.key? :MenaSymb
+        hash[:mena_kod] = mena_kod if raw.key? :MenaKod
+        hash[:adresa] = adresa.to_h if raw.key? :Adresa
+        hash[:obch_adresa] = obch_adresa.to_h if raw.key? :ObchAdresa
+        hash[:fakt_adresa] = fakt_adresa.to_h if raw.key? :FaktAdresa
+        hash[:tel] = tel.to_h if raw.key? :Tel
+        hash[:fax] = fax.to_h if raw.key? :Fax
+        hash[:mobil] = mobil.to_h if raw.key? :Mobil
+
+        hash
       end
     end
   end

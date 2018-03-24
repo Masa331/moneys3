@@ -11,28 +11,80 @@ module MoneyS3
     class UhradaType
       include BaseBuilder
 
-      attr_accessor :prijem, :poradi, :rok_poradi, :datum, :dat_upl_dph, :castka, :zpusob_uhr, :platidlo, :doklad_uhr, :doklad_hraz, :valuty_hraz, :valuty_uhr, :kurz_rozd, :seznam_pd_uhrad
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Prijem') << prijem) if prijem
-        root << (Ox::Element.new('Poradi') << poradi) if poradi
-        root << (Ox::Element.new('RokPoradi') << rok_poradi) if rok_poradi
-        root << (Ox::Element.new('Datum') << datum) if datum
-        root << (Ox::Element.new('DatUplDPH') << dat_upl_dph) if dat_upl_dph
-        root << (Ox::Element.new('Castka') << castka) if castka
-        root << (Ox::Element.new('ZpusobUhr') << zpusob_uhr) if zpusob_uhr
-        root << (Ox::Element.new('Platidlo') << platidlo) if platidlo
-        root << DoklRefType.new(doklad_uhr, 'DokladUhr').builder if doklad_uhr
-        root << DokladHraz.new(doklad_hraz, 'DokladHraz').builder if doklad_hraz
-        root << ValutyHraz.new(valuty_hraz, 'ValutyHraz').builder if valuty_hraz
-        root << ValutyUhr.new(valuty_uhr, 'ValutyUhr').builder if valuty_uhr
-        root << KurzRozd.new(kurz_rozd, 'KurzRozd').builder if kurz_rozd
+        if attributes.key? :prijem
+          element = Ox::Element.new('Prijem')
+          element << attributes[:prijem] if attributes[:prijem]
+          root << element
+        end
 
-        if seznam_pd_uhrad
+        if attributes.key? :poradi
+          element = Ox::Element.new('Poradi')
+          element << attributes[:poradi] if attributes[:poradi]
+          root << element
+        end
+
+        if attributes.key? :rok_poradi
+          element = Ox::Element.new('RokPoradi')
+          element << attributes[:rok_poradi] if attributes[:rok_poradi]
+          root << element
+        end
+
+        if attributes.key? :datum
+          element = Ox::Element.new('Datum')
+          element << attributes[:datum] if attributes[:datum]
+          root << element
+        end
+
+        if attributes.key? :dat_upl_dph
+          element = Ox::Element.new('DatUplDPH')
+          element << attributes[:dat_upl_dph] if attributes[:dat_upl_dph]
+          root << element
+        end
+
+        if attributes.key? :castka
+          element = Ox::Element.new('Castka')
+          element << attributes[:castka] if attributes[:castka]
+          root << element
+        end
+
+        if attributes.key? :zpusob_uhr
+          element = Ox::Element.new('ZpusobUhr')
+          element << attributes[:zpusob_uhr] if attributes[:zpusob_uhr]
+          root << element
+        end
+
+        if attributes.key? :platidlo
+          element = Ox::Element.new('Platidlo')
+          element << attributes[:platidlo] if attributes[:platidlo]
+          root << element
+        end
+
+        if attributes.key? :doklad_uhr
+          root << DoklRefType.new(attributes[:doklad_uhr], 'DokladUhr').builder
+        end
+
+        if attributes.key? :doklad_hraz
+          root << DokladHraz.new(attributes[:doklad_hraz], 'DokladHraz').builder
+        end
+
+        if attributes.key? :valuty_hraz
+          root << ValutyHraz.new(attributes[:valuty_hraz], 'ValutyHraz').builder
+        end
+
+        if attributes.key? :valuty_uhr
+          root << ValutyUhr.new(attributes[:valuty_uhr], 'ValutyUhr').builder
+        end
+
+        if attributes.key? :kurz_rozd
+          root << KurzRozd.new(attributes[:kurz_rozd], 'KurzRozd').builder
+        end
+
+        if attributes.key? :seznam_pd_uhrad
           element = Ox::Element.new('SeznamPDUhrad')
-          seznam_pd_uhrad.each { |i| element << UhradaPduhrada.new(i, 'Uhrada_PDUhrada').builder }
+          attributes[:seznam_pd_uhrad].each { |i| element << UhradaPduhrada.new(i, 'Uhrada_PDUhrada').builder }
           root << element
         end
 

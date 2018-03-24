@@ -54,19 +54,22 @@ module MoneyS3
       end
 
       def to_h
-        { popis: popis,
-          uc_md: uc_md,
-          uc_d: uc_d,
-          castka: castka,
-          stred: stred,
-          zakazka: zakazka,
-          cinnost: cinnost,
-          par_sym: par_sym,
-          par_ico: par_ico,
-          pozn: pozn,
-          typ_cena: typ_cena,
-          sazba_dph: sazba_dph
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:uc_md] = uc_md if raw.key? :UcMD
+        hash[:uc_d] = uc_d if raw.key? :UcD
+        hash[:castka] = castka if raw.key? :Castka
+        hash[:stred] = stred if raw.key? :Stred
+        hash[:zakazka] = zakazka if raw.key? :Zakazka
+        hash[:cinnost] = cinnost if raw.key? :Cinnost
+        hash[:par_sym] = par_sym if raw.key? :ParSym
+        hash[:par_ico] = par_ico if raw.key? :ParICO
+        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:typ_cena] = typ_cena if raw.key? :TypCena
+        hash[:sazba_dph] = sazba_dph if raw.key? :SazbaDPH
+
+        hash
       end
     end
   end

@@ -157,43 +157,46 @@ module MoneyS3
       end
 
       def to_h
-        { doklad: doklad,
-          zpusob_uctovani: zpusob_uctovani,
-          popis: popis,
-          dat_uc_pr: dat_uc_pr,
-          dat_pln: dat_pln,
-          dat_upl_dph: dat_upl_dph,
-          datum_kv: datum_kv,
-          cislo_zapoc: cislo_zapoc,
-          prijat_dokl: prijat_dokl,
-          var_sym: var_sym,
-          par_sym: par_sym,
-          pr_kont: pr_kont,
-          cleneni: cleneni,
-          stred: stred,
-          zakazka: zakazka,
-          cinnost: cinnost,
-          vyroba: vyroba,
-          stat_moss: stat_moss,
-          s_sazba: s_sazba,
-          z_sazba: z_sazba,
-          pozn: pozn,
-          d_rada: d_rada,
-          d_cislo: d_cislo,
-          vyst: vyst,
-          rezim: rezim,
-          korekce_cen: korekce_cen,
-          typ_dokl: typ_dokl,
-          celkem: celkem,
-          eet: eet.to_h,
-          adresa: adresa.to_h,
-          valuty: valuty.to_h,
-          vlajky: vlajky.to_h,
-          souhrn_dph: souhrn_dph.to_h,
-          rozuct_polozka: rozuct_polozka.map(&:to_h),
-          norm_polozka: norm_polozka.map(&:to_h),
-          dokumenty: dokumenty
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:doklad] = doklad if raw.key? :Doklad
+        hash[:zpusob_uctovani] = zpusob_uctovani if raw.key? :ZpusobUctovani
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:dat_uc_pr] = dat_uc_pr if raw.key? :DatUcPr
+        hash[:dat_pln] = dat_pln if raw.key? :DatPln
+        hash[:dat_upl_dph] = dat_upl_dph if raw.key? :DatUplDPH
+        hash[:datum_kv] = datum_kv if raw.key? :DatumKV
+        hash[:cislo_zapoc] = cislo_zapoc if raw.key? :CisloZapoc
+        hash[:prijat_dokl] = prijat_dokl if raw.key? :PrijatDokl
+        hash[:var_sym] = var_sym if raw.key? :VarSym
+        hash[:par_sym] = par_sym if raw.key? :ParSym
+        hash[:pr_kont] = pr_kont if raw.key? :PrKont
+        hash[:cleneni] = cleneni if raw.key? :Cleneni
+        hash[:stred] = stred if raw.key? :Stred
+        hash[:zakazka] = zakazka if raw.key? :Zakazka
+        hash[:cinnost] = cinnost if raw.key? :Cinnost
+        hash[:vyroba] = vyroba if raw.key? :Vyroba
+        hash[:stat_moss] = stat_moss if raw.key? :StatMOSS
+        hash[:s_sazba] = s_sazba if raw.key? :SSazba
+        hash[:z_sazba] = z_sazba if raw.key? :ZSazba
+        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:d_rada] = d_rada if raw.key? :DRada
+        hash[:d_cislo] = d_cislo if raw.key? :DCislo
+        hash[:vyst] = vyst if raw.key? :Vyst
+        hash[:rezim] = rezim if raw.key? :Rezim
+        hash[:korekce_cen] = korekce_cen if raw.key? :KorekceCen
+        hash[:typ_dokl] = typ_dokl if raw.key? :TypDokl
+        hash[:celkem] = celkem if raw.key? :Celkem
+        hash[:eet] = eet.to_h if raw.key? :EET
+        hash[:adresa] = adresa.to_h if raw.key? :Adresa
+        hash[:valuty] = valuty.to_h if raw.key? :Valuty
+        hash[:vlajky] = vlajky.to_h if raw.key? :Vlajky
+        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
+        hash[:rozuct_polozka] = rozuct_polozka.map(&:to_h) if raw.key? :RozuctPolozka
+        hash[:norm_polozka] = norm_polozka.map(&:to_h) if raw.key? :NormPolozka
+        hash[:dokumenty] = dokumenty if raw.key? :Dokumenty
+
+        hash
       end
     end
   end

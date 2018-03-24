@@ -46,16 +46,19 @@ module MoneyS3
       end
 
       def to_h
-        { popis: popis,
-          zkrat: zkrat,
-          slupina: slupina,
-          mj: mj,
-          mn_inv: mn_inv,
-          sklad: sklad.to_h,
-          km_karta: km_karta.to_h,
-          seznam_vc: seznam_vc.map(&:to_h),
-          slozeni: slozeni.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:zkrat] = zkrat if raw.key? :Zkrat
+        hash[:slupina] = slupina if raw.key? :Slupina
+        hash[:mj] = mj if raw.key? :MJ
+        hash[:mn_inv] = mn_inv if raw.key? :MnInv
+        hash[:sklad] = sklad.to_h if raw.key? :Sklad
+        hash[:km_karta] = km_karta.to_h if raw.key? :KmKarta
+        hash[:seznam_vc] = seznam_vc.map(&:to_h) if raw.key? :SeznamVC
+        hash[:slozeni] = slozeni.map(&:to_h) if raw.key? :Slozeni
+
+        hash
       end
     end
   end

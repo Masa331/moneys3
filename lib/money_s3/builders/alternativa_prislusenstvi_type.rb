@@ -7,18 +7,46 @@ module MoneyS3
     class AlternativaPrislusenstviType
       include BaseBuilder
 
-      attr_accessor :popis, :poc_mj, :poradi, :druh_komp, :symetric, :km_karta, :sklad
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('PocMJ') << poc_mj) if poc_mj
-        root << (Ox::Element.new('Poradi') << poradi) if poradi
-        root << (Ox::Element.new('DruhKomp') << druh_komp) if druh_komp
-        root << (Ox::Element.new('Symetric') << symetric) if symetric
-        root << KmKartaType.new(km_karta, 'KmKarta').builder if km_karta
-        root << SkladType.new(sklad, 'Sklad').builder if sklad
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :poc_mj
+          element = Ox::Element.new('PocMJ')
+          element << attributes[:poc_mj] if attributes[:poc_mj]
+          root << element
+        end
+
+        if attributes.key? :poradi
+          element = Ox::Element.new('Poradi')
+          element << attributes[:poradi] if attributes[:poradi]
+          root << element
+        end
+
+        if attributes.key? :druh_komp
+          element = Ox::Element.new('DruhKomp')
+          element << attributes[:druh_komp] if attributes[:druh_komp]
+          root << element
+        end
+
+        if attributes.key? :symetric
+          element = Ox::Element.new('Symetric')
+          element << attributes[:symetric] if attributes[:symetric]
+          root << element
+        end
+
+        if attributes.key? :km_karta
+          root << KmKartaType.new(attributes[:km_karta], 'KmKarta').builder
+        end
+
+        if attributes.key? :sklad
+          root << SkladType.new(attributes[:sklad], 'Sklad').builder
+        end
 
         root
       end

@@ -46,17 +46,20 @@ module MoneyS3
       end
 
       def to_h
-        { in_export: in_export,
-          in_changed: in_changed,
-          in_id: in_id,
-          in_jmeno: in_jmeno,
-          in_heslo: in_heslo,
-          in_dealer: in_dealer,
-          in_d_skup: in_d_skup,
-          in_ind_slev: in_ind_slev,
-          in_soukrom: in_soukrom,
-          in_d_skup_zkratka: in_d_skup_zkratka
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:in_export] = in_export if raw.key? :IN_Export
+        hash[:in_changed] = in_changed if raw.key? :IN_Changed
+        hash[:in_id] = in_id if raw.key? :IN_Id
+        hash[:in_jmeno] = in_jmeno if raw.key? :IN_Jmeno
+        hash[:in_heslo] = in_heslo if raw.key? :IN_Heslo
+        hash[:in_dealer] = in_dealer if raw.key? :IN_Dealer
+        hash[:in_d_skup] = in_d_skup if raw.key? :IN_DSkup
+        hash[:in_ind_slev] = in_ind_slev if raw.key? :IN_IndSlev
+        hash[:in_soukrom] = in_soukrom if raw.key? :IN_Soukrom
+        hash[:in_d_skup_zkratka] = in_d_skup_zkratka if raw.key? :IN_DSkupZkratka
+
+        hash
       end
     end
   end

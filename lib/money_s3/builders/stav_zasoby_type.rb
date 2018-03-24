@@ -5,14 +5,26 @@ module MoneyS3
     class StavZasobyType
       include BaseBuilder
 
-      attr_accessor :zasoba, :rezervace, :objednano
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zasoba') << zasoba) if zasoba
-        root << (Ox::Element.new('Rezervace') << rezervace) if rezervace
-        root << (Ox::Element.new('Objednano') << objednano) if objednano
+        if attributes.key? :zasoba
+          element = Ox::Element.new('Zasoba')
+          element << attributes[:zasoba] if attributes[:zasoba]
+          root << element
+        end
+
+        if attributes.key? :rezervace
+          element = Ox::Element.new('Rezervace')
+          element << attributes[:rezervace] if attributes[:rezervace]
+          root << element
+        end
+
+        if attributes.key? :objednano
+          element = Ox::Element.new('Objednano')
+          element << attributes[:objednano] if attributes[:objednano]
+          root << element
+        end
 
         root
       end

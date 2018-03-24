@@ -36,14 +36,17 @@ module MoneyS3
       end
 
       def to_h
-        { id: id,
-          name: name,
-          descript: descript,
-          in_changed: in_changed,
-          no_public: no_public,
-          e_shop_info: e_shop_info.to_h,
-          seznam_podr_kategorii: seznam_podr_kategorii.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:id] = id if raw.key? :ID
+        hash[:name] = name if raw.key? :Name
+        hash[:descript] = descript if raw.key? :Descript
+        hash[:in_changed] = in_changed if raw.key? :IN_Changed
+        hash[:no_public] = no_public if raw.key? :NoPublic
+        hash[:e_shop_info] = e_shop_info.to_h if raw.key? :eShopInfo
+        hash[:seznam_podr_kategorii] = seznam_podr_kategorii.map(&:to_h) if raw.key? :SeznamPodrKategorii
+
+        hash
       end
     end
   end

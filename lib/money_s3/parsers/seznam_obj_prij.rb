@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { obj_prij: obj_prij.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:obj_prij] = obj_prij.map(&:to_h) if raw.key? :ObjPrij
+
+        hash
       end
     end
   end

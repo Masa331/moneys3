@@ -6,13 +6,16 @@ module MoneyS3
     class Data
       include BaseBuilder
 
-      attr_accessor :fakt_vyd, :fakt_prij
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << FakturaType.new(fakt_vyd, 'FaktVyd').builder if fakt_vyd
-        root << FakturaType.new(fakt_prij, 'FaktPrij').builder if fakt_prij
+        if attributes.key? :fakt_vyd
+          root << FakturaType.new(attributes[:fakt_vyd], 'FaktVyd').builder
+        end
+
+        if attributes.key? :fakt_prij
+          root << FakturaType.new(attributes[:fakt_prij], 'FaktPrij').builder
+        end
 
         root
       end

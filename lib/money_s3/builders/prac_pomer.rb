@@ -5,15 +5,32 @@ module MoneyS3
     class PracPomer
       include BaseBuilder
 
-      attr_accessor :zkrat, :popis, :eldp_kod, :pozn
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('ELDPKod') << eldp_kod) if eldp_kod
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :eldp_kod
+          element = Ox::Element.new('ELDPKod')
+          element << attributes[:eldp_kod] if attributes[:eldp_kod]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
 
         root
       end

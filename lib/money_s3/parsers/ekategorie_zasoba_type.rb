@@ -35,14 +35,17 @@ module MoneyS3
       end
 
       def to_h
-        { id: id,
-          name: name,
-          descript: descript,
-          poznamka: poznamka,
-          changed: changed,
-          public: public,
-          parent: parent.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:id] = id if raw.key? :ID
+        hash[:name] = name if raw.key? :Name
+        hash[:descript] = descript if raw.key? :Descript
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:changed] = changed if raw.key? :Changed
+        hash[:public] = public if raw.key? :Public
+        hash[:parent] = parent.to_h if raw.key? :Parent
+
+        hash
       end
     end
   end

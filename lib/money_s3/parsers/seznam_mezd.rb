@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { mzda: mzda.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:mzda] = mzda.map(&:to_h) if raw.key? :Mzda
+
+        hash
       end
     end
   end

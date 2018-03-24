@@ -8,39 +8,122 @@ module MoneyS3
     class Zakazka
       include BaseBuilder
 
-      attr_accessor :zkrat, :nazev, :obch_prip, :pozn, :dat_pl_zah, :dat_zah, :dat_pl_pred, :dat_pred, :zaruka_do, :odp_os, :druh_zak, :typ_zak, :stav_zak, :hodnoceni, :c_objednavk, :vystavil, :dod_odb, :vlajky, :seznam_zakazkovy_kusovnik, :dokumenty
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Nazev') << nazev) if nazev
-        root << (Ox::Element.new('ObchPrip') << obch_prip) if obch_prip
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
-        root << (Ox::Element.new('DatPlZah') << dat_pl_zah) if dat_pl_zah
-        root << (Ox::Element.new('DatZah') << dat_zah) if dat_zah
-        root << (Ox::Element.new('DatPlPred') << dat_pl_pred) if dat_pl_pred
-        root << (Ox::Element.new('DatPred') << dat_pred) if dat_pred
-        root << (Ox::Element.new('ZarukaDo') << zaruka_do) if zaruka_do
-        root << (Ox::Element.new('OdpOs') << odp_os) if odp_os
-        root << (Ox::Element.new('DruhZak') << druh_zak) if druh_zak
-        root << (Ox::Element.new('TypZak') << typ_zak) if typ_zak
-        root << (Ox::Element.new('StavZak') << stav_zak) if stav_zak
-        root << (Ox::Element.new('Hodnoceni') << hodnoceni) if hodnoceni
-        root << (Ox::Element.new('CObjednavk') << c_objednavk) if c_objednavk
-        root << (Ox::Element.new('Vystavil') << vystavil) if vystavil
-        root << FirmaType.new(dod_odb, 'DodOdb').builder if dod_odb
-        root << Vlajky.new(vlajky, 'Vlajky').builder if vlajky
-
-        if seznam_zakazkovy_kusovnik
-          element = Ox::Element.new('SeznamZakazkovyKusovnik')
-          seznam_zakazkovy_kusovnik.each { |i| element << KusovnikType.new(i, 'ZakazkovyKusovnik').builder }
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
           root << element
         end
 
-        if dokumenty
+        if attributes.key? :nazev
+          element = Ox::Element.new('Nazev')
+          element << attributes[:nazev] if attributes[:nazev]
+          root << element
+        end
+
+        if attributes.key? :obch_prip
+          element = Ox::Element.new('ObchPrip')
+          element << attributes[:obch_prip] if attributes[:obch_prip]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
+
+        if attributes.key? :dat_pl_zah
+          element = Ox::Element.new('DatPlZah')
+          element << attributes[:dat_pl_zah] if attributes[:dat_pl_zah]
+          root << element
+        end
+
+        if attributes.key? :dat_zah
+          element = Ox::Element.new('DatZah')
+          element << attributes[:dat_zah] if attributes[:dat_zah]
+          root << element
+        end
+
+        if attributes.key? :dat_pl_pred
+          element = Ox::Element.new('DatPlPred')
+          element << attributes[:dat_pl_pred] if attributes[:dat_pl_pred]
+          root << element
+        end
+
+        if attributes.key? :dat_pred
+          element = Ox::Element.new('DatPred')
+          element << attributes[:dat_pred] if attributes[:dat_pred]
+          root << element
+        end
+
+        if attributes.key? :zaruka_do
+          element = Ox::Element.new('ZarukaDo')
+          element << attributes[:zaruka_do] if attributes[:zaruka_do]
+          root << element
+        end
+
+        if attributes.key? :odp_os
+          element = Ox::Element.new('OdpOs')
+          element << attributes[:odp_os] if attributes[:odp_os]
+          root << element
+        end
+
+        if attributes.key? :druh_zak
+          element = Ox::Element.new('DruhZak')
+          element << attributes[:druh_zak] if attributes[:druh_zak]
+          root << element
+        end
+
+        if attributes.key? :typ_zak
+          element = Ox::Element.new('TypZak')
+          element << attributes[:typ_zak] if attributes[:typ_zak]
+          root << element
+        end
+
+        if attributes.key? :stav_zak
+          element = Ox::Element.new('StavZak')
+          element << attributes[:stav_zak] if attributes[:stav_zak]
+          root << element
+        end
+
+        if attributes.key? :hodnoceni
+          element = Ox::Element.new('Hodnoceni')
+          element << attributes[:hodnoceni] if attributes[:hodnoceni]
+          root << element
+        end
+
+        if attributes.key? :c_objednavk
+          element = Ox::Element.new('CObjednavk')
+          element << attributes[:c_objednavk] if attributes[:c_objednavk]
+          root << element
+        end
+
+        if attributes.key? :vystavil
+          element = Ox::Element.new('Vystavil')
+          element << attributes[:vystavil] if attributes[:vystavil]
+          root << element
+        end
+
+        if attributes.key? :dod_odb
+          root << FirmaType.new(attributes[:dod_odb], 'DodOdb').builder
+        end
+
+        if attributes.key? :vlajky
+          root << Vlajky.new(attributes[:vlajky], 'Vlajky').builder
+        end
+
+        if attributes.key? :seznam_zakazkovy_kusovnik
+          element = Ox::Element.new('SeznamZakazkovyKusovnik')
+          attributes[:seznam_zakazkovy_kusovnik].each { |i| element << KusovnikType.new(i, 'ZakazkovyKusovnik').builder }
+          root << element
+        end
+
+        if attributes.key? :dokumenty
           element = Ox::Element.new('Dokumenty')
-          dokumenty.map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
+          attributes[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
           root << element
         end
 

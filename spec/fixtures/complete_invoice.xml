@@ -243,11 +243,7 @@
           <Cislo>111222333</Cislo>
           <Klap/>
         </Tel>
-        <Fax>
-          <Pred>+420</Pred>
-          <Cislo>111222444</Cislo>
-          <Klap/>
-        </Fax>
+        <Fax/>
         <Mobil>
           <Pred/>
           <Cislo/>

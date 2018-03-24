@@ -79,25 +79,28 @@ module MoneyS3
       end
 
       def to_h
-        { zkrat: zkrat,
-          mj: mj,
-          uziv_code: uziv_code,
-          katalog: katalog,
-          bar_code: bar_code,
-          zaloha: zaloha,
-          zdan_zaloha: zdan_zaloha,
-          konec_odpocet: konec_odpocet,
-          typ_zar_doby: typ_zar_doby,
-          zar_doba: zar_doba,
-          protizapis: protizapis,
-          plneno_dph: plneno_dph,
-          hmotnost: hmotnost,
-          vyrobni_cis: vyrobni_cis,
-          dat_exp: dat_exp,
-          dat_nakupu: dat_nakupu,
-          predm_pln: predm_pln,
-          dodavatel: dodavatel.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zkrat] = zkrat if raw.key? :Zkrat
+        hash[:mj] = mj if raw.key? :MJ
+        hash[:uziv_code] = uziv_code if raw.key? :UzivCode
+        hash[:katalog] = katalog if raw.key? :Katalog
+        hash[:bar_code] = bar_code if raw.key? :BarCode
+        hash[:zaloha] = zaloha if raw.key? :Zaloha
+        hash[:zdan_zaloha] = zdan_zaloha if raw.key? :ZdanZaloha
+        hash[:konec_odpocet] = konec_odpocet if raw.key? :KonecOdpocet
+        hash[:typ_zar_doby] = typ_zar_doby if raw.key? :TypZarDoby
+        hash[:zar_doba] = zar_doba if raw.key? :ZarDoba
+        hash[:protizapis] = protizapis if raw.key? :Protizapis
+        hash[:plneno_dph] = plneno_dph if raw.key? :PlnenoDPH
+        hash[:hmotnost] = hmotnost if raw.key? :Hmotnost
+        hash[:vyrobni_cis] = vyrobni_cis if raw.key? :VyrobniCis
+        hash[:dat_exp] = dat_exp if raw.key? :DatExp
+        hash[:dat_nakupu] = dat_nakupu if raw.key? :DatNakupu
+        hash[:predm_pln] = predm_pln if raw.key? :PredmPln
+        hash[:dodavatel] = dodavatel.to_h if raw.key? :Dodavatel
+
+        hash
       end
     end
   end

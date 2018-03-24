@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamCinnosti
       include BaseBuilder
 
-      attr_accessor :cinnost
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if cinnost
-          cinnost.each { |i| root << Cinnost.new(i, 'Cinnost').builder }
+        if attributes.key? :cinnost
+          attributes[:cinnost].each { |i| root << Cinnost.new(i, 'Cinnost').builder }
         end
 
         root

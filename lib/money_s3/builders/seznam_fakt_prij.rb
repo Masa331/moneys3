@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamFaktPrij
       include BaseBuilder
 
-      attr_accessor :fakt_prij
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if fakt_prij
-          fakt_prij.each { |i| root << FaktPrij.new(i, 'FaktPrij').builder }
+        if attributes.key? :fakt_prij
+          attributes[:fakt_prij].each { |i| root << FaktPrij.new(i, 'FaktPrij').builder }
         end
 
         root

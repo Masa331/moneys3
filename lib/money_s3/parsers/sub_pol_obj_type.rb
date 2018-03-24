@@ -15,9 +15,12 @@ module MoneyS3
       end
 
       def to_h
-        { mj_na_sadu: mj_na_sadu,
-          polozka: polozka.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:mj_na_sadu] = mj_na_sadu if raw.key? :MJNaSadu
+        hash[:polozka] = polozka.to_h if raw.key? :Polozka
+
+        hash
       end
     end
   end

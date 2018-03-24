@@ -35,14 +35,17 @@ module MoneyS3
       end
 
       def to_h
-        { cislo_d: cislo_d,
-          inv_id: inv_id,
-          popis: popis,
-          prac: prac,
-          kontr: kontr,
-          poznamka: poznamka,
-          polozka: polozka.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:cislo_d] = cislo_d if raw.key? :CisloD
+        hash[:inv_id] = inv_id if raw.key? :InvID
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:prac] = prac if raw.key? :Prac
+        hash[:kontr] = kontr if raw.key? :Kontr
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:polozka] = polozka.map(&:to_h) if raw.key? :Polozka
+
+        hash
       end
     end
   end

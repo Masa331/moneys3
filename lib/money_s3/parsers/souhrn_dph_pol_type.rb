@@ -27,12 +27,15 @@ module MoneyS3
       end
 
       def to_h
-        { zaklad_mj: zaklad_mj,
-          dph_mj: dph_mj,
-          zaklad: zaklad,
-          dph: dph,
-          valuty: valuty.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zaklad_mj] = zaklad_mj if raw.key? :Zaklad_MJ
+        hash[:dph_mj] = dph_mj if raw.key? :DPH_MJ
+        hash[:zaklad] = zaklad if raw.key? :Zaklad
+        hash[:dph] = dph if raw.key? :DPH
+        hash[:valuty] = valuty.to_h if raw.key? :Valuty
+
+        hash
       end
     end
   end

@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamFirem
       include BaseBuilder
 
-      attr_accessor :firma
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if firma
-          firma.each { |i| root << Firma.new(i, 'Firma').builder }
+        if attributes.key? :firma
+          attributes[:firma].each { |i| root << Firma.new(i, 'Firma').builder }
         end
 
         root

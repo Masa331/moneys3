@@ -31,13 +31,16 @@ module MoneyS3
       end
 
       def to_h
-        { zaklad0: zaklad0,
-          zaklad5: zaklad5,
-          zaklad22: zaklad22,
-          dph5: dph5,
-          dph22: dph22,
-          seznam_dalsi_sazby: seznam_dalsi_sazby.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zaklad0] = zaklad0 if raw.key? :Zaklad0
+        hash[:zaklad5] = zaklad5 if raw.key? :Zaklad5
+        hash[:zaklad22] = zaklad22 if raw.key? :Zaklad22
+        hash[:dph5] = dph5 if raw.key? :DPH5
+        hash[:dph22] = dph22 if raw.key? :DPH22
+        hash[:seznam_dalsi_sazby] = seznam_dalsi_sazby.map(&:to_h) if raw.key? :SeznamDalsiSazby
+
+        hash
       end
     end
   end

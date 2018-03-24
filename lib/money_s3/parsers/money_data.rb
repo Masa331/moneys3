@@ -241,54 +241,57 @@ module MoneyS3
       end
 
       def to_h
-        { seznam_cinnosti: seznam_cinnosti.to_h,
-          seznam_stredisek: seznam_stredisek.to_h,
-          seznam_clen_dph: seznam_clen_dph.to_h,
-          seznam_uc_osnov: seznam_uc_osnov.to_h,
-          seznam_predkontaci: seznam_predkontaci.to_h,
-          seznam_predkontaci_de: seznam_predkontaci_de.to_h,
-          seznam_kurz_listku: seznam_kurz_listku.to_h,
-          seznam_cen_hladin: seznam_cen_hladin.to_h,
-          seznam_firem: seznam_firem.to_h,
-          seznam_km_karta: seznam_km_karta.to_h,
-          seznam_zasoba: seznam_zasoba.to_h,
-          seznam_skladu: seznam_skladu.to_h,
-          seznam_typ_kusovnik: seznam_typ_kusovnik.to_h,
-          seznam_zak_kusovnik: seznam_zak_kusovnik.to_h,
-          seznam_zamestnancu: seznam_zamestnancu.to_h,
-          seznam_zakazka: seznam_zakazka.to_h,
-          seznam_fakt_prij: seznam_fakt_prij.to_h,
-          seznam_fakt_vyd: seznam_fakt_vyd.to_h,
-          seznam_int_dokl: seznam_int_dokl.to_h,
-          seznam_pok_dokl: seznam_pok_dokl.to_h,
-          seznam_bank_dokl: seznam_bank_dokl.to_h,
-          seznam_obj_prij: seznam_obj_prij.to_h,
-          seznam_obj_vyd: seznam_obj_vyd.to_h,
-          seznam_nab_prij: seznam_nab_prij.to_h,
-          seznam_nab_vyd: seznam_nab_vyd.to_h,
-          seznam_popt_prij: seznam_popt_prij.to_h,
-          seznam_popt_vyd: seznam_popt_vyd.to_h,
-          seznam_prijemka: seznam_prijemka.to_h,
-          seznam_vydejka: seznam_vydejka.to_h,
-          seznam_dl_prij: seznam_dl_prij.to_h,
-          seznam_dl_vyd: seznam_dl_vyd.to_h,
-          seznam_prodejka: seznam_prodejka.to_h,
-          seznam_prevodka: seznam_prevodka.to_h,
-          seznam_vyrobka: seznam_vyrobka.to_h,
-          seznam_inv_dokl: seznam_inv_dokl.to_h,
-          seznam_mezd: seznam_mezd.to_h,
-          seznam_uc_pohybu: seznam_uc_pohybu.map(&:to_h),
-          seznam_zauctovani_dph: seznam_zauctovani_dph.map(&:to_h),
-          seznam_zauctovani_dph_de: seznam_zauctovani_dph_de.map(&:to_h),
-          seznam_parametru: seznam_parametru.map(&:to_h),
-          seznam_kategorii: seznam_kategorii.map(&:to_h),
-          seznam_bank_uctu_pokladen: seznam_bank_uctu_pokladen.map(&:to_h),
-          seznam_typu_priplatku: seznam_typu_priplatku.map(&:to_h),
-          seznam_pohledavek: seznam_pohledavek.map(&:to_h),
-          seznam_zavazku: seznam_zavazku.map(&:to_h),
-          seznam_fakt_prij_dpp: seznam_fakt_prij_dpp.map(&:to_h),
-          seznam_fakt_vyd_dpp: seznam_fakt_vyd_dpp.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:seznam_cinnosti] = seznam_cinnosti.to_h if raw.key? :SeznamCinnosti
+        hash[:seznam_stredisek] = seznam_stredisek.to_h if raw.key? :SeznamStredisek
+        hash[:seznam_clen_dph] = seznam_clen_dph.to_h if raw.key? :SeznamClenDPH
+        hash[:seznam_uc_osnov] = seznam_uc_osnov.to_h if raw.key? :SeznamUcOsnov
+        hash[:seznam_predkontaci] = seznam_predkontaci.to_h if raw.key? :SeznamPredkontaci
+        hash[:seznam_predkontaci_de] = seznam_predkontaci_de.to_h if raw.key? :SeznamPredkontaciDE
+        hash[:seznam_kurz_listku] = seznam_kurz_listku.to_h if raw.key? :SeznamKurzListku
+        hash[:seznam_cen_hladin] = seznam_cen_hladin.to_h if raw.key? :SeznamCenHladin
+        hash[:seznam_firem] = seznam_firem.to_h if raw.key? :SeznamFirem
+        hash[:seznam_km_karta] = seznam_km_karta.to_h if raw.key? :SeznamKmKarta
+        hash[:seznam_zasoba] = seznam_zasoba.to_h if raw.key? :SeznamZasoba
+        hash[:seznam_skladu] = seznam_skladu.to_h if raw.key? :SeznamSkladu
+        hash[:seznam_typ_kusovnik] = seznam_typ_kusovnik.to_h if raw.key? :SeznamTypKusovnik
+        hash[:seznam_zak_kusovnik] = seznam_zak_kusovnik.to_h if raw.key? :SeznamZakKusovnik
+        hash[:seznam_zamestnancu] = seznam_zamestnancu.to_h if raw.key? :SeznamZamestnancu
+        hash[:seznam_zakazka] = seznam_zakazka.to_h if raw.key? :SeznamZakazka
+        hash[:seznam_fakt_prij] = seznam_fakt_prij.to_h if raw.key? :SeznamFaktPrij
+        hash[:seznam_fakt_vyd] = seznam_fakt_vyd.to_h if raw.key? :SeznamFaktVyd
+        hash[:seznam_int_dokl] = seznam_int_dokl.to_h if raw.key? :SeznamIntDokl
+        hash[:seznam_pok_dokl] = seznam_pok_dokl.to_h if raw.key? :SeznamPokDokl
+        hash[:seznam_bank_dokl] = seznam_bank_dokl.to_h if raw.key? :SeznamBankDokl
+        hash[:seznam_obj_prij] = seznam_obj_prij.to_h if raw.key? :SeznamObjPrij
+        hash[:seznam_obj_vyd] = seznam_obj_vyd.to_h if raw.key? :SeznamObjVyd
+        hash[:seznam_nab_prij] = seznam_nab_prij.to_h if raw.key? :SeznamNabPrij
+        hash[:seznam_nab_vyd] = seznam_nab_vyd.to_h if raw.key? :SeznamNabVyd
+        hash[:seznam_popt_prij] = seznam_popt_prij.to_h if raw.key? :SeznamPoptPrij
+        hash[:seznam_popt_vyd] = seznam_popt_vyd.to_h if raw.key? :SeznamPoptVyd
+        hash[:seznam_prijemka] = seznam_prijemka.to_h if raw.key? :SeznamPrijemka
+        hash[:seznam_vydejka] = seznam_vydejka.to_h if raw.key? :SeznamVydejka
+        hash[:seznam_dl_prij] = seznam_dl_prij.to_h if raw.key? :SeznamDLPrij
+        hash[:seznam_dl_vyd] = seznam_dl_vyd.to_h if raw.key? :SeznamDLVyd
+        hash[:seznam_prodejka] = seznam_prodejka.to_h if raw.key? :SeznamProdejka
+        hash[:seznam_prevodka] = seznam_prevodka.to_h if raw.key? :SeznamPrevodka
+        hash[:seznam_vyrobka] = seznam_vyrobka.to_h if raw.key? :SeznamVyrobka
+        hash[:seznam_inv_dokl] = seznam_inv_dokl.to_h if raw.key? :SeznamInvDokl
+        hash[:seznam_mezd] = seznam_mezd.to_h if raw.key? :SeznamMezd
+        hash[:seznam_uc_pohybu] = seznam_uc_pohybu.map(&:to_h) if raw.key? :SeznamUcPohybu
+        hash[:seznam_zauctovani_dph] = seznam_zauctovani_dph.map(&:to_h) if raw.key? :SeznamZauctovaniDPH
+        hash[:seznam_zauctovani_dph_de] = seznam_zauctovani_dph_de.map(&:to_h) if raw.key? :SeznamZauctovaniDPH_DE
+        hash[:seznam_parametru] = seznam_parametru.map(&:to_h) if raw.key? :SeznamParametru
+        hash[:seznam_kategorii] = seznam_kategorii.map(&:to_h) if raw.key? :SeznamKategorii
+        hash[:seznam_bank_uctu_pokladen] = seznam_bank_uctu_pokladen.map(&:to_h) if raw.key? :SeznamBankUctuPokladen
+        hash[:seznam_typu_priplatku] = seznam_typu_priplatku.map(&:to_h) if raw.key? :SeznamTypuPriplatku
+        hash[:seznam_pohledavek] = seznam_pohledavek.map(&:to_h) if raw.key? :SeznamPohledavek
+        hash[:seznam_zavazku] = seznam_zavazku.map(&:to_h) if raw.key? :SeznamZavazku
+        hash[:seznam_fakt_prij_dpp] = seznam_fakt_prij_dpp.map(&:to_h) if raw.key? :SeznamFaktPrij_DPP
+        hash[:seznam_fakt_vyd_dpp] = seznam_fakt_vyd_dpp.map(&:to_h) if raw.key? :SeznamFaktVyd_DPP
+
+        hash
       end
     end
   end

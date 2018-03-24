@@ -6,19 +6,41 @@ module MoneyS3
     class EshopZasobaType
       include BaseBuilder
 
-      attr_accessor :in_export, :in_changed, :in_deleted, :cis_karty, :cis_skladu, :e_skup
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('IN_Export') << in_export) if in_export
-        root << (Ox::Element.new('IN_Changed') << in_changed) if in_changed
-        root << (Ox::Element.new('IN_Deleted') << in_deleted) if in_deleted
-        root << (Ox::Element.new('CisKarty') << cis_karty) if cis_karty
-        root << (Ox::Element.new('CisSkladu') << cis_skladu) if cis_skladu
+        if attributes.key? :in_export
+          element = Ox::Element.new('IN_Export')
+          element << attributes[:in_export] if attributes[:in_export]
+          root << element
+        end
 
-        if e_skup
-          e_skup.each { |i| root << EkategorieZasobaType.new(i, 'eSkup').builder }
+        if attributes.key? :in_changed
+          element = Ox::Element.new('IN_Changed')
+          element << attributes[:in_changed] if attributes[:in_changed]
+          root << element
+        end
+
+        if attributes.key? :in_deleted
+          element = Ox::Element.new('IN_Deleted')
+          element << attributes[:in_deleted] if attributes[:in_deleted]
+          root << element
+        end
+
+        if attributes.key? :cis_karty
+          element = Ox::Element.new('CisKarty')
+          element << attributes[:cis_karty] if attributes[:cis_karty]
+          root << element
+        end
+
+        if attributes.key? :cis_skladu
+          element = Ox::Element.new('CisSkladu')
+          element << attributes[:cis_skladu] if attributes[:cis_skladu]
+          root << element
+        end
+
+        if attributes.key? :e_skup
+          attributes[:e_skup].each { |i| root << EkategorieZasobaType.new(i, 'eSkup').builder }
         end
 
         root

@@ -206,55 +206,58 @@ module MoneyS3
       end
 
       def to_h
-        { guid: guid,
-          nazev: nazev,
-          skupina_id: skupina_id,
-          obch_nazev: obch_nazev,
-          fakt_nazev: fakt_nazev,
-          e_mail: e_mail,
-          www: www,
-          spojeni: spojeni,
-          ico: ico,
-          dic: dic,
-          dicsk: dicsk,
-          platce_dph: platce_dph,
-          fyz_osoba: fyz_osoba,
-          kod_dan_ur: kod_dan_ur,
-          banka: banka,
-          ucet: ucet,
-          kod_banky: kod_banky,
-          v_symb: v_symb,
-          spec_sym: spec_sym,
-          cinnosti: cinnosti,
-          adr_klice: adr_klice,
-          ceny: ceny,
-          ceniky: ceniky,
-          kredit: kredit,
-          kredit_val: kredit_val,
-          splat_poh: splat_poh,
-          splat_zav: splat_zav,
-          spl_poh_dni: spl_poh_dni,
-          spl_zav_dni: spl_zav_dni,
-          sleva: sleva,
-          flag_sleva: flag_sleva,
-          mail: mail,
-          zprava: zprava,
-          poznamka: poznamka,
-          kod_partn: kod_partn,
-          adresa: adresa.to_h,
-          obch_adresa: obch_adresa.to_h,
-          fakt_adresa: fakt_adresa.to_h,
-          tel: tel.to_h,
-          fax: fax.to_h,
-          mobil: mobil.to_h,
-          isdoc: isdoc.to_h,
-          eshop: eshop.to_h,
-          skupina: skupina.to_h,
-          vlajky: vlajky.to_h,
-          osoba: osoba.map(&:to_h),
-          seznam_bank_spojeni: seznam_bank_spojeni.map(&:to_h),
-          dokumenty: dokumenty
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:guid] = guid if raw.key? :GUID
+        hash[:nazev] = nazev if raw.key? :Nazev
+        hash[:skupina_id] = skupina_id if raw.key? :SkupinaID
+        hash[:obch_nazev] = obch_nazev if raw.key? :ObchNazev
+        hash[:fakt_nazev] = fakt_nazev if raw.key? :FaktNazev
+        hash[:e_mail] = e_mail if raw.key? :EMail
+        hash[:www] = www if raw.key? :WWW
+        hash[:spojeni] = spojeni if raw.key? :Spojeni
+        hash[:ico] = ico if raw.key? :ICO
+        hash[:dic] = dic if raw.key? :DIC
+        hash[:dicsk] = dicsk if raw.key? :DICSK
+        hash[:platce_dph] = platce_dph if raw.key? :PlatceDPH
+        hash[:fyz_osoba] = fyz_osoba if raw.key? :FyzOsoba
+        hash[:kod_dan_ur] = kod_dan_ur if raw.key? :KodDanUr
+        hash[:banka] = banka if raw.key? :Banka
+        hash[:ucet] = ucet if raw.key? :Ucet
+        hash[:kod_banky] = kod_banky if raw.key? :KodBanky
+        hash[:v_symb] = v_symb if raw.key? :VSymb
+        hash[:spec_sym] = spec_sym if raw.key? :SpecSym
+        hash[:cinnosti] = cinnosti if raw.key? :Cinnosti
+        hash[:adr_klice] = adr_klice if raw.key? :AdrKlice
+        hash[:ceny] = ceny if raw.key? :Ceny
+        hash[:ceniky] = ceniky if raw.key? :Ceniky
+        hash[:kredit] = kredit if raw.key? :Kredit
+        hash[:kredit_val] = kredit_val if raw.key? :KreditVal
+        hash[:splat_poh] = splat_poh if raw.key? :SplatPoh
+        hash[:splat_zav] = splat_zav if raw.key? :SplatZav
+        hash[:spl_poh_dni] = spl_poh_dni if raw.key? :SplPohDni
+        hash[:spl_zav_dni] = spl_zav_dni if raw.key? :SplZavDni
+        hash[:sleva] = sleva if raw.key? :Sleva
+        hash[:flag_sleva] = flag_sleva if raw.key? :FlagSleva
+        hash[:mail] = mail if raw.key? :Mail
+        hash[:zprava] = zprava if raw.key? :Zprava
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:kod_partn] = kod_partn if raw.key? :KodPartn
+        hash[:adresa] = adresa.to_h if raw.key? :Adresa
+        hash[:obch_adresa] = obch_adresa.to_h if raw.key? :ObchAdresa
+        hash[:fakt_adresa] = fakt_adresa.to_h if raw.key? :FaktAdresa
+        hash[:tel] = tel.to_h if raw.key? :Tel
+        hash[:fax] = fax.to_h if raw.key? :Fax
+        hash[:mobil] = mobil.to_h if raw.key? :Mobil
+        hash[:isdoc] = isdoc.to_h if raw.key? :ISDOC
+        hash[:eshop] = eshop.to_h if raw.key? :eshop
+        hash[:skupina] = skupina.to_h if raw.key? :Skupina
+        hash[:vlajky] = vlajky.to_h if raw.key? :Vlajky
+        hash[:osoba] = osoba.map(&:to_h) if raw.key? :Osoba
+        hash[:seznam_bank_spojeni] = seznam_bank_spojeni.map(&:to_h) if raw.key? :SeznamBankSpojeni
+        hash[:dokumenty] = dokumenty if raw.key? :Dokumenty
+
+        hash
       end
     end
   end

@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { inv_doklad: inv_doklad.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:inv_doklad] = inv_doklad.map(&:to_h) if raw.key? :InvDoklad
+
+        hash
       end
     end
   end

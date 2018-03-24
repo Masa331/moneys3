@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { prevodka: prevodka.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:prevodka] = prevodka.map(&:to_h) if raw.key? :Prevodka
+
+        hash
       end
     end
   end

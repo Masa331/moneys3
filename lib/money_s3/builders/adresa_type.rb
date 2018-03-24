@@ -5,16 +5,38 @@ module MoneyS3
     class AdresaType
       include BaseBuilder
 
-      attr_accessor :ulice, :misto, :psc, :stat, :kod_statu
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Ulice') << ulice) if ulice
-        root << (Ox::Element.new('Misto') << misto) if misto
-        root << (Ox::Element.new('PSC') << psc) if psc
-        root << (Ox::Element.new('Stat') << stat) if stat
-        root << (Ox::Element.new('KodStatu') << kod_statu) if kod_statu
+        if attributes.key? :ulice
+          element = Ox::Element.new('Ulice')
+          element << attributes[:ulice] if attributes[:ulice]
+          root << element
+        end
+
+        if attributes.key? :misto
+          element = Ox::Element.new('Misto')
+          element << attributes[:misto] if attributes[:misto]
+          root << element
+        end
+
+        if attributes.key? :psc
+          element = Ox::Element.new('PSC')
+          element << attributes[:psc] if attributes[:psc]
+          root << element
+        end
+
+        if attributes.key? :stat
+          element = Ox::Element.new('Stat')
+          element << attributes[:stat] if attributes[:stat]
+          root << element
+        end
+
+        if attributes.key? :kod_statu
+          element = Ox::Element.new('KodStatu')
+          element << attributes[:kod_statu] if attributes[:kod_statu]
+          root << element
+        end
 
         root
       end

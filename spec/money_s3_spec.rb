@@ -61,6 +61,9 @@ RSpec.describe MoneyS3 do
     parsed = MoneyS3.parse(raw)
     builded = MoneyS3.build(parsed.to_h)
 
-    expect(normalize_xml(builded)).to eq normalize_xml(raw)
+    lines1 = raw.lines.sort
+    lines2 = builded.force_encoding('UTF-8').lines.sort
+
+    expect(lines1).to eq lines2
   end
 end

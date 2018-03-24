@@ -22,11 +22,14 @@ module MoneyS3
       end
 
       def to_h
-        { oznaceni: oznaceni,
-          dat_exp: dat_exp,
-          pocet_mj: pocet_mj,
-          cena: cena
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:oznaceni] = oznaceni if raw.key? :Oznaceni
+        hash[:dat_exp] = dat_exp if raw.key? :DatExp
+        hash[:pocet_mj] = pocet_mj if raw.key? :PocetMJ
+        hash[:cena] = cena if raw.key? :Cena
+
+        hash
       end
     end
   end

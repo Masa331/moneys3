@@ -5,26 +5,98 @@ module MoneyS3
     class NepritomnostType
       include BaseBuilder
 
-      attr_accessor :typ, :zacatek, :konec, :dat_porodu, :odp_hod_z, :odp_hod_k, :kal_dnu, :prac_dnu, :hodin, :svat_dnu, :svat_hod, :pokrac_nepr, :nahr_mzdy, :prepoc_dny, :pozn
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Typ') << typ) if typ
-        root << (Ox::Element.new('Zacatek') << zacatek) if zacatek
-        root << (Ox::Element.new('Konec') << konec) if konec
-        root << (Ox::Element.new('DatPorodu') << dat_porodu) if dat_porodu
-        root << (Ox::Element.new('OdpHodZ') << odp_hod_z) if odp_hod_z
-        root << (Ox::Element.new('OdpHodK') << odp_hod_k) if odp_hod_k
-        root << (Ox::Element.new('KalDnu') << kal_dnu) if kal_dnu
-        root << (Ox::Element.new('PracDnu') << prac_dnu) if prac_dnu
-        root << (Ox::Element.new('Hodin') << hodin) if hodin
-        root << (Ox::Element.new('SvatDnu') << svat_dnu) if svat_dnu
-        root << (Ox::Element.new('SvatHod') << svat_hod) if svat_hod
-        root << (Ox::Element.new('PokracNepr') << pokrac_nepr) if pokrac_nepr
-        root << (Ox::Element.new('NahrMzdy') << nahr_mzdy) if nahr_mzdy
-        root << (Ox::Element.new('PrepocDny') << prepoc_dny) if prepoc_dny
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
+        if attributes.key? :typ
+          element = Ox::Element.new('Typ')
+          element << attributes[:typ] if attributes[:typ]
+          root << element
+        end
+
+        if attributes.key? :zacatek
+          element = Ox::Element.new('Zacatek')
+          element << attributes[:zacatek] if attributes[:zacatek]
+          root << element
+        end
+
+        if attributes.key? :konec
+          element = Ox::Element.new('Konec')
+          element << attributes[:konec] if attributes[:konec]
+          root << element
+        end
+
+        if attributes.key? :dat_porodu
+          element = Ox::Element.new('DatPorodu')
+          element << attributes[:dat_porodu] if attributes[:dat_porodu]
+          root << element
+        end
+
+        if attributes.key? :odp_hod_z
+          element = Ox::Element.new('OdpHodZ')
+          element << attributes[:odp_hod_z] if attributes[:odp_hod_z]
+          root << element
+        end
+
+        if attributes.key? :odp_hod_k
+          element = Ox::Element.new('OdpHodK')
+          element << attributes[:odp_hod_k] if attributes[:odp_hod_k]
+          root << element
+        end
+
+        if attributes.key? :kal_dnu
+          element = Ox::Element.new('KalDnu')
+          element << attributes[:kal_dnu] if attributes[:kal_dnu]
+          root << element
+        end
+
+        if attributes.key? :prac_dnu
+          element = Ox::Element.new('PracDnu')
+          element << attributes[:prac_dnu] if attributes[:prac_dnu]
+          root << element
+        end
+
+        if attributes.key? :hodin
+          element = Ox::Element.new('Hodin')
+          element << attributes[:hodin] if attributes[:hodin]
+          root << element
+        end
+
+        if attributes.key? :svat_dnu
+          element = Ox::Element.new('SvatDnu')
+          element << attributes[:svat_dnu] if attributes[:svat_dnu]
+          root << element
+        end
+
+        if attributes.key? :svat_hod
+          element = Ox::Element.new('SvatHod')
+          element << attributes[:svat_hod] if attributes[:svat_hod]
+          root << element
+        end
+
+        if attributes.key? :pokrac_nepr
+          element = Ox::Element.new('PokracNepr')
+          element << attributes[:pokrac_nepr] if attributes[:pokrac_nepr]
+          root << element
+        end
+
+        if attributes.key? :nahr_mzdy
+          element = Ox::Element.new('NahrMzdy')
+          element << attributes[:nahr_mzdy] if attributes[:nahr_mzdy]
+          root << element
+        end
+
+        if attributes.key? :prepoc_dny
+          element = Ox::Element.new('PrepocDny')
+          element << attributes[:prepoc_dny] if attributes[:prepoc_dny]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
 
         root
       end

@@ -6,21 +6,48 @@ module MoneyS3
     class ZauctovaniDPHDetype
       include BaseBuilder
 
-      attr_accessor :zkrat, :typ, :popis, :poh_dss, :poh_dzs, :pozn, :seznam_obdobi_dph
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Typ') << typ) if typ
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('PohDSS') << poh_dss) if poh_dss
-        root << (Ox::Element.new('PohDZS') << poh_dzs) if poh_dzs
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
+          root << element
+        end
 
-        if seznam_obdobi_dph
+        if attributes.key? :typ
+          element = Ox::Element.new('Typ')
+          element << attributes[:typ] if attributes[:typ]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :poh_dss
+          element = Ox::Element.new('PohDSS')
+          element << attributes[:poh_dss] if attributes[:poh_dss]
+          root << element
+        end
+
+        if attributes.key? :poh_dzs
+          element = Ox::Element.new('PohDZS')
+          element << attributes[:poh_dzs] if attributes[:poh_dzs]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
+
+        if attributes.key? :seznam_obdobi_dph
           element = Ox::Element.new('SeznamObdobiDPH')
-          seznam_obdobi_dph.each { |i| element << ObdobiDPH.new(i, 'ObdobiDPH').builder }
+          attributes[:seznam_obdobi_dph].each { |i| element << ObdobiDPH.new(i, 'ObdobiDPH').builder }
           root << element
         end
 

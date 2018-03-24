@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamStredisek
       include BaseBuilder
 
-      attr_accessor :stredisko
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if stredisko
-          stredisko.each { |i| root << Stredisko.new(i, 'Stredisko').builder }
+        if attributes.key? :stredisko
+          attributes[:stredisko].each { |i| root << Stredisko.new(i, 'Stredisko').builder }
         end
 
         root

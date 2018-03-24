@@ -66,22 +66,25 @@ module MoneyS3
       end
 
       def to_h
-        { typ: typ,
-          zacatek: zacatek,
-          konec: konec,
-          dat_porodu: dat_porodu,
-          odp_hod_z: odp_hod_z,
-          odp_hod_k: odp_hod_k,
-          kal_dnu: kal_dnu,
-          prac_dnu: prac_dnu,
-          hodin: hodin,
-          svat_dnu: svat_dnu,
-          svat_hod: svat_hod,
-          pokrac_nepr: pokrac_nepr,
-          nahr_mzdy: nahr_mzdy,
-          prepoc_dny: prepoc_dny,
-          pozn: pozn
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:typ] = typ if raw.key? :Typ
+        hash[:zacatek] = zacatek if raw.key? :Zacatek
+        hash[:konec] = konec if raw.key? :Konec
+        hash[:dat_porodu] = dat_porodu if raw.key? :DatPorodu
+        hash[:odp_hod_z] = odp_hod_z if raw.key? :OdpHodZ
+        hash[:odp_hod_k] = odp_hod_k if raw.key? :OdpHodK
+        hash[:kal_dnu] = kal_dnu if raw.key? :KalDnu
+        hash[:prac_dnu] = prac_dnu if raw.key? :PracDnu
+        hash[:hodin] = hodin if raw.key? :Hodin
+        hash[:svat_dnu] = svat_dnu if raw.key? :SvatDnu
+        hash[:svat_hod] = svat_hod if raw.key? :SvatHod
+        hash[:pokrac_nepr] = pokrac_nepr if raw.key? :PokracNepr
+        hash[:nahr_mzdy] = nahr_mzdy if raw.key? :NahrMzdy
+        hash[:prepoc_dny] = prepoc_dny if raw.key? :PrepocDny
+        hash[:pozn] = pozn if raw.key? :Pozn
+
+        hash
       end
     end
   end

@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamTypKusovnik
       include BaseBuilder
 
-      attr_accessor :typ_kusovnik
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if typ_kusovnik
-          typ_kusovnik.each { |i| root << KusovnikType.new(i, 'TypKusovnik').builder }
+        if attributes.key? :typ_kusovnik
+          attributes[:typ_kusovnik].each { |i| root << KusovnikType.new(i, 'TypKusovnik').builder }
         end
 
         root

@@ -6,32 +6,128 @@ module MoneyS3
     class Sklad
       include BaseBuilder
 
-      attr_accessor :nazev, :kod_skladu, :guid, :cenik_sklad, :platno_od, :platno_do, :minus, :neupoz, :vyber_cen, :vyber_dod, :zpusob, :prod_ceny_d, :prepocet, :ceny, :uc_vyrobk_vv, :prodejk_vz, :v_dod_lst_vz, :p_dod_lst_vz, :uc_pohyb_m, :uc_pohyb_z, :uc_pohyb_v
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Nazev') << nazev) if nazev
-        root << (Ox::Element.new('KodSkladu') << kod_skladu) if kod_skladu
-        root << (Ox::Element.new('GUID') << guid) if guid
-        root << (Ox::Element.new('CenikSklad') << cenik_sklad) if cenik_sklad
-        root << (Ox::Element.new('PlatnoOd') << platno_od) if platno_od
-        root << (Ox::Element.new('PlatnoDo') << platno_do) if platno_do
-        root << (Ox::Element.new('Minus') << minus) if minus
-        root << (Ox::Element.new('Neupoz') << neupoz) if neupoz
-        root << (Ox::Element.new('Vyber_cen') << vyber_cen) if vyber_cen
-        root << (Ox::Element.new('Vyber_dod') << vyber_dod) if vyber_dod
-        root << (Ox::Element.new('Zpusob') << zpusob) if zpusob
-        root << (Ox::Element.new('ProdCenyD') << prod_ceny_d) if prod_ceny_d
-        root << (Ox::Element.new('Prepocet') << prepocet) if prepocet
-        root << (Ox::Element.new('Ceny') << ceny) if ceny
-        root << (Ox::Element.new('UcVyrobkVV') << uc_vyrobk_vv) if uc_vyrobk_vv
-        root << (Ox::Element.new('ProdejkVz') << prodejk_vz) if prodejk_vz
-        root << (Ox::Element.new('VDodLstVz') << v_dod_lst_vz) if v_dod_lst_vz
-        root << (Ox::Element.new('PDodLstVz') << p_dod_lst_vz) if p_dod_lst_vz
-        root << UctyPohybuType.new(uc_pohyb_m, 'UcPohybM').builder if uc_pohyb_m
-        root << UctyPohybuType.new(uc_pohyb_z, 'UcPohybZ').builder if uc_pohyb_z
-        root << UctyPohybuType.new(uc_pohyb_v, 'UcPohybV').builder if uc_pohyb_v
+        if attributes.key? :nazev
+          element = Ox::Element.new('Nazev')
+          element << attributes[:nazev] if attributes[:nazev]
+          root << element
+        end
+
+        if attributes.key? :kod_skladu
+          element = Ox::Element.new('KodSkladu')
+          element << attributes[:kod_skladu] if attributes[:kod_skladu]
+          root << element
+        end
+
+        if attributes.key? :guid
+          element = Ox::Element.new('GUID')
+          element << attributes[:guid] if attributes[:guid]
+          root << element
+        end
+
+        if attributes.key? :cenik_sklad
+          element = Ox::Element.new('CenikSklad')
+          element << attributes[:cenik_sklad] if attributes[:cenik_sklad]
+          root << element
+        end
+
+        if attributes.key? :platno_od
+          element = Ox::Element.new('PlatnoOd')
+          element << attributes[:platno_od] if attributes[:platno_od]
+          root << element
+        end
+
+        if attributes.key? :platno_do
+          element = Ox::Element.new('PlatnoDo')
+          element << attributes[:platno_do] if attributes[:platno_do]
+          root << element
+        end
+
+        if attributes.key? :minus
+          element = Ox::Element.new('Minus')
+          element << attributes[:minus] if attributes[:minus]
+          root << element
+        end
+
+        if attributes.key? :neupoz
+          element = Ox::Element.new('Neupoz')
+          element << attributes[:neupoz] if attributes[:neupoz]
+          root << element
+        end
+
+        if attributes.key? :vyber_cen
+          element = Ox::Element.new('Vyber_cen')
+          element << attributes[:vyber_cen] if attributes[:vyber_cen]
+          root << element
+        end
+
+        if attributes.key? :vyber_dod
+          element = Ox::Element.new('Vyber_dod')
+          element << attributes[:vyber_dod] if attributes[:vyber_dod]
+          root << element
+        end
+
+        if attributes.key? :zpusob
+          element = Ox::Element.new('Zpusob')
+          element << attributes[:zpusob] if attributes[:zpusob]
+          root << element
+        end
+
+        if attributes.key? :prod_ceny_d
+          element = Ox::Element.new('ProdCenyD')
+          element << attributes[:prod_ceny_d] if attributes[:prod_ceny_d]
+          root << element
+        end
+
+        if attributes.key? :prepocet
+          element = Ox::Element.new('Prepocet')
+          element << attributes[:prepocet] if attributes[:prepocet]
+          root << element
+        end
+
+        if attributes.key? :ceny
+          element = Ox::Element.new('Ceny')
+          element << attributes[:ceny] if attributes[:ceny]
+          root << element
+        end
+
+        if attributes.key? :uc_vyrobk_vv
+          element = Ox::Element.new('UcVyrobkVV')
+          element << attributes[:uc_vyrobk_vv] if attributes[:uc_vyrobk_vv]
+          root << element
+        end
+
+        if attributes.key? :prodejk_vz
+          element = Ox::Element.new('ProdejkVz')
+          element << attributes[:prodejk_vz] if attributes[:prodejk_vz]
+          root << element
+        end
+
+        if attributes.key? :v_dod_lst_vz
+          element = Ox::Element.new('VDodLstVz')
+          element << attributes[:v_dod_lst_vz] if attributes[:v_dod_lst_vz]
+          root << element
+        end
+
+        if attributes.key? :p_dod_lst_vz
+          element = Ox::Element.new('PDodLstVz')
+          element << attributes[:p_dod_lst_vz] if attributes[:p_dod_lst_vz]
+          root << element
+        end
+
+        if attributes.key? :uc_pohyb_m
+          root << UctyPohybuType.new(attributes[:uc_pohyb_m], 'UcPohybM').builder
+        end
+
+        if attributes.key? :uc_pohyb_z
+          root << UctyPohybuType.new(attributes[:uc_pohyb_z], 'UcPohybZ').builder
+        end
+
+        if attributes.key? :uc_pohyb_v
+          root << UctyPohybuType.new(attributes[:uc_pohyb_v], 'UcPohybV').builder
+        end
 
         root
       end

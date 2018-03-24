@@ -15,9 +15,12 @@ module MoneyS3
       end
 
       def to_h
-        { castka: castka,
-          mena: mena.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:castka] = castka if raw.key? :Castka
+        hash[:mena] = mena.to_h if raw.key? :Mena
+
+        hash
       end
     end
   end

@@ -7,14 +7,22 @@ module MoneyS3
     class Valuty
       include BaseBuilder
 
-      attr_accessor :celkem, :mena, :souhrn_dph
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Celkem') << celkem) if celkem
-        root << MenaType.new(mena, 'Mena').builder if mena
-        root << SouhrnDPHType.new(souhrn_dph, 'SouhrnDPH').builder if souhrn_dph
+        if attributes.key? :celkem
+          element = Ox::Element.new('Celkem')
+          element << attributes[:celkem] if attributes[:celkem]
+          root << element
+        end
+
+        if attributes.key? :mena
+          root << MenaType.new(attributes[:mena], 'Mena').builder
+        end
+
+        if attributes.key? :souhrn_dph
+          root << SouhrnDPHType.new(attributes[:souhrn_dph], 'SouhrnDPH').builder
+        end
 
         root
       end

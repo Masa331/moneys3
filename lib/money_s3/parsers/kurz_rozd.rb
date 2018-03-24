@@ -27,12 +27,15 @@ module MoneyS3
       end
 
       def to_h
-        { typ: typ,
-          preceneni: preceneni,
-          castka: castka,
-          kr_poradi: kr_poradi,
-          doklad: doklad.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:typ] = typ if raw.key? :Typ
+        hash[:preceneni] = preceneni if raw.key? :Preceneni
+        hash[:castka] = castka if raw.key? :Castka
+        hash[:kr_poradi] = kr_poradi if raw.key? :KRPoradi
+        hash[:doklad] = doklad.to_h if raw.key? :Doklad
+
+        hash
       end
     end
   end

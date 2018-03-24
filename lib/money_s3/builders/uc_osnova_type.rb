@@ -5,26 +5,98 @@ module MoneyS3
     class UcOsnovaType
       include BaseBuilder
 
-      attr_accessor :ucet, :nazev, :typ, :saldo, :radek, :uc_prev, :pozn, :radek_zkr, :druh_uctu, :ucet_typ, :ucet_pod_typ, :vnitro, :technicky, :opravky, :druh_cin
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Ucet') << ucet) if ucet
-        root << (Ox::Element.new('Nazev') << nazev) if nazev
-        root << (Ox::Element.new('Typ') << typ) if typ
-        root << (Ox::Element.new('Saldo') << saldo) if saldo
-        root << (Ox::Element.new('Radek') << radek) if radek
-        root << (Ox::Element.new('UcPrev') << uc_prev) if uc_prev
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
-        root << (Ox::Element.new('RadekZkr') << radek_zkr) if radek_zkr
-        root << (Ox::Element.new('DruhUctu') << druh_uctu) if druh_uctu
-        root << (Ox::Element.new('UcetTyp') << ucet_typ) if ucet_typ
-        root << (Ox::Element.new('UcetPodTyp') << ucet_pod_typ) if ucet_pod_typ
-        root << (Ox::Element.new('Vnitro') << vnitro) if vnitro
-        root << (Ox::Element.new('Technicky') << technicky) if technicky
-        root << (Ox::Element.new('Opravky') << opravky) if opravky
-        root << (Ox::Element.new('DruhCin') << druh_cin) if druh_cin
+        if attributes.key? :ucet
+          element = Ox::Element.new('Ucet')
+          element << attributes[:ucet] if attributes[:ucet]
+          root << element
+        end
+
+        if attributes.key? :nazev
+          element = Ox::Element.new('Nazev')
+          element << attributes[:nazev] if attributes[:nazev]
+          root << element
+        end
+
+        if attributes.key? :typ
+          element = Ox::Element.new('Typ')
+          element << attributes[:typ] if attributes[:typ]
+          root << element
+        end
+
+        if attributes.key? :saldo
+          element = Ox::Element.new('Saldo')
+          element << attributes[:saldo] if attributes[:saldo]
+          root << element
+        end
+
+        if attributes.key? :radek
+          element = Ox::Element.new('Radek')
+          element << attributes[:radek] if attributes[:radek]
+          root << element
+        end
+
+        if attributes.key? :uc_prev
+          element = Ox::Element.new('UcPrev')
+          element << attributes[:uc_prev] if attributes[:uc_prev]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
+
+        if attributes.key? :radek_zkr
+          element = Ox::Element.new('RadekZkr')
+          element << attributes[:radek_zkr] if attributes[:radek_zkr]
+          root << element
+        end
+
+        if attributes.key? :druh_uctu
+          element = Ox::Element.new('DruhUctu')
+          element << attributes[:druh_uctu] if attributes[:druh_uctu]
+          root << element
+        end
+
+        if attributes.key? :ucet_typ
+          element = Ox::Element.new('UcetTyp')
+          element << attributes[:ucet_typ] if attributes[:ucet_typ]
+          root << element
+        end
+
+        if attributes.key? :ucet_pod_typ
+          element = Ox::Element.new('UcetPodTyp')
+          element << attributes[:ucet_pod_typ] if attributes[:ucet_pod_typ]
+          root << element
+        end
+
+        if attributes.key? :vnitro
+          element = Ox::Element.new('Vnitro')
+          element << attributes[:vnitro] if attributes[:vnitro]
+          root << element
+        end
+
+        if attributes.key? :technicky
+          element = Ox::Element.new('Technicky')
+          element << attributes[:technicky] if attributes[:technicky]
+          root << element
+        end
+
+        if attributes.key? :opravky
+          element = Ox::Element.new('Opravky')
+          element << attributes[:opravky] if attributes[:opravky]
+          root << element
+        end
+
+        if attributes.key? :druh_cin
+          element = Ox::Element.new('DruhCin')
+          element << attributes[:druh_cin] if attributes[:druh_cin]
+          root << element
+        end
 
         root
       end

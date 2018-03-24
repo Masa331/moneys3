@@ -5,15 +5,32 @@ module MoneyS3
     class DodavkaType
       include BaseBuilder
 
-      attr_accessor :oznaceni, :dat_exp, :pocet_mj, :cena
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Oznaceni') << oznaceni) if oznaceni
-        root << (Ox::Element.new('DatExp') << dat_exp) if dat_exp
-        root << (Ox::Element.new('PocetMJ') << pocet_mj) if pocet_mj
-        root << (Ox::Element.new('Cena') << cena) if cena
+        if attributes.key? :oznaceni
+          element = Ox::Element.new('Oznaceni')
+          element << attributes[:oznaceni] if attributes[:oznaceni]
+          root << element
+        end
+
+        if attributes.key? :dat_exp
+          element = Ox::Element.new('DatExp')
+          element << attributes[:dat_exp] if attributes[:dat_exp]
+          root << element
+        end
+
+        if attributes.key? :pocet_mj
+          element = Ox::Element.new('PocetMJ')
+          element << attributes[:pocet_mj] if attributes[:pocet_mj]
+          root << element
+        end
+
+        if attributes.key? :cena
+          element = Ox::Element.new('Cena')
+          element << attributes[:cena] if attributes[:cena]
+          root << element
+        end
 
         root
       end

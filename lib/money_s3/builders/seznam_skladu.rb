@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamSkladu
       include BaseBuilder
 
-      attr_accessor :sklad
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if sklad
-          sklad.each { |i| root << Sklad.new(i, 'Sklad').builder }
+        if attributes.key? :sklad
+          attributes[:sklad].each { |i| root << Sklad.new(i, 'Sklad').builder }
         end
 
         root

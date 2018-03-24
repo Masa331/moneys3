@@ -26,12 +26,15 @@ module MoneyS3
       end
 
       def to_h
-        { ulice: ulice,
-          misto: misto,
-          psc: psc,
-          stat: stat,
-          kod_statu: kod_statu
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:ulice] = ulice if raw.key? :Ulice
+        hash[:misto] = misto if raw.key? :Misto
+        hash[:psc] = psc if raw.key? :PSC
+        hash[:stat] = stat if raw.key? :Stat
+        hash[:kod_statu] = kod_statu if raw.key? :KodStatu
+
+        hash
       end
     end
   end

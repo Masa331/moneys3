@@ -7,31 +7,120 @@ module MoneyS3
     class OsobaType
       include BaseBuilder
 
-      attr_accessor :osloveni, :titul_pred, :titul_za, :jmeno, :prijmeni, :dat_nar, :pohlavi, :funkce, :spojeni, :e_mail, :mail, :mail_datum, :pozn, :kod_partn, :guid, :jednatel, :adresa, :tel, :fax, :mobil
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Osloveni') << osloveni) if osloveni
-        root << (Ox::Element.new('TitulPred') << titul_pred) if titul_pred
-        root << (Ox::Element.new('TitulZa') << titul_za) if titul_za
-        root << (Ox::Element.new('Jmeno') << jmeno) if jmeno
-        root << (Ox::Element.new('Prijmeni') << prijmeni) if prijmeni
-        root << (Ox::Element.new('DatNar') << dat_nar) if dat_nar
-        root << (Ox::Element.new('Pohlavi') << pohlavi) if pohlavi
-        root << (Ox::Element.new('Funkce') << funkce) if funkce
-        root << (Ox::Element.new('Spojeni') << spojeni) if spojeni
-        root << (Ox::Element.new('EMail') << e_mail) if e_mail
-        root << (Ox::Element.new('Mail') << mail) if mail
-        root << (Ox::Element.new('MailDatum') << mail_datum) if mail_datum
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
-        root << (Ox::Element.new('KodPartn') << kod_partn) if kod_partn
-        root << (Ox::Element.new('GUID') << guid) if guid
-        root << (Ox::Element.new('Jednatel') << jednatel) if jednatel
-        root << AdresaType.new(adresa, 'Adresa').builder if adresa
-        root << TelefonType.new(tel, 'Tel').builder if tel
-        root << TelefonType.new(fax, 'Fax').builder if fax
-        root << TelefonType.new(mobil, 'Mobil').builder if mobil
+        if attributes.key? :osloveni
+          element = Ox::Element.new('Osloveni')
+          element << attributes[:osloveni] if attributes[:osloveni]
+          root << element
+        end
+
+        if attributes.key? :titul_pred
+          element = Ox::Element.new('TitulPred')
+          element << attributes[:titul_pred] if attributes[:titul_pred]
+          root << element
+        end
+
+        if attributes.key? :titul_za
+          element = Ox::Element.new('TitulZa')
+          element << attributes[:titul_za] if attributes[:titul_za]
+          root << element
+        end
+
+        if attributes.key? :jmeno
+          element = Ox::Element.new('Jmeno')
+          element << attributes[:jmeno] if attributes[:jmeno]
+          root << element
+        end
+
+        if attributes.key? :prijmeni
+          element = Ox::Element.new('Prijmeni')
+          element << attributes[:prijmeni] if attributes[:prijmeni]
+          root << element
+        end
+
+        if attributes.key? :dat_nar
+          element = Ox::Element.new('DatNar')
+          element << attributes[:dat_nar] if attributes[:dat_nar]
+          root << element
+        end
+
+        if attributes.key? :pohlavi
+          element = Ox::Element.new('Pohlavi')
+          element << attributes[:pohlavi] if attributes[:pohlavi]
+          root << element
+        end
+
+        if attributes.key? :funkce
+          element = Ox::Element.new('Funkce')
+          element << attributes[:funkce] if attributes[:funkce]
+          root << element
+        end
+
+        if attributes.key? :spojeni
+          element = Ox::Element.new('Spojeni')
+          element << attributes[:spojeni] if attributes[:spojeni]
+          root << element
+        end
+
+        if attributes.key? :e_mail
+          element = Ox::Element.new('EMail')
+          element << attributes[:e_mail] if attributes[:e_mail]
+          root << element
+        end
+
+        if attributes.key? :mail
+          element = Ox::Element.new('Mail')
+          element << attributes[:mail] if attributes[:mail]
+          root << element
+        end
+
+        if attributes.key? :mail_datum
+          element = Ox::Element.new('MailDatum')
+          element << attributes[:mail_datum] if attributes[:mail_datum]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
+
+        if attributes.key? :kod_partn
+          element = Ox::Element.new('KodPartn')
+          element << attributes[:kod_partn] if attributes[:kod_partn]
+          root << element
+        end
+
+        if attributes.key? :guid
+          element = Ox::Element.new('GUID')
+          element << attributes[:guid] if attributes[:guid]
+          root << element
+        end
+
+        if attributes.key? :jednatel
+          element = Ox::Element.new('Jednatel')
+          element << attributes[:jednatel] if attributes[:jednatel]
+          root << element
+        end
+
+        if attributes.key? :adresa
+          root << AdresaType.new(attributes[:adresa], 'Adresa').builder
+        end
+
+        if attributes.key? :tel
+          root << TelefonType.new(attributes[:tel], 'Tel').builder
+        end
+
+        if attributes.key? :fax
+          root << TelefonType.new(attributes[:fax], 'Fax').builder
+        end
+
+        if attributes.key? :mobil
+          root << TelefonType.new(attributes[:mobil], 'Mobil').builder
+        end
 
         root
       end

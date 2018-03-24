@@ -8,30 +8,70 @@ module MoneyS3
     class MzdaType
       include BaseBuilder
 
-      attr_accessor :mesic, :rok, :prac_dnu, :prac_hod, :odpr_dnu, :odpr_hod, :odpr_sv_dnu, :odpr_sv_hod, :zamestnanec, :seznam_nepritomnosti, :seznam_mz_priplatku
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Mesic') << mesic) if mesic
-        root << (Ox::Element.new('Rok') << rok) if rok
-        root << (Ox::Element.new('PracDnu') << prac_dnu) if prac_dnu
-        root << (Ox::Element.new('PracHod') << prac_hod) if prac_hod
-        root << (Ox::Element.new('OdprDnu') << odpr_dnu) if odpr_dnu
-        root << (Ox::Element.new('OdprHod') << odpr_hod) if odpr_hod
-        root << (Ox::Element.new('OdprSvDnu') << odpr_sv_dnu) if odpr_sv_dnu
-        root << (Ox::Element.new('OdprSvHod') << odpr_sv_hod) if odpr_sv_hod
-        root << ZamestnanecType.new(zamestnanec, 'Zamestnanec').builder if zamestnanec
-
-        if seznam_nepritomnosti
-          element = Ox::Element.new('SeznamNepritomnosti')
-          seznam_nepritomnosti.each { |i| element << NepritomnostType.new(i, 'Nepritomnost').builder }
+        if attributes.key? :mesic
+          element = Ox::Element.new('Mesic')
+          element << attributes[:mesic] if attributes[:mesic]
           root << element
         end
 
-        if seznam_mz_priplatku
+        if attributes.key? :rok
+          element = Ox::Element.new('Rok')
+          element << attributes[:rok] if attributes[:rok]
+          root << element
+        end
+
+        if attributes.key? :prac_dnu
+          element = Ox::Element.new('PracDnu')
+          element << attributes[:prac_dnu] if attributes[:prac_dnu]
+          root << element
+        end
+
+        if attributes.key? :prac_hod
+          element = Ox::Element.new('PracHod')
+          element << attributes[:prac_hod] if attributes[:prac_hod]
+          root << element
+        end
+
+        if attributes.key? :odpr_dnu
+          element = Ox::Element.new('OdprDnu')
+          element << attributes[:odpr_dnu] if attributes[:odpr_dnu]
+          root << element
+        end
+
+        if attributes.key? :odpr_hod
+          element = Ox::Element.new('OdprHod')
+          element << attributes[:odpr_hod] if attributes[:odpr_hod]
+          root << element
+        end
+
+        if attributes.key? :odpr_sv_dnu
+          element = Ox::Element.new('OdprSvDnu')
+          element << attributes[:odpr_sv_dnu] if attributes[:odpr_sv_dnu]
+          root << element
+        end
+
+        if attributes.key? :odpr_sv_hod
+          element = Ox::Element.new('OdprSvHod')
+          element << attributes[:odpr_sv_hod] if attributes[:odpr_sv_hod]
+          root << element
+        end
+
+        if attributes.key? :zamestnanec
+          root << ZamestnanecType.new(attributes[:zamestnanec], 'Zamestnanec').builder
+        end
+
+        if attributes.key? :seznam_nepritomnosti
+          element = Ox::Element.new('SeznamNepritomnosti')
+          attributes[:seznam_nepritomnosti].each { |i| element << NepritomnostType.new(i, 'Nepritomnost').builder }
+          root << element
+        end
+
+        if attributes.key? :seznam_mz_priplatku
           element = Ox::Element.new('SeznamMzPriplatku')
-          seznam_mz_priplatku.each { |i| element << MzPriplatek.new(i, 'MzPriplatek').builder }
+          attributes[:seznam_mz_priplatku].each { |i| element << MzPriplatek.new(i, 'MzPriplatek').builder }
           root << element
         end
 

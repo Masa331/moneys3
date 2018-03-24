@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { sklad: sklad.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:sklad] = sklad.map(&:to_h) if raw.key? :Sklad
+
+        hash
       end
     end
   end

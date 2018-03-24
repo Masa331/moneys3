@@ -19,10 +19,13 @@ module MoneyS3
       end
 
       def to_h
-        { typ: typ,
-          pod_typ: pod_typ,
-          doklad: doklad.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:typ] = typ if raw.key? :Typ
+        hash[:pod_typ] = pod_typ if raw.key? :PodTyp
+        hash[:doklad] = doklad.to_h if raw.key? :Doklad
+
+        hash
       end
     end
   end

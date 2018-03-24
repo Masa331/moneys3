@@ -36,14 +36,17 @@ module MoneyS3
       end
 
       def to_h
-        { popis: popis,
-          poc_mj: poc_mj,
-          poradi: poradi,
-          druh_komp: druh_komp,
-          symetric: symetric,
-          km_karta: km_karta.to_h,
-          sklad: sklad.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:poc_mj] = poc_mj if raw.key? :PocMJ
+        hash[:poradi] = poradi if raw.key? :Poradi
+        hash[:druh_komp] = druh_komp if raw.key? :DruhKomp
+        hash[:symetric] = symetric if raw.key? :Symetric
+        hash[:km_karta] = km_karta.to_h if raw.key? :KmKarta
+        hash[:sklad] = sklad.to_h if raw.key? :Sklad
+
+        hash
       end
     end
   end

@@ -258,9 +258,7 @@ RSpec.describe MoneyS3::Parsers::FakturaType do
     its('moje_firma.tel.cislo') { is_expected.to eq '111222333' }
     its('moje_firma.tel.klap') { is_expected.to eq nil }
 
-    its('moje_firma.fax.pred') { is_expected.to eq '+420' }
-    its('moje_firma.fax.cislo') { is_expected.to eq '111222444' }
-    its('moje_firma.fax.klap') { is_expected.to eq nil }
+    its('moje_firma.fax') { is_expected.to eq nil }
 
     its('moje_firma.mobil.pred') { is_expected.to eq nil }
     its('moje_firma.mobil.cislo') { is_expected.to eq nil }

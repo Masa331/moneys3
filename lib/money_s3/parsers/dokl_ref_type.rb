@@ -27,12 +27,15 @@ module MoneyS3
       end
 
       def to_h
-        { id_dokladu: id_dokladu,
-          cislo_dokladu: cislo_dokladu,
-          druh_dokladu: druh_dokladu,
-          rok: rok,
-          eet: eet.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:id_dokladu] = id_dokladu if raw.key? :IDDokladu
+        hash[:cislo_dokladu] = cislo_dokladu if raw.key? :CisloDokladu
+        hash[:druh_dokladu] = druh_dokladu if raw.key? :DruhDokladu
+        hash[:rok] = rok if raw.key? :Rok
+        hash[:eet] = eet.to_h if raw.key? :EET
+
+        hash
       end
     end
   end

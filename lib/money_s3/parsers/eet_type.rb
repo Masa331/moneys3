@@ -92,28 +92,31 @@ module MoneyS3
       end
 
       def to_h
-        { eet_odesl: eet_odesl,
-          prod_misto: prod_misto,
-          uuid: uuid,
-          dat_odesl: dat_odesl,
-          cas_odesl: cas_odesl,
-          prvni_zasl: prvni_zasl,
-          dic_popl: dic_popl,
-          dic_pover: dic_pover,
-          provozovna: provozovna,
-          pokl_zariz: pokl_zariz,
-          porad_cis: porad_cis,
-          dat_trzby: dat_trzby,
-          cas_trzby: cas_trzby,
-          rezim: rezim,
-          pkp: pkp,
-          bkp: bkp,
-          fik: fik,
-          cert_pkp: cert_pkp,
-          cert_eet: cert_eet,
-          castky: castky.to_h,
-          vysledek_odesl: vysledek_odesl.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:eet_odesl] = eet_odesl if raw.key? :EETOdesl
+        hash[:prod_misto] = prod_misto if raw.key? :ProdMisto
+        hash[:uuid] = uuid if raw.key? :UUID
+        hash[:dat_odesl] = dat_odesl if raw.key? :DatOdesl
+        hash[:cas_odesl] = cas_odesl if raw.key? :CasOdesl
+        hash[:prvni_zasl] = prvni_zasl if raw.key? :PrvniZasl
+        hash[:dic_popl] = dic_popl if raw.key? :DICPopl
+        hash[:dic_pover] = dic_pover if raw.key? :DICPover
+        hash[:provozovna] = provozovna if raw.key? :Provozovna
+        hash[:pokl_zariz] = pokl_zariz if raw.key? :PoklZariz
+        hash[:porad_cis] = porad_cis if raw.key? :PoradCis
+        hash[:dat_trzby] = dat_trzby if raw.key? :DatTrzby
+        hash[:cas_trzby] = cas_trzby if raw.key? :CasTrzby
+        hash[:rezim] = rezim if raw.key? :Rezim
+        hash[:pkp] = pkp if raw.key? :PKP
+        hash[:bkp] = bkp if raw.key? :BKP
+        hash[:fik] = fik if raw.key? :FIK
+        hash[:cert_pkp] = cert_pkp if raw.key? :CertPKP
+        hash[:cert_eet] = cert_eet if raw.key? :CertEET
+        hash[:castky] = castky.to_h if raw.key? :Castky
+        hash[:vysledek_odesl] = vysledek_odesl.to_h if raw.key? :VysledekOdesl
+
+        hash
       end
     end
   end

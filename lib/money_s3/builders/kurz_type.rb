@@ -5,21 +5,68 @@ module MoneyS3
     class KurzType
       include BaseBuilder
 
-      attr_accessor :banka, :datum, :kod, :zeme, :mnozstvi, :nb_stred, :devizy_nakup, :devizy_prodej, :valuty_nakup, :valuty_prodej
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Banka') << banka) if banka
-        root << (Ox::Element.new('Datum') << datum) if datum
-        root << (Ox::Element.new('Kod') << kod) if kod
-        root << (Ox::Element.new('Zeme') << zeme) if zeme
-        root << (Ox::Element.new('Mnozstvi') << mnozstvi) if mnozstvi
-        root << (Ox::Element.new('NBStred') << nb_stred) if nb_stred
-        root << (Ox::Element.new('DevizyNakup') << devizy_nakup) if devizy_nakup
-        root << (Ox::Element.new('DevizyProdej') << devizy_prodej) if devizy_prodej
-        root << (Ox::Element.new('ValutyNakup') << valuty_nakup) if valuty_nakup
-        root << (Ox::Element.new('ValutyProdej') << valuty_prodej) if valuty_prodej
+        if attributes.key? :banka
+          element = Ox::Element.new('Banka')
+          element << attributes[:banka] if attributes[:banka]
+          root << element
+        end
+
+        if attributes.key? :datum
+          element = Ox::Element.new('Datum')
+          element << attributes[:datum] if attributes[:datum]
+          root << element
+        end
+
+        if attributes.key? :kod
+          element = Ox::Element.new('Kod')
+          element << attributes[:kod] if attributes[:kod]
+          root << element
+        end
+
+        if attributes.key? :zeme
+          element = Ox::Element.new('Zeme')
+          element << attributes[:zeme] if attributes[:zeme]
+          root << element
+        end
+
+        if attributes.key? :mnozstvi
+          element = Ox::Element.new('Mnozstvi')
+          element << attributes[:mnozstvi] if attributes[:mnozstvi]
+          root << element
+        end
+
+        if attributes.key? :nb_stred
+          element = Ox::Element.new('NBStred')
+          element << attributes[:nb_stred] if attributes[:nb_stred]
+          root << element
+        end
+
+        if attributes.key? :devizy_nakup
+          element = Ox::Element.new('DevizyNakup')
+          element << attributes[:devizy_nakup] if attributes[:devizy_nakup]
+          root << element
+        end
+
+        if attributes.key? :devizy_prodej
+          element = Ox::Element.new('DevizyProdej')
+          element << attributes[:devizy_prodej] if attributes[:devizy_prodej]
+          root << element
+        end
+
+        if attributes.key? :valuty_nakup
+          element = Ox::Element.new('ValutyNakup')
+          element << attributes[:valuty_nakup] if attributes[:valuty_nakup]
+          root << element
+        end
+
+        if attributes.key? :valuty_prodej
+          element = Ox::Element.new('ValutyProdej')
+          element << attributes[:valuty_prodej] if attributes[:valuty_prodej]
+          root << element
+        end
 
         root
       end

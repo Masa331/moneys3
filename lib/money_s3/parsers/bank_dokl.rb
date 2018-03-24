@@ -177,48 +177,51 @@ module MoneyS3
       end
 
       def to_h
-        { vydej: vydej,
-          doklad: doklad,
-          ev_cis_dokl: ev_cis_dokl,
-          zpusob_uctovani: zpusob_uctovani,
-          popis: popis,
-          dat_uc_pr: dat_uc_pr,
-          dat_vyst: dat_vyst,
-          dat_plat: dat_plat,
-          dat_pln: dat_pln,
-          dat_upl_dph: dat_upl_dph,
-          vypis: vypis,
-          id_polozky: id_polozky,
-          ad_ucet: ad_ucet,
-          ad_kod: ad_kod,
-          prijat_dokl: prijat_dokl,
-          var_sym: var_sym,
-          par_sym: par_sym,
-          kon_sym: kon_sym,
-          spec_sym: spec_sym,
-          pr_kont: pr_kont,
-          cleneni: cleneni,
-          stred: stred,
-          zakazka: zakazka,
-          cinnost: cinnost,
-          stat_moss: stat_moss,
-          s_sazba: s_sazba,
-          z_sazba: z_sazba,
-          pozn: pozn,
-          d_rada: d_rada,
-          d_cislo: d_cislo,
-          vyst: vyst,
-          typ_dokl: typ_dokl,
-          celkem: celkem,
-          adresa: adresa.to_h,
-          valuty: valuty.to_h,
-          ucet: ucet.to_h,
-          vlajky: vlajky.to_h,
-          souhrn_dph: souhrn_dph.to_h,
-          seznam_norm_polozek: seznam_norm_polozek.map(&:to_h),
-          seznam_rozuct_polozek: seznam_rozuct_polozek.map(&:to_h),
-          dokumenty: dokumenty
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:vydej] = vydej if raw.key? :Vydej
+        hash[:doklad] = doklad if raw.key? :Doklad
+        hash[:ev_cis_dokl] = ev_cis_dokl if raw.key? :EvCisDokl
+        hash[:zpusob_uctovani] = zpusob_uctovani if raw.key? :ZpusobUctovani
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:dat_uc_pr] = dat_uc_pr if raw.key? :DatUcPr
+        hash[:dat_vyst] = dat_vyst if raw.key? :DatVyst
+        hash[:dat_plat] = dat_plat if raw.key? :DatPlat
+        hash[:dat_pln] = dat_pln if raw.key? :DatPln
+        hash[:dat_upl_dph] = dat_upl_dph if raw.key? :DatUplDPH
+        hash[:vypis] = vypis if raw.key? :Vypis
+        hash[:id_polozky] = id_polozky if raw.key? :IDPolozky
+        hash[:ad_ucet] = ad_ucet if raw.key? :AdUcet
+        hash[:ad_kod] = ad_kod if raw.key? :AdKod
+        hash[:prijat_dokl] = prijat_dokl if raw.key? :PrijatDokl
+        hash[:var_sym] = var_sym if raw.key? :VarSym
+        hash[:par_sym] = par_sym if raw.key? :ParSym
+        hash[:kon_sym] = kon_sym if raw.key? :KonSym
+        hash[:spec_sym] = spec_sym if raw.key? :SpecSym
+        hash[:pr_kont] = pr_kont if raw.key? :PrKont
+        hash[:cleneni] = cleneni if raw.key? :Cleneni
+        hash[:stred] = stred if raw.key? :Stred
+        hash[:zakazka] = zakazka if raw.key? :Zakazka
+        hash[:cinnost] = cinnost if raw.key? :Cinnost
+        hash[:stat_moss] = stat_moss if raw.key? :StatMOSS
+        hash[:s_sazba] = s_sazba if raw.key? :SSazba
+        hash[:z_sazba] = z_sazba if raw.key? :ZSazba
+        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:d_rada] = d_rada if raw.key? :DRada
+        hash[:d_cislo] = d_cislo if raw.key? :DCislo
+        hash[:vyst] = vyst if raw.key? :Vyst
+        hash[:typ_dokl] = typ_dokl if raw.key? :TypDokl
+        hash[:celkem] = celkem if raw.key? :Celkem
+        hash[:adresa] = adresa.to_h if raw.key? :Adresa
+        hash[:valuty] = valuty.to_h if raw.key? :Valuty
+        hash[:ucet] = ucet.to_h if raw.key? :Ucet
+        hash[:vlajky] = vlajky.to_h if raw.key? :Vlajky
+        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
+        hash[:seznam_norm_polozek] = seznam_norm_polozek.map(&:to_h) if raw.key? :SeznamNormPolozek
+        hash[:seznam_rozuct_polozek] = seznam_rozuct_polozek.map(&:to_h) if raw.key? :SeznamRozuctPolozek
+        hash[:dokumenty] = dokumenty if raw.key? :Dokumenty
+
+        hash
       end
     end
   end

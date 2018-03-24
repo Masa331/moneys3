@@ -89,27 +89,30 @@ module MoneyS3
       end
 
       def to_h
-        { zkrat: zkrat,
-          nazev: nazev,
-          obch_prip: obch_prip,
-          pozn: pozn,
-          dat_pl_zah: dat_pl_zah,
-          dat_zah: dat_zah,
-          dat_pl_pred: dat_pl_pred,
-          dat_pred: dat_pred,
-          zaruka_do: zaruka_do,
-          odp_os: odp_os,
-          druh_zak: druh_zak,
-          typ_zak: typ_zak,
-          stav_zak: stav_zak,
-          hodnoceni: hodnoceni,
-          c_objednavk: c_objednavk,
-          vystavil: vystavil,
-          dod_odb: dod_odb.to_h,
-          vlajky: vlajky.to_h,
-          seznam_zakazkovy_kusovnik: seznam_zakazkovy_kusovnik.map(&:to_h),
-          dokumenty: dokumenty
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zkrat] = zkrat if raw.key? :Zkrat
+        hash[:nazev] = nazev if raw.key? :Nazev
+        hash[:obch_prip] = obch_prip if raw.key? :ObchPrip
+        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:dat_pl_zah] = dat_pl_zah if raw.key? :DatPlZah
+        hash[:dat_zah] = dat_zah if raw.key? :DatZah
+        hash[:dat_pl_pred] = dat_pl_pred if raw.key? :DatPlPred
+        hash[:dat_pred] = dat_pred if raw.key? :DatPred
+        hash[:zaruka_do] = zaruka_do if raw.key? :ZarukaDo
+        hash[:odp_os] = odp_os if raw.key? :OdpOs
+        hash[:druh_zak] = druh_zak if raw.key? :DruhZak
+        hash[:typ_zak] = typ_zak if raw.key? :TypZak
+        hash[:stav_zak] = stav_zak if raw.key? :StavZak
+        hash[:hodnoceni] = hodnoceni if raw.key? :Hodnoceni
+        hash[:c_objednavk] = c_objednavk if raw.key? :CObjednavk
+        hash[:vystavil] = vystavil if raw.key? :Vystavil
+        hash[:dod_odb] = dod_odb.to_h if raw.key? :DodOdb
+        hash[:vlajky] = vlajky.to_h if raw.key? :Vlajky
+        hash[:seznam_zakazkovy_kusovnik] = seznam_zakazkovy_kusovnik.map(&:to_h) if raw.key? :SeznamZakazkovyKusovnik
+        hash[:dokumenty] = dokumenty if raw.key? :Dokumenty
+
+        hash
       end
     end
   end

@@ -38,15 +38,18 @@ module MoneyS3
       end
 
       def to_h
-        { druh: druh,
-          cislo: cislo,
-          guid: guid,
-          prijat_dokl: prijat_dokl,
-          var_symbol: var_symbol,
-          vystaveno: vystaveno,
-          dat_uc_pr: dat_uc_pr,
-          plneno_dph: plneno_dph
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:druh] = druh if raw.key? :Druh
+        hash[:cislo] = cislo if raw.key? :Cislo
+        hash[:guid] = guid if raw.key? :GUID
+        hash[:prijat_dokl] = prijat_dokl if raw.key? :PrijatDokl
+        hash[:var_symbol] = var_symbol if raw.key? :VarSymbol
+        hash[:vystaveno] = vystaveno if raw.key? :Vystaveno
+        hash[:dat_uc_pr] = dat_uc_pr if raw.key? :DatUcPr
+        hash[:plneno_dph] = plneno_dph if raw.key? :PlnenoDPH
+
+        hash
       end
     end
   end

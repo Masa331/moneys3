@@ -53,18 +53,21 @@ module MoneyS3
       end
 
       def to_h
-        { mesic: mesic,
-          rok: rok,
-          prac_dnu: prac_dnu,
-          prac_hod: prac_hod,
-          odpr_dnu: odpr_dnu,
-          odpr_hod: odpr_hod,
-          odpr_sv_dnu: odpr_sv_dnu,
-          odpr_sv_hod: odpr_sv_hod,
-          zamestnanec: zamestnanec.to_h,
-          seznam_nepritomnosti: seznam_nepritomnosti.map(&:to_h),
-          seznam_mz_priplatku: seznam_mz_priplatku.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:mesic] = mesic if raw.key? :Mesic
+        hash[:rok] = rok if raw.key? :Rok
+        hash[:prac_dnu] = prac_dnu if raw.key? :PracDnu
+        hash[:prac_hod] = prac_hod if raw.key? :PracHod
+        hash[:odpr_dnu] = odpr_dnu if raw.key? :OdprDnu
+        hash[:odpr_hod] = odpr_hod if raw.key? :OdprHod
+        hash[:odpr_sv_dnu] = odpr_sv_dnu if raw.key? :OdprSvDnu
+        hash[:odpr_sv_hod] = odpr_sv_hod if raw.key? :OdprSvHod
+        hash[:zamestnanec] = zamestnanec.to_h if raw.key? :Zamestnanec
+        hash[:seznam_nepritomnosti] = seznam_nepritomnosti.map(&:to_h) if raw.key? :SeznamNepritomnosti
+        hash[:seznam_mz_priplatku] = seznam_mz_priplatku.map(&:to_h) if raw.key? :SeznamMzPriplatku
+
+        hash
       end
     end
   end

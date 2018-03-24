@@ -5,14 +5,26 @@ module MoneyS3
     class VyrobniCisloType
       include BaseBuilder
 
-      attr_accessor :vyrobni_cis, :datum_vyrob, :carovy_kod
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('VyrobniCis') << vyrobni_cis) if vyrobni_cis
-        root << (Ox::Element.new('DatumVyrob') << datum_vyrob) if datum_vyrob
-        root << (Ox::Element.new('CarovyKod') << carovy_kod) if carovy_kod
+        if attributes.key? :vyrobni_cis
+          element = Ox::Element.new('VyrobniCis')
+          element << attributes[:vyrobni_cis] if attributes[:vyrobni_cis]
+          root << element
+        end
+
+        if attributes.key? :datum_vyrob
+          element = Ox::Element.new('DatumVyrob')
+          element << attributes[:datum_vyrob] if attributes[:datum_vyrob]
+          root << element
+        end
+
+        if attributes.key? :carovy_kod
+          element = Ox::Element.new('CarovyKod')
+          element << attributes[:carovy_kod] if attributes[:carovy_kod]
+          root << element
+        end
 
         root
       end

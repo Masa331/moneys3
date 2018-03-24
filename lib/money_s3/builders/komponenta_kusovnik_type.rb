@@ -7,13 +7,16 @@ module MoneyS3
     class KomponentaKusovnikType
       include BaseBuilder
 
-      attr_accessor :child, :reference
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << ChildKusovnikType.new(child, 'Child').builder if child
-        root << Reference.new(reference, 'Reference').builder if reference
+        if attributes.key? :child
+          root << ChildKusovnikType.new(attributes[:child], 'Child').builder
+        end
+
+        if attributes.key? :reference
+          root << Reference.new(attributes[:reference], 'Reference').builder
+        end
 
         root
       end

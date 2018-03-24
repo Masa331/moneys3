@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { bank_dokl: bank_dokl.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:bank_dokl] = bank_dokl.map(&:to_h) if raw.key? :BankDokl
+
+        hash
       end
     end
   end

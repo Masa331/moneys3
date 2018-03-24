@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { uc_osnova: uc_osnova.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:uc_osnova] = uc_osnova.map(&:to_h) if raw.key? :UcOsnova
+
+        hash
       end
     end
   end

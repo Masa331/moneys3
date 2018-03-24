@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { vazba: vazba.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:vazba] = vazba.to_h if raw.key? :Vazba
+
+        hash
       end
     end
   end

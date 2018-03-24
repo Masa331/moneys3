@@ -6,12 +6,12 @@ module MoneyS3
     class MsgFaktPolozType
       include BaseBuilder
 
-      attr_accessor :skl_polozka
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << MsgPolozType.new(skl_polozka, 'SklPolozka').builder if skl_polozka
+        if attributes.key? :skl_polozka
+          root << MsgPolozType.new(attributes[:skl_polozka], 'SklPolozka').builder
+        end
 
         root
       end

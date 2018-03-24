@@ -5,16 +5,38 @@ module MoneyS3
     class UcPohybType
       include BaseBuilder
 
-      attr_accessor :zkrat, :popis, :typ, :sloupec, :pozn
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('Typ') << typ) if typ
-        root << (Ox::Element.new('Sloupec') << sloupec) if sloupec
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :typ
+          element = Ox::Element.new('Typ')
+          element << attributes[:typ] if attributes[:typ]
+          root << element
+        end
+
+        if attributes.key? :sloupec
+          element = Ox::Element.new('Sloupec')
+          element << attributes[:sloupec] if attributes[:sloupec]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
 
         root
       end

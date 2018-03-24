@@ -22,11 +22,14 @@ module MoneyS3
       end
 
       def to_h
-        { ucet: ucet,
-          kod_banky: kod_banky,
-          mena: mena,
-          ucel: ucel
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:ucet] = ucet if raw.key? :Ucet
+        hash[:kod_banky] = kod_banky if raw.key? :KodBanky
+        hash[:mena] = mena if raw.key? :Mena
+        hash[:ucel] = ucel if raw.key? :Ucel
+
+        hash
       end
     end
   end

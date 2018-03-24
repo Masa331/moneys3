@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamUcOsnov
       include BaseBuilder
 
-      attr_accessor :uc_osnova
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if uc_osnova
-          uc_osnova.each { |i| root << UcOsnovaType.new(i, 'UcOsnova').builder }
+        if attributes.key? :uc_osnova
+          attributes[:uc_osnova].each { |i| root << UcOsnovaType.new(i, 'UcOsnova').builder }
         end
 
         root

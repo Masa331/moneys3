@@ -6,13 +6,18 @@ module MoneyS3
     class ValutyUhr
       include BaseBuilder
 
-      attr_accessor :castka, :mena
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Castka') << castka) if castka
-        root << MenaType.new(mena, 'Mena').builder if mena
+        if attributes.key? :castka
+          element = Ox::Element.new('Castka')
+          element << attributes[:castka] if attributes[:castka]
+          root << element
+        end
+
+        if attributes.key? :mena
+          root << MenaType.new(attributes[:mena], 'Mena').builder
+        end
 
         root
       end

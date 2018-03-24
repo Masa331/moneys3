@@ -18,10 +18,13 @@ module MoneyS3
       end
 
       def to_h
-        { pred: pred,
-          cislo: cislo,
-          klap: klap
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:pred] = pred if raw.key? :Pred
+        hash[:cislo] = cislo if raw.key? :Cislo
+        hash[:klap] = klap if raw.key? :Klap
+
+        hash
       end
     end
   end

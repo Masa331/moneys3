@@ -5,15 +5,32 @@ module MoneyS3
     class ErrorInfoType
       include BaseBuilder
 
-      attr_accessor :error_type_coded, :error_type_other, :error_code, :error_description
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('ErrorTypeCoded') << error_type_coded) if error_type_coded
-        root << (Ox::Element.new('ErrorTypeOther') << error_type_other) if error_type_other
-        root << (Ox::Element.new('ErrorCode') << error_code) if error_code
-        root << (Ox::Element.new('ErrorDescription') << error_description) if error_description
+        if attributes.key? :error_type_coded
+          element = Ox::Element.new('ErrorTypeCoded')
+          element << attributes[:error_type_coded] if attributes[:error_type_coded]
+          root << element
+        end
+
+        if attributes.key? :error_type_other
+          element = Ox::Element.new('ErrorTypeOther')
+          element << attributes[:error_type_other] if attributes[:error_type_other]
+          root << element
+        end
+
+        if attributes.key? :error_code
+          element = Ox::Element.new('ErrorCode')
+          element << attributes[:error_code] if attributes[:error_code]
+          root << element
+        end
+
+        if attributes.key? :error_description
+          element = Ox::Element.new('ErrorDescription')
+          element << attributes[:error_description] if attributes[:error_description]
+          root << element
+        end
 
         root
       end

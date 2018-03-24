@@ -5,14 +5,26 @@ module MoneyS3
     class Cinnost
       include BaseBuilder
 
-      attr_accessor :zkrat, :nazev, :pozn
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Nazev') << nazev) if nazev
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
+          root << element
+        end
+
+        if attributes.key? :nazev
+          element = Ox::Element.new('Nazev')
+          element << attributes[:nazev] if attributes[:nazev]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
 
         root
       end

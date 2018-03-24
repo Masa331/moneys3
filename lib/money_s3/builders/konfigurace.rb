@@ -5,8 +5,6 @@ module MoneyS3
     class Konfigurace
       include BaseBuilder
 
-      attr_accessor 
-
       def builder
         root = Ox::Element.new(element_name)
 

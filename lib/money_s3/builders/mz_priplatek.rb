@@ -6,13 +6,18 @@ module MoneyS3
     class MzPriplatek
       include BaseBuilder
 
-      attr_accessor :prip_hodin, :typ_priplatku
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('PripHodin') << prip_hodin) if prip_hodin
-        root << TypPriplatkuType.new(typ_priplatku, 'TypPriplatku').builder if typ_priplatku
+        if attributes.key? :prip_hodin
+          element = Ox::Element.new('PripHodin')
+          element << attributes[:prip_hodin] if attributes[:prip_hodin]
+          root << element
+        end
+
+        if attributes.key? :typ_priplatku
+          root << TypPriplatkuType.new(attributes[:typ_priplatku], 'TypPriplatku').builder
+        end
 
         root
       end

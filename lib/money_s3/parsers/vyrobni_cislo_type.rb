@@ -18,10 +18,13 @@ module MoneyS3
       end
 
       def to_h
-        { vyrobni_cis: vyrobni_cis,
-          datum_vyrob: datum_vyrob,
-          carovy_kod: carovy_kod
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:vyrobni_cis] = vyrobni_cis if raw.key? :VyrobniCis
+        hash[:datum_vyrob] = datum_vyrob if raw.key? :DatumVyrob
+        hash[:carovy_kod] = carovy_kod if raw.key? :CarovyKod
+
+        hash
       end
     end
   end

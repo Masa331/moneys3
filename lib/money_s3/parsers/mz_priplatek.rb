@@ -15,9 +15,12 @@ module MoneyS3
       end
 
       def to_h
-        { prip_hodin: prip_hodin,
-          typ_priplatku: typ_priplatku.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:prip_hodin] = prip_hodin if raw.key? :PripHodin
+        hash[:typ_priplatku] = typ_priplatku.to_h if raw.key? :TypPriplatku
+
+        hash
       end
     end
   end

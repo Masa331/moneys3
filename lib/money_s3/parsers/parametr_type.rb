@@ -34,14 +34,17 @@ module MoneyS3
       end
 
       def to_h
-        { id: id,
-          nazev: nazev,
-          druh: druh,
-          typ: typ,
-          mj: mj,
-          uziv_code: uziv_code,
-          hodnoty: hodnoty
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:id] = id if raw.key? :ID
+        hash[:nazev] = nazev if raw.key? :Nazev
+        hash[:druh] = druh if raw.key? :Druh
+        hash[:typ] = typ if raw.key? :Typ
+        hash[:mj] = mj if raw.key? :MJ
+        hash[:uziv_code] = uziv_code if raw.key? :UzivCode
+        hash[:hodnoty] = hodnoty if raw.key? :Hodnoty
+
+        hash
       end
     end
   end

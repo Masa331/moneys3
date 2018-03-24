@@ -23,11 +23,14 @@ module MoneyS3
       end
 
       def to_h
-        { mesic: mesic,
-          rok: rok,
-          funkce: funkce,
-          prac_pomer: prac_pomer.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:mesic] = mesic if raw.key? :Mesic
+        hash[:rok] = rok if raw.key? :Rok
+        hash[:funkce] = funkce if raw.key? :Funkce
+        hash[:prac_pomer] = prac_pomer.to_h if raw.key? :PracPomer
+
+        hash
       end
     end
   end

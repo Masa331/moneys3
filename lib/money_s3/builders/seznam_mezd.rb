@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamMezd
       include BaseBuilder
 
-      attr_accessor :mzda
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if mzda
-          mzda.each { |i| root << MzdaType.new(i, 'Mzda').builder }
+        if attributes.key? :mzda
+          attributes[:mzda].each { |i| root << MzdaType.new(i, 'Mzda').builder }
         end
 
         root

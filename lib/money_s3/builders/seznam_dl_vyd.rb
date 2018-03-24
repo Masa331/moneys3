@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamDLVyd
       include BaseBuilder
 
-      attr_accessor :dl_vyd
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if dl_vyd
-          dl_vyd.each { |i| root << DLVyd.new(i, 'DLVyd').builder }
+        if attributes.key? :dl_vyd
+          attributes[:dl_vyd].each { |i| root << DLVyd.new(i, 'DLVyd').builder }
         end
 
         root

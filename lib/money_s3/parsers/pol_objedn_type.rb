@@ -140,39 +140,42 @@ module MoneyS3
       end
 
       def to_h
-        { popis: popis,
-          poznamka: poznamka,
-          pocet_mj: pocet_mj,
-          zbyva_mj: zbyva_mj,
-          cena: cena,
-          sazba_dph: sazba_dph,
-          typ_ceny: typ_ceny,
-          sleva: sleva,
-          vystaveno: vystaveno,
-          vyridit_nej: vyridit_nej,
-          vyridit_do: vyridit_do,
-          vyrizeno: vyrizeno,
-          poradi: poradi,
-          stredisko: stredisko,
-          zakazka: zakazka,
-          cinnost: cinnost,
-          cenova_hlad: cenova_hlad,
-          valuty: valuty,
-          kod_statu_puv: kod_statu_puv,
-          typ_transakce: typ_transakce,
-          hmotnost: hmotnost,
-          cena_po_sleve: cena_po_sleve,
-          zvl_rezim: zvl_rezim,
-          zvl_dph: zvl_dph,
-          rezim_eet: rezim_eet,
-          pred_pc: pred_pc,
-          souhrn_dph: souhrn_dph.to_h,
-          sklad: sklad.to_h,
-          km_karta: km_karta.to_h,
-          neskl_polozka: neskl_polozka.to_h,
-          seznam_vc: seznam_vc.map(&:to_h),
-          slozeni: slozeni.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:pocet_mj] = pocet_mj if raw.key? :PocetMJ
+        hash[:zbyva_mj] = zbyva_mj if raw.key? :ZbyvaMJ
+        hash[:cena] = cena if raw.key? :Cena
+        hash[:sazba_dph] = sazba_dph if raw.key? :SazbaDPH
+        hash[:typ_ceny] = typ_ceny if raw.key? :TypCeny
+        hash[:sleva] = sleva if raw.key? :Sleva
+        hash[:vystaveno] = vystaveno if raw.key? :Vystaveno
+        hash[:vyridit_nej] = vyridit_nej if raw.key? :VyriditNej
+        hash[:vyridit_do] = vyridit_do if raw.key? :Vyridit_do
+        hash[:vyrizeno] = vyrizeno if raw.key? :Vyrizeno
+        hash[:poradi] = poradi if raw.key? :Poradi
+        hash[:stredisko] = stredisko if raw.key? :Stredisko
+        hash[:zakazka] = zakazka if raw.key? :Zakazka
+        hash[:cinnost] = cinnost if raw.key? :Cinnost
+        hash[:cenova_hlad] = cenova_hlad if raw.key? :CenovaHlad
+        hash[:valuty] = valuty if raw.key? :Valuty
+        hash[:kod_statu_puv] = kod_statu_puv if raw.key? :KodStatuPuv
+        hash[:typ_transakce] = typ_transakce if raw.key? :TypTransakce
+        hash[:hmotnost] = hmotnost if raw.key? :Hmotnost
+        hash[:cena_po_sleve] = cena_po_sleve if raw.key? :CenaPoSleve
+        hash[:zvl_rezim] = zvl_rezim if raw.key? :ZvlRezim
+        hash[:zvl_dph] = zvl_dph if raw.key? :ZvlDPH
+        hash[:rezim_eet] = rezim_eet if raw.key? :RezimEET
+        hash[:pred_pc] = pred_pc if raw.key? :PredPC
+        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
+        hash[:sklad] = sklad.to_h if raw.key? :Sklad
+        hash[:km_karta] = km_karta.to_h if raw.key? :KmKarta
+        hash[:neskl_polozka] = neskl_polozka.to_h if raw.key? :NesklPolozka
+        hash[:seznam_vc] = seznam_vc.map(&:to_h) if raw.key? :SeznamVC
+        hash[:slozeni] = slozeni.map(&:to_h) if raw.key? :Slozeni
+
+        hash
       end
     end
   end

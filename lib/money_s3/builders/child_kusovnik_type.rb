@@ -6,35 +6,150 @@ module MoneyS3
     class ChildKusovnikType
       include BaseBuilder
 
-      attr_accessor :cislo, :typ, :cis_karty, :varianta, :rezie, :poradi, :povaha, :cil_zdroj, :pevna_cena, :cena, :pocet_mj, :pocet_mj_fix, :kapacita, :time, :time_fix, :start_time, :last_time, :start_oper, :podil_ceny, :pozice_vykr, :zakazka, :stav, :poznamka, :sklad
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Cislo') << cislo) if cislo
-        root << (Ox::Element.new('Typ') << typ) if typ
-        root << (Ox::Element.new('CisKarty') << cis_karty) if cis_karty
-        root << (Ox::Element.new('Varianta') << varianta) if varianta
-        root << (Ox::Element.new('Rezie') << rezie) if rezie
-        root << (Ox::Element.new('Poradi') << poradi) if poradi
-        root << (Ox::Element.new('Povaha') << povaha) if povaha
-        root << (Ox::Element.new('CilZdroj') << cil_zdroj) if cil_zdroj
-        root << (Ox::Element.new('PevnaCena') << pevna_cena) if pevna_cena
-        root << (Ox::Element.new('Cena') << cena) if cena
-        root << (Ox::Element.new('PocetMJ') << pocet_mj) if pocet_mj
-        root << (Ox::Element.new('PocetMJFix') << pocet_mj_fix) if pocet_mj_fix
-        root << (Ox::Element.new('Kapacita') << kapacita) if kapacita
-        root << (Ox::Element.new('Time') << time) if time
-        root << (Ox::Element.new('TimeFix') << time_fix) if time_fix
-        root << (Ox::Element.new('StartTime') << start_time) if start_time
-        root << (Ox::Element.new('LastTime') << last_time) if last_time
-        root << (Ox::Element.new('StartOper') << start_oper) if start_oper
-        root << (Ox::Element.new('PodilCeny') << podil_ceny) if podil_ceny
-        root << (Ox::Element.new('PoziceVykr') << pozice_vykr) if pozice_vykr
-        root << (Ox::Element.new('Zakazka') << zakazka) if zakazka
-        root << (Ox::Element.new('Stav') << stav) if stav
-        root << (Ox::Element.new('Poznamka') << poznamka) if poznamka
-        root << SkladType.new(sklad, 'Sklad').builder if sklad
+        if attributes.key? :cislo
+          element = Ox::Element.new('Cislo')
+          element << attributes[:cislo] if attributes[:cislo]
+          root << element
+        end
+
+        if attributes.key? :typ
+          element = Ox::Element.new('Typ')
+          element << attributes[:typ] if attributes[:typ]
+          root << element
+        end
+
+        if attributes.key? :cis_karty
+          element = Ox::Element.new('CisKarty')
+          element << attributes[:cis_karty] if attributes[:cis_karty]
+          root << element
+        end
+
+        if attributes.key? :varianta
+          element = Ox::Element.new('Varianta')
+          element << attributes[:varianta] if attributes[:varianta]
+          root << element
+        end
+
+        if attributes.key? :rezie
+          element = Ox::Element.new('Rezie')
+          element << attributes[:rezie] if attributes[:rezie]
+          root << element
+        end
+
+        if attributes.key? :poradi
+          element = Ox::Element.new('Poradi')
+          element << attributes[:poradi] if attributes[:poradi]
+          root << element
+        end
+
+        if attributes.key? :povaha
+          element = Ox::Element.new('Povaha')
+          element << attributes[:povaha] if attributes[:povaha]
+          root << element
+        end
+
+        if attributes.key? :cil_zdroj
+          element = Ox::Element.new('CilZdroj')
+          element << attributes[:cil_zdroj] if attributes[:cil_zdroj]
+          root << element
+        end
+
+        if attributes.key? :pevna_cena
+          element = Ox::Element.new('PevnaCena')
+          element << attributes[:pevna_cena] if attributes[:pevna_cena]
+          root << element
+        end
+
+        if attributes.key? :cena
+          element = Ox::Element.new('Cena')
+          element << attributes[:cena] if attributes[:cena]
+          root << element
+        end
+
+        if attributes.key? :pocet_mj
+          element = Ox::Element.new('PocetMJ')
+          element << attributes[:pocet_mj] if attributes[:pocet_mj]
+          root << element
+        end
+
+        if attributes.key? :pocet_mj_fix
+          element = Ox::Element.new('PocetMJFix')
+          element << attributes[:pocet_mj_fix] if attributes[:pocet_mj_fix]
+          root << element
+        end
+
+        if attributes.key? :kapacita
+          element = Ox::Element.new('Kapacita')
+          element << attributes[:kapacita] if attributes[:kapacita]
+          root << element
+        end
+
+        if attributes.key? :time
+          element = Ox::Element.new('Time')
+          element << attributes[:time] if attributes[:time]
+          root << element
+        end
+
+        if attributes.key? :time_fix
+          element = Ox::Element.new('TimeFix')
+          element << attributes[:time_fix] if attributes[:time_fix]
+          root << element
+        end
+
+        if attributes.key? :start_time
+          element = Ox::Element.new('StartTime')
+          element << attributes[:start_time] if attributes[:start_time]
+          root << element
+        end
+
+        if attributes.key? :last_time
+          element = Ox::Element.new('LastTime')
+          element << attributes[:last_time] if attributes[:last_time]
+          root << element
+        end
+
+        if attributes.key? :start_oper
+          element = Ox::Element.new('StartOper')
+          element << attributes[:start_oper] if attributes[:start_oper]
+          root << element
+        end
+
+        if attributes.key? :podil_ceny
+          element = Ox::Element.new('PodilCeny')
+          element << attributes[:podil_ceny] if attributes[:podil_ceny]
+          root << element
+        end
+
+        if attributes.key? :pozice_vykr
+          element = Ox::Element.new('PoziceVykr')
+          element << attributes[:pozice_vykr] if attributes[:pozice_vykr]
+          root << element
+        end
+
+        if attributes.key? :zakazka
+          element = Ox::Element.new('Zakazka')
+          element << attributes[:zakazka] if attributes[:zakazka]
+          root << element
+        end
+
+        if attributes.key? :stav
+          element = Ox::Element.new('Stav')
+          element << attributes[:stav] if attributes[:stav]
+          root << element
+        end
+
+        if attributes.key? :poznamka
+          element = Ox::Element.new('Poznamka')
+          element << attributes[:poznamka] if attributes[:poznamka]
+          root << element
+        end
+
+        if attributes.key? :sklad
+          root << SkladType.new(attributes[:sklad], 'Sklad').builder
+        end
 
         root
       end

@@ -89,27 +89,30 @@ module MoneyS3
       end
 
       def to_h
-        { nazev: nazev,
-          guid: guid,
-          e_mail: e_mail,
-          www: www,
-          ico: ico,
-          dic: dic,
-          dicsk: dicsk,
-          platce_dph: platce_dph,
-          fyz_osoba: fyz_osoba,
-          banka: banka,
-          ucet: ucet,
-          kod_banky: kod_banky,
-          v_symb: v_symb,
-          spec_sym: spec_sym,
-          kod_partn: kod_partn,
-          adresa: adresa.to_h,
-          tel: tel.to_h,
-          fax: fax.to_h,
-          mobil: mobil.to_h,
-          eshop: eshop.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:nazev] = nazev if raw.key? :Nazev
+        hash[:guid] = guid if raw.key? :GUID
+        hash[:e_mail] = e_mail if raw.key? :EMail
+        hash[:www] = www if raw.key? :WWW
+        hash[:ico] = ico if raw.key? :ICO
+        hash[:dic] = dic if raw.key? :DIC
+        hash[:dicsk] = dicsk if raw.key? :DICSK
+        hash[:platce_dph] = platce_dph if raw.key? :PlatceDPH
+        hash[:fyz_osoba] = fyz_osoba if raw.key? :FyzOsoba
+        hash[:banka] = banka if raw.key? :Banka
+        hash[:ucet] = ucet if raw.key? :Ucet
+        hash[:kod_banky] = kod_banky if raw.key? :KodBanky
+        hash[:v_symb] = v_symb if raw.key? :VSymb
+        hash[:spec_sym] = spec_sym if raw.key? :SpecSym
+        hash[:kod_partn] = kod_partn if raw.key? :KodPartn
+        hash[:adresa] = adresa.to_h if raw.key? :Adresa
+        hash[:tel] = tel.to_h if raw.key? :Tel
+        hash[:fax] = fax.to_h if raw.key? :Fax
+        hash[:mobil] = mobil.to_h if raw.key? :Mobil
+        hash[:eshop] = eshop.to_h if raw.key? :eshop
+
+        hash
       end
     end
   end

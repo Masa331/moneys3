@@ -5,13 +5,11 @@ module MoneyS3
     class ReferenceType
       include BaseBuilder
 
-      attr_accessor :id
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if id
-          id.map { |i| Ox::Element.new('ID') << i }.each { |i| root << i }
+        if attributes.key? :id
+          attributes[:id].map { |i| Ox::Element.new('ID') << i }.each { |i| root << i }
         end
 
         root

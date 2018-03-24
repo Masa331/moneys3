@@ -6,20 +6,42 @@ module MoneyS3
     class SouhrnDPHType
       include BaseBuilder
 
-      attr_accessor :zaklad0, :zaklad5, :zaklad22, :dph5, :dph22, :seznam_dalsi_sazby
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zaklad0') << zaklad0) if zaklad0
-        root << (Ox::Element.new('Zaklad5') << zaklad5) if zaklad5
-        root << (Ox::Element.new('Zaklad22') << zaklad22) if zaklad22
-        root << (Ox::Element.new('DPH5') << dph5) if dph5
-        root << (Ox::Element.new('DPH22') << dph22) if dph22
+        if attributes.key? :zaklad0
+          element = Ox::Element.new('Zaklad0')
+          element << attributes[:zaklad0] if attributes[:zaklad0]
+          root << element
+        end
 
-        if seznam_dalsi_sazby
+        if attributes.key? :zaklad5
+          element = Ox::Element.new('Zaklad5')
+          element << attributes[:zaklad5] if attributes[:zaklad5]
+          root << element
+        end
+
+        if attributes.key? :zaklad22
+          element = Ox::Element.new('Zaklad22')
+          element << attributes[:zaklad22] if attributes[:zaklad22]
+          root << element
+        end
+
+        if attributes.key? :dph5
+          element = Ox::Element.new('DPH5')
+          element << attributes[:dph5] if attributes[:dph5]
+          root << element
+        end
+
+        if attributes.key? :dph22
+          element = Ox::Element.new('DPH22')
+          element << attributes[:dph22] if attributes[:dph22]
+          root << element
+        end
+
+        if attributes.key? :seznam_dalsi_sazby
           element = Ox::Element.new('SeznamDalsiSazby')
-          seznam_dalsi_sazby.each { |i| element << DalsiSazba.new(i, 'DalsiSazba').builder }
+          attributes[:seznam_dalsi_sazby].each { |i| element << DalsiSazba.new(i, 'DalsiSazba').builder }
           root << element
         end
 

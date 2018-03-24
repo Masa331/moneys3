@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { kurz_listek: kurz_listek.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:kurz_listek] = kurz_listek.map(&:to_h) if raw.key? :KurzListek
+
+        hash
       end
     end
   end

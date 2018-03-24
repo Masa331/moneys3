@@ -38,15 +38,18 @@ module MoneyS3
       end
 
       def to_h
-        { zkratka: zkratka,
-          popis: popis,
-          poznamka: poznamka,
-          druh: druh,
-          sazba: sazba,
-          typ: typ,
-          auto_load: auto_load,
-          pr_nah_off: pr_nah_off
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zkratka] = zkratka if raw.key? :Zkratka
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:druh] = druh if raw.key? :Druh
+        hash[:sazba] = sazba if raw.key? :Sazba
+        hash[:typ] = typ if raw.key? :Typ
+        hash[:auto_load] = auto_load if raw.key? :AutoLoad
+        hash[:pr_nah_off] = pr_nah_off if raw.key? :PrNahOff
+
+        hash
       end
     end
   end

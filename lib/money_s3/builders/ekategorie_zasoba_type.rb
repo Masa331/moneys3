@@ -6,18 +6,48 @@ module MoneyS3
     class EkategorieZasobaType
       include BaseBuilder
 
-      attr_accessor :id, :name, :descript, :poznamka, :changed, :public, :parent
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('ID') << id) if id
-        root << (Ox::Element.new('Name') << name) if name
-        root << (Ox::Element.new('Descript') << descript) if descript
-        root << (Ox::Element.new('Poznamka') << poznamka) if poznamka
-        root << (Ox::Element.new('Changed') << changed) if changed
-        root << (Ox::Element.new('Public') << public) if public
-        root << EkategorieZasobaType.new(parent, 'Parent').builder if parent
+        if attributes.key? :id
+          element = Ox::Element.new('ID')
+          element << attributes[:id] if attributes[:id]
+          root << element
+        end
+
+        if attributes.key? :name
+          element = Ox::Element.new('Name')
+          element << attributes[:name] if attributes[:name]
+          root << element
+        end
+
+        if attributes.key? :descript
+          element = Ox::Element.new('Descript')
+          element << attributes[:descript] if attributes[:descript]
+          root << element
+        end
+
+        if attributes.key? :poznamka
+          element = Ox::Element.new('Poznamka')
+          element << attributes[:poznamka] if attributes[:poznamka]
+          root << element
+        end
+
+        if attributes.key? :changed
+          element = Ox::Element.new('Changed')
+          element << attributes[:changed] if attributes[:changed]
+          root << element
+        end
+
+        if attributes.key? :public
+          element = Ox::Element.new('Public')
+          element << attributes[:public] if attributes[:public]
+          root << element
+        end
+
+        if attributes.key? :parent
+          root << EkategorieZasobaType.new(attributes[:parent], 'Parent').builder
+        end
 
         root
       end

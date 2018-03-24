@@ -5,15 +5,6 @@ require 'saharspec'
 require 'nokogiri'
 
 module Helpers
-  def normalize_xml(string)
-    parsed = Nokogiri(string)
-
-    # Remove blank elements, eg. <name/>, <person><name/></person>
-    parsed.traverse { |e| e.remove if e.blank? || e.content.empty? }
-
-    parsed.to_xml.lines.sort
-  end
-
   def parser_for(schema_path, parser_name, options = {})
     scaffold_schema(schema_path, options)[parser_name]
   end

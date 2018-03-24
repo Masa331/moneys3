@@ -5,14 +5,26 @@ module MoneyS3
     class CenaType
       include BaseBuilder
 
-      attr_accessor :limit, :cena, :sleva
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Limit') << limit) if limit
-        root << (Ox::Element.new('Cena') << cena) if cena
-        root << (Ox::Element.new('Sleva') << sleva) if sleva
+        if attributes.key? :limit
+          element = Ox::Element.new('Limit')
+          element << attributes[:limit] if attributes[:limit]
+          root << element
+        end
+
+        if attributes.key? :cena
+          element = Ox::Element.new('Cena')
+          element << attributes[:cena] if attributes[:cena]
+          root << element
+        end
+
+        if attributes.key? :sleva
+          element = Ox::Element.new('Sleva')
+          element << attributes[:sleva] if attributes[:sleva]
+          root << element
+        end
 
         root
       end

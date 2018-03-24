@@ -8,17 +8,20 @@ module MoneyS3
     class KusovnikType
       include BaseBuilder
 
-      attr_accessor :header, :child, :seznam_komponent
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << HeaderKusovnikType.new(header, 'Header').builder if header
-        root << ChildKusovnikType.new(child, 'Child').builder if child
+        if attributes.key? :header
+          root << HeaderKusovnikType.new(attributes[:header], 'Header').builder
+        end
 
-        if seznam_komponent
+        if attributes.key? :child
+          root << ChildKusovnikType.new(attributes[:child], 'Child').builder
+        end
+
+        if attributes.key? :seznam_komponent
           element = Ox::Element.new('SeznamKomponent')
-          seznam_komponent.each { |i| element << KomponentaKusovnikType.new(i, 'Komponenta').builder }
+          attributes[:seznam_komponent].each { |i| element << KomponentaKusovnikType.new(i, 'Komponenta').builder }
           root << element
         end
 

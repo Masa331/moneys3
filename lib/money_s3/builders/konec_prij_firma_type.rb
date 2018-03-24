@@ -8,31 +8,118 @@ module MoneyS3
     class KonecPrijFirmaType
       include BaseBuilder
 
-      attr_accessor :nazev, :guid, :e_mail, :www, :ico, :dic, :dicsk, :platce_dph, :fyz_osoba, :banka, :ucet, :kod_banky, :v_symb, :spec_sym, :kod_partn, :adresa, :tel, :fax, :mobil, :eshop
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Nazev') << nazev) if nazev
-        root << (Ox::Element.new('GUID') << guid) if guid
-        root << (Ox::Element.new('EMail') << e_mail) if e_mail
-        root << (Ox::Element.new('WWW') << www) if www
-        root << (Ox::Element.new('ICO') << ico) if ico
-        root << (Ox::Element.new('DIC') << dic) if dic
-        root << (Ox::Element.new('DICSK') << dicsk) if dicsk
-        root << (Ox::Element.new('PlatceDPH') << platce_dph) if platce_dph
-        root << (Ox::Element.new('FyzOsoba') << fyz_osoba) if fyz_osoba
-        root << (Ox::Element.new('Banka') << banka) if banka
-        root << (Ox::Element.new('Ucet') << ucet) if ucet
-        root << (Ox::Element.new('KodBanky') << kod_banky) if kod_banky
-        root << (Ox::Element.new('VSymb') << v_symb) if v_symb
-        root << (Ox::Element.new('SpecSym') << spec_sym) if spec_sym
-        root << (Ox::Element.new('KodPartn') << kod_partn) if kod_partn
-        root << AdresaType.new(adresa, 'Adresa').builder if adresa
-        root << TelefonType.new(tel, 'Tel').builder if tel
-        root << TelefonType.new(fax, 'Fax').builder if fax
-        root << TelefonType.new(mobil, 'Mobil').builder if mobil
-        root << Eshop.new(eshop, 'eshop').builder if eshop
+        if attributes.key? :nazev
+          element = Ox::Element.new('Nazev')
+          element << attributes[:nazev] if attributes[:nazev]
+          root << element
+        end
+
+        if attributes.key? :guid
+          element = Ox::Element.new('GUID')
+          element << attributes[:guid] if attributes[:guid]
+          root << element
+        end
+
+        if attributes.key? :e_mail
+          element = Ox::Element.new('EMail')
+          element << attributes[:e_mail] if attributes[:e_mail]
+          root << element
+        end
+
+        if attributes.key? :www
+          element = Ox::Element.new('WWW')
+          element << attributes[:www] if attributes[:www]
+          root << element
+        end
+
+        if attributes.key? :ico
+          element = Ox::Element.new('ICO')
+          element << attributes[:ico] if attributes[:ico]
+          root << element
+        end
+
+        if attributes.key? :dic
+          element = Ox::Element.new('DIC')
+          element << attributes[:dic] if attributes[:dic]
+          root << element
+        end
+
+        if attributes.key? :dicsk
+          element = Ox::Element.new('DICSK')
+          element << attributes[:dicsk] if attributes[:dicsk]
+          root << element
+        end
+
+        if attributes.key? :platce_dph
+          element = Ox::Element.new('PlatceDPH')
+          element << attributes[:platce_dph] if attributes[:platce_dph]
+          root << element
+        end
+
+        if attributes.key? :fyz_osoba
+          element = Ox::Element.new('FyzOsoba')
+          element << attributes[:fyz_osoba] if attributes[:fyz_osoba]
+          root << element
+        end
+
+        if attributes.key? :banka
+          element = Ox::Element.new('Banka')
+          element << attributes[:banka] if attributes[:banka]
+          root << element
+        end
+
+        if attributes.key? :ucet
+          element = Ox::Element.new('Ucet')
+          element << attributes[:ucet] if attributes[:ucet]
+          root << element
+        end
+
+        if attributes.key? :kod_banky
+          element = Ox::Element.new('KodBanky')
+          element << attributes[:kod_banky] if attributes[:kod_banky]
+          root << element
+        end
+
+        if attributes.key? :v_symb
+          element = Ox::Element.new('VSymb')
+          element << attributes[:v_symb] if attributes[:v_symb]
+          root << element
+        end
+
+        if attributes.key? :spec_sym
+          element = Ox::Element.new('SpecSym')
+          element << attributes[:spec_sym] if attributes[:spec_sym]
+          root << element
+        end
+
+        if attributes.key? :kod_partn
+          element = Ox::Element.new('KodPartn')
+          element << attributes[:kod_partn] if attributes[:kod_partn]
+          root << element
+        end
+
+        if attributes.key? :adresa
+          root << AdresaType.new(attributes[:adresa], 'Adresa').builder
+        end
+
+        if attributes.key? :tel
+          root << TelefonType.new(attributes[:tel], 'Tel').builder
+        end
+
+        if attributes.key? :fax
+          root << TelefonType.new(attributes[:fax], 'Fax').builder
+        end
+
+        if attributes.key? :mobil
+          root << TelefonType.new(attributes[:mobil], 'Mobil').builder
+        end
+
+        if attributes.key? :eshop
+          root << Eshop.new(attributes[:eshop], 'eshop').builder
+        end
 
         root
       end

@@ -18,10 +18,13 @@ module MoneyS3
       end
 
       def to_h
-        { limit: limit,
-          cena: cena,
-          sleva: sleva
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:limit] = limit if raw.key? :Limit
+        hash[:cena] = cena if raw.key? :Cena
+        hash[:sleva] = sleva if raw.key? :Sleva
+
+        hash
       end
     end
   end

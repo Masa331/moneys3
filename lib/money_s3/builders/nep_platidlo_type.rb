@@ -5,14 +5,26 @@ module MoneyS3
     class NepPlatidloType
       include BaseBuilder
 
-      attr_accessor :kod, :popis, :var_symb
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Kod') << kod) if kod
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('VarSymb') << var_symb) if var_symb
+        if attributes.key? :kod
+          element = Ox::Element.new('Kod')
+          element << attributes[:kod] if attributes[:kod]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :var_symb
+          element = Ox::Element.new('VarSymb')
+          element << attributes[:var_symb] if attributes[:var_symb]
+          root << element
+        end
 
         root
       end

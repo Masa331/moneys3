@@ -6,23 +6,60 @@ module MoneyS3
     class ZauctovaniDPHType
       include BaseBuilder
 
-      attr_accessor :zkrat, :typ, :popis, :sd_uc_md, :sd_uc_d, :zd_uc_md, :zd_uc_d, :pozn, :seznam_obdobi_dph
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Typ') << typ) if typ
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('SDUcMD') << sd_uc_md) if sd_uc_md
-        root << (Ox::Element.new('SDUcD') << sd_uc_d) if sd_uc_d
-        root << (Ox::Element.new('ZDUcMD') << zd_uc_md) if zd_uc_md
-        root << (Ox::Element.new('ZDUcD') << zd_uc_d) if zd_uc_d
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
+          root << element
+        end
 
-        if seznam_obdobi_dph
+        if attributes.key? :typ
+          element = Ox::Element.new('Typ')
+          element << attributes[:typ] if attributes[:typ]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :sd_uc_md
+          element = Ox::Element.new('SDUcMD')
+          element << attributes[:sd_uc_md] if attributes[:sd_uc_md]
+          root << element
+        end
+
+        if attributes.key? :sd_uc_d
+          element = Ox::Element.new('SDUcD')
+          element << attributes[:sd_uc_d] if attributes[:sd_uc_d]
+          root << element
+        end
+
+        if attributes.key? :zd_uc_md
+          element = Ox::Element.new('ZDUcMD')
+          element << attributes[:zd_uc_md] if attributes[:zd_uc_md]
+          root << element
+        end
+
+        if attributes.key? :zd_uc_d
+          element = Ox::Element.new('ZDUcD')
+          element << attributes[:zd_uc_d] if attributes[:zd_uc_d]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
+
+        if attributes.key? :seznam_obdobi_dph
           element = Ox::Element.new('SeznamObdobiDPH')
-          seznam_obdobi_dph.each { |i| element << ObdobiDPH.new(i, 'ObdobiDPH').builder }
+          attributes[:seznam_obdobi_dph].each { |i| element << ObdobiDPH.new(i, 'ObdobiDPH').builder }
           root << element
         end
 

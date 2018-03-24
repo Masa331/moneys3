@@ -5,14 +5,26 @@ module MoneyS3
     class SkupinaFiremType
       include BaseBuilder
 
-      attr_accessor :zkratka, :nazev, :poznamka
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkratka') << zkratka) if zkratka
-        root << (Ox::Element.new('Nazev') << nazev) if nazev
-        root << (Ox::Element.new('Poznamka') << poznamka) if poznamka
+        if attributes.key? :zkratka
+          element = Ox::Element.new('Zkratka')
+          element << attributes[:zkratka] if attributes[:zkratka]
+          root << element
+        end
+
+        if attributes.key? :nazev
+          element = Ox::Element.new('Nazev')
+          element << attributes[:nazev] if attributes[:nazev]
+          root << element
+        end
+
+        if attributes.key? :poznamka
+          element = Ox::Element.new('Poznamka')
+          element << attributes[:poznamka] if attributes[:poznamka]
+          root << element
+        end
 
         root
       end

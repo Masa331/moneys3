@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamPrevodka
       include BaseBuilder
 
-      attr_accessor :prevodka
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if prevodka
-          prevodka.each { |i| root << Prevodka.new(i, 'Prevodka').builder }
+        if attributes.key? :prevodka
+          attributes[:prevodka].each { |i| root << Prevodka.new(i, 'Prevodka').builder }
         end
 
         root

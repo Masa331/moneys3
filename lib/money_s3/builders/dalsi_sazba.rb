@@ -5,16 +5,38 @@ module MoneyS3
     class DalsiSazba
       include BaseBuilder
 
-      attr_accessor :popis, :hladina_dph, :sazba, :zaklad, :dph
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('HladinaDPH') << hladina_dph) if hladina_dph
-        root << (Ox::Element.new('Sazba') << sazba) if sazba
-        root << (Ox::Element.new('Zaklad') << zaklad) if zaklad
-        root << (Ox::Element.new('DPH') << dph) if dph
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :hladina_dph
+          element = Ox::Element.new('HladinaDPH')
+          element << attributes[:hladina_dph] if attributes[:hladina_dph]
+          root << element
+        end
+
+        if attributes.key? :sazba
+          element = Ox::Element.new('Sazba')
+          element << attributes[:sazba] if attributes[:sazba]
+          root << element
+        end
+
+        if attributes.key? :zaklad
+          element = Ox::Element.new('Zaklad')
+          element << attributes[:zaklad] if attributes[:zaklad]
+          root << element
+        end
+
+        if attributes.key? :dph
+          element = Ox::Element.new('DPH')
+          element << attributes[:dph] if attributes[:dph]
+          root << element
+        end
 
         root
       end

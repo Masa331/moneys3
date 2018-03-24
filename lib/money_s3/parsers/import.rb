@@ -44,15 +44,18 @@ module MoneyS3
       end
 
       def to_h
-        { status: status,
-          dod_odb: dod_odb.to_h,
-          konec_prij: konec_prij.to_h,
-          data: data.to_h,
-          reference: reference.to_h,
-          polozka: polozka.map(&:to_h),
-          uhrada: uhrada.map(&:to_h),
-          error_info: error_info.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:status] = status if raw.key? :Status
+        hash[:dod_odb] = dod_odb.to_h if raw.key? :DodOdb
+        hash[:konec_prij] = konec_prij.to_h if raw.key? :KonecPrij
+        hash[:data] = data.to_h if raw.key? :Data
+        hash[:reference] = reference.to_h if raw.key? :Reference
+        hash[:polozka] = polozka.map(&:to_h) if raw.key? :Polozka
+        hash[:uhrada] = uhrada.map(&:to_h) if raw.key? :Uhrada
+        hash[:error_info] = error_info.map(&:to_h) if raw.key? :ErrorInfo
+
+        hash
       end
     end
   end

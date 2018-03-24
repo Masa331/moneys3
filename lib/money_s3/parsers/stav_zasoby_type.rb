@@ -18,10 +18,13 @@ module MoneyS3
       end
 
       def to_h
-        { zasoba: zasoba,
-          rezervace: rezervace,
-          objednano: objednano
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zasoba] = zasoba if raw.key? :Zasoba
+        hash[:rezervace] = rezervace if raw.key? :Rezervace
+        hash[:objednano] = objednano if raw.key? :Objednano
+
+        hash
       end
     end
   end

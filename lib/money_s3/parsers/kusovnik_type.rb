@@ -21,10 +21,13 @@ module MoneyS3
       end
 
       def to_h
-        { header: header.to_h,
-          child: child.to_h,
-          seznam_komponent: seznam_komponent.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:header] = header.to_h if raw.key? :Header
+        hash[:child] = child.to_h if raw.key? :Child
+        hash[:seznam_komponent] = seznam_komponent.map(&:to_h) if raw.key? :SeznamKomponent
+
+        hash
       end
     end
   end

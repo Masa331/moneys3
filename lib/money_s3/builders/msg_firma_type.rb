@@ -7,15 +7,15 @@ module MoneyS3
     class MsgFirmaType
       include BaseBuilder
 
-      attr_accessor :data, :osoba
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << FirmaType.new(data, 'Data').builder if data
+        if attributes.key? :data
+          root << FirmaType.new(attributes[:data], 'Data').builder
+        end
 
-        if osoba
-          osoba.each { |i| root << MessageType.new(i, 'Osoba').builder }
+        if attributes.key? :osoba
+          attributes[:osoba].each { |i| root << MessageType.new(i, 'Osoba').builder }
         end
 
         root

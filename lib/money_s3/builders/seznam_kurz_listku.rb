@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamKurzListku
       include BaseBuilder
 
-      attr_accessor :kurz_listek
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if kurz_listek
-          kurz_listek.each { |i| root << KurzListek.new(i, 'KurzListek').builder }
+        if attributes.key? :kurz_listek
+          attributes[:kurz_listek].each { |i| root << KurzListek.new(i, 'KurzListek').builder }
         end
 
         root

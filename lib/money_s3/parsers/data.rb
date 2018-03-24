@@ -15,9 +15,12 @@ module MoneyS3
       end
 
       def to_h
-        { fakt_vyd: fakt_vyd.to_h,
-          fakt_prij: fakt_prij.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:fakt_vyd] = fakt_vyd.to_h if raw.key? :FaktVyd
+        hash[:fakt_prij] = fakt_prij.to_h if raw.key? :FaktPrij
+
+        hash
       end
     end
   end

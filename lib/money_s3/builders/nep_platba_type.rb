@@ -6,14 +6,24 @@ module MoneyS3
     class NepPlatbaType
       include BaseBuilder
 
-      attr_accessor :mnozstvi_mj, :castka, :platidlo
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('MnozstviMJ') << mnozstvi_mj) if mnozstvi_mj
-        root << (Ox::Element.new('Castka') << castka) if castka
-        root << NepPlatidloType.new(platidlo, 'Platidlo').builder if platidlo
+        if attributes.key? :mnozstvi_mj
+          element = Ox::Element.new('MnozstviMJ')
+          element << attributes[:mnozstvi_mj] if attributes[:mnozstvi_mj]
+          root << element
+        end
+
+        if attributes.key? :castka
+          element = Ox::Element.new('Castka')
+          element << attributes[:castka] if attributes[:castka]
+          root << element
+        end
+
+        if attributes.key? :platidlo
+          root << NepPlatidloType.new(attributes[:platidlo], 'Platidlo').builder
+        end
 
         root
       end

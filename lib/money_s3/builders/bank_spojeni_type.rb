@@ -5,15 +5,32 @@ module MoneyS3
     class BankSpojeniType
       include BaseBuilder
 
-      attr_accessor :ucet, :kod_banky, :mena, :ucel
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Ucet') << ucet) if ucet
-        root << (Ox::Element.new('KodBanky') << kod_banky) if kod_banky
-        root << (Ox::Element.new('Mena') << mena) if mena
-        root << (Ox::Element.new('Ucel') << ucel) if ucel
+        if attributes.key? :ucet
+          element = Ox::Element.new('Ucet')
+          element << attributes[:ucet] if attributes[:ucet]
+          root << element
+        end
+
+        if attributes.key? :kod_banky
+          element = Ox::Element.new('KodBanky')
+          element << attributes[:kod_banky] if attributes[:kod_banky]
+          root << element
+        end
+
+        if attributes.key? :mena
+          element = Ox::Element.new('Mena')
+          element << attributes[:mena] if attributes[:mena]
+          root << element
+        end
+
+        if attributes.key? :ucel
+          element = Ox::Element.new('Ucel')
+          element << attributes[:ucel] if attributes[:ucel]
+          root << element
+        end
 
         root
       end

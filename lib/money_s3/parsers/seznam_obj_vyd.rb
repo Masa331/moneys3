@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { obj_vyd: obj_vyd.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:obj_vyd] = obj_vyd.map(&:to_h) if raw.key? :ObjVyd
+
+        hash
       end
     end
   end

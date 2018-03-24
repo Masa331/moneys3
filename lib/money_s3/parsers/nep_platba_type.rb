@@ -19,10 +19,13 @@ module MoneyS3
       end
 
       def to_h
-        { mnozstvi_mj: mnozstvi_mj,
-          castka: castka,
-          platidlo: platidlo.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:mnozstvi_mj] = mnozstvi_mj if raw.key? :MnozstviMJ
+        hash[:castka] = castka if raw.key? :Castka
+        hash[:platidlo] = platidlo.to_h if raw.key? :Platidlo
+
+        hash
       end
     end
   end

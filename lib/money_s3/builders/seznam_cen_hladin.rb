@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamCenHladin
       include BaseBuilder
 
-      attr_accessor :cenova_hladina
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if cenova_hladina
-          cenova_hladina.each { |i| root << CenovaHladina.new(i, 'CenovaHladina').builder }
+        if attributes.key? :cenova_hladina
+          attributes[:cenova_hladina].each { |i| root << CenovaHladina.new(i, 'CenovaHladina').builder }
         end
 
         root

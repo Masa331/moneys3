@@ -6,18 +6,30 @@ module MoneyS3
     class KurzListek
       include BaseBuilder
 
-      attr_accessor :banka, :por_cislo, :datum, :seznam_kurzu
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Banka') << banka) if banka
-        root << (Ox::Element.new('PorCislo') << por_cislo) if por_cislo
-        root << (Ox::Element.new('Datum') << datum) if datum
+        if attributes.key? :banka
+          element = Ox::Element.new('Banka')
+          element << attributes[:banka] if attributes[:banka]
+          root << element
+        end
 
-        if seznam_kurzu
+        if attributes.key? :por_cislo
+          element = Ox::Element.new('PorCislo')
+          element << attributes[:por_cislo] if attributes[:por_cislo]
+          root << element
+        end
+
+        if attributes.key? :datum
+          element = Ox::Element.new('Datum')
+          element << attributes[:datum] if attributes[:datum]
+          root << element
+        end
+
+        if attributes.key? :seznam_kurzu
           element = Ox::Element.new('SeznamKurzu')
-          seznam_kurzu.each { |i| element << KurzType.new(i, 'Kurz').builder }
+          attributes[:seznam_kurzu].each { |i| element << KurzType.new(i, 'Kurz').builder }
           root << element
         end
 

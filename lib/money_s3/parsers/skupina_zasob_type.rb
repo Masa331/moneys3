@@ -101,30 +101,33 @@ module MoneyS3
       end
 
       def to_h
-        { zkratka: zkratka,
-          nazev: nazev,
-          poznamka: poznamka,
-          zkratka0: zkratka0,
-          zkratka1: zkratka1,
-          zkratka2: zkratka2,
-          zkratka3: zkratka3,
-          zkratka4: zkratka4,
-          zkratka5: zkratka5,
-          zkratka6: zkratka6,
-          ceny: ceny,
-          nast_sklad: nast_sklad,
-          cis_skup_vpl: cis_skup_vpl,
-          in_cis_odde: in_cis_odde,
-          uc_vyrobk_vv: uc_vyrobk_vv,
-          prodejk_vz: prodejk_vz,
-          v_dod_lst_vz: v_dod_lst_vz,
-          p_dod_lst_vz: p_dod_lst_vz,
-          konfigurace: konfigurace.to_h,
-          definice_ceny: definice_ceny.to_h,
-          uc_pohyb_m: uc_pohyb_m.to_h,
-          uc_pohyb_z: uc_pohyb_z.to_h,
-          uc_pohyb_v: uc_pohyb_v.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zkratka] = zkratka if raw.key? :Zkratka
+        hash[:nazev] = nazev if raw.key? :Nazev
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:zkratka0] = zkratka0 if raw.key? :Zkratka0
+        hash[:zkratka1] = zkratka1 if raw.key? :Zkratka1
+        hash[:zkratka2] = zkratka2 if raw.key? :Zkratka2
+        hash[:zkratka3] = zkratka3 if raw.key? :Zkratka3
+        hash[:zkratka4] = zkratka4 if raw.key? :Zkratka4
+        hash[:zkratka5] = zkratka5 if raw.key? :Zkratka5
+        hash[:zkratka6] = zkratka6 if raw.key? :Zkratka6
+        hash[:ceny] = ceny if raw.key? :Ceny
+        hash[:nast_sklad] = nast_sklad if raw.key? :NastSklad
+        hash[:cis_skup_vpl] = cis_skup_vpl if raw.key? :CisSkupVPL
+        hash[:in_cis_odde] = in_cis_odde if raw.key? :IN_CisOdde
+        hash[:uc_vyrobk_vv] = uc_vyrobk_vv if raw.key? :UcVyrobkVV
+        hash[:prodejk_vz] = prodejk_vz if raw.key? :ProdejkVz
+        hash[:v_dod_lst_vz] = v_dod_lst_vz if raw.key? :VDodLstVz
+        hash[:p_dod_lst_vz] = p_dod_lst_vz if raw.key? :PDodLstVz
+        hash[:konfigurace] = konfigurace.to_h if raw.key? :konfigurace
+        hash[:definice_ceny] = definice_ceny.to_h if raw.key? :definiceCeny
+        hash[:uc_pohyb_m] = uc_pohyb_m.to_h if raw.key? :UcPohybM
+        hash[:uc_pohyb_z] = uc_pohyb_z.to_h if raw.key? :UcPohybZ
+        hash[:uc_pohyb_v] = uc_pohyb_v.to_h if raw.key? :UcPohybV
+
+        hash
       end
     end
   end

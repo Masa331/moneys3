@@ -14,9 +14,12 @@ module MoneyS3
       end
 
       def to_h
-        { chyba: chyba,
-          varovani: varovani
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:chyba] = chyba if raw.key? :Chyba
+        hash[:varovani] = varovani if raw.key? :Varovani
+
+        hash
       end
     end
   end

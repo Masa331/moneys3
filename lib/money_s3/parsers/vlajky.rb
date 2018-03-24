@@ -15,9 +15,12 @@ module MoneyS3
       end
 
       def to_h
-        { global: global.to_h,
-          user: user.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:global] = global.to_h if raw.key? :Global
+        hash[:user] = user.to_h if raw.key? :User
+
+        hash
       end
     end
   end

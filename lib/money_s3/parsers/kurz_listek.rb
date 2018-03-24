@@ -23,11 +23,14 @@ module MoneyS3
       end
 
       def to_h
-        { banka: banka,
-          por_cislo: por_cislo,
-          datum: datum,
-          seznam_kurzu: seznam_kurzu.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:banka] = banka if raw.key? :Banka
+        hash[:por_cislo] = por_cislo if raw.key? :PorCislo
+        hash[:datum] = datum if raw.key? :Datum
+        hash[:seznam_kurzu] = seznam_kurzu.map(&:to_h) if raw.key? :SeznamKurzu
+
+        hash
       end
     end
   end

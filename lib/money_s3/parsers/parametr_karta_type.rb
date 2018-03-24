@@ -19,10 +19,13 @@ module MoneyS3
       end
 
       def to_h
-        { poradi: poradi,
-          value: value,
-          parametr: parametr.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:poradi] = poradi if raw.key? :Poradi
+        hash[:value] = value if raw.key? :Value
+        hash[:parametr] = parametr.to_h if raw.key? :Parametr
+
+        hash
       end
     end
   end

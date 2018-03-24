@@ -6,13 +6,18 @@ module MoneyS3
     class SubpolInvDType
       include BaseBuilder
 
-      attr_accessor :mn_sada, :polozka
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('MnSada') << mn_sada) if mn_sada
-        root << PolInvDoklType.new(polozka, 'Polozka').builder if polozka
+        if attributes.key? :mn_sada
+          element = Ox::Element.new('MnSada')
+          element << attributes[:mn_sada] if attributes[:mn_sada]
+          root << element
+        end
+
+        if attributes.key? :polozka
+          root << PolInvDoklType.new(attributes[:polozka], 'Polozka').builder
+        end
 
         root
       end

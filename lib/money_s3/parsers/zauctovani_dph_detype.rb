@@ -35,14 +35,17 @@ module MoneyS3
       end
 
       def to_h
-        { zkrat: zkrat,
-          typ: typ,
-          popis: popis,
-          poh_dss: poh_dss,
-          poh_dzs: poh_dzs,
-          pozn: pozn,
-          seznam_obdobi_dph: seznam_obdobi_dph.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zkrat] = zkrat if raw.key? :Zkrat
+        hash[:typ] = typ if raw.key? :Typ
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:poh_dss] = poh_dss if raw.key? :PohDSS
+        hash[:poh_dzs] = poh_dzs if raw.key? :PohDZS
+        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:seznam_obdobi_dph] = seznam_obdobi_dph.map(&:to_h) if raw.key? :SeznamObdobiDPH
+
+        hash
       end
     end
   end

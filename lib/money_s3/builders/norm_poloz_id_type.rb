@@ -5,25 +5,92 @@ module MoneyS3
     class NormPolozIDType
       include BaseBuilder
 
-      attr_accessor :poradi, :popis, :zkratka, :cena, :cena_typ, :sazba_dph, :text_mj, :pocet_mj, :pr_kont, :cleneni, :stred, :zakazka, :cinnost, :poznamka
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Poradi') << poradi) if poradi
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('Zkratka') << zkratka) if zkratka
-        root << (Ox::Element.new('Cena') << cena) if cena
-        root << (Ox::Element.new('CenaTyp') << cena_typ) if cena_typ
-        root << (Ox::Element.new('SazbaDPH') << sazba_dph) if sazba_dph
-        root << (Ox::Element.new('TextMJ') << text_mj) if text_mj
-        root << (Ox::Element.new('PocetMJ') << pocet_mj) if pocet_mj
-        root << (Ox::Element.new('PrKont') << pr_kont) if pr_kont
-        root << (Ox::Element.new('Cleneni') << cleneni) if cleneni
-        root << (Ox::Element.new('Stred') << stred) if stred
-        root << (Ox::Element.new('Zakazka') << zakazka) if zakazka
-        root << (Ox::Element.new('Cinnost') << cinnost) if cinnost
-        root << (Ox::Element.new('Poznamka') << poznamka) if poznamka
+        if attributes.key? :poradi
+          element = Ox::Element.new('Poradi')
+          element << attributes[:poradi] if attributes[:poradi]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :zkratka
+          element = Ox::Element.new('Zkratka')
+          element << attributes[:zkratka] if attributes[:zkratka]
+          root << element
+        end
+
+        if attributes.key? :cena
+          element = Ox::Element.new('Cena')
+          element << attributes[:cena] if attributes[:cena]
+          root << element
+        end
+
+        if attributes.key? :cena_typ
+          element = Ox::Element.new('CenaTyp')
+          element << attributes[:cena_typ] if attributes[:cena_typ]
+          root << element
+        end
+
+        if attributes.key? :sazba_dph
+          element = Ox::Element.new('SazbaDPH')
+          element << attributes[:sazba_dph] if attributes[:sazba_dph]
+          root << element
+        end
+
+        if attributes.key? :text_mj
+          element = Ox::Element.new('TextMJ')
+          element << attributes[:text_mj] if attributes[:text_mj]
+          root << element
+        end
+
+        if attributes.key? :pocet_mj
+          element = Ox::Element.new('PocetMJ')
+          element << attributes[:pocet_mj] if attributes[:pocet_mj]
+          root << element
+        end
+
+        if attributes.key? :pr_kont
+          element = Ox::Element.new('PrKont')
+          element << attributes[:pr_kont] if attributes[:pr_kont]
+          root << element
+        end
+
+        if attributes.key? :cleneni
+          element = Ox::Element.new('Cleneni')
+          element << attributes[:cleneni] if attributes[:cleneni]
+          root << element
+        end
+
+        if attributes.key? :stred
+          element = Ox::Element.new('Stred')
+          element << attributes[:stred] if attributes[:stred]
+          root << element
+        end
+
+        if attributes.key? :zakazka
+          element = Ox::Element.new('Zakazka')
+          element << attributes[:zakazka] if attributes[:zakazka]
+          root << element
+        end
+
+        if attributes.key? :cinnost
+          element = Ox::Element.new('Cinnost')
+          element << attributes[:cinnost] if attributes[:cinnost]
+          root << element
+        end
+
+        if attributes.key? :poznamka
+          element = Ox::Element.new('Poznamka')
+          element << attributes[:poznamka] if attributes[:poznamka]
+          root << element
+        end
 
         root
       end

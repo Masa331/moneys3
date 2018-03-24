@@ -170,47 +170,50 @@ module MoneyS3
       end
 
       def to_h
-        { popis: popis,
-          zkrat: zkrat,
-          pozn: pozn,
-          mj: mj,
-          uziv_code: uziv_code,
-          guid: guid,
-          katalog: katalog,
-          bar_code: bar_code,
-          bc_typ: bc_typ,
-          typ_zar_doby: typ_zar_doby,
-          zar_doba: zar_doba,
-          ev_druhy: ev_druhy,
-          ev_vyr_cis: ev_vyr_cis,
-          des_mist: des_mist,
-          obrazek: obrazek,
-          obrazek2: obrazek2,
-          zarovnat: zarovnat,
-          zarovnat2: zarovnat2,
-          ceny: ceny,
-          nastav: nastav,
-          popis1: popis1,
-          pozn1: pozn1,
-          popis2: popis2,
-          pozn2: pozn2,
-          popis3: popis3,
-          pozn3: pozn3,
-          hmotnost: hmotnost,
-          objem: objem,
-          kod_kn: kod_kn,
-          predm_pln: predm_pln,
-          kod_statu: kod_statu,
-          typ_karty: typ_karty,
-          zboz_kuch: zboz_kuch,
-          i_dokl_pol: i_dokl_pol,
-          i_dokl_agend: i_dokl_agend,
-          konfigurace: konfigurace.to_h,
-          definice_ceny: definice_ceny.to_h,
-          slozeni: slozeni.map(&:to_h),
-          seznam_parametru_karty: seznam_parametru_karty.map(&:to_h),
-          dokumenty: dokumenty
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:zkrat] = zkrat if raw.key? :Zkrat
+        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:mj] = mj if raw.key? :MJ
+        hash[:uziv_code] = uziv_code if raw.key? :UzivCode
+        hash[:guid] = guid if raw.key? :GUID
+        hash[:katalog] = katalog if raw.key? :Katalog
+        hash[:bar_code] = bar_code if raw.key? :BarCode
+        hash[:bc_typ] = bc_typ if raw.key? :BCTyp
+        hash[:typ_zar_doby] = typ_zar_doby if raw.key? :TypZarDoby
+        hash[:zar_doba] = zar_doba if raw.key? :ZarDoba
+        hash[:ev_druhy] = ev_druhy if raw.key? :EvDruhy
+        hash[:ev_vyr_cis] = ev_vyr_cis if raw.key? :EvVyrCis
+        hash[:des_mist] = des_mist if raw.key? :DesMist
+        hash[:obrazek] = obrazek if raw.key? :Obrazek
+        hash[:obrazek2] = obrazek2 if raw.key? :Obrazek2
+        hash[:zarovnat] = zarovnat if raw.key? :Zarovnat
+        hash[:zarovnat2] = zarovnat2 if raw.key? :Zarovnat2
+        hash[:ceny] = ceny if raw.key? :Ceny
+        hash[:nastav] = nastav if raw.key? :Nastav
+        hash[:popis1] = popis1 if raw.key? :Popis1
+        hash[:pozn1] = pozn1 if raw.key? :Pozn1
+        hash[:popis2] = popis2 if raw.key? :Popis2
+        hash[:pozn2] = pozn2 if raw.key? :Pozn2
+        hash[:popis3] = popis3 if raw.key? :Popis3
+        hash[:pozn3] = pozn3 if raw.key? :Pozn3
+        hash[:hmotnost] = hmotnost if raw.key? :Hmotnost
+        hash[:objem] = objem if raw.key? :Objem
+        hash[:kod_kn] = kod_kn if raw.key? :KodKN
+        hash[:predm_pln] = predm_pln if raw.key? :PredmPln
+        hash[:kod_statu] = kod_statu if raw.key? :KodStatu
+        hash[:typ_karty] = typ_karty if raw.key? :TypKarty
+        hash[:zboz_kuch] = zboz_kuch if raw.key? :ZbozKuch
+        hash[:i_dokl_pol] = i_dokl_pol if raw.key? :iDoklPol
+        hash[:i_dokl_agend] = i_dokl_agend if raw.key? :iDoklAgend
+        hash[:konfigurace] = konfigurace.to_h if raw.key? :konfigurace
+        hash[:definice_ceny] = definice_ceny.to_h if raw.key? :definiceCeny
+        hash[:slozeni] = slozeni.map(&:to_h) if raw.key? :Slozeni
+        hash[:seznam_parametru_karty] = seznam_parametru_karty.map(&:to_h) if raw.key? :SeznamParametruKarty
+        hash[:dokumenty] = dokumenty if raw.key? :Dokumenty
+
+        hash
       end
     end
   end

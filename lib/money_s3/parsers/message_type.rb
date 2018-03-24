@@ -20,10 +20,13 @@ module MoneyS3
       end
 
       def to_h
-        { status: status,
-          reference: reference.to_h,
-          error_info: error_info.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:status] = status if raw.key? :Status
+        hash[:reference] = reference.to_h if raw.key? :Reference
+        hash[:error_info] = error_info.map(&:to_h) if raw.key? :ErrorInfo
+
+        hash
       end
     end
   end

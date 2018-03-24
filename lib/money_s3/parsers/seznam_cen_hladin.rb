@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { cenova_hladina: cenova_hladina.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:cenova_hladina] = cenova_hladina.map(&:to_h) if raw.key? :CenovaHladina
+
+        hash
       end
     end
   end

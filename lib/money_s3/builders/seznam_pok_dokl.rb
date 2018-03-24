@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamPokDokl
       include BaseBuilder
 
-      attr_accessor :pok_dokl
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if pok_dokl
-          pok_dokl.each { |i| root << PokDokl.new(i, 'PokDokl').builder }
+        if attributes.key? :pok_dokl
+          attributes[:pok_dokl].each { |i| root << PokDokl.new(i, 'PokDokl').builder }
         end
 
         root

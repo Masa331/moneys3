@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { typ_kusovnik: typ_kusovnik.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:typ_kusovnik] = typ_kusovnik.map(&:to_h) if raw.key? :TypKusovnik
+
+        hash
       end
     end
   end

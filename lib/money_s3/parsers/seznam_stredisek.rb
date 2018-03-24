@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { stredisko: stredisko.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:stredisko] = stredisko.map(&:to_h) if raw.key? :Stredisko
+
+        hash
       end
     end
   end

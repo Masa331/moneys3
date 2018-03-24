@@ -98,29 +98,32 @@ module MoneyS3
       end
 
       def to_h
-        { popis: popis,
-          poznamka: poznamka,
-          pocet_mj: pocet_mj,
-          sazba_dph: sazba_dph,
-          cena: cena,
-          cena_typ: cena_typ,
-          sleva: sleva,
-          cinnost: cinnost,
-          poradi: poradi,
-          kod_dph: kod_dph,
-          stredisko: stredisko,
-          zakazka: zakazka,
-          predkontac: predkontac,
-          valuty: valuty,
-          cena_po_sleve: cena_po_sleve,
-          zvl_rezim: zvl_rezim,
-          zvl_dph: zvl_dph,
-          rezim_eet: rezim_eet,
-          souhrn_dph: souhrn_dph.to_h,
-          neskl_polozka: neskl_polozka.to_h,
-          skl_polozka: skl_polozka.to_h,
-          seznam_vazeb: seznam_vazeb.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:pocet_mj] = pocet_mj if raw.key? :PocetMJ
+        hash[:sazba_dph] = sazba_dph if raw.key? :SazbaDPH
+        hash[:cena] = cena if raw.key? :Cena
+        hash[:cena_typ] = cena_typ if raw.key? :CenaTyp
+        hash[:sleva] = sleva if raw.key? :Sleva
+        hash[:cinnost] = cinnost if raw.key? :Cinnost
+        hash[:poradi] = poradi if raw.key? :Poradi
+        hash[:kod_dph] = kod_dph if raw.key? :KodDPH
+        hash[:stredisko] = stredisko if raw.key? :Stredisko
+        hash[:zakazka] = zakazka if raw.key? :Zakazka
+        hash[:predkontac] = predkontac if raw.key? :Predkontac
+        hash[:valuty] = valuty if raw.key? :Valuty
+        hash[:cena_po_sleve] = cena_po_sleve if raw.key? :CenaPoSleve
+        hash[:zvl_rezim] = zvl_rezim if raw.key? :ZvlRezim
+        hash[:zvl_dph] = zvl_dph if raw.key? :ZvlDPH
+        hash[:rezim_eet] = rezim_eet if raw.key? :RezimEET
+        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
+        hash[:neskl_polozka] = neskl_polozka.to_h if raw.key? :NesklPolozka
+        hash[:skl_polozka] = skl_polozka.to_h if raw.key? :SklPolozka
+        hash[:seznam_vazeb] = seznam_vazeb.to_h if raw.key? :SeznamVazeb
+
+        hash
       end
     end
   end

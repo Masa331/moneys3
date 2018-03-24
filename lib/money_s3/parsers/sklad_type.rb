@@ -91,28 +91,31 @@ module MoneyS3
       end
 
       def to_h
-        { nazev: nazev,
-          kod_skladu: kod_skladu,
-          guid: guid,
-          cenik_sklad: cenik_sklad,
-          platno_od: platno_od,
-          platno_do: platno_do,
-          minus: minus,
-          neupoz: neupoz,
-          vyber_cen: vyber_cen,
-          vyber_dod: vyber_dod,
-          zpusob: zpusob,
-          prod_ceny_d: prod_ceny_d,
-          prepocet: prepocet,
-          ceny: ceny,
-          uc_vyrobk_vv: uc_vyrobk_vv,
-          prodejk_vz: prodejk_vz,
-          v_dod_lst_vz: v_dod_lst_vz,
-          p_dod_lst_vz: p_dod_lst_vz,
-          uc_pohyb_m: uc_pohyb_m.to_h,
-          uc_pohyb_z: uc_pohyb_z.to_h,
-          uc_pohyb_v: uc_pohyb_v.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:nazev] = nazev if raw.key? :Nazev
+        hash[:kod_skladu] = kod_skladu if raw.key? :KodSkladu
+        hash[:guid] = guid if raw.key? :GUID
+        hash[:cenik_sklad] = cenik_sklad if raw.key? :CenikSklad
+        hash[:platno_od] = platno_od if raw.key? :PlatnoOd
+        hash[:platno_do] = platno_do if raw.key? :PlatnoDo
+        hash[:minus] = minus if raw.key? :Minus
+        hash[:neupoz] = neupoz if raw.key? :Neupoz
+        hash[:vyber_cen] = vyber_cen if raw.key? :Vyber_cen
+        hash[:vyber_dod] = vyber_dod if raw.key? :Vyber_dod
+        hash[:zpusob] = zpusob if raw.key? :Zpusob
+        hash[:prod_ceny_d] = prod_ceny_d if raw.key? :ProdCenyD
+        hash[:prepocet] = prepocet if raw.key? :Prepocet
+        hash[:ceny] = ceny if raw.key? :Ceny
+        hash[:uc_vyrobk_vv] = uc_vyrobk_vv if raw.key? :UcVyrobkVV
+        hash[:prodejk_vz] = prodejk_vz if raw.key? :ProdejkVz
+        hash[:v_dod_lst_vz] = v_dod_lst_vz if raw.key? :VDodLstVz
+        hash[:p_dod_lst_vz] = p_dod_lst_vz if raw.key? :PDodLstVz
+        hash[:uc_pohyb_m] = uc_pohyb_m.to_h if raw.key? :UcPohybM
+        hash[:uc_pohyb_z] = uc_pohyb_z.to_h if raw.key? :UcPohybZ
+        hash[:uc_pohyb_v] = uc_pohyb_v.to_h if raw.key? :UcPohybV
+
+        hash
       end
     end
   end

@@ -5,14 +5,26 @@ module MoneyS3
     class TelefonType
       include BaseBuilder
 
-      attr_accessor :pred, :cislo, :klap
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Pred') << pred) if pred
-        root << (Ox::Element.new('Cislo') << cislo) if cislo
-        root << (Ox::Element.new('Klap') << klap) if klap
+        if attributes.key? :pred
+          element = Ox::Element.new('Pred')
+          element << attributes[:pred] if attributes[:pred]
+          root << element
+        end
+
+        if attributes.key? :cislo
+          element = Ox::Element.new('Cislo')
+          element << attributes[:cislo] if attributes[:cislo]
+          root << element
+        end
+
+        if attributes.key? :klap
+          element = Ox::Element.new('Klap')
+          element << attributes[:klap] if attributes[:klap]
+          root << element
+        end
 
         root
       end

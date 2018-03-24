@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamKmKarta
       include BaseBuilder
 
-      attr_accessor :km_karta
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if km_karta
-          km_karta.each { |i| root << KmKarta.new(i, 'KmKarta').builder }
+        if attributes.key? :km_karta
+          attributes[:km_karta].each { |i| root << KmKarta.new(i, 'KmKarta').builder }
         end
 
         root

@@ -6,20 +6,42 @@ module MoneyS3
     class ZamestnanecType
       include BaseBuilder
 
-      attr_accessor :os_cislo, :jmeno, :stredisko, :dat_nastup, :dat_odchod, :seznam_mzdovych_obdobi
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('OsCislo') << os_cislo) if os_cislo
-        root << (Ox::Element.new('Jmeno') << jmeno) if jmeno
-        root << (Ox::Element.new('Stredisko') << stredisko) if stredisko
-        root << (Ox::Element.new('DatNastup') << dat_nastup) if dat_nastup
-        root << (Ox::Element.new('DatOdchod') << dat_odchod) if dat_odchod
+        if attributes.key? :os_cislo
+          element = Ox::Element.new('OsCislo')
+          element << attributes[:os_cislo] if attributes[:os_cislo]
+          root << element
+        end
 
-        if seznam_mzdovych_obdobi
+        if attributes.key? :jmeno
+          element = Ox::Element.new('Jmeno')
+          element << attributes[:jmeno] if attributes[:jmeno]
+          root << element
+        end
+
+        if attributes.key? :stredisko
+          element = Ox::Element.new('Stredisko')
+          element << attributes[:stredisko] if attributes[:stredisko]
+          root << element
+        end
+
+        if attributes.key? :dat_nastup
+          element = Ox::Element.new('DatNastup')
+          element << attributes[:dat_nastup] if attributes[:dat_nastup]
+          root << element
+        end
+
+        if attributes.key? :dat_odchod
+          element = Ox::Element.new('DatOdchod')
+          element << attributes[:dat_odchod] if attributes[:dat_odchod]
+          root << element
+        end
+
+        if attributes.key? :seznam_mzdovych_obdobi
           element = Ox::Element.new('SeznamMzdovychObdobi')
-          seznam_mzdovych_obdobi.each { |i| element << MzdoveObdobiType.new(i, 'MzdoveObdobi').builder }
+          attributes[:seznam_mzdovych_obdobi].each { |i| element << MzdoveObdobiType.new(i, 'MzdoveObdobi').builder }
           root << element
         end
 

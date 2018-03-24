@@ -25,11 +25,14 @@ module MoneyS3
       end
 
       def to_h
-        { poc_mj: poc_mj,
-          stav_zasoby: stav_zasoby.to_h,
-          km_karta: km_karta.to_h,
-          sklad: sklad.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:poc_mj] = poc_mj if raw.key? :PocMJ
+        hash[:stav_zasoby] = stav_zasoby.to_h if raw.key? :StavZasoby
+        hash[:km_karta] = km_karta.to_h if raw.key? :KmKarta
+        hash[:sklad] = sklad.to_h if raw.key? :Sklad
+
+        hash
       end
     end
   end

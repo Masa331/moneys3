@@ -6,13 +6,16 @@ module MoneyS3
     class MsgPolozType
       include BaseBuilder
 
-      attr_accessor :km_karta, :sklad
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << MessageType.new(km_karta, 'KmKarta').builder if km_karta
-        root << MessageType.new(sklad, 'Sklad').builder if sklad
+        if attributes.key? :km_karta
+          root << MessageType.new(attributes[:km_karta], 'KmKarta').builder
+        end
+
+        if attributes.key? :sklad
+          root << MessageType.new(attributes[:sklad], 'Sklad').builder
+        end
 
         root
       end

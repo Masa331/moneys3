@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { skl_polozka: skl_polozka.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:skl_polozka] = skl_polozka.to_h if raw.key? :SklPolozka
+
+        hash
       end
     end
   end

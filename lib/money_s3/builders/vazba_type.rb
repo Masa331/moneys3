@@ -6,14 +6,24 @@ module MoneyS3
     class VazbaType
       include BaseBuilder
 
-      attr_accessor :typ, :pod_typ, :doklad
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Typ') << typ) if typ
-        root << (Ox::Element.new('PodTyp') << pod_typ) if pod_typ
-        root << Doklad.new(doklad, 'Doklad').builder if doklad
+        if attributes.key? :typ
+          element = Ox::Element.new('Typ')
+          element << attributes[:typ] if attributes[:typ]
+          root << element
+        end
+
+        if attributes.key? :pod_typ
+          element = Ox::Element.new('PodTyp')
+          element << attributes[:pod_typ] if attributes[:pod_typ]
+          root << element
+        end
+
+        if attributes.key? :doklad
+          root << Doklad.new(attributes[:doklad], 'Doklad').builder
+        end
 
         root
       end

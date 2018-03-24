@@ -5,34 +5,146 @@ module MoneyS3
     class BankUcetPokladnaType
       include BaseBuilder
 
-      attr_accessor :zkrat, :popis, :uc_pokl, :poc_stav, :mena, :b_mena, :ps_kurz, :ps_mnozstvi, :prim_ucet, :ucet, :b_kod, :b_nazev, :b_zkrat, :iban, :swift, :uver, :hbid, :hb_nazev, :druh, :typ_prijem, :typ_vydej, :pokladni, :pozn
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('UcPokl') << uc_pokl) if uc_pokl
-        root << (Ox::Element.new('PocStav') << poc_stav) if poc_stav
-        root << (Ox::Element.new('Mena') << mena) if mena
-        root << (Ox::Element.new('BMena') << b_mena) if b_mena
-        root << (Ox::Element.new('PSKurz') << ps_kurz) if ps_kurz
-        root << (Ox::Element.new('PSMnozstvi') << ps_mnozstvi) if ps_mnozstvi
-        root << (Ox::Element.new('PrimUcet') << prim_ucet) if prim_ucet
-        root << (Ox::Element.new('Ucet') << ucet) if ucet
-        root << (Ox::Element.new('BKod') << b_kod) if b_kod
-        root << (Ox::Element.new('BNazev') << b_nazev) if b_nazev
-        root << (Ox::Element.new('BZkrat') << b_zkrat) if b_zkrat
-        root << (Ox::Element.new('IBAN') << iban) if iban
-        root << (Ox::Element.new('SWIFT') << swift) if swift
-        root << (Ox::Element.new('Uver') << uver) if uver
-        root << (Ox::Element.new('HBID') << hbid) if hbid
-        root << (Ox::Element.new('HBNazev') << hb_nazev) if hb_nazev
-        root << (Ox::Element.new('Druh') << druh) if druh
-        root << (Ox::Element.new('TypPrijem') << typ_prijem) if typ_prijem
-        root << (Ox::Element.new('TypVydej') << typ_vydej) if typ_vydej
-        root << (Ox::Element.new('Pokladni') << pokladni) if pokladni
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :uc_pokl
+          element = Ox::Element.new('UcPokl')
+          element << attributes[:uc_pokl] if attributes[:uc_pokl]
+          root << element
+        end
+
+        if attributes.key? :poc_stav
+          element = Ox::Element.new('PocStav')
+          element << attributes[:poc_stav] if attributes[:poc_stav]
+          root << element
+        end
+
+        if attributes.key? :mena
+          element = Ox::Element.new('Mena')
+          element << attributes[:mena] if attributes[:mena]
+          root << element
+        end
+
+        if attributes.key? :b_mena
+          element = Ox::Element.new('BMena')
+          element << attributes[:b_mena] if attributes[:b_mena]
+          root << element
+        end
+
+        if attributes.key? :ps_kurz
+          element = Ox::Element.new('PSKurz')
+          element << attributes[:ps_kurz] if attributes[:ps_kurz]
+          root << element
+        end
+
+        if attributes.key? :ps_mnozstvi
+          element = Ox::Element.new('PSMnozstvi')
+          element << attributes[:ps_mnozstvi] if attributes[:ps_mnozstvi]
+          root << element
+        end
+
+        if attributes.key? :prim_ucet
+          element = Ox::Element.new('PrimUcet')
+          element << attributes[:prim_ucet] if attributes[:prim_ucet]
+          root << element
+        end
+
+        if attributes.key? :ucet
+          element = Ox::Element.new('Ucet')
+          element << attributes[:ucet] if attributes[:ucet]
+          root << element
+        end
+
+        if attributes.key? :b_kod
+          element = Ox::Element.new('BKod')
+          element << attributes[:b_kod] if attributes[:b_kod]
+          root << element
+        end
+
+        if attributes.key? :b_nazev
+          element = Ox::Element.new('BNazev')
+          element << attributes[:b_nazev] if attributes[:b_nazev]
+          root << element
+        end
+
+        if attributes.key? :b_zkrat
+          element = Ox::Element.new('BZkrat')
+          element << attributes[:b_zkrat] if attributes[:b_zkrat]
+          root << element
+        end
+
+        if attributes.key? :iban
+          element = Ox::Element.new('IBAN')
+          element << attributes[:iban] if attributes[:iban]
+          root << element
+        end
+
+        if attributes.key? :swift
+          element = Ox::Element.new('SWIFT')
+          element << attributes[:swift] if attributes[:swift]
+          root << element
+        end
+
+        if attributes.key? :uver
+          element = Ox::Element.new('Uver')
+          element << attributes[:uver] if attributes[:uver]
+          root << element
+        end
+
+        if attributes.key? :hbid
+          element = Ox::Element.new('HBID')
+          element << attributes[:hbid] if attributes[:hbid]
+          root << element
+        end
+
+        if attributes.key? :hb_nazev
+          element = Ox::Element.new('HBNazev')
+          element << attributes[:hb_nazev] if attributes[:hb_nazev]
+          root << element
+        end
+
+        if attributes.key? :druh
+          element = Ox::Element.new('Druh')
+          element << attributes[:druh] if attributes[:druh]
+          root << element
+        end
+
+        if attributes.key? :typ_prijem
+          element = Ox::Element.new('TypPrijem')
+          element << attributes[:typ_prijem] if attributes[:typ_prijem]
+          root << element
+        end
+
+        if attributes.key? :typ_vydej
+          element = Ox::Element.new('TypVydej')
+          element << attributes[:typ_vydej] if attributes[:typ_vydej]
+          root << element
+        end
+
+        if attributes.key? :pokladni
+          element = Ox::Element.new('Pokladni')
+          element << attributes[:pokladni] if attributes[:pokladni]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
 
         root
       end

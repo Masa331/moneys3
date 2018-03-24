@@ -98,30 +98,33 @@ module MoneyS3
       end
 
       def to_h
-        { zkrat: zkrat,
-          popis: popis,
-          uc_pokl: uc_pokl,
-          poc_stav: poc_stav,
-          mena: mena,
-          b_mena: b_mena,
-          ps_kurz: ps_kurz,
-          ps_mnozstvi: ps_mnozstvi,
-          prim_ucet: prim_ucet,
-          ucet: ucet,
-          b_kod: b_kod,
-          b_nazev: b_nazev,
-          b_zkrat: b_zkrat,
-          iban: iban,
-          swift: swift,
-          uver: uver,
-          hbid: hbid,
-          hb_nazev: hb_nazev,
-          druh: druh,
-          typ_prijem: typ_prijem,
-          typ_vydej: typ_vydej,
-          pokladni: pokladni,
-          pozn: pozn
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zkrat] = zkrat if raw.key? :Zkrat
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:uc_pokl] = uc_pokl if raw.key? :UcPokl
+        hash[:poc_stav] = poc_stav if raw.key? :PocStav
+        hash[:mena] = mena if raw.key? :Mena
+        hash[:b_mena] = b_mena if raw.key? :BMena
+        hash[:ps_kurz] = ps_kurz if raw.key? :PSKurz
+        hash[:ps_mnozstvi] = ps_mnozstvi if raw.key? :PSMnozstvi
+        hash[:prim_ucet] = prim_ucet if raw.key? :PrimUcet
+        hash[:ucet] = ucet if raw.key? :Ucet
+        hash[:b_kod] = b_kod if raw.key? :BKod
+        hash[:b_nazev] = b_nazev if raw.key? :BNazev
+        hash[:b_zkrat] = b_zkrat if raw.key? :BZkrat
+        hash[:iban] = iban if raw.key? :IBAN
+        hash[:swift] = swift if raw.key? :SWIFT
+        hash[:uver] = uver if raw.key? :Uver
+        hash[:hbid] = hbid if raw.key? :HBID
+        hash[:hb_nazev] = hb_nazev if raw.key? :HBNazev
+        hash[:druh] = druh if raw.key? :Druh
+        hash[:typ_prijem] = typ_prijem if raw.key? :TypPrijem
+        hash[:typ_vydej] = typ_vydej if raw.key? :TypVydej
+        hash[:pokladni] = pokladni if raw.key? :Pokladni
+        hash[:pozn] = pozn if raw.key? :Pozn
+
+        hash
       end
     end
   end

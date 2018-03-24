@@ -18,10 +18,13 @@ module MoneyS3
       end
 
       def to_h
-        { kod: kod,
-          mnozstvi: mnozstvi,
-          kurs: kurs
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:kod] = kod if raw.key? :Kod
+        hash[:mnozstvi] = mnozstvi if raw.key? :Mnozstvi
+        hash[:kurs] = kurs if raw.key? :Kurs
+
+        hash
       end
     end
   end

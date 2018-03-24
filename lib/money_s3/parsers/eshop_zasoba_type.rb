@@ -31,13 +31,16 @@ module MoneyS3
       end
 
       def to_h
-        { in_export: in_export,
-          in_changed: in_changed,
-          in_deleted: in_deleted,
-          cis_karty: cis_karty,
-          cis_skladu: cis_skladu,
-          e_skup: e_skup.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:in_export] = in_export if raw.key? :IN_Export
+        hash[:in_changed] = in_changed if raw.key? :IN_Changed
+        hash[:in_deleted] = in_deleted if raw.key? :IN_Deleted
+        hash[:cis_karty] = cis_karty if raw.key? :CisKarty
+        hash[:cis_skladu] = cis_skladu if raw.key? :CisSkladu
+        hash[:e_skup] = e_skup.map(&:to_h) if raw.key? :eSkup
+
+        hash
       end
     end
   end

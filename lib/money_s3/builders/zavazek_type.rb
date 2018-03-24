@@ -12,74 +12,296 @@ module MoneyS3
     class ZavazekType
       include BaseBuilder
 
-      attr_accessor :doklad, :zpusob_uctovani, :d_rada, :d_cislo, :popis, :pr_dokl, :puv_c_dokl, :var_sym, :par_sym, :kon_sym, :spec_sym, :dat_uc_pr, :dat_vyst, :dat_spl, :dat_pln, :doruceno, :dbrpis, :dobr_duzp, :uc_pokl, :pr_kont, :cleneni, :stred, :zakazka, :cinnost, :plnen_dph, :ucel_zd_pl, :pozn, :s_sazba, :z_sazba, :uh_zbyva, :uh_datum, :uh_dokl, :pu_datum, :pu_zbyva, :valuty_k_uhr, :dat_upom1, :dat_upom2, :dat_upom_l, :typ_dokl, :zjedn_d, :vyst, :celkem, :adresa, :valuty, :moje_firma, :vlajky, :souhrn_dph, :dokumenty, :seznam_rozuct_polozek, :seznam_norm_polozek
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Doklad') << doklad) if doklad
-        root << (Ox::Element.new('ZpusobUctovani') << zpusob_uctovani) if zpusob_uctovani
-        root << (Ox::Element.new('DRada') << d_rada) if d_rada
-        root << (Ox::Element.new('DCislo') << d_cislo) if d_cislo
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('PrDokl') << pr_dokl) if pr_dokl
-        root << (Ox::Element.new('PuvCDokl') << puv_c_dokl) if puv_c_dokl
-        root << (Ox::Element.new('VarSym') << var_sym) if var_sym
-        root << (Ox::Element.new('ParSym') << par_sym) if par_sym
-        root << (Ox::Element.new('KonSym') << kon_sym) if kon_sym
-        root << (Ox::Element.new('SpecSym') << spec_sym) if spec_sym
-        root << (Ox::Element.new('DatUcPr') << dat_uc_pr) if dat_uc_pr
-        root << (Ox::Element.new('DatVyst') << dat_vyst) if dat_vyst
-        root << (Ox::Element.new('DatSpl') << dat_spl) if dat_spl
-        root << (Ox::Element.new('DatPln') << dat_pln) if dat_pln
-        root << (Ox::Element.new('Doruceno') << doruceno) if doruceno
-        root << (Ox::Element.new('Dbrpis') << dbrpis) if dbrpis
-        root << (Ox::Element.new('DobrDUZP') << dobr_duzp) if dobr_duzp
-        root << (Ox::Element.new('UcPokl') << uc_pokl) if uc_pokl
-        root << (Ox::Element.new('PrKont') << pr_kont) if pr_kont
-        root << (Ox::Element.new('Cleneni') << cleneni) if cleneni
-        root << (Ox::Element.new('Stred') << stred) if stred
-        root << (Ox::Element.new('Zakazka') << zakazka) if zakazka
-        root << (Ox::Element.new('Cinnost') << cinnost) if cinnost
-        root << (Ox::Element.new('PlnenDPH') << plnen_dph) if plnen_dph
-        root << (Ox::Element.new('UcelZdPl') << ucel_zd_pl) if ucel_zd_pl
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
-        root << (Ox::Element.new('SSazba') << s_sazba) if s_sazba
-        root << (Ox::Element.new('ZSazba') << z_sazba) if z_sazba
-        root << (Ox::Element.new('UhZbyva') << uh_zbyva) if uh_zbyva
-        root << (Ox::Element.new('UhDatum') << uh_datum) if uh_datum
-        root << (Ox::Element.new('UhDokl') << uh_dokl) if uh_dokl
-        root << (Ox::Element.new('PUDatum') << pu_datum) if pu_datum
-        root << (Ox::Element.new('PUZbyva') << pu_zbyva) if pu_zbyva
-        root << (Ox::Element.new('ValutyKUhr') << valuty_k_uhr) if valuty_k_uhr
-        root << (Ox::Element.new('DatUpom1') << dat_upom1) if dat_upom1
-        root << (Ox::Element.new('DatUpom2') << dat_upom2) if dat_upom2
-        root << (Ox::Element.new('DatUpomL') << dat_upom_l) if dat_upom_l
-        root << (Ox::Element.new('TypDokl') << typ_dokl) if typ_dokl
-        root << (Ox::Element.new('ZjednD') << zjedn_d) if zjedn_d
-        root << (Ox::Element.new('Vyst') << vyst) if vyst
-        root << (Ox::Element.new('Celkem') << celkem) if celkem
-        root << DokladFirmaType.new(adresa, 'Adresa').builder if adresa
-        root << Valuty.new(valuty, 'Valuty').builder if valuty
-        root << MojeFirmaType.new(moje_firma, 'MojeFirma').builder if moje_firma
-        root << Vlajky.new(vlajky, 'Vlajky').builder if vlajky
-        root << SouhrnDPHType.new(souhrn_dph, 'SouhrnDPH').builder if souhrn_dph
+        if attributes.key? :doklad
+          element = Ox::Element.new('Doklad')
+          element << attributes[:doklad] if attributes[:doklad]
+          root << element
+        end
 
-        if seznam_rozuct_polozek
+        if attributes.key? :zpusob_uctovani
+          element = Ox::Element.new('ZpusobUctovani')
+          element << attributes[:zpusob_uctovani] if attributes[:zpusob_uctovani]
+          root << element
+        end
+
+        if attributes.key? :d_rada
+          element = Ox::Element.new('DRada')
+          element << attributes[:d_rada] if attributes[:d_rada]
+          root << element
+        end
+
+        if attributes.key? :d_cislo
+          element = Ox::Element.new('DCislo')
+          element << attributes[:d_cislo] if attributes[:d_cislo]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :pr_dokl
+          element = Ox::Element.new('PrDokl')
+          element << attributes[:pr_dokl] if attributes[:pr_dokl]
+          root << element
+        end
+
+        if attributes.key? :puv_c_dokl
+          element = Ox::Element.new('PuvCDokl')
+          element << attributes[:puv_c_dokl] if attributes[:puv_c_dokl]
+          root << element
+        end
+
+        if attributes.key? :var_sym
+          element = Ox::Element.new('VarSym')
+          element << attributes[:var_sym] if attributes[:var_sym]
+          root << element
+        end
+
+        if attributes.key? :par_sym
+          element = Ox::Element.new('ParSym')
+          element << attributes[:par_sym] if attributes[:par_sym]
+          root << element
+        end
+
+        if attributes.key? :kon_sym
+          element = Ox::Element.new('KonSym')
+          element << attributes[:kon_sym] if attributes[:kon_sym]
+          root << element
+        end
+
+        if attributes.key? :spec_sym
+          element = Ox::Element.new('SpecSym')
+          element << attributes[:spec_sym] if attributes[:spec_sym]
+          root << element
+        end
+
+        if attributes.key? :dat_uc_pr
+          element = Ox::Element.new('DatUcPr')
+          element << attributes[:dat_uc_pr] if attributes[:dat_uc_pr]
+          root << element
+        end
+
+        if attributes.key? :dat_vyst
+          element = Ox::Element.new('DatVyst')
+          element << attributes[:dat_vyst] if attributes[:dat_vyst]
+          root << element
+        end
+
+        if attributes.key? :dat_spl
+          element = Ox::Element.new('DatSpl')
+          element << attributes[:dat_spl] if attributes[:dat_spl]
+          root << element
+        end
+
+        if attributes.key? :dat_pln
+          element = Ox::Element.new('DatPln')
+          element << attributes[:dat_pln] if attributes[:dat_pln]
+          root << element
+        end
+
+        if attributes.key? :doruceno
+          element = Ox::Element.new('Doruceno')
+          element << attributes[:doruceno] if attributes[:doruceno]
+          root << element
+        end
+
+        if attributes.key? :dbrpis
+          element = Ox::Element.new('Dbrpis')
+          element << attributes[:dbrpis] if attributes[:dbrpis]
+          root << element
+        end
+
+        if attributes.key? :dobr_duzp
+          element = Ox::Element.new('DobrDUZP')
+          element << attributes[:dobr_duzp] if attributes[:dobr_duzp]
+          root << element
+        end
+
+        if attributes.key? :uc_pokl
+          element = Ox::Element.new('UcPokl')
+          element << attributes[:uc_pokl] if attributes[:uc_pokl]
+          root << element
+        end
+
+        if attributes.key? :pr_kont
+          element = Ox::Element.new('PrKont')
+          element << attributes[:pr_kont] if attributes[:pr_kont]
+          root << element
+        end
+
+        if attributes.key? :cleneni
+          element = Ox::Element.new('Cleneni')
+          element << attributes[:cleneni] if attributes[:cleneni]
+          root << element
+        end
+
+        if attributes.key? :stred
+          element = Ox::Element.new('Stred')
+          element << attributes[:stred] if attributes[:stred]
+          root << element
+        end
+
+        if attributes.key? :zakazka
+          element = Ox::Element.new('Zakazka')
+          element << attributes[:zakazka] if attributes[:zakazka]
+          root << element
+        end
+
+        if attributes.key? :cinnost
+          element = Ox::Element.new('Cinnost')
+          element << attributes[:cinnost] if attributes[:cinnost]
+          root << element
+        end
+
+        if attributes.key? :plnen_dph
+          element = Ox::Element.new('PlnenDPH')
+          element << attributes[:plnen_dph] if attributes[:plnen_dph]
+          root << element
+        end
+
+        if attributes.key? :ucel_zd_pl
+          element = Ox::Element.new('UcelZdPl')
+          element << attributes[:ucel_zd_pl] if attributes[:ucel_zd_pl]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
+
+        if attributes.key? :s_sazba
+          element = Ox::Element.new('SSazba')
+          element << attributes[:s_sazba] if attributes[:s_sazba]
+          root << element
+        end
+
+        if attributes.key? :z_sazba
+          element = Ox::Element.new('ZSazba')
+          element << attributes[:z_sazba] if attributes[:z_sazba]
+          root << element
+        end
+
+        if attributes.key? :uh_zbyva
+          element = Ox::Element.new('UhZbyva')
+          element << attributes[:uh_zbyva] if attributes[:uh_zbyva]
+          root << element
+        end
+
+        if attributes.key? :uh_datum
+          element = Ox::Element.new('UhDatum')
+          element << attributes[:uh_datum] if attributes[:uh_datum]
+          root << element
+        end
+
+        if attributes.key? :uh_dokl
+          element = Ox::Element.new('UhDokl')
+          element << attributes[:uh_dokl] if attributes[:uh_dokl]
+          root << element
+        end
+
+        if attributes.key? :pu_datum
+          element = Ox::Element.new('PUDatum')
+          element << attributes[:pu_datum] if attributes[:pu_datum]
+          root << element
+        end
+
+        if attributes.key? :pu_zbyva
+          element = Ox::Element.new('PUZbyva')
+          element << attributes[:pu_zbyva] if attributes[:pu_zbyva]
+          root << element
+        end
+
+        if attributes.key? :valuty_k_uhr
+          element = Ox::Element.new('ValutyKUhr')
+          element << attributes[:valuty_k_uhr] if attributes[:valuty_k_uhr]
+          root << element
+        end
+
+        if attributes.key? :dat_upom1
+          element = Ox::Element.new('DatUpom1')
+          element << attributes[:dat_upom1] if attributes[:dat_upom1]
+          root << element
+        end
+
+        if attributes.key? :dat_upom2
+          element = Ox::Element.new('DatUpom2')
+          element << attributes[:dat_upom2] if attributes[:dat_upom2]
+          root << element
+        end
+
+        if attributes.key? :dat_upom_l
+          element = Ox::Element.new('DatUpomL')
+          element << attributes[:dat_upom_l] if attributes[:dat_upom_l]
+          root << element
+        end
+
+        if attributes.key? :typ_dokl
+          element = Ox::Element.new('TypDokl')
+          element << attributes[:typ_dokl] if attributes[:typ_dokl]
+          root << element
+        end
+
+        if attributes.key? :zjedn_d
+          element = Ox::Element.new('ZjednD')
+          element << attributes[:zjedn_d] if attributes[:zjedn_d]
+          root << element
+        end
+
+        if attributes.key? :vyst
+          element = Ox::Element.new('Vyst')
+          element << attributes[:vyst] if attributes[:vyst]
+          root << element
+        end
+
+        if attributes.key? :celkem
+          element = Ox::Element.new('Celkem')
+          element << attributes[:celkem] if attributes[:celkem]
+          root << element
+        end
+
+        if attributes.key? :adresa
+          root << DokladFirmaType.new(attributes[:adresa], 'Adresa').builder
+        end
+
+        if attributes.key? :valuty
+          root << Valuty.new(attributes[:valuty], 'Valuty').builder
+        end
+
+        if attributes.key? :moje_firma
+          root << MojeFirmaType.new(attributes[:moje_firma], 'MojeFirma').builder
+        end
+
+        if attributes.key? :vlajky
+          root << Vlajky.new(attributes[:vlajky], 'Vlajky').builder
+        end
+
+        if attributes.key? :souhrn_dph
+          root << SouhrnDPHType.new(attributes[:souhrn_dph], 'SouhrnDPH').builder
+        end
+
+        if attributes.key? :seznam_rozuct_polozek
           element = Ox::Element.new('SeznamRozuctPolozek')
-          seznam_rozuct_polozek.each { |i| element << RozuctPolozUDType.new(i, 'RozuctPolozka').builder }
+          attributes[:seznam_rozuct_polozek].each { |i| element << RozuctPolozUDType.new(i, 'RozuctPolozka').builder }
           root << element
         end
 
-        if seznam_norm_polozek
+        if attributes.key? :seznam_norm_polozek
           element = Ox::Element.new('SeznamNormPolozek')
-          seznam_norm_polozek.each { |i| element << NormPolozUDType.new(i, 'NormPolozka').builder }
+          attributes[:seznam_norm_polozek].each { |i| element << NormPolozUDType.new(i, 'NormPolozka').builder }
           root << element
         end
 
-        if dokumenty
+        if attributes.key? :dokumenty
           element = Ox::Element.new('Dokumenty')
-          dokumenty.map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
+          attributes[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
           root << element
         end
 

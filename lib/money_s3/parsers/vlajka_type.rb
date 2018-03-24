@@ -38,15 +38,18 @@ module MoneyS3
       end
 
       def to_h
-        { id_user: id_user,
-          name_user: name_user,
-          id_flag: id_flag,
-          title: title,
-          enabled: enabled,
-          remark: remark,
-          rf_width: rf_width,
-          rf_height: rf_height
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:id_user] = id_user if raw.key? :IDUser
+        hash[:name_user] = name_user if raw.key? :NameUser
+        hash[:id_flag] = id_flag if raw.key? :IDFlag
+        hash[:title] = title if raw.key? :Title
+        hash[:enabled] = enabled if raw.key? :Enabled
+        hash[:remark] = remark if raw.key? :Remark
+        hash[:rf_width] = rf_width if raw.key? :RFWidth
+        hash[:rf_height] = rf_height if raw.key? :RFHeight
+
+        hash
       end
     end
   end

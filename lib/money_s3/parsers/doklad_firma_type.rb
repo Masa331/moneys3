@@ -110,32 +110,35 @@ module MoneyS3
       end
 
       def to_h
-        { obch_nazev: obch_nazev,
-          fakt_nazev: fakt_nazev,
-          ico: ico,
-          dic: dic,
-          dicsk: dicsk,
-          guid: guid,
-          nazev: nazev,
-          e_mail: e_mail,
-          www: www,
-          platce_dph: platce_dph,
-          fyz_osoba: fyz_osoba,
-          banka: banka,
-          ucet: ucet,
-          kod_banky: kod_banky,
-          v_symb: v_symb,
-          spec_sym: spec_sym,
-          kod_partn: kod_partn,
-          obch_adresa: obch_adresa.to_h,
-          fakt_adresa: fakt_adresa.to_h,
-          adresa: adresa.to_h,
-          tel: tel.to_h,
-          fax: fax.to_h,
-          mobil: mobil.to_h,
-          isdoc: isdoc.to_h,
-          eshop: eshop.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:obch_nazev] = obch_nazev if raw.key? :ObchNazev
+        hash[:fakt_nazev] = fakt_nazev if raw.key? :FaktNazev
+        hash[:ico] = ico if raw.key? :ICO
+        hash[:dic] = dic if raw.key? :DIC
+        hash[:dicsk] = dicsk if raw.key? :DICSK
+        hash[:guid] = guid if raw.key? :GUID
+        hash[:nazev] = nazev if raw.key? :Nazev
+        hash[:e_mail] = e_mail if raw.key? :EMail
+        hash[:www] = www if raw.key? :WWW
+        hash[:platce_dph] = platce_dph if raw.key? :PlatceDPH
+        hash[:fyz_osoba] = fyz_osoba if raw.key? :FyzOsoba
+        hash[:banka] = banka if raw.key? :Banka
+        hash[:ucet] = ucet if raw.key? :Ucet
+        hash[:kod_banky] = kod_banky if raw.key? :KodBanky
+        hash[:v_symb] = v_symb if raw.key? :VSymb
+        hash[:spec_sym] = spec_sym if raw.key? :SpecSym
+        hash[:kod_partn] = kod_partn if raw.key? :KodPartn
+        hash[:obch_adresa] = obch_adresa.to_h if raw.key? :ObchAdresa
+        hash[:fakt_adresa] = fakt_adresa.to_h if raw.key? :FaktAdresa
+        hash[:adresa] = adresa.to_h if raw.key? :Adresa
+        hash[:tel] = tel.to_h if raw.key? :Tel
+        hash[:fax] = fax.to_h if raw.key? :Fax
+        hash[:mobil] = mobil.to_h if raw.key? :Mobil
+        hash[:isdoc] = isdoc.to_h if raw.key? :ISDOC
+        hash[:eshop] = eshop.to_h if raw.key? :eshop
+
+        hash
       end
     end
   end

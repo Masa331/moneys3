@@ -6,13 +6,18 @@ module MoneyS3
     class SubPolObjType
       include BaseBuilder
 
-      attr_accessor :mj_na_sadu, :polozka
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('MJNaSadu') << mj_na_sadu) if mj_na_sadu
-        root << PolObjednType.new(polozka, 'Polozka').builder if polozka
+        if attributes.key? :mj_na_sadu
+          element = Ox::Element.new('MJNaSadu')
+          element << attributes[:mj_na_sadu] if attributes[:mj_na_sadu]
+          root << element
+        end
+
+        if attributes.key? :polozka
+          root << PolObjednType.new(attributes[:polozka], 'Polozka').builder
+        end
 
         root
       end

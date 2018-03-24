@@ -73,23 +73,26 @@ module MoneyS3
       end
 
       def to_h
-        { dealer_skupina: dealer_skupina,
-          sdph: sdph,
-          zaok: zaok,
-          zpusob_zao: zpusob_zao,
-          vyp_pr_ceny: vyp_pr_ceny,
-          vych_a: vych_a,
-          zpusob_zm_a: zpusob_zm_a,
-          vych_b: vych_b,
-          zpusob_zm_b: zpusob_zm_b,
-          hladina: hladina.to_h,
-          mena: mena.to_h,
-          cena1: cena1.to_h,
-          cena2: cena2.to_h,
-          cena3: cena3.to_h,
-          cena4: cena4.to_h,
-          cena5: cena5.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:dealer_skupina] = dealer_skupina if raw.key? :DealerSkupina
+        hash[:sdph] = sdph if raw.key? :SDPH
+        hash[:zaok] = zaok if raw.key? :Zaok
+        hash[:zpusob_zao] = zpusob_zao if raw.key? :ZpusobZao
+        hash[:vyp_pr_ceny] = vyp_pr_ceny if raw.key? :VypPrCeny
+        hash[:vych_a] = vych_a if raw.key? :VychA
+        hash[:zpusob_zm_a] = zpusob_zm_a if raw.key? :ZpusobZmA
+        hash[:vych_b] = vych_b if raw.key? :VychB
+        hash[:zpusob_zm_b] = zpusob_zm_b if raw.key? :ZpusobZmB
+        hash[:hladina] = hladina.to_h if raw.key? :Hladina
+        hash[:mena] = mena.to_h if raw.key? :Mena
+        hash[:cena1] = cena1.to_h if raw.key? :Cena1
+        hash[:cena2] = cena2.to_h if raw.key? :Cena2
+        hash[:cena3] = cena3.to_h if raw.key? :Cena3
+        hash[:cena4] = cena4.to_h if raw.key? :Cena4
+        hash[:cena5] = cena5.to_h if raw.key? :Cena5
+
+        hash
       end
     end
   end

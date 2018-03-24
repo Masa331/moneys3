@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamPoptVyd
       include BaseBuilder
 
-      attr_accessor :popt_vyd
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if popt_vyd
-          popt_vyd.each { |i| root << PoptVyd.new(i, 'PoptVyd').builder }
+        if attributes.key? :popt_vyd
+          attributes[:popt_vyd].each { |i| root << PoptVyd.new(i, 'PoptVyd').builder }
         end
 
         root

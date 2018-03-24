@@ -5,14 +5,26 @@ module MoneyS3
     class EShopInfo
       include BaseBuilder
 
-      attr_accessor :e_shop_id, :e_shop_name, :e_sale_id
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('eShopID') << e_shop_id) if e_shop_id
-        root << (Ox::Element.new('eShopName') << e_shop_name) if e_shop_name
-        root << (Ox::Element.new('eSaleID') << e_sale_id) if e_sale_id
+        if attributes.key? :e_shop_id
+          element = Ox::Element.new('eShopID')
+          element << attributes[:e_shop_id] if attributes[:e_shop_id]
+          root << element
+        end
+
+        if attributes.key? :e_shop_name
+          element = Ox::Element.new('eShopName')
+          element << attributes[:e_shop_name] if attributes[:e_shop_name]
+          root << element
+        end
+
+        if attributes.key? :e_sale_id
+          element = Ox::Element.new('eSaleID')
+          element << attributes[:e_sale_id] if attributes[:e_sale_id]
+          root << element
+        end
 
         root
       end

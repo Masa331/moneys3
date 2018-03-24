@@ -6,20 +6,47 @@ module MoneyS3
     class InvDoklType
       include BaseBuilder
 
-      attr_accessor :cislo_d, :inv_id, :popis, :prac, :kontr, :poznamka, :polozka
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('CisloD') << cislo_d) if cislo_d
-        root << (Ox::Element.new('InvID') << inv_id) if inv_id
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('Prac') << prac) if prac
-        root << (Ox::Element.new('Kontr') << kontr) if kontr
-        root << (Ox::Element.new('Poznamka') << poznamka) if poznamka
+        if attributes.key? :cislo_d
+          element = Ox::Element.new('CisloD')
+          element << attributes[:cislo_d] if attributes[:cislo_d]
+          root << element
+        end
 
-        if polozka
-          polozka.each { |i| root << PolInvDoklType.new(i, 'Polozka').builder }
+        if attributes.key? :inv_id
+          element = Ox::Element.new('InvID')
+          element << attributes[:inv_id] if attributes[:inv_id]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :prac
+          element = Ox::Element.new('Prac')
+          element << attributes[:prac] if attributes[:prac]
+          root << element
+        end
+
+        if attributes.key? :kontr
+          element = Ox::Element.new('Kontr')
+          element << attributes[:kontr] if attributes[:kontr]
+          root << element
+        end
+
+        if attributes.key? :poznamka
+          element = Ox::Element.new('Poznamka')
+          element << attributes[:poznamka] if attributes[:poznamka]
+          root << element
+        end
+
+        if attributes.key? :polozka
+          attributes[:polozka].each { |i| root << PolInvDoklType.new(i, 'Polozka').builder }
         end
 
         root

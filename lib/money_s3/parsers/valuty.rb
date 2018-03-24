@@ -20,10 +20,13 @@ module MoneyS3
       end
 
       def to_h
-        { celkem: celkem,
-          mena: mena.to_h,
-          souhrn_dph: souhrn_dph.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:celkem] = celkem if raw.key? :Celkem
+        hash[:mena] = mena.to_h if raw.key? :Mena
+        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
+
+        hash
       end
     end
   end

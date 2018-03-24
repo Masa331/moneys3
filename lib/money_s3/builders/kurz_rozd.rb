@@ -6,16 +6,36 @@ module MoneyS3
     class KurzRozd
       include BaseBuilder
 
-      attr_accessor :typ, :preceneni, :castka, :kr_poradi, :doklad
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Typ') << typ) if typ
-        root << (Ox::Element.new('Preceneni') << preceneni) if preceneni
-        root << (Ox::Element.new('Castka') << castka) if castka
-        root << (Ox::Element.new('KRPoradi') << kr_poradi) if kr_poradi
-        root << DoklRefType.new(doklad, 'Doklad').builder if doklad
+        if attributes.key? :typ
+          element = Ox::Element.new('Typ')
+          element << attributes[:typ] if attributes[:typ]
+          root << element
+        end
+
+        if attributes.key? :preceneni
+          element = Ox::Element.new('Preceneni')
+          element << attributes[:preceneni] if attributes[:preceneni]
+          root << element
+        end
+
+        if attributes.key? :castka
+          element = Ox::Element.new('Castka')
+          element << attributes[:castka] if attributes[:castka]
+          root << element
+        end
+
+        if attributes.key? :kr_poradi
+          element = Ox::Element.new('KRPoradi')
+          element << attributes[:kr_poradi] if attributes[:kr_poradi]
+          root << element
+        end
+
+        if attributes.key? :doklad
+          root << DoklRefType.new(attributes[:doklad], 'Doklad').builder
+        end
 
         root
       end

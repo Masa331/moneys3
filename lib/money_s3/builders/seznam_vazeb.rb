@@ -6,12 +6,12 @@ module MoneyS3
     class SeznamVazeb
       include BaseBuilder
 
-      attr_accessor :vazba
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << VazbaType.new(vazba, 'Vazba').builder if vazba
+        if attributes.key? :vazba
+          root << VazbaType.new(attributes[:vazba], 'Vazba').builder
+        end
 
         root
       end

@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamClenDPH
       include BaseBuilder
 
-      attr_accessor :clen_dph
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if clen_dph
-          clen_dph.each { |i| root << ClenDPH.new(i, 'ClenDPH').builder }
+        if attributes.key? :clen_dph
+          attributes[:clen_dph].each { |i| root << ClenDPH.new(i, 'ClenDPH').builder }
         end
 
         root

@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { vydejka: vydejka.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:vydejka] = vydejka.map(&:to_h) if raw.key? :Vydejka
+
+        hash
       end
     end
   end

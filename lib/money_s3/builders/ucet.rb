@@ -5,15 +5,32 @@ module MoneyS3
     class Ucet
       include BaseBuilder
 
-      attr_accessor :zkrat, :ucet, :b_kod, :b_nazev
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Ucet') << ucet) if ucet
-        root << (Ox::Element.new('BKod') << b_kod) if b_kod
-        root << (Ox::Element.new('BNazev') << b_nazev) if b_nazev
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
+          root << element
+        end
+
+        if attributes.key? :ucet
+          element = Ox::Element.new('Ucet')
+          element << attributes[:ucet] if attributes[:ucet]
+          root << element
+        end
+
+        if attributes.key? :b_kod
+          element = Ox::Element.new('BKod')
+          element << attributes[:b_kod] if attributes[:b_kod]
+          root << element
+        end
+
+        if attributes.key? :b_nazev
+          element = Ox::Element.new('BNazev')
+          element << attributes[:b_nazev] if attributes[:b_nazev]
+          root << element
+        end
 
         root
       end

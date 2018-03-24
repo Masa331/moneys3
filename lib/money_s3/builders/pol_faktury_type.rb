@@ -9,33 +9,132 @@ module MoneyS3
     class PolFakturyType
       include BaseBuilder
 
-      attr_accessor :popis, :poznamka, :pocet_mj, :sazba_dph, :cena, :cena_typ, :sleva, :cinnost, :poradi, :kod_dph, :stredisko, :zakazka, :predkontac, :valuty, :cena_po_sleve, :zvl_rezim, :zvl_dph, :rezim_eet, :souhrn_dph, :neskl_polozka, :skl_polozka, :seznam_vazeb
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('Poznamka') << poznamka) if poznamka
-        root << (Ox::Element.new('PocetMJ') << pocet_mj) if pocet_mj
-        root << (Ox::Element.new('SazbaDPH') << sazba_dph) if sazba_dph
-        root << (Ox::Element.new('Cena') << cena) if cena
-        root << (Ox::Element.new('CenaTyp') << cena_typ) if cena_typ
-        root << (Ox::Element.new('Sleva') << sleva) if sleva
-        root << (Ox::Element.new('Cinnost') << cinnost) if cinnost
-        root << (Ox::Element.new('Poradi') << poradi) if poradi
-        root << (Ox::Element.new('KodDPH') << kod_dph) if kod_dph
-        root << (Ox::Element.new('Stredisko') << stredisko) if stredisko
-        root << (Ox::Element.new('Zakazka') << zakazka) if zakazka
-        root << (Ox::Element.new('Predkontac') << predkontac) if predkontac
-        root << (Ox::Element.new('Valuty') << valuty) if valuty
-        root << (Ox::Element.new('CenaPoSleve') << cena_po_sleve) if cena_po_sleve
-        root << (Ox::Element.new('ZvlRezim') << zvl_rezim) if zvl_rezim
-        root << (Ox::Element.new('ZvlDPH') << zvl_dph) if zvl_dph
-        root << (Ox::Element.new('RezimEET') << rezim_eet) if rezim_eet
-        root << SouhrnDPHPolType.new(souhrn_dph, 'SouhrnDPH').builder if souhrn_dph
-        root << NesklPolozka.new(neskl_polozka, 'NesklPolozka').builder if neskl_polozka
-        root << PolSklDoklType.new(skl_polozka, 'SklPolozka').builder if skl_polozka
-        root << SeznamVazeb.new(seznam_vazeb, 'SeznamVazeb').builder if seznam_vazeb
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :poznamka
+          element = Ox::Element.new('Poznamka')
+          element << attributes[:poznamka] if attributes[:poznamka]
+          root << element
+        end
+
+        if attributes.key? :pocet_mj
+          element = Ox::Element.new('PocetMJ')
+          element << attributes[:pocet_mj] if attributes[:pocet_mj]
+          root << element
+        end
+
+        if attributes.key? :sazba_dph
+          element = Ox::Element.new('SazbaDPH')
+          element << attributes[:sazba_dph] if attributes[:sazba_dph]
+          root << element
+        end
+
+        if attributes.key? :cena
+          element = Ox::Element.new('Cena')
+          element << attributes[:cena] if attributes[:cena]
+          root << element
+        end
+
+        if attributes.key? :cena_typ
+          element = Ox::Element.new('CenaTyp')
+          element << attributes[:cena_typ] if attributes[:cena_typ]
+          root << element
+        end
+
+        if attributes.key? :sleva
+          element = Ox::Element.new('Sleva')
+          element << attributes[:sleva] if attributes[:sleva]
+          root << element
+        end
+
+        if attributes.key? :cinnost
+          element = Ox::Element.new('Cinnost')
+          element << attributes[:cinnost] if attributes[:cinnost]
+          root << element
+        end
+
+        if attributes.key? :poradi
+          element = Ox::Element.new('Poradi')
+          element << attributes[:poradi] if attributes[:poradi]
+          root << element
+        end
+
+        if attributes.key? :kod_dph
+          element = Ox::Element.new('KodDPH')
+          element << attributes[:kod_dph] if attributes[:kod_dph]
+          root << element
+        end
+
+        if attributes.key? :stredisko
+          element = Ox::Element.new('Stredisko')
+          element << attributes[:stredisko] if attributes[:stredisko]
+          root << element
+        end
+
+        if attributes.key? :zakazka
+          element = Ox::Element.new('Zakazka')
+          element << attributes[:zakazka] if attributes[:zakazka]
+          root << element
+        end
+
+        if attributes.key? :predkontac
+          element = Ox::Element.new('Predkontac')
+          element << attributes[:predkontac] if attributes[:predkontac]
+          root << element
+        end
+
+        if attributes.key? :valuty
+          element = Ox::Element.new('Valuty')
+          element << attributes[:valuty] if attributes[:valuty]
+          root << element
+        end
+
+        if attributes.key? :cena_po_sleve
+          element = Ox::Element.new('CenaPoSleve')
+          element << attributes[:cena_po_sleve] if attributes[:cena_po_sleve]
+          root << element
+        end
+
+        if attributes.key? :zvl_rezim
+          element = Ox::Element.new('ZvlRezim')
+          element << attributes[:zvl_rezim] if attributes[:zvl_rezim]
+          root << element
+        end
+
+        if attributes.key? :zvl_dph
+          element = Ox::Element.new('ZvlDPH')
+          element << attributes[:zvl_dph] if attributes[:zvl_dph]
+          root << element
+        end
+
+        if attributes.key? :rezim_eet
+          element = Ox::Element.new('RezimEET')
+          element << attributes[:rezim_eet] if attributes[:rezim_eet]
+          root << element
+        end
+
+        if attributes.key? :souhrn_dph
+          root << SouhrnDPHPolType.new(attributes[:souhrn_dph], 'SouhrnDPH').builder
+        end
+
+        if attributes.key? :neskl_polozka
+          root << NesklPolozka.new(attributes[:neskl_polozka], 'NesklPolozka').builder
+        end
+
+        if attributes.key? :skl_polozka
+          root << PolSklDoklType.new(attributes[:skl_polozka], 'SklPolozka').builder
+        end
+
+        if attributes.key? :seznam_vazeb
+          root << SeznamVazeb.new(attributes[:seznam_vazeb], 'SeznamVazeb').builder
+        end
 
         root
       end

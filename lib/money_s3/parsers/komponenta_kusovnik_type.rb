@@ -16,9 +16,12 @@ module MoneyS3
       end
 
       def to_h
-        { child: child.to_h,
-          reference: reference.to_h
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:child] = child.to_h if raw.key? :Child
+        hash[:reference] = reference.to_h if raw.key? :Reference
+
+        hash
       end
     end
   end

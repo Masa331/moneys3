@@ -22,11 +22,14 @@ module MoneyS3
       end
 
       def to_h
-        { zkrat: zkrat,
-          nazev: nazev,
-          poznamka: poznamka,
-          kod_odesil: kod_odesil
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zkrat] = zkrat if raw.key? :Zkrat
+        hash[:nazev] = nazev if raw.key? :Nazev
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:kod_odesil] = kod_odesil if raw.key? :KodOdesil
+
+        hash
       end
     end
   end

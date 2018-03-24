@@ -238,62 +238,65 @@ module MoneyS3
       end
 
       def to_h
-        { doklad: doklad,
-          popis: popis,
-          poznamka: poznamka,
-          text_pred_po: text_pred_po,
-          text_za_pol: text_za_pol,
-          vystaveno: vystaveno,
-          vyridit_do: vyridit_do,
-          vyrizeno: vyrizeno,
-          kp_from_odb: kp_from_odb,
-          sazba_dph1: sazba_dph1,
-          sazba_dph2: sazba_dph2,
-          d_rada: d_rada,
-          d_cislo: d_cislo,
-          stredisko: stredisko,
-          zakazka: zakazka,
-          cinnost: cinnost,
-          vystavil: vystavil,
-          ne_rezervov: ne_rezervov,
-          pevne_ceny: pevne_ceny,
-          plat_podm: plat_podm,
-          doprava: doprava,
-          cas_vystave: cas_vystave,
-          datum_vysta: datum_vysta,
-          nadpis: nadpis,
-          vyridit_nej: vyridit_nej,
-          zkratka_typ: zkratka_typ,
-          prim_doklad: prim_doklad,
-          var_symbol: var_symbol,
-          ne_vyrizova: ne_vyrizova,
-          siz_dec_dph: siz_dec_dph,
-          siz_dec_celk: siz_dec_celk,
-          zobr_pozn_vy: zobr_pozn_vy,
-          stat_moss: stat_moss,
-          typ_transakce: typ_transakce,
-          dodaci_podm: dodaci_podm,
-          druh_dopravy: druh_dopravy,
-          st_odesl_urc: st_odesl_urc,
-          sleva: sleva,
-          pojisteno: pojisteno,
-          celkem: celkem,
-          dod_odb: dod_odb.to_h,
-          konec_prij: konec_prij.to_h,
-          valuty: valuty.to_h,
-          eshop: eshop.to_h,
-          prepravce: prepravce.to_h,
-          typ_zasillky: typ_zasillky.to_h,
-          prepr_vyplatne: prepr_vyplatne.to_h,
-          prepr_uhrada_dobirky: prepr_uhrada_dobirky.to_h,
-          prepr_trida: prepr_trida.to_h,
-          moje_firma: moje_firma.to_h,
-          vlajky: vlajky.to_h,
-          souhrn_dph: souhrn_dph.to_h,
-          prepr_seznam_sluzeb: prepr_seznam_sluzeb.map(&:to_h),
-          polozka: polozka.map(&:to_h),
-          dokumenty: dokumenty
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:doklad] = doklad if raw.key? :Doklad
+        hash[:popis] = popis if raw.key? :Popis
+        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:text_pred_po] = text_pred_po if raw.key? :TextPredPo
+        hash[:text_za_pol] = text_za_pol if raw.key? :TextZaPol
+        hash[:vystaveno] = vystaveno if raw.key? :Vystaveno
+        hash[:vyridit_do] = vyridit_do if raw.key? :Vyridit_do
+        hash[:vyrizeno] = vyrizeno if raw.key? :Vyrizeno
+        hash[:kp_from_odb] = kp_from_odb if raw.key? :KPFromOdb
+        hash[:sazba_dph1] = sazba_dph1 if raw.key? :SazbaDPH1
+        hash[:sazba_dph2] = sazba_dph2 if raw.key? :SazbaDPH2
+        hash[:d_rada] = d_rada if raw.key? :DRada
+        hash[:d_cislo] = d_cislo if raw.key? :DCislo
+        hash[:stredisko] = stredisko if raw.key? :Stredisko
+        hash[:zakazka] = zakazka if raw.key? :Zakazka
+        hash[:cinnost] = cinnost if raw.key? :Cinnost
+        hash[:vystavil] = vystavil if raw.key? :Vystavil
+        hash[:ne_rezervov] = ne_rezervov if raw.key? :NeRezervov
+        hash[:pevne_ceny] = pevne_ceny if raw.key? :PevneCeny
+        hash[:plat_podm] = plat_podm if raw.key? :PlatPodm
+        hash[:doprava] = doprava if raw.key? :Doprava
+        hash[:cas_vystave] = cas_vystave if raw.key? :CasVystave
+        hash[:datum_vysta] = datum_vysta if raw.key? :DatumVysta
+        hash[:nadpis] = nadpis if raw.key? :Nadpis
+        hash[:vyridit_nej] = vyridit_nej if raw.key? :VyriditNej
+        hash[:zkratka_typ] = zkratka_typ if raw.key? :ZkratkaTyp
+        hash[:prim_doklad] = prim_doklad if raw.key? :PrimDoklad
+        hash[:var_symbol] = var_symbol if raw.key? :VarSymbol
+        hash[:ne_vyrizova] = ne_vyrizova if raw.key? :NeVyrizova
+        hash[:siz_dec_dph] = siz_dec_dph if raw.key? :SizDecDPH
+        hash[:siz_dec_celk] = siz_dec_celk if raw.key? :SizDecCelk
+        hash[:zobr_pozn_vy] = zobr_pozn_vy if raw.key? :ZobrPoznVy
+        hash[:stat_moss] = stat_moss if raw.key? :StatMOSS
+        hash[:typ_transakce] = typ_transakce if raw.key? :TypTransakce
+        hash[:dodaci_podm] = dodaci_podm if raw.key? :DodaciPodm
+        hash[:druh_dopravy] = druh_dopravy if raw.key? :DruhDopravy
+        hash[:st_odesl_urc] = st_odesl_urc if raw.key? :StOdeslUrc
+        hash[:sleva] = sleva if raw.key? :Sleva
+        hash[:pojisteno] = pojisteno if raw.key? :Pojisteno
+        hash[:celkem] = celkem if raw.key? :Celkem
+        hash[:dod_odb] = dod_odb.to_h if raw.key? :DodOdb
+        hash[:konec_prij] = konec_prij.to_h if raw.key? :KonecPrij
+        hash[:valuty] = valuty.to_h if raw.key? :Valuty
+        hash[:eshop] = eshop.to_h if raw.key? :eshop
+        hash[:prepravce] = prepravce.to_h if raw.key? :Prepravce
+        hash[:typ_zasillky] = typ_zasillky.to_h if raw.key? :TypZasillky
+        hash[:prepr_vyplatne] = prepr_vyplatne.to_h if raw.key? :Prepr_Vyplatne
+        hash[:prepr_uhrada_dobirky] = prepr_uhrada_dobirky.to_h if raw.key? :Prepr_UhradaDobirky
+        hash[:prepr_trida] = prepr_trida.to_h if raw.key? :Prepr_Trida
+        hash[:moje_firma] = moje_firma.to_h if raw.key? :MojeFirma
+        hash[:vlajky] = vlajky.to_h if raw.key? :Vlajky
+        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
+        hash[:prepr_seznam_sluzeb] = prepr_seznam_sluzeb.map(&:to_h) if raw.key? :Prepr_SeznamSluzeb
+        hash[:polozka] = polozka.map(&:to_h) if raw.key? :Polozka
+        hash[:dokumenty] = dokumenty if raw.key? :Dokumenty
+
+        hash
       end
     end
   end

@@ -170,45 +170,48 @@ module MoneyS3
       end
 
       def to_h
-        { nak_cena: nak_cena,
-          posl_n_cen: posl_n_cen,
-          posl_nak: posl_nak,
-          posl_prod: posl_prod,
-          pozn: pozn,
-          skl_ucet: skl_ucet,
-          www_popis: www_popis,
-          www_popis2: www_popis2,
-          vyrobce: vyrobce,
-          sleva: sleva,
-          novinka: novinka,
-          pripravuje: pripravuje,
-          vyprodej: vyprodej,
-          zakaz_prode: zakaz_prode,
-          naz_podskup: naz_podskup,
-          nomenklatu: nomenklatu,
-          url_zbozi: url_zbozi,
-          v_sleva: v_sleva,
-          v_akce: v_akce,
-          v_novinka: v_novinka,
-          prva_strana: prva_strana,
-          platnost_do: platnost_do,
-          uc_vyrobk_v: uc_vyrobk_v,
-          dat_inv: dat_inv,
-          mn_inv: mn_inv,
-          konfigurace: konfigurace.to_h,
-          stav_zasoby: stav_zasoby.to_h,
-          uc_pohyb: uc_pohyb.to_h,
-          eshop: eshop.to_h,
-          km_karta: km_karta.to_h,
-          sklad: sklad.to_h,
-          skupina: skupina.to_h,
-          posl_dod: posl_dod.to_h,
-          vlajky: vlajky.to_h,
-          pc: pc.map(&:to_h),
-          seznam_alternativ: seznam_alternativ.map(&:to_h),
-          seznam_prislusenstvi: seznam_prislusenstvi.map(&:to_h),
-          dokumenty: dokumenty
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:nak_cena] = nak_cena if raw.key? :Nak_Cena
+        hash[:posl_n_cen] = posl_n_cen if raw.key? :Posl_N_Cen
+        hash[:posl_nak] = posl_nak if raw.key? :Posl_Nak
+        hash[:posl_prod] = posl_prod if raw.key? :Posl_Prod
+        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:skl_ucet] = skl_ucet if raw.key? :SklUcet
+        hash[:www_popis] = www_popis if raw.key? :WWWPopis
+        hash[:www_popis2] = www_popis2 if raw.key? :WWWPopis2
+        hash[:vyrobce] = vyrobce if raw.key? :Vyrobce
+        hash[:sleva] = sleva if raw.key? :Sleva
+        hash[:novinka] = novinka if raw.key? :Novinka
+        hash[:pripravuje] = pripravuje if raw.key? :Pripravuje
+        hash[:vyprodej] = vyprodej if raw.key? :Vyprodej
+        hash[:zakaz_prode] = zakaz_prode if raw.key? :ZakazProde
+        hash[:naz_podskup] = naz_podskup if raw.key? :NazPodskup
+        hash[:nomenklatu] = nomenklatu if raw.key? :Nomenklatu
+        hash[:url_zbozi] = url_zbozi if raw.key? :URL_Zbozi
+        hash[:v_sleva] = v_sleva if raw.key? :VSleva
+        hash[:v_akce] = v_akce if raw.key? :VAkce
+        hash[:v_novinka] = v_novinka if raw.key? :VNovinka
+        hash[:prva_strana] = prva_strana if raw.key? :PrvaStrana
+        hash[:platnost_do] = platnost_do if raw.key? :PlatnostDo
+        hash[:uc_vyrobk_v] = uc_vyrobk_v if raw.key? :UcVyrobkV
+        hash[:dat_inv] = dat_inv if raw.key? :DatInv
+        hash[:mn_inv] = mn_inv if raw.key? :MnInv
+        hash[:konfigurace] = konfigurace.to_h if raw.key? :konfigurace
+        hash[:stav_zasoby] = stav_zasoby.to_h if raw.key? :StavZasoby
+        hash[:uc_pohyb] = uc_pohyb.to_h if raw.key? :UcPohyb
+        hash[:eshop] = eshop.to_h if raw.key? :eshop
+        hash[:km_karta] = km_karta.to_h if raw.key? :KmKarta
+        hash[:sklad] = sklad.to_h if raw.key? :Sklad
+        hash[:skupina] = skupina.to_h if raw.key? :Skupina
+        hash[:posl_dod] = posl_dod.to_h if raw.key? :Posl_Dod
+        hash[:vlajky] = vlajky.to_h if raw.key? :Vlajky
+        hash[:pc] = pc.map(&:to_h) if raw.key? :PC
+        hash[:seznam_alternativ] = seznam_alternativ.map(&:to_h) if raw.key? :SeznamAlternativ
+        hash[:seznam_prislusenstvi] = seznam_prislusenstvi.map(&:to_h) if raw.key? :SeznamPrislusenstvi
+        hash[:dokumenty] = dokumenty if raw.key? :Dokumenty
+
+        hash
       end
     end
   end

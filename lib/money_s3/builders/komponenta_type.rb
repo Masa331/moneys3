@@ -8,15 +8,26 @@ module MoneyS3
     class KomponentaType
       include BaseBuilder
 
-      attr_accessor :poc_mj, :stav_zasoby, :km_karta, :sklad
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('PocMJ') << poc_mj) if poc_mj
-        root << StavZasobyType.new(stav_zasoby, 'StavZasoby').builder if stav_zasoby
-        root << KmKartaType.new(km_karta, 'KmKarta').builder if km_karta
-        root << SkladType.new(sklad, 'Sklad').builder if sklad
+        if attributes.key? :poc_mj
+          element = Ox::Element.new('PocMJ')
+          element << attributes[:poc_mj] if attributes[:poc_mj]
+          root << element
+        end
+
+        if attributes.key? :stav_zasoby
+          root << StavZasobyType.new(attributes[:stav_zasoby], 'StavZasoby').builder
+        end
+
+        if attributes.key? :km_karta
+          root << KmKartaType.new(attributes[:km_karta], 'KmKarta').builder
+        end
+
+        if attributes.key? :sklad
+          root << SkladType.new(attributes[:sklad], 'Sklad').builder
+        end
 
         root
       end

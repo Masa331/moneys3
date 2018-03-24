@@ -46,17 +46,20 @@ module MoneyS3
       end
 
       def to_h
-        { banka: banka,
-          datum: datum,
-          kod: kod,
-          zeme: zeme,
-          mnozstvi: mnozstvi,
-          nb_stred: nb_stred,
-          devizy_nakup: devizy_nakup,
-          devizy_prodej: devizy_prodej,
-          valuty_nakup: valuty_nakup,
-          valuty_prodej: valuty_prodej
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:banka] = banka if raw.key? :Banka
+        hash[:datum] = datum if raw.key? :Datum
+        hash[:kod] = kod if raw.key? :Kod
+        hash[:zeme] = zeme if raw.key? :Zeme
+        hash[:mnozstvi] = mnozstvi if raw.key? :Mnozstvi
+        hash[:nb_stred] = nb_stred if raw.key? :NBStred
+        hash[:devizy_nakup] = devizy_nakup if raw.key? :DevizyNakup
+        hash[:devizy_prodej] = devizy_prodej if raw.key? :DevizyProdej
+        hash[:valuty_nakup] = valuty_nakup if raw.key? :ValutyNakup
+        hash[:valuty_prodej] = valuty_prodej if raw.key? :ValutyProdej
+
+        hash
       end
     end
   end

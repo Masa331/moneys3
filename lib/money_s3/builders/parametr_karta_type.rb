@@ -6,14 +6,24 @@ module MoneyS3
     class ParametrKartaType
       include BaseBuilder
 
-      attr_accessor :poradi, :value, :parametr
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Poradi') << poradi) if poradi
-        root << (Ox::Element.new('Value') << value) if value
-        root << ParametrType.new(parametr, 'Parametr').builder if parametr
+        if attributes.key? :poradi
+          element = Ox::Element.new('Poradi')
+          element << attributes[:poradi] if attributes[:poradi]
+          root << element
+        end
+
+        if attributes.key? :value
+          element = Ox::Element.new('Value')
+          element << attributes[:value] if attributes[:value]
+          root << element
+        end
+
+        if attributes.key? :parametr
+          root << ParametrType.new(attributes[:parametr], 'Parametr').builder
+        end
 
         root
       end

@@ -6,17 +6,42 @@ module MoneyS3
     class CenovaHladina
       include BaseBuilder
 
-      attr_accessor :zkrat, :nazev, :pozn, :skup, :ceny, :mena
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Nazev') << nazev) if nazev
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
-        root << (Ox::Element.new('Skup') << skup) if skup
-        root << (Ox::Element.new('Ceny') << ceny) if ceny
-        root << MenaType.new(mena, 'Mena').builder if mena
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
+          root << element
+        end
+
+        if attributes.key? :nazev
+          element = Ox::Element.new('Nazev')
+          element << attributes[:nazev] if attributes[:nazev]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
+
+        if attributes.key? :skup
+          element = Ox::Element.new('Skup')
+          element << attributes[:skup] if attributes[:skup]
+          root << element
+        end
+
+        if attributes.key? :ceny
+          element = Ox::Element.new('Ceny')
+          element << attributes[:ceny] if attributes[:ceny]
+          root << element
+        end
+
+        if attributes.key? :mena
+          root << MenaType.new(attributes[:mena], 'Mena').builder
+        end
 
         root
       end

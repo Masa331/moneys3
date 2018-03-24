@@ -7,16 +7,21 @@ module MoneyS3
     class MessageType
       include BaseBuilder
 
-      attr_accessor :status, :reference, :error_info
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Status') << status) if status
-        root << ReferenceType.new(reference, 'Reference').builder if reference
+        if attributes.key? :status
+          element = Ox::Element.new('Status')
+          element << attributes[:status] if attributes[:status]
+          root << element
+        end
 
-        if error_info
-          error_info.each { |i| root << ErrorInfoType.new(i, 'ErrorInfo').builder }
+        if attributes.key? :reference
+          root << ReferenceType.new(attributes[:reference], 'Reference').builder
+        end
+
+        if attributes.key? :error_info
+          attributes[:error_info].each { |i| root << ErrorInfoType.new(i, 'ErrorInfo').builder }
         end
 
         root

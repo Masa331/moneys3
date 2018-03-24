@@ -5,18 +5,50 @@ module MoneyS3
     class PredkontaceDEType
       include BaseBuilder
 
-      attr_accessor :zkrat, :popis, :typ, :poh_zak, :zauct_dph, :cleneni, :pozn
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Zkrat') << zkrat) if zkrat
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('Typ') << typ) if typ
-        root << (Ox::Element.new('PohZak') << poh_zak) if poh_zak
-        root << (Ox::Element.new('ZauctDPH') << zauct_dph) if zauct_dph
-        root << (Ox::Element.new('Cleneni') << cleneni) if cleneni
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
+        if attributes.key? :zkrat
+          element = Ox::Element.new('Zkrat')
+          element << attributes[:zkrat] if attributes[:zkrat]
+          root << element
+        end
+
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :typ
+          element = Ox::Element.new('Typ')
+          element << attributes[:typ] if attributes[:typ]
+          root << element
+        end
+
+        if attributes.key? :poh_zak
+          element = Ox::Element.new('PohZak')
+          element << attributes[:poh_zak] if attributes[:poh_zak]
+          root << element
+        end
+
+        if attributes.key? :zauct_dph
+          element = Ox::Element.new('ZauctDPH')
+          element << attributes[:zauct_dph] if attributes[:zauct_dph]
+          root << element
+        end
+
+        if attributes.key? :cleneni
+          element = Ox::Element.new('Cleneni')
+          element << attributes[:cleneni] if attributes[:cleneni]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
 
         root
       end

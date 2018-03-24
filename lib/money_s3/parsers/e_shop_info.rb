@@ -18,10 +18,13 @@ module MoneyS3
       end
 
       def to_h
-        { e_shop_id: e_shop_id,
-          e_shop_name: e_shop_name,
-          e_sale_id: e_sale_id
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:e_shop_id] = e_shop_id if raw.key? :eShopID
+        hash[:e_shop_name] = e_shop_name if raw.key? :eShopName
+        hash[:e_sale_id] = e_sale_id if raw.key? :eSaleID
+
+        hash
       end
     end
   end

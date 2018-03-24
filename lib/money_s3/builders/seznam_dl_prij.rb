@@ -6,13 +6,11 @@ module MoneyS3
     class SeznamDLPrij
       include BaseBuilder
 
-      attr_accessor :dl_prij
-
       def builder
         root = Ox::Element.new(element_name)
 
-        if dl_prij
-          dl_prij.each { |i| root << DLPrij.new(i, 'DLPrij').builder }
+        if attributes.key? :dl_prij
+          attributes[:dl_prij].each { |i| root << DLPrij.new(i, 'DLPrij').builder }
         end
 
         root

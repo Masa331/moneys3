@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { clen_dph: clen_dph.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:clen_dph] = clen_dph.map(&:to_h) if raw.key? :ClenDPH
+
+        hash
       end
     end
   end

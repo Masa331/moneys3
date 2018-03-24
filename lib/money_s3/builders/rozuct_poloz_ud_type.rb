@@ -6,25 +6,90 @@ module MoneyS3
     class RozuctPolozUDType
       include BaseBuilder
 
-      attr_accessor :popis, :castka, :stred, :zakazka, :cinnost, :pozn, :typ_cena, :sazba_dph, :uc_md, :uc_d, :pohyb, :par_sym, :var_sym, :adresa
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Popis') << popis) if popis
-        root << (Ox::Element.new('Castka') << castka) if castka
-        root << (Ox::Element.new('Stred') << stred) if stred
-        root << (Ox::Element.new('Zakazka') << zakazka) if zakazka
-        root << (Ox::Element.new('Cinnost') << cinnost) if cinnost
-        root << (Ox::Element.new('Pozn') << pozn) if pozn
-        root << (Ox::Element.new('TypCena') << typ_cena) if typ_cena
-        root << (Ox::Element.new('SazbaDPH') << sazba_dph) if sazba_dph
-        root << (Ox::Element.new('UcMD') << uc_md) if uc_md
-        root << (Ox::Element.new('UcD') << uc_d) if uc_d
-        root << (Ox::Element.new('Pohyb') << pohyb) if pohyb
-        root << (Ox::Element.new('ParSym') << par_sym) if par_sym
-        root << (Ox::Element.new('VarSym') << var_sym) if var_sym
-        root << FirmaType.new(adresa, 'Adresa').builder if adresa
+        if attributes.key? :popis
+          element = Ox::Element.new('Popis')
+          element << attributes[:popis] if attributes[:popis]
+          root << element
+        end
+
+        if attributes.key? :castka
+          element = Ox::Element.new('Castka')
+          element << attributes[:castka] if attributes[:castka]
+          root << element
+        end
+
+        if attributes.key? :stred
+          element = Ox::Element.new('Stred')
+          element << attributes[:stred] if attributes[:stred]
+          root << element
+        end
+
+        if attributes.key? :zakazka
+          element = Ox::Element.new('Zakazka')
+          element << attributes[:zakazka] if attributes[:zakazka]
+          root << element
+        end
+
+        if attributes.key? :cinnost
+          element = Ox::Element.new('Cinnost')
+          element << attributes[:cinnost] if attributes[:cinnost]
+          root << element
+        end
+
+        if attributes.key? :pozn
+          element = Ox::Element.new('Pozn')
+          element << attributes[:pozn] if attributes[:pozn]
+          root << element
+        end
+
+        if attributes.key? :typ_cena
+          element = Ox::Element.new('TypCena')
+          element << attributes[:typ_cena] if attributes[:typ_cena]
+          root << element
+        end
+
+        if attributes.key? :sazba_dph
+          element = Ox::Element.new('SazbaDPH')
+          element << attributes[:sazba_dph] if attributes[:sazba_dph]
+          root << element
+        end
+
+        if attributes.key? :uc_md
+          element = Ox::Element.new('UcMD')
+          element << attributes[:uc_md] if attributes[:uc_md]
+          root << element
+        end
+
+        if attributes.key? :uc_d
+          element = Ox::Element.new('UcD')
+          element << attributes[:uc_d] if attributes[:uc_d]
+          root << element
+        end
+
+        if attributes.key? :pohyb
+          element = Ox::Element.new('Pohyb')
+          element << attributes[:pohyb] if attributes[:pohyb]
+          root << element
+        end
+
+        if attributes.key? :par_sym
+          element = Ox::Element.new('ParSym')
+          element << attributes[:par_sym] if attributes[:par_sym]
+          root << element
+        end
+
+        if attributes.key? :var_sym
+          element = Ox::Element.new('VarSym')
+          element << attributes[:var_sym] if attributes[:var_sym]
+          root << element
+        end
+
+        if attributes.key? :adresa
+          root << FirmaType.new(attributes[:adresa], 'Adresa').builder
+        end
 
         root
       end

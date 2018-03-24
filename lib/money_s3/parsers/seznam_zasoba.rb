@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { zasoba: zasoba.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:zasoba] = zasoba.map(&:to_h) if raw.key? :Zasoba
+
+        hash
       end
     end
   end

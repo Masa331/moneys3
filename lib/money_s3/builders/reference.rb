@@ -7,13 +7,16 @@ module MoneyS3
     class Reference
       include BaseBuilder
 
-      attr_accessor :typ_kusovnik, :vzor
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << KusovnikType.new(typ_kusovnik, 'TypKusovnik').builder if typ_kusovnik
-        root << VzorKomponentaType.new(vzor, 'Vzor').builder if vzor
+        if attributes.key? :typ_kusovnik
+          root << KusovnikType.new(attributes[:typ_kusovnik], 'TypKusovnik').builder
+        end
+
+        if attributes.key? :vzor
+          root << VzorKomponentaType.new(attributes[:vzor], 'Vzor').builder
+        end
 
         root
       end

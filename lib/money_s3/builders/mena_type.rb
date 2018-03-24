@@ -5,14 +5,26 @@ module MoneyS3
     class MenaType
       include BaseBuilder
 
-      attr_accessor :kod, :mnozstvi, :kurs
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << (Ox::Element.new('Kod') << kod) if kod
-        root << (Ox::Element.new('Mnozstvi') << mnozstvi) if mnozstvi
-        root << (Ox::Element.new('Kurs') << kurs) if kurs
+        if attributes.key? :kod
+          element = Ox::Element.new('Kod')
+          element << attributes[:kod] if attributes[:kod]
+          root << element
+        end
+
+        if attributes.key? :mnozstvi
+          element = Ox::Element.new('Mnozstvi')
+          element << attributes[:mnozstvi] if attributes[:mnozstvi]
+          root << element
+        end
+
+        if attributes.key? :kurs
+          element = Ox::Element.new('Kurs')
+          element << attributes[:kurs] if attributes[:kurs]
+          root << element
+        end
 
         root
       end

@@ -52,111 +52,216 @@ module MoneyS3
     class MoneyData
       include BaseBuilder
 
-      attr_accessor :seznam_cinnosti, :seznam_stredisek, :seznam_clen_dph, :seznam_uc_osnov, :seznam_predkontaci, :seznam_predkontaci_de, :seznam_kurz_listku, :seznam_cen_hladin, :seznam_firem, :seznam_km_karta, :seznam_zasoba, :seznam_skladu, :seznam_typ_kusovnik, :seznam_zak_kusovnik, :seznam_zamestnancu, :seznam_zakazka, :seznam_fakt_prij, :seznam_fakt_vyd, :seznam_int_dokl, :seznam_pok_dokl, :seznam_bank_dokl, :seznam_obj_prij, :seznam_obj_vyd, :seznam_nab_prij, :seznam_nab_vyd, :seznam_popt_prij, :seznam_popt_vyd, :seznam_prijemka, :seznam_vydejka, :seznam_dl_prij, :seznam_dl_vyd, :seznam_prodejka, :seznam_prevodka, :seznam_vyrobka, :seznam_inv_dokl, :seznam_mezd, :seznam_uc_pohybu, :seznam_zauctovani_dph, :seznam_zauctovani_dph_de, :seznam_parametru, :seznam_kategorii, :seznam_bank_uctu_pokladen, :seznam_typu_priplatku, :seznam_pohledavek, :seznam_zavazku, :seznam_fakt_prij_dpp, :seznam_fakt_vyd_dpp
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << SeznamCinnosti.new(seznam_cinnosti, 'SeznamCinnosti').builder if seznam_cinnosti
-        root << SeznamStredisek.new(seznam_stredisek, 'SeznamStredisek').builder if seznam_stredisek
-        root << SeznamClenDPH.new(seznam_clen_dph, 'SeznamClenDPH').builder if seznam_clen_dph
-        root << SeznamUcOsnov.new(seznam_uc_osnov, 'SeznamUcOsnov').builder if seznam_uc_osnov
-        root << SeznamPredkontaci.new(seznam_predkontaci, 'SeznamPredkontaci').builder if seznam_predkontaci
-        root << SeznamPredkontaciDE.new(seznam_predkontaci_de, 'SeznamPredkontaciDE').builder if seznam_predkontaci_de
-        root << SeznamKurzListku.new(seznam_kurz_listku, 'SeznamKurzListku').builder if seznam_kurz_listku
-        root << SeznamCenHladin.new(seznam_cen_hladin, 'SeznamCenHladin').builder if seznam_cen_hladin
-        root << SeznamFirem.new(seznam_firem, 'SeznamFirem').builder if seznam_firem
-        root << SeznamKmKarta.new(seznam_km_karta, 'SeznamKmKarta').builder if seznam_km_karta
-        root << SeznamZasoba.new(seznam_zasoba, 'SeznamZasoba').builder if seznam_zasoba
-        root << SeznamSkladu.new(seznam_skladu, 'SeznamSkladu').builder if seznam_skladu
-        root << SeznamTypKusovnik.new(seznam_typ_kusovnik, 'SeznamTypKusovnik').builder if seznam_typ_kusovnik
-        root << SeznamZakKusovnik.new(seznam_zak_kusovnik, 'SeznamZakKusovnik').builder if seznam_zak_kusovnik
-        root << SeznamZamestnancu.new(seznam_zamestnancu, 'SeznamZamestnancu').builder if seznam_zamestnancu
-        root << SeznamZakazka.new(seznam_zakazka, 'SeznamZakazka').builder if seznam_zakazka
-        root << SeznamFaktPrij.new(seznam_fakt_prij, 'SeznamFaktPrij').builder if seznam_fakt_prij
-        root << SeznamFaktVyd.new(seznam_fakt_vyd, 'SeznamFaktVyd').builder if seznam_fakt_vyd
-        root << SeznamIntDokl.new(seznam_int_dokl, 'SeznamIntDokl').builder if seznam_int_dokl
-        root << SeznamPokDokl.new(seznam_pok_dokl, 'SeznamPokDokl').builder if seznam_pok_dokl
-        root << SeznamBankDokl.new(seznam_bank_dokl, 'SeznamBankDokl').builder if seznam_bank_dokl
-        root << SeznamObjPrij.new(seznam_obj_prij, 'SeznamObjPrij').builder if seznam_obj_prij
-        root << SeznamObjVyd.new(seznam_obj_vyd, 'SeznamObjVyd').builder if seznam_obj_vyd
-        root << SeznamNabPrij.new(seznam_nab_prij, 'SeznamNabPrij').builder if seznam_nab_prij
-        root << SeznamNabVyd.new(seznam_nab_vyd, 'SeznamNabVyd').builder if seznam_nab_vyd
-        root << SeznamPoptPrij.new(seznam_popt_prij, 'SeznamPoptPrij').builder if seznam_popt_prij
-        root << SeznamPoptVyd.new(seznam_popt_vyd, 'SeznamPoptVyd').builder if seznam_popt_vyd
-        root << SeznamPrijemka.new(seznam_prijemka, 'SeznamPrijemka').builder if seznam_prijemka
-        root << SeznamVydejka.new(seznam_vydejka, 'SeznamVydejka').builder if seznam_vydejka
-        root << SeznamDLPrij.new(seznam_dl_prij, 'SeznamDLPrij').builder if seznam_dl_prij
-        root << SeznamDLVyd.new(seznam_dl_vyd, 'SeznamDLVyd').builder if seznam_dl_vyd
-        root << SeznamProdejka.new(seznam_prodejka, 'SeznamProdejka').builder if seznam_prodejka
-        root << SeznamPrevodka.new(seznam_prevodka, 'SeznamPrevodka').builder if seznam_prevodka
-        root << SeznamVyrobka.new(seznam_vyrobka, 'SeznamVyrobka').builder if seznam_vyrobka
-        root << SeznamInvDokl.new(seznam_inv_dokl, 'SeznamInvDokl').builder if seznam_inv_dokl
-        root << SeznamMezd.new(seznam_mezd, 'SeznamMezd').builder if seznam_mezd
+        if attributes.key? :seznam_cinnosti
+          root << SeznamCinnosti.new(attributes[:seznam_cinnosti], 'SeznamCinnosti').builder
+        end
 
-        if seznam_uc_pohybu
+        if attributes.key? :seznam_stredisek
+          root << SeznamStredisek.new(attributes[:seznam_stredisek], 'SeznamStredisek').builder
+        end
+
+        if attributes.key? :seznam_clen_dph
+          root << SeznamClenDPH.new(attributes[:seznam_clen_dph], 'SeznamClenDPH').builder
+        end
+
+        if attributes.key? :seznam_uc_osnov
+          root << SeznamUcOsnov.new(attributes[:seznam_uc_osnov], 'SeznamUcOsnov').builder
+        end
+
+        if attributes.key? :seznam_predkontaci
+          root << SeznamPredkontaci.new(attributes[:seznam_predkontaci], 'SeznamPredkontaci').builder
+        end
+
+        if attributes.key? :seznam_predkontaci_de
+          root << SeznamPredkontaciDE.new(attributes[:seznam_predkontaci_de], 'SeznamPredkontaciDE').builder
+        end
+
+        if attributes.key? :seznam_kurz_listku
+          root << SeznamKurzListku.new(attributes[:seznam_kurz_listku], 'SeznamKurzListku').builder
+        end
+
+        if attributes.key? :seznam_cen_hladin
+          root << SeznamCenHladin.new(attributes[:seznam_cen_hladin], 'SeznamCenHladin').builder
+        end
+
+        if attributes.key? :seznam_firem
+          root << SeznamFirem.new(attributes[:seznam_firem], 'SeznamFirem').builder
+        end
+
+        if attributes.key? :seznam_km_karta
+          root << SeznamKmKarta.new(attributes[:seznam_km_karta], 'SeznamKmKarta').builder
+        end
+
+        if attributes.key? :seznam_zasoba
+          root << SeznamZasoba.new(attributes[:seznam_zasoba], 'SeznamZasoba').builder
+        end
+
+        if attributes.key? :seznam_skladu
+          root << SeznamSkladu.new(attributes[:seznam_skladu], 'SeznamSkladu').builder
+        end
+
+        if attributes.key? :seznam_typ_kusovnik
+          root << SeznamTypKusovnik.new(attributes[:seznam_typ_kusovnik], 'SeznamTypKusovnik').builder
+        end
+
+        if attributes.key? :seznam_zak_kusovnik
+          root << SeznamZakKusovnik.new(attributes[:seznam_zak_kusovnik], 'SeznamZakKusovnik').builder
+        end
+
+        if attributes.key? :seznam_zamestnancu
+          root << SeznamZamestnancu.new(attributes[:seznam_zamestnancu], 'SeznamZamestnancu').builder
+        end
+
+        if attributes.key? :seznam_zakazka
+          root << SeznamZakazka.new(attributes[:seznam_zakazka], 'SeznamZakazka').builder
+        end
+
+        if attributes.key? :seznam_fakt_prij
+          root << SeznamFaktPrij.new(attributes[:seznam_fakt_prij], 'SeznamFaktPrij').builder
+        end
+
+        if attributes.key? :seznam_fakt_vyd
+          root << SeznamFaktVyd.new(attributes[:seznam_fakt_vyd], 'SeznamFaktVyd').builder
+        end
+
+        if attributes.key? :seznam_int_dokl
+          root << SeznamIntDokl.new(attributes[:seznam_int_dokl], 'SeznamIntDokl').builder
+        end
+
+        if attributes.key? :seznam_pok_dokl
+          root << SeznamPokDokl.new(attributes[:seznam_pok_dokl], 'SeznamPokDokl').builder
+        end
+
+        if attributes.key? :seznam_bank_dokl
+          root << SeznamBankDokl.new(attributes[:seznam_bank_dokl], 'SeznamBankDokl').builder
+        end
+
+        if attributes.key? :seznam_obj_prij
+          root << SeznamObjPrij.new(attributes[:seznam_obj_prij], 'SeznamObjPrij').builder
+        end
+
+        if attributes.key? :seznam_obj_vyd
+          root << SeznamObjVyd.new(attributes[:seznam_obj_vyd], 'SeznamObjVyd').builder
+        end
+
+        if attributes.key? :seznam_nab_prij
+          root << SeznamNabPrij.new(attributes[:seznam_nab_prij], 'SeznamNabPrij').builder
+        end
+
+        if attributes.key? :seznam_nab_vyd
+          root << SeznamNabVyd.new(attributes[:seznam_nab_vyd], 'SeznamNabVyd').builder
+        end
+
+        if attributes.key? :seznam_popt_prij
+          root << SeznamPoptPrij.new(attributes[:seznam_popt_prij], 'SeznamPoptPrij').builder
+        end
+
+        if attributes.key? :seznam_popt_vyd
+          root << SeznamPoptVyd.new(attributes[:seznam_popt_vyd], 'SeznamPoptVyd').builder
+        end
+
+        if attributes.key? :seznam_prijemka
+          root << SeznamPrijemka.new(attributes[:seznam_prijemka], 'SeznamPrijemka').builder
+        end
+
+        if attributes.key? :seznam_vydejka
+          root << SeznamVydejka.new(attributes[:seznam_vydejka], 'SeznamVydejka').builder
+        end
+
+        if attributes.key? :seznam_dl_prij
+          root << SeznamDLPrij.new(attributes[:seznam_dl_prij], 'SeznamDLPrij').builder
+        end
+
+        if attributes.key? :seznam_dl_vyd
+          root << SeznamDLVyd.new(attributes[:seznam_dl_vyd], 'SeznamDLVyd').builder
+        end
+
+        if attributes.key? :seznam_prodejka
+          root << SeznamProdejka.new(attributes[:seznam_prodejka], 'SeznamProdejka').builder
+        end
+
+        if attributes.key? :seznam_prevodka
+          root << SeznamPrevodka.new(attributes[:seznam_prevodka], 'SeznamPrevodka').builder
+        end
+
+        if attributes.key? :seznam_vyrobka
+          root << SeznamVyrobka.new(attributes[:seznam_vyrobka], 'SeznamVyrobka').builder
+        end
+
+        if attributes.key? :seznam_inv_dokl
+          root << SeznamInvDokl.new(attributes[:seznam_inv_dokl], 'SeznamInvDokl').builder
+        end
+
+        if attributes.key? :seznam_mezd
+          root << SeznamMezd.new(attributes[:seznam_mezd], 'SeznamMezd').builder
+        end
+
+        if attributes.key? :seznam_uc_pohybu
           element = Ox::Element.new('SeznamUcPohybu')
-          seznam_uc_pohybu.each { |i| element << UcPohybType.new(i, 'UcPohyb').builder }
+          attributes[:seznam_uc_pohybu].each { |i| element << UcPohybType.new(i, 'UcPohyb').builder }
           root << element
         end
 
-        if seznam_zauctovani_dph
+        if attributes.key? :seznam_zauctovani_dph
           element = Ox::Element.new('SeznamZauctovaniDPH')
-          seznam_zauctovani_dph.each { |i| element << ZauctovaniDPHType.new(i, 'ZauctovaniDPH').builder }
+          attributes[:seznam_zauctovani_dph].each { |i| element << ZauctovaniDPHType.new(i, 'ZauctovaniDPH').builder }
           root << element
         end
 
-        if seznam_zauctovani_dph_de
+        if attributes.key? :seznam_zauctovani_dph_de
           element = Ox::Element.new('SeznamZauctovaniDPH_DE')
-          seznam_zauctovani_dph_de.each { |i| element << ZauctovaniDPHDetype.new(i, 'ZauctovaniDPH_DE').builder }
+          attributes[:seznam_zauctovani_dph_de].each { |i| element << ZauctovaniDPHDetype.new(i, 'ZauctovaniDPH_DE').builder }
           root << element
         end
 
-        if seznam_parametru
+        if attributes.key? :seznam_parametru
           element = Ox::Element.new('SeznamParametru')
-          seznam_parametru.each { |i| element << ParametrType.new(i, 'Parametr').builder }
+          attributes[:seznam_parametru].each { |i| element << ParametrType.new(i, 'Parametr').builder }
           root << element
         end
 
-        if seznam_kategorii
+        if attributes.key? :seznam_kategorii
           element = Ox::Element.new('SeznamKategorii')
-          seznam_kategorii.each { |i| element << EkategorieType.new(i, 'eKategorie').builder }
+          attributes[:seznam_kategorii].each { |i| element << EkategorieType.new(i, 'eKategorie').builder }
           root << element
         end
 
-        if seznam_bank_uctu_pokladen
+        if attributes.key? :seznam_bank_uctu_pokladen
           element = Ox::Element.new('SeznamBankUctuPokladen')
-          seznam_bank_uctu_pokladen.each { |i| element << BankUcetPokladnaType.new(i, 'BankUcetPokladna').builder }
+          attributes[:seznam_bank_uctu_pokladen].each { |i| element << BankUcetPokladnaType.new(i, 'BankUcetPokladna').builder }
           root << element
         end
 
-        if seznam_typu_priplatku
+        if attributes.key? :seznam_typu_priplatku
           element = Ox::Element.new('SeznamTypuPriplatku')
-          seznam_typu_priplatku.each { |i| element << TypPriplatkuType.new(i, 'TypPriplatku').builder }
+          attributes[:seznam_typu_priplatku].each { |i| element << TypPriplatkuType.new(i, 'TypPriplatku').builder }
           root << element
         end
 
-        if seznam_pohledavek
+        if attributes.key? :seznam_pohledavek
           element = Ox::Element.new('SeznamPohledavek')
-          seznam_pohledavek.each { |i| element << PohledavkaType.new(i, 'Pohledavka').builder }
+          attributes[:seznam_pohledavek].each { |i| element << PohledavkaType.new(i, 'Pohledavka').builder }
           root << element
         end
 
-        if seznam_zavazku
+        if attributes.key? :seznam_zavazku
           element = Ox::Element.new('SeznamZavazku')
-          seznam_zavazku.each { |i| element << ZavazekType.new(i, 'Zavazek').builder }
+          attributes[:seznam_zavazku].each { |i| element << ZavazekType.new(i, 'Zavazek').builder }
           root << element
         end
 
-        if seznam_fakt_prij_dpp
+        if attributes.key? :seznam_fakt_prij_dpp
           element = Ox::Element.new('SeznamFaktPrij_DPP')
-          seznam_fakt_prij_dpp.each { |i| element << FakturaType.new(i, 'FaktPrij_DPP').builder }
+          attributes[:seznam_fakt_prij_dpp].each { |i| element << FakturaType.new(i, 'FaktPrij_DPP').builder }
           root << element
         end
 
-        if seznam_fakt_vyd_dpp
+        if attributes.key? :seznam_fakt_vyd_dpp
           element = Ox::Element.new('SeznamFaktVyd_DPP')
-          seznam_fakt_vyd_dpp.each { |i| element << FakturaType.new(i, 'FaktVyd_DPP').builder }
+          attributes[:seznam_fakt_vyd_dpp].each { |i| element << FakturaType.new(i, 'FaktVyd_DPP').builder }
           root << element
         end
 

@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { prijemka: prijemka.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:prijemka] = prijemka.map(&:to_h) if raw.key? :Prijemka
+
+        hash
       end
     end
   end

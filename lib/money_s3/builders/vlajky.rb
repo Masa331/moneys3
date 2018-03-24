@@ -6,13 +6,16 @@ module MoneyS3
     class Vlajky
       include BaseBuilder
 
-      attr_accessor :global, :user
-
       def builder
         root = Ox::Element.new(element_name)
 
-        root << VlajkaType.new(global, 'Global').builder if global
-        root << VlajkaType.new(user, 'User').builder if user
+        if attributes.key? :global
+          root << VlajkaType.new(attributes[:global], 'Global').builder
+        end
+
+        if attributes.key? :user
+          root << VlajkaType.new(attributes[:user], 'User').builder
+        end
 
         root
       end

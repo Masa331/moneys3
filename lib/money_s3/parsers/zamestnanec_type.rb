@@ -31,13 +31,16 @@ module MoneyS3
       end
 
       def to_h
-        { os_cislo: os_cislo,
-          jmeno: jmeno,
-          stredisko: stredisko,
-          dat_nastup: dat_nastup,
-          dat_odchod: dat_odchod,
-          seznam_mzdovych_obdobi: seznam_mzdovych_obdobi.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:os_cislo] = os_cislo if raw.key? :OsCislo
+        hash[:jmeno] = jmeno if raw.key? :Jmeno
+        hash[:stredisko] = stredisko if raw.key? :Stredisko
+        hash[:dat_nastup] = dat_nastup if raw.key? :DatNastup
+        hash[:dat_odchod] = dat_odchod if raw.key? :DatOdchod
+        hash[:seznam_mzdovych_obdobi] = seznam_mzdovych_obdobi.map(&:to_h) if raw.key? :SeznamMzdovychObdobi
+
+        hash
       end
     end
   end

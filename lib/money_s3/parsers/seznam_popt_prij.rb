@@ -11,8 +11,11 @@ module MoneyS3
       end
 
       def to_h
-        { popt_prij: popt_prij.map(&:to_h)
-        }.delete_if { |k, v| v.nil? || v.empty? }
+        hash = {}
+
+        hash[:popt_prij] = popt_prij.map(&:to_h) if raw.key? :PoptPrij
+
+        hash
       end
     end
   end
