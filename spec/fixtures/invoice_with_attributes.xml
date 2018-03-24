@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<MoneyData>
+  <SeznamFaktVyd>
+    <FaktVyd version="1">
+      <Doklad>123</Doklad>
+    </FaktVyd>
+  </SeznamFaktVyd>
+</MoneyData>

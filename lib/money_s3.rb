@@ -9,15 +9,15 @@ module MoneyS3
     if hash.key? :MoneyData
       content = hash[:MoneyData]
 
-      raw =
-        if content.is_a? Array
-          content.shift
-          content.inject({}) { |memo, member| memo.merge(member) }
-        else
-          content
-        end
+      if content.is_a? Array
+        attributes = content.shift
+        raw = content.inject({}) { |memo, member| memo.merge(member) }
+      else
+        attributes = {}
+        raw = content
+      end
 
-      Parsers::MoneyData.new(raw)
+      Parsers::MoneyData.new(raw, attributes)
     end
   end
 

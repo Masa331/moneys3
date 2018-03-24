@@ -243,6 +243,8 @@ module MoneyS3
       def to_h
         hash = {}
 
+        hash[:_attributes] = attributes
+
         hash[:seznam_cinnosti] = seznam_cinnosti.to_h if raw.key? :SeznamCinnosti
         hash[:seznam_stredisek] = seznam_stredisek.to_h if raw.key? :SeznamStredisek
         hash[:seznam_clen_dph] = seznam_clen_dph.to_h if raw.key? :SeznamClenDPH

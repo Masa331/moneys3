@@ -1,11 +1,12 @@
 module MoneyS3
   module Builders
     module BaseBuilder
-      attr_accessor :attributes, :element_name
+      attr_accessor :attributes, :element_name, :actual_attributes
 
       def initialize(attributes = {}, element_name)
         @element_name = element_name
         @attributes = attributes || {}
+        @actual_attributes = attributes.delete(:_attributes) || {}
       end
 
       def to_xml

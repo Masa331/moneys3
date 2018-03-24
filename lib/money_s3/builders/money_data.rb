@@ -54,6 +54,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(element_name)
+        actual_attributes.each { |k, v| root[k] = v }
 
         if attributes.key? :seznam_cinnosti
           root << SeznamCinnosti.new(attributes[:seznam_cinnosti], 'SeznamCinnosti').builder
