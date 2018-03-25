@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def clen_dph
-        array_of_at(ClenDPH, [:ClenDPH])
+        array_of_at(ClenDPH, ['ClenDPH'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:clen_dph] = clen_dph.map(&:to_h) if has? :ClenDPH
+        hash[:clen_dph] = clen_dph.map(&:to_h) if has? 'ClenDPH'
 
         hash
       end

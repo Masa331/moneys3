@@ -7,98 +7,99 @@ module MoneyS3
       include BaseParser
 
       def zkrat
-        at :Zkrat
+        at 'Zkrat'
       end
 
       def mj
-        at :MJ
+        at 'MJ'
       end
 
       def uziv_code
-        at :UzivCode
+        at 'UzivCode'
       end
 
       def katalog
-        at :Katalog
+        at 'Katalog'
       end
 
       def bar_code
-        at :BarCode
+        at 'BarCode'
       end
 
       def zaloha
-        at :Zaloha
+        at 'Zaloha'
       end
 
       def zdan_zaloha
-        at :ZdanZaloha
+        at 'ZdanZaloha'
       end
 
       def konec_odpocet
-        at :KonecOdpocet
+        at 'KonecOdpocet'
       end
 
       def typ_zar_doby
-        at :TypZarDoby
+        at 'TypZarDoby'
       end
 
       def zar_doba
-        at :ZarDoba
+        at 'ZarDoba'
       end
 
       def protizapis
-        at :Protizapis
+        at 'Protizapis'
       end
 
       def plneno_dph
-        at :PlnenoDPH
+        at 'PlnenoDPH'
       end
 
       def hmotnost
-        at :Hmotnost
+        at 'Hmotnost'
       end
 
       def vyrobni_cis
-        at :VyrobniCis
+        at 'VyrobniCis'
       end
 
       def dat_exp
-        at :DatExp
+        at 'DatExp'
       end
 
       def dat_nakupu
-        at :DatNakupu
+        at 'DatNakupu'
       end
 
       def predm_pln
-        at :PredmPln
+        at 'PredmPln'
       end
 
       def dodavatel
-        submodel_at(FirmaType, :Dodavatel)
+        submodel_at(FirmaType, 'Dodavatel')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zkrat] = zkrat if has? :Zkrat
-        hash[:mj] = mj if has? :MJ
-        hash[:uziv_code] = uziv_code if has? :UzivCode
-        hash[:katalog] = katalog if has? :Katalog
-        hash[:bar_code] = bar_code if has? :BarCode
-        hash[:zaloha] = zaloha if has? :Zaloha
-        hash[:zdan_zaloha] = zdan_zaloha if has? :ZdanZaloha
-        hash[:konec_odpocet] = konec_odpocet if has? :KonecOdpocet
-        hash[:typ_zar_doby] = typ_zar_doby if has? :TypZarDoby
-        hash[:zar_doba] = zar_doba if has? :ZarDoba
-        hash[:protizapis] = protizapis if has? :Protizapis
-        hash[:plneno_dph] = plneno_dph if has? :PlnenoDPH
-        hash[:hmotnost] = hmotnost if has? :Hmotnost
-        hash[:vyrobni_cis] = vyrobni_cis if has? :VyrobniCis
-        hash[:dat_exp] = dat_exp if has? :DatExp
-        hash[:dat_nakupu] = dat_nakupu if has? :DatNakupu
-        hash[:predm_pln] = predm_pln if has? :PredmPln
-        hash[:dodavatel] = dodavatel.to_h if has? :Dodavatel
+        hash[:zkrat] = zkrat if has? 'Zkrat'
+        hash[:mj] = mj if has? 'MJ'
+        hash[:uziv_code] = uziv_code if has? 'UzivCode'
+        hash[:katalog] = katalog if has? 'Katalog'
+        hash[:bar_code] = bar_code if has? 'BarCode'
+        hash[:zaloha] = zaloha if has? 'Zaloha'
+        hash[:zdan_zaloha] = zdan_zaloha if has? 'ZdanZaloha'
+        hash[:konec_odpocet] = konec_odpocet if has? 'KonecOdpocet'
+        hash[:typ_zar_doby] = typ_zar_doby if has? 'TypZarDoby'
+        hash[:zar_doba] = zar_doba if has? 'ZarDoba'
+        hash[:protizapis] = protizapis if has? 'Protizapis'
+        hash[:plneno_dph] = plneno_dph if has? 'PlnenoDPH'
+        hash[:hmotnost] = hmotnost if has? 'Hmotnost'
+        hash[:vyrobni_cis] = vyrobni_cis if has? 'VyrobniCis'
+        hash[:dat_exp] = dat_exp if has? 'DatExp'
+        hash[:dat_nakupu] = dat_nakupu if has? 'DatNakupu'
+        hash[:predm_pln] = predm_pln if has? 'PredmPln'
+        hash[:dodavatel] = dodavatel.to_h if has? 'Dodavatel'
 
         hash
       end

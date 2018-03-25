@@ -6,73 +6,22 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :poradi
-          element = Ox::Element.new('Poradi')
-          element << attributes[:poradi] if attributes[:poradi]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :kontace
-          element = Ox::Element.new('Kontace')
-          element << attributes[:kontace] if attributes[:kontace]
-          root << element
-        end
-
-        if attributes.key? :stredisko
-          element = Ox::Element.new('Stredisko')
-          element << attributes[:stredisko] if attributes[:stredisko]
-          root << element
-        end
-
-        if attributes.key? :zakazka
-          element = Ox::Element.new('Zakazka')
-          element << attributes[:zakazka] if attributes[:zakazka]
-          root << element
-        end
-
-        if attributes.key? :cinnost
-          element = Ox::Element.new('Cinnost')
-          element << attributes[:cinnost] if attributes[:cinnost]
-          root << element
-        end
-
-        if attributes.key? :zaklad
-          element = Ox::Element.new('Zaklad')
-          element << attributes[:zaklad] if attributes[:zaklad]
-          root << element
-        end
-
-        if attributes.key? :dphzs
-          element = Ox::Element.new('DPHZS')
-          element << attributes[:dphzs] if attributes[:dphzs]
-          root << element
-        end
-
-        if attributes.key? :dphss
-          element = Ox::Element.new('DPHSS')
-          element << attributes[:dphss] if attributes[:dphss]
-          root << element
-        end
-
-        if attributes.key? :wl_zaklady
-          element = Ox::Element.new('WLZaklady')
-          element << attributes[:wl_zaklady] if attributes[:wl_zaklady]
-          root << element
-        end
-
-        if attributes.key? :wldph1
-          element = Ox::Element.new('WLDPH1')
-          element << attributes[:wldph1] if attributes[:wldph1]
-          root << element
-        end
-
-        if attributes.key? :wldph2
-          element = Ox::Element.new('WLDPH2')
-          element << attributes[:wldph2] if attributes[:wldph2]
-          root << element
-        end
+        root << build_element('Poradi', data[:poradi]) if data.key? :poradi
+        root << build_element('Kontace', data[:kontace]) if data.key? :kontace
+        root << build_element('Stredisko', data[:stredisko]) if data.key? :stredisko
+        root << build_element('Zakazka', data[:zakazka]) if data.key? :zakazka
+        root << build_element('Cinnost', data[:cinnost]) if data.key? :cinnost
+        root << build_element('Zaklad', data[:zaklad]) if data.key? :zaklad
+        root << build_element('DPHZS', data[:dphzs]) if data.key? :dphzs
+        root << build_element('DPHSS', data[:dphss]) if data.key? :dphss
+        root << build_element('WLZaklady', data[:wl_zaklady]) if data.key? :wl_zaklady
+        root << build_element('WLDPH1', data[:wldph1]) if data.key? :wldph1
+        root << build_element('WLDPH2', data[:wldph2]) if data.key? :wldph2
 
         root
       end

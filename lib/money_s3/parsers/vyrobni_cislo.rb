@@ -6,23 +6,24 @@ module MoneyS3
       include BaseParser
 
       def vyrobni_cis
-        at :VyrobniCis
+        at 'VyrobniCis'
       end
 
       def dat_vyr
-        at :DatVyr
+        at 'DatVyr'
       end
 
       def car_kod
-        at :CarKod
+        at 'CarKod'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:vyrobni_cis] = vyrobni_cis if has? :VyrobniCis
-        hash[:dat_vyr] = dat_vyr if has? :DatVyr
-        hash[:car_kod] = car_kod if has? :CarKod
+        hash[:vyrobni_cis] = vyrobni_cis if has? 'VyrobniCis'
+        hash[:dat_vyr] = dat_vyr if has? 'DatVyr'
+        hash[:car_kod] = car_kod if has? 'CarKod'
 
         hash
       end

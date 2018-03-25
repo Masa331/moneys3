@@ -6,67 +6,21 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :banka
-          element = Ox::Element.new('Banka')
-          element << attributes[:banka] if attributes[:banka]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :datum
-          element = Ox::Element.new('Datum')
-          element << attributes[:datum] if attributes[:datum]
-          root << element
-        end
-
-        if attributes.key? :kod
-          element = Ox::Element.new('Kod')
-          element << attributes[:kod] if attributes[:kod]
-          root << element
-        end
-
-        if attributes.key? :zeme
-          element = Ox::Element.new('Zeme')
-          element << attributes[:zeme] if attributes[:zeme]
-          root << element
-        end
-
-        if attributes.key? :mnozstvi
-          element = Ox::Element.new('Mnozstvi')
-          element << attributes[:mnozstvi] if attributes[:mnozstvi]
-          root << element
-        end
-
-        if attributes.key? :nb_stred
-          element = Ox::Element.new('NBStred')
-          element << attributes[:nb_stred] if attributes[:nb_stred]
-          root << element
-        end
-
-        if attributes.key? :devizy_nakup
-          element = Ox::Element.new('DevizyNakup')
-          element << attributes[:devizy_nakup] if attributes[:devizy_nakup]
-          root << element
-        end
-
-        if attributes.key? :devizy_prodej
-          element = Ox::Element.new('DevizyProdej')
-          element << attributes[:devizy_prodej] if attributes[:devizy_prodej]
-          root << element
-        end
-
-        if attributes.key? :valuty_nakup
-          element = Ox::Element.new('ValutyNakup')
-          element << attributes[:valuty_nakup] if attributes[:valuty_nakup]
-          root << element
-        end
-
-        if attributes.key? :valuty_prodej
-          element = Ox::Element.new('ValutyProdej')
-          element << attributes[:valuty_prodej] if attributes[:valuty_prodej]
-          root << element
-        end
+        root << build_element('Banka', data[:banka]) if data.key? :banka
+        root << build_element('Datum', data[:datum]) if data.key? :datum
+        root << build_element('Kod', data[:kod]) if data.key? :kod
+        root << build_element('Zeme', data[:zeme]) if data.key? :zeme
+        root << build_element('Mnozstvi', data[:mnozstvi]) if data.key? :mnozstvi
+        root << build_element('NBStred', data[:nb_stred]) if data.key? :nb_stred
+        root << build_element('DevizyNakup', data[:devizy_nakup]) if data.key? :devizy_nakup
+        root << build_element('DevizyProdej', data[:devizy_prodej]) if data.key? :devizy_prodej
+        root << build_element('ValutyNakup', data[:valuty_nakup]) if data.key? :valuty_nakup
+        root << build_element('ValutyProdej', data[:valuty_prodej]) if data.key? :valuty_prodej
 
         root
       end

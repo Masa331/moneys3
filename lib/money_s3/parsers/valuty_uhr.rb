@@ -7,18 +7,19 @@ module MoneyS3
       include BaseParser
 
       def castka
-        at :Castka
+        at 'Castka'
       end
 
       def mena
-        submodel_at(MenaType, :Mena)
+        submodel_at(MenaType, 'Mena')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:castka] = castka if has? :Castka
-        hash[:mena] = mena.to_h if has? :Mena
+        hash[:castka] = castka if has? 'Castka'
+        hash[:mena] = mena.to_h if has? 'Mena'
 
         hash
       end

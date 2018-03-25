@@ -8,118 +8,42 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :osloveni
-          element = Ox::Element.new('Osloveni')
-          element << attributes[:osloveni] if attributes[:osloveni]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :titul_pred
-          element = Ox::Element.new('TitulPred')
-          element << attributes[:titul_pred] if attributes[:titul_pred]
-          root << element
+        root << build_element('Osloveni', data[:osloveni]) if data.key? :osloveni
+        root << build_element('TitulPred', data[:titul_pred]) if data.key? :titul_pred
+        root << build_element('TitulZa', data[:titul_za]) if data.key? :titul_za
+        root << build_element('Jmeno', data[:jmeno]) if data.key? :jmeno
+        root << build_element('Prijmeni', data[:prijmeni]) if data.key? :prijmeni
+        root << build_element('DatNar', data[:dat_nar]) if data.key? :dat_nar
+        root << build_element('Pohlavi', data[:pohlavi]) if data.key? :pohlavi
+        root << build_element('Funkce', data[:funkce]) if data.key? :funkce
+        root << build_element('Spojeni', data[:spojeni]) if data.key? :spojeni
+        root << build_element('EMail', data[:e_mail]) if data.key? :e_mail
+        root << build_element('Mail', data[:mail]) if data.key? :mail
+        root << build_element('MailDatum', data[:mail_datum]) if data.key? :mail_datum
+        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
+        root << build_element('KodPartn', data[:kod_partn]) if data.key? :kod_partn
+        root << build_element('GUID', data[:guid]) if data.key? :guid
+        root << build_element('Jednatel', data[:jednatel]) if data.key? :jednatel
+
+        if data.key? :adresa
+          root << AdresaType.new('Adresa', data[:adresa]).builder
         end
 
-        if attributes.key? :titul_za
-          element = Ox::Element.new('TitulZa')
-          element << attributes[:titul_za] if attributes[:titul_za]
-          root << element
+        if data.key? :tel
+          root << TelefonType.new('Tel', data[:tel]).builder
         end
 
-        if attributes.key? :jmeno
-          element = Ox::Element.new('Jmeno')
-          element << attributes[:jmeno] if attributes[:jmeno]
-          root << element
+        if data.key? :fax
+          root << TelefonType.new('Fax', data[:fax]).builder
         end
 
-        if attributes.key? :prijmeni
-          element = Ox::Element.new('Prijmeni')
-          element << attributes[:prijmeni] if attributes[:prijmeni]
-          root << element
-        end
-
-        if attributes.key? :dat_nar
-          element = Ox::Element.new('DatNar')
-          element << attributes[:dat_nar] if attributes[:dat_nar]
-          root << element
-        end
-
-        if attributes.key? :pohlavi
-          element = Ox::Element.new('Pohlavi')
-          element << attributes[:pohlavi] if attributes[:pohlavi]
-          root << element
-        end
-
-        if attributes.key? :funkce
-          element = Ox::Element.new('Funkce')
-          element << attributes[:funkce] if attributes[:funkce]
-          root << element
-        end
-
-        if attributes.key? :spojeni
-          element = Ox::Element.new('Spojeni')
-          element << attributes[:spojeni] if attributes[:spojeni]
-          root << element
-        end
-
-        if attributes.key? :e_mail
-          element = Ox::Element.new('EMail')
-          element << attributes[:e_mail] if attributes[:e_mail]
-          root << element
-        end
-
-        if attributes.key? :mail
-          element = Ox::Element.new('Mail')
-          element << attributes[:mail] if attributes[:mail]
-          root << element
-        end
-
-        if attributes.key? :mail_datum
-          element = Ox::Element.new('MailDatum')
-          element << attributes[:mail_datum] if attributes[:mail_datum]
-          root << element
-        end
-
-        if attributes.key? :pozn
-          element = Ox::Element.new('Pozn')
-          element << attributes[:pozn] if attributes[:pozn]
-          root << element
-        end
-
-        if attributes.key? :kod_partn
-          element = Ox::Element.new('KodPartn')
-          element << attributes[:kod_partn] if attributes[:kod_partn]
-          root << element
-        end
-
-        if attributes.key? :guid
-          element = Ox::Element.new('GUID')
-          element << attributes[:guid] if attributes[:guid]
-          root << element
-        end
-
-        if attributes.key? :jednatel
-          element = Ox::Element.new('Jednatel')
-          element << attributes[:jednatel] if attributes[:jednatel]
-          root << element
-        end
-
-        if attributes.key? :adresa
-          root << AdresaType.new(attributes[:adresa], 'Adresa').builder
-        end
-
-        if attributes.key? :tel
-          root << TelefonType.new(attributes[:tel], 'Tel').builder
-        end
-
-        if attributes.key? :fax
-          root << TelefonType.new(attributes[:fax], 'Fax').builder
-        end
-
-        if attributes.key? :mobil
-          root << TelefonType.new(attributes[:mobil], 'Mobil').builder
+        if data.key? :mobil
+          root << TelefonType.new('Mobil', data[:mobil]).builder
         end
 
         root

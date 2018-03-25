@@ -10,55 +10,34 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :popis
-          element = Ox::Element.new('Popis')
-          element << attributes[:popis] if attributes[:popis]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :zkrat
-          element = Ox::Element.new('Zkrat')
-          element << attributes[:zkrat] if attributes[:zkrat]
-          root << element
+        root << build_element('Popis', data[:popis]) if data.key? :popis
+        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
+        root << build_element('Slupina', data[:slupina]) if data.key? :slupina
+        root << build_element('MJ', data[:mj]) if data.key? :mj
+        root << build_element('MnInv', data[:mn_inv]) if data.key? :mn_inv
+
+        if data.key? :sklad
+          root << SkladType.new('Sklad', data[:sklad]).builder
         end
 
-        if attributes.key? :slupina
-          element = Ox::Element.new('Slupina')
-          element << attributes[:slupina] if attributes[:slupina]
-          root << element
+        if data.key? :km_karta
+          root << KmKartaType.new('KmKarta', data[:km_karta]).builder
         end
 
-        if attributes.key? :mj
-          element = Ox::Element.new('MJ')
-          element << attributes[:mj] if attributes[:mj]
-          root << element
-        end
-
-        if attributes.key? :mn_inv
-          element = Ox::Element.new('MnInv')
-          element << attributes[:mn_inv] if attributes[:mn_inv]
-          root << element
-        end
-
-        if attributes.key? :sklad
-          root << SkladType.new(attributes[:sklad], 'Sklad').builder
-        end
-
-        if attributes.key? :km_karta
-          root << KmKartaType.new(attributes[:km_karta], 'KmKarta').builder
-        end
-
-        if attributes.key? :seznam_vc
+        if data.key? :seznam_vc
           element = Ox::Element.new('SeznamVC')
-          attributes[:seznam_vc].each { |i| element << VyrobniCislo.new(i, 'VyrobniCislo').builder }
+          data[:seznam_vc].each { |i| element << VyrobniCislo.new('VyrobniCislo', i).builder }
           root << element
         end
 
-        if attributes.key? :slozeni
+        if data.key? :slozeni
           element = Ox::Element.new('Slozeni')
-          attributes[:slozeni].each { |i| element << SubpolInvDType.new(i, 'SubPolozka').builder }
+          data[:slozeni].each { |i| element << SubpolInvDType.new('SubPolozka', i).builder }
           root << element
         end
 

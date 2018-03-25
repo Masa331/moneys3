@@ -9,63 +9,64 @@ module MoneyS3
       include BaseParser
 
       def mesic
-        at :Mesic
+        at 'Mesic'
       end
 
       def rok
-        at :Rok
+        at 'Rok'
       end
 
       def prac_dnu
-        at :PracDnu
+        at 'PracDnu'
       end
 
       def prac_hod
-        at :PracHod
+        at 'PracHod'
       end
 
       def odpr_dnu
-        at :OdprDnu
+        at 'OdprDnu'
       end
 
       def odpr_hod
-        at :OdprHod
+        at 'OdprHod'
       end
 
       def odpr_sv_dnu
-        at :OdprSvDnu
+        at 'OdprSvDnu'
       end
 
       def odpr_sv_hod
-        at :OdprSvHod
+        at 'OdprSvHod'
       end
 
       def zamestnanec
-        submodel_at(ZamestnanecType, :Zamestnanec)
+        submodel_at(ZamestnanecType, 'Zamestnanec')
       end
 
       def seznam_nepritomnosti
-        array_of_at(NepritomnostType, [:SeznamNepritomnosti, :Nepritomnost])
+        array_of_at(NepritomnostType, ['SeznamNepritomnosti', 'Nepritomnost'])
       end
 
       def seznam_mz_priplatku
-        array_of_at(MzPriplatek, [:SeznamMzPriplatku, :MzPriplatek])
+        array_of_at(MzPriplatek, ['SeznamMzPriplatku', 'MzPriplatek'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:mesic] = mesic if has? :Mesic
-        hash[:rok] = rok if has? :Rok
-        hash[:prac_dnu] = prac_dnu if has? :PracDnu
-        hash[:prac_hod] = prac_hod if has? :PracHod
-        hash[:odpr_dnu] = odpr_dnu if has? :OdprDnu
-        hash[:odpr_hod] = odpr_hod if has? :OdprHod
-        hash[:odpr_sv_dnu] = odpr_sv_dnu if has? :OdprSvDnu
-        hash[:odpr_sv_hod] = odpr_sv_hod if has? :OdprSvHod
-        hash[:zamestnanec] = zamestnanec.to_h if has? :Zamestnanec
-        hash[:seznam_nepritomnosti] = seznam_nepritomnosti.map(&:to_h) if has? :SeznamNepritomnosti
-        hash[:seznam_mz_priplatku] = seznam_mz_priplatku.map(&:to_h) if has? :SeznamMzPriplatku
+        hash[:mesic] = mesic if has? 'Mesic'
+        hash[:rok] = rok if has? 'Rok'
+        hash[:prac_dnu] = prac_dnu if has? 'PracDnu'
+        hash[:prac_hod] = prac_hod if has? 'PracHod'
+        hash[:odpr_dnu] = odpr_dnu if has? 'OdprDnu'
+        hash[:odpr_hod] = odpr_hod if has? 'OdprHod'
+        hash[:odpr_sv_dnu] = odpr_sv_dnu if has? 'OdprSvDnu'
+        hash[:odpr_sv_hod] = odpr_sv_hod if has? 'OdprSvHod'
+        hash[:zamestnanec] = zamestnanec.to_h if has? 'Zamestnanec'
+        hash[:seznam_nepritomnosti] = seznam_nepritomnosti.map(&:to_h) if has? 'SeznamNepritomnosti'
+        hash[:seznam_mz_priplatku] = seznam_mz_priplatku.map(&:to_h) if has? 'SeznamMzPriplatku'
 
         hash
       end

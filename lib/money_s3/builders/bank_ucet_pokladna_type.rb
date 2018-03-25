@@ -6,145 +6,34 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :zkrat
-          element = Ox::Element.new('Zkrat')
-          element << attributes[:zkrat] if attributes[:zkrat]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :popis
-          element = Ox::Element.new('Popis')
-          element << attributes[:popis] if attributes[:popis]
-          root << element
-        end
-
-        if attributes.key? :uc_pokl
-          element = Ox::Element.new('UcPokl')
-          element << attributes[:uc_pokl] if attributes[:uc_pokl]
-          root << element
-        end
-
-        if attributes.key? :poc_stav
-          element = Ox::Element.new('PocStav')
-          element << attributes[:poc_stav] if attributes[:poc_stav]
-          root << element
-        end
-
-        if attributes.key? :mena
-          element = Ox::Element.new('Mena')
-          element << attributes[:mena] if attributes[:mena]
-          root << element
-        end
-
-        if attributes.key? :b_mena
-          element = Ox::Element.new('BMena')
-          element << attributes[:b_mena] if attributes[:b_mena]
-          root << element
-        end
-
-        if attributes.key? :ps_kurz
-          element = Ox::Element.new('PSKurz')
-          element << attributes[:ps_kurz] if attributes[:ps_kurz]
-          root << element
-        end
-
-        if attributes.key? :ps_mnozstvi
-          element = Ox::Element.new('PSMnozstvi')
-          element << attributes[:ps_mnozstvi] if attributes[:ps_mnozstvi]
-          root << element
-        end
-
-        if attributes.key? :prim_ucet
-          element = Ox::Element.new('PrimUcet')
-          element << attributes[:prim_ucet] if attributes[:prim_ucet]
-          root << element
-        end
-
-        if attributes.key? :ucet
-          element = Ox::Element.new('Ucet')
-          element << attributes[:ucet] if attributes[:ucet]
-          root << element
-        end
-
-        if attributes.key? :b_kod
-          element = Ox::Element.new('BKod')
-          element << attributes[:b_kod] if attributes[:b_kod]
-          root << element
-        end
-
-        if attributes.key? :b_nazev
-          element = Ox::Element.new('BNazev')
-          element << attributes[:b_nazev] if attributes[:b_nazev]
-          root << element
-        end
-
-        if attributes.key? :b_zkrat
-          element = Ox::Element.new('BZkrat')
-          element << attributes[:b_zkrat] if attributes[:b_zkrat]
-          root << element
-        end
-
-        if attributes.key? :iban
-          element = Ox::Element.new('IBAN')
-          element << attributes[:iban] if attributes[:iban]
-          root << element
-        end
-
-        if attributes.key? :swift
-          element = Ox::Element.new('SWIFT')
-          element << attributes[:swift] if attributes[:swift]
-          root << element
-        end
-
-        if attributes.key? :uver
-          element = Ox::Element.new('Uver')
-          element << attributes[:uver] if attributes[:uver]
-          root << element
-        end
-
-        if attributes.key? :hbid
-          element = Ox::Element.new('HBID')
-          element << attributes[:hbid] if attributes[:hbid]
-          root << element
-        end
-
-        if attributes.key? :hb_nazev
-          element = Ox::Element.new('HBNazev')
-          element << attributes[:hb_nazev] if attributes[:hb_nazev]
-          root << element
-        end
-
-        if attributes.key? :druh
-          element = Ox::Element.new('Druh')
-          element << attributes[:druh] if attributes[:druh]
-          root << element
-        end
-
-        if attributes.key? :typ_prijem
-          element = Ox::Element.new('TypPrijem')
-          element << attributes[:typ_prijem] if attributes[:typ_prijem]
-          root << element
-        end
-
-        if attributes.key? :typ_vydej
-          element = Ox::Element.new('TypVydej')
-          element << attributes[:typ_vydej] if attributes[:typ_vydej]
-          root << element
-        end
-
-        if attributes.key? :pokladni
-          element = Ox::Element.new('Pokladni')
-          element << attributes[:pokladni] if attributes[:pokladni]
-          root << element
-        end
-
-        if attributes.key? :pozn
-          element = Ox::Element.new('Pozn')
-          element << attributes[:pozn] if attributes[:pozn]
-          root << element
-        end
+        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
+        root << build_element('Popis', data[:popis]) if data.key? :popis
+        root << build_element('UcPokl', data[:uc_pokl]) if data.key? :uc_pokl
+        root << build_element('PocStav', data[:poc_stav]) if data.key? :poc_stav
+        root << build_element('Mena', data[:mena]) if data.key? :mena
+        root << build_element('BMena', data[:b_mena]) if data.key? :b_mena
+        root << build_element('PSKurz', data[:ps_kurz]) if data.key? :ps_kurz
+        root << build_element('PSMnozstvi', data[:ps_mnozstvi]) if data.key? :ps_mnozstvi
+        root << build_element('PrimUcet', data[:prim_ucet]) if data.key? :prim_ucet
+        root << build_element('Ucet', data[:ucet]) if data.key? :ucet
+        root << build_element('BKod', data[:b_kod]) if data.key? :b_kod
+        root << build_element('BNazev', data[:b_nazev]) if data.key? :b_nazev
+        root << build_element('BZkrat', data[:b_zkrat]) if data.key? :b_zkrat
+        root << build_element('IBAN', data[:iban]) if data.key? :iban
+        root << build_element('SWIFT', data[:swift]) if data.key? :swift
+        root << build_element('Uver', data[:uver]) if data.key? :uver
+        root << build_element('HBID', data[:hbid]) if data.key? :hbid
+        root << build_element('HBNazev', data[:hb_nazev]) if data.key? :hb_nazev
+        root << build_element('Druh', data[:druh]) if data.key? :druh
+        root << build_element('TypPrijem', data[:typ_prijem]) if data.key? :typ_prijem
+        root << build_element('TypVydej', data[:typ_vydej]) if data.key? :typ_vydej
+        root << build_element('Pokladni', data[:pokladni]) if data.key? :pokladni
+        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
 
         root
       end

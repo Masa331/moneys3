@@ -6,28 +6,29 @@ module MoneyS3
       include BaseParser
 
       def ucet
-        at :Ucet
+        at 'Ucet'
       end
 
       def kod_banky
-        at :KodBanky
+        at 'KodBanky'
       end
 
       def mena
-        at :Mena
+        at 'Mena'
       end
 
       def ucel
-        at :Ucel
+        at 'Ucel'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:ucet] = ucet if has? :Ucet
-        hash[:kod_banky] = kod_banky if has? :KodBanky
-        hash[:mena] = mena if has? :Mena
-        hash[:ucel] = ucel if has? :Ucel
+        hash[:ucet] = ucet if has? 'Ucet'
+        hash[:kod_banky] = kod_banky if has? 'KodBanky'
+        hash[:mena] = mena if has? 'Mena'
+        hash[:ucel] = ucel if has? 'Ucel'
 
         hash
       end

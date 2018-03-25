@@ -9,134 +9,48 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :zkratka
-          element = Ox::Element.new('Zkratka')
-          element << attributes[:zkratka] if attributes[:zkratka]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :nazev
-          element = Ox::Element.new('Nazev')
-          element << attributes[:nazev] if attributes[:nazev]
-          root << element
+        root << build_element('Zkratka', data[:zkratka]) if data.key? :zkratka
+        root << build_element('Nazev', data[:nazev]) if data.key? :nazev
+        root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
+        root << build_element('Zkratka0', data[:zkratka0]) if data.key? :zkratka0
+        root << build_element('Zkratka1', data[:zkratka1]) if data.key? :zkratka1
+        root << build_element('Zkratka2', data[:zkratka2]) if data.key? :zkratka2
+        root << build_element('Zkratka3', data[:zkratka3]) if data.key? :zkratka3
+        root << build_element('Zkratka4', data[:zkratka4]) if data.key? :zkratka4
+        root << build_element('Zkratka5', data[:zkratka5]) if data.key? :zkratka5
+        root << build_element('Zkratka6', data[:zkratka6]) if data.key? :zkratka6
+        root << build_element('Ceny', data[:ceny]) if data.key? :ceny
+        root << build_element('NastSklad', data[:nast_sklad]) if data.key? :nast_sklad
+        root << build_element('CisSkupVPL', data[:cis_skup_vpl]) if data.key? :cis_skup_vpl
+        root << build_element('IN_CisOdde', data[:in_cis_odde]) if data.key? :in_cis_odde
+        root << build_element('UcVyrobkVV', data[:uc_vyrobk_vv]) if data.key? :uc_vyrobk_vv
+        root << build_element('ProdejkVz', data[:prodejk_vz]) if data.key? :prodejk_vz
+        root << build_element('VDodLstVz', data[:v_dod_lst_vz]) if data.key? :v_dod_lst_vz
+        root << build_element('PDodLstVz', data[:p_dod_lst_vz]) if data.key? :p_dod_lst_vz
+
+        if data.key? :konfigurace
+          root << Konfigurace.new('konfigurace', data[:konfigurace]).builder
         end
 
-        if attributes.key? :poznamka
-          element = Ox::Element.new('Poznamka')
-          element << attributes[:poznamka] if attributes[:poznamka]
-          root << element
+        if data.key? :definice_ceny
+          root << DefiniceCeny.new('definiceCeny', data[:definice_ceny]).builder
         end
 
-        if attributes.key? :zkratka0
-          element = Ox::Element.new('Zkratka0')
-          element << attributes[:zkratka0] if attributes[:zkratka0]
-          root << element
+        if data.key? :uc_pohyb_m
+          root << UctyPohybuType.new('UcPohybM', data[:uc_pohyb_m]).builder
         end
 
-        if attributes.key? :zkratka1
-          element = Ox::Element.new('Zkratka1')
-          element << attributes[:zkratka1] if attributes[:zkratka1]
-          root << element
+        if data.key? :uc_pohyb_z
+          root << UctyPohybuType.new('UcPohybZ', data[:uc_pohyb_z]).builder
         end
 
-        if attributes.key? :zkratka2
-          element = Ox::Element.new('Zkratka2')
-          element << attributes[:zkratka2] if attributes[:zkratka2]
-          root << element
-        end
-
-        if attributes.key? :zkratka3
-          element = Ox::Element.new('Zkratka3')
-          element << attributes[:zkratka3] if attributes[:zkratka3]
-          root << element
-        end
-
-        if attributes.key? :zkratka4
-          element = Ox::Element.new('Zkratka4')
-          element << attributes[:zkratka4] if attributes[:zkratka4]
-          root << element
-        end
-
-        if attributes.key? :zkratka5
-          element = Ox::Element.new('Zkratka5')
-          element << attributes[:zkratka5] if attributes[:zkratka5]
-          root << element
-        end
-
-        if attributes.key? :zkratka6
-          element = Ox::Element.new('Zkratka6')
-          element << attributes[:zkratka6] if attributes[:zkratka6]
-          root << element
-        end
-
-        if attributes.key? :ceny
-          element = Ox::Element.new('Ceny')
-          element << attributes[:ceny] if attributes[:ceny]
-          root << element
-        end
-
-        if attributes.key? :nast_sklad
-          element = Ox::Element.new('NastSklad')
-          element << attributes[:nast_sklad] if attributes[:nast_sklad]
-          root << element
-        end
-
-        if attributes.key? :cis_skup_vpl
-          element = Ox::Element.new('CisSkupVPL')
-          element << attributes[:cis_skup_vpl] if attributes[:cis_skup_vpl]
-          root << element
-        end
-
-        if attributes.key? :in_cis_odde
-          element = Ox::Element.new('IN_CisOdde')
-          element << attributes[:in_cis_odde] if attributes[:in_cis_odde]
-          root << element
-        end
-
-        if attributes.key? :uc_vyrobk_vv
-          element = Ox::Element.new('UcVyrobkVV')
-          element << attributes[:uc_vyrobk_vv] if attributes[:uc_vyrobk_vv]
-          root << element
-        end
-
-        if attributes.key? :prodejk_vz
-          element = Ox::Element.new('ProdejkVz')
-          element << attributes[:prodejk_vz] if attributes[:prodejk_vz]
-          root << element
-        end
-
-        if attributes.key? :v_dod_lst_vz
-          element = Ox::Element.new('VDodLstVz')
-          element << attributes[:v_dod_lst_vz] if attributes[:v_dod_lst_vz]
-          root << element
-        end
-
-        if attributes.key? :p_dod_lst_vz
-          element = Ox::Element.new('PDodLstVz')
-          element << attributes[:p_dod_lst_vz] if attributes[:p_dod_lst_vz]
-          root << element
-        end
-
-        if attributes.key? :konfigurace
-          root << Konfigurace.new(attributes[:konfigurace], 'konfigurace').builder
-        end
-
-        if attributes.key? :definice_ceny
-          root << DefiniceCeny.new(attributes[:definice_ceny], 'definiceCeny').builder
-        end
-
-        if attributes.key? :uc_pohyb_m
-          root << UctyPohybuType.new(attributes[:uc_pohyb_m], 'UcPohybM').builder
-        end
-
-        if attributes.key? :uc_pohyb_z
-          root << UctyPohybuType.new(attributes[:uc_pohyb_z], 'UcPohybZ').builder
-        end
-
-        if attributes.key? :uc_pohyb_v
-          root << UctyPohybuType.new(attributes[:uc_pohyb_v], 'UcPohybV').builder
+        if data.key? :uc_pohyb_v
+          root << UctyPohybuType.new('UcPohybV', data[:uc_pohyb_v]).builder
         end
 
         root

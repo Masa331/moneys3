@@ -7,14 +7,17 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :global
-          root << VlajkaType.new(attributes[:global], 'Global').builder
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :user
-          root << VlajkaType.new(attributes[:user], 'User').builder
+        if data.key? :global
+          root << VlajkaType.new('Global', data[:global]).builder
+        end
+
+        if data.key? :user
+          root << VlajkaType.new('User', data[:user]).builder
         end
 
         root

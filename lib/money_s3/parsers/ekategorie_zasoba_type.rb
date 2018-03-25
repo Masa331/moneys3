@@ -7,43 +7,44 @@ module MoneyS3
       include BaseParser
 
       def id
-        at :ID
+        at 'ID'
       end
 
       def name
-        at :Name
+        at 'Name'
       end
 
       def descript
-        at :Descript
+        at 'Descript'
       end
 
       def poznamka
-        at :Poznamka
+        at 'Poznamka'
       end
 
       def changed
-        at :Changed
+        at 'Changed'
       end
 
       def public
-        at :Public
+        at 'Public'
       end
 
       def parent
-        submodel_at(EkategorieZasobaType, :Parent)
+        submodel_at(EkategorieZasobaType, 'Parent')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:id] = id if has? :ID
-        hash[:name] = name if has? :Name
-        hash[:descript] = descript if has? :Descript
-        hash[:poznamka] = poznamka if has? :Poznamka
-        hash[:changed] = changed if has? :Changed
-        hash[:public] = public if has? :Public
-        hash[:parent] = parent.to_h if has? :Parent
+        hash[:id] = id if has? 'ID'
+        hash[:name] = name if has? 'Name'
+        hash[:descript] = descript if has? 'Descript'
+        hash[:poznamka] = poznamka if has? 'Poznamka'
+        hash[:changed] = changed if has? 'Changed'
+        hash[:public] = public if has? 'Public'
+        hash[:parent] = parent.to_h if has? 'Parent'
 
         hash
       end

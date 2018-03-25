@@ -8,14 +8,17 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :data
-          root << FirmaType.new(attributes[:data], 'Data').builder
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :osoba
-          attributes[:osoba].each { |i| root << MessageType.new(i, 'Osoba').builder }
+        if data.key? :data
+          root << FirmaType.new('Data', data[:data]).builder
+        end
+
+        if data.key? :osoba
+          data[:osoba].each { |i| root << MessageType.new('Osoba', i).builder }
         end
 
         root

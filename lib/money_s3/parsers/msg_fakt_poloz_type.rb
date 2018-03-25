@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def skl_polozka
-        submodel_at(MsgPolozType, :SklPolozka)
+        submodel_at(MsgPolozType, 'SklPolozka')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:skl_polozka] = skl_polozka.to_h if has? :SklPolozka
+        hash[:skl_polozka] = skl_polozka.to_h if has? 'SklPolozka'
 
         hash
       end

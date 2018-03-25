@@ -6,23 +6,24 @@ module MoneyS3
       include BaseParser
 
       def kod
-        at :Kod
+        at 'Kod'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def var_symb
-        at :VarSymb
+        at 'VarSymb'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:kod] = kod if has? :Kod
-        hash[:popis] = popis if has? :Popis
-        hash[:var_symb] = var_symb if has? :VarSymb
+        hash[:kod] = kod if has? 'Kod'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:var_symb] = var_symb if has? 'VarSymb'
 
         hash
       end

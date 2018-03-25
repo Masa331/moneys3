@@ -8,18 +8,19 @@ module MoneyS3
       include BaseParser
 
       def data
-        submodel_at(FirmaType, :Data)
+        submodel_at(FirmaType, 'Data')
       end
 
       def osoba
-        array_of_at(MessageType, [:Osoba])
+        array_of_at(MessageType, ['Osoba'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:data] = data.to_h if has? :Data
-        hash[:osoba] = osoba.map(&:to_h) if has? :Osoba
+        hash[:data] = data.to_h if has? 'Data'
+        hash[:osoba] = osoba.map(&:to_h) if has? 'Osoba'
 
         hash
       end

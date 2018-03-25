@@ -6,58 +6,59 @@ module MoneyS3
       include BaseParser
 
       def zkrat
-        at :Zkrat
+        at 'Zkrat'
       end
 
       def datum_od
-        at :DatumOd
+        at 'DatumOd'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def typ
-        at :Typ
+        at 'Typ'
       end
 
       def kolonka
-        at :Kolonka
+        at 'Kolonka'
       end
 
       def kod_plneni
-        at :KodPlneni
+        at 'KodPlneni'
       end
 
       def bez_odpoctu
-        at :BezOdpoctu
+        at 'BezOdpoctu'
       end
 
       def no_koef
-        at :NoKoef
+        at 'NoKoef'
       end
 
       def majetek
-        at :Majetek
+        at 'Majetek'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zkrat] = zkrat if has? :Zkrat
-        hash[:datum_od] = datum_od if has? :DatumOd
-        hash[:popis] = popis if has? :Popis
-        hash[:typ] = typ if has? :Typ
-        hash[:kolonka] = kolonka if has? :Kolonka
-        hash[:kod_plneni] = kod_plneni if has? :KodPlneni
-        hash[:bez_odpoctu] = bez_odpoctu if has? :BezOdpoctu
-        hash[:no_koef] = no_koef if has? :NoKoef
-        hash[:majetek] = majetek if has? :Majetek
-        hash[:pozn] = pozn if has? :Pozn
+        hash[:zkrat] = zkrat if has? 'Zkrat'
+        hash[:datum_od] = datum_od if has? 'DatumOd'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:typ] = typ if has? 'Typ'
+        hash[:kolonka] = kolonka if has? 'Kolonka'
+        hash[:kod_plneni] = kod_plneni if has? 'KodPlneni'
+        hash[:bez_odpoctu] = bez_odpoctu if has? 'BezOdpoctu'
+        hash[:no_koef] = no_koef if has? 'NoKoef'
+        hash[:majetek] = majetek if has? 'Majetek'
+        hash[:pozn] = pozn if has? 'Pozn'
 
         hash
       end

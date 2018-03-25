@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def km_karta
-        array_of_at(KmKarta, [:KmKarta])
+        array_of_at(KmKarta, ['KmKarta'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:km_karta] = km_karta.map(&:to_h) if has? :KmKarta
+        hash[:km_karta] = km_karta.map(&:to_h) if has? 'KmKarta'
 
         hash
       end

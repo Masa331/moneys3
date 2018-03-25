@@ -8,23 +8,24 @@ module MoneyS3
       include BaseParser
 
       def celkem
-        at :Celkem
+        at 'Celkem'
       end
 
       def mena
-        submodel_at(MenaType, :Mena)
+        submodel_at(MenaType, 'Mena')
       end
 
       def souhrn_dph
-        submodel_at(SouhrnDPHType, :SouhrnDPH)
+        submodel_at(SouhrnDPHType, 'SouhrnDPH')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:celkem] = celkem if has? :Celkem
-        hash[:mena] = mena.to_h if has? :Mena
-        hash[:souhrn_dph] = souhrn_dph.to_h if has? :SouhrnDPH
+        hash[:celkem] = celkem if has? 'Celkem'
+        hash[:mena] = mena.to_h if has? 'Mena'
+        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
 
         hash
       end

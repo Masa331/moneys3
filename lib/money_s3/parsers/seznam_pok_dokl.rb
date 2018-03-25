@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def pok_dokl
-        array_of_at(PokDokl, [:PokDokl])
+        array_of_at(PokDokl, ['PokDokl'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:pok_dokl] = pok_dokl.map(&:to_h) if has? :PokDokl
+        hash[:pok_dokl] = pok_dokl.map(&:to_h) if has? 'PokDokl'
 
         hash
       end

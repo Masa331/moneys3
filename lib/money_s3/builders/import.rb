@@ -12,40 +12,39 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :status
-          element = Ox::Element.new('Status')
-          element << attributes[:status] if attributes[:status]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :dod_odb
-          root << MsgFirmaType.new(attributes[:dod_odb], 'DodOdb').builder
+        root << build_element('Status', data[:status]) if data.key? :status
+
+        if data.key? :dod_odb
+          root << MsgFirmaType.new('DodOdb', data[:dod_odb]).builder
         end
 
-        if attributes.key? :konec_prij
-          root << MsgFirmaType.new(attributes[:konec_prij], 'KonecPrij').builder
+        if data.key? :konec_prij
+          root << MsgFirmaType.new('KonecPrij', data[:konec_prij]).builder
         end
 
-        if attributes.key? :data
-          root << Data.new(attributes[:data], 'Data').builder
+        if data.key? :data
+          root << Data.new('Data', data[:data]).builder
         end
 
-        if attributes.key? :reference
-          root << ReferenceType.new(attributes[:reference], 'Reference').builder
+        if data.key? :reference
+          root << ReferenceType.new('Reference', data[:reference]).builder
         end
 
-        if attributes.key? :polozka
-          attributes[:polozka].each { |i| root << MsgFaktPolozType.new(i, 'Polozka').builder }
+        if data.key? :polozka
+          data[:polozka].each { |i| root << MsgFaktPolozType.new('Polozka', i).builder }
         end
 
-        if attributes.key? :uhrada
-          attributes[:uhrada].each { |i| root << MessageType.new(i, 'Uhrada').builder }
+        if data.key? :uhrada
+          data[:uhrada].each { |i| root << MessageType.new('Uhrada', i).builder }
         end
 
-        if attributes.key? :error_info
-          attributes[:error_info].each { |i| root << ErrorInfoType.new(i, 'ErrorInfo').builder }
+        if data.key? :error_info
+          data[:error_info].each { |i| root << ErrorInfoType.new('ErrorInfo', i).builder }
         end
 
         root

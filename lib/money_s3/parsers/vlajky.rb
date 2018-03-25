@@ -7,18 +7,19 @@ module MoneyS3
       include BaseParser
 
       def global
-        submodel_at(VlajkaType, :Global)
+        submodel_at(VlajkaType, 'Global')
       end
 
       def user
-        submodel_at(VlajkaType, :User)
+        submodel_at(VlajkaType, 'User')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:global] = global.to_h if has? :Global
-        hash[:user] = user.to_h if has? :User
+        hash[:global] = global.to_h if has? 'Global'
+        hash[:user] = user.to_h if has? 'User'
 
         hash
       end

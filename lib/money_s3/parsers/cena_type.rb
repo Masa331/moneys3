@@ -6,23 +6,24 @@ module MoneyS3
       include BaseParser
 
       def limit
-        at :Limit
+        at 'Limit'
       end
 
       def cena
-        at :Cena
+        at 'Cena'
       end
 
       def sleva
-        at :Sleva
+        at 'Sleva'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:limit] = limit if has? :Limit
-        hash[:cena] = cena if has? :Cena
-        hash[:sleva] = sleva if has? :Sleva
+        hash[:limit] = limit if has? 'Limit'
+        hash[:cena] = cena if has? 'Cena'
+        hash[:sleva] = sleva if has? 'Sleva'
 
         hash
       end

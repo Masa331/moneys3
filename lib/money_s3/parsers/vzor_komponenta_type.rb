@@ -9,23 +9,24 @@ module MoneyS3
       include BaseParser
 
       def header
-        submodel_at(HeaderKusovnikType, :Header)
+        submodel_at(HeaderKusovnikType, 'Header')
       end
 
       def child
-        submodel_at(ChildKusovnikType, :Child)
+        submodel_at(ChildKusovnikType, 'Child')
       end
 
       def km_karta
-        submodel_at(KmKartaType, :KmKarta)
+        submodel_at(KmKartaType, 'KmKarta')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:header] = header.to_h if has? :Header
-        hash[:child] = child.to_h if has? :Child
-        hash[:km_karta] = km_karta.to_h if has? :KmKarta
+        hash[:header] = header.to_h if has? 'Header'
+        hash[:child] = child.to_h if has? 'Child'
+        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
 
         hash
       end

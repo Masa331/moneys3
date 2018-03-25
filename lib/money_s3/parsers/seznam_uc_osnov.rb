@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def uc_osnova
-        array_of_at(UcOsnovaType, [:UcOsnova])
+        array_of_at(UcOsnovaType, ['UcOsnova'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:uc_osnova] = uc_osnova.map(&:to_h) if has? :UcOsnova
+        hash[:uc_osnova] = uc_osnova.map(&:to_h) if has? 'UcOsnova'
 
         hash
       end

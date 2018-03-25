@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def vazba
-        submodel_at(VazbaType, :Vazba)
+        submodel_at(VazbaType, 'Vazba')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:vazba] = vazba.to_h if has? :Vazba
+        hash[:vazba] = vazba.to_h if has? 'Vazba'
 
         hash
       end

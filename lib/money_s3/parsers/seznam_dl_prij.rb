@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def dl_prij
-        array_of_at(DLPrij, [:DLPrij])
+        array_of_at(DLPrij, ['DLPrij'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:dl_prij] = dl_prij.map(&:to_h) if has? :DLPrij
+        hash[:dl_prij] = dl_prij.map(&:to_h) if has? 'DLPrij'
 
         hash
       end

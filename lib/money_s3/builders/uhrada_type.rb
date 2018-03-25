@@ -12,79 +12,43 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :prijem
-          element = Ox::Element.new('Prijem')
-          element << attributes[:prijem] if attributes[:prijem]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :poradi
-          element = Ox::Element.new('Poradi')
-          element << attributes[:poradi] if attributes[:poradi]
-          root << element
+        root << build_element('Prijem', data[:prijem]) if data.key? :prijem
+        root << build_element('Poradi', data[:poradi]) if data.key? :poradi
+        root << build_element('RokPoradi', data[:rok_poradi]) if data.key? :rok_poradi
+        root << build_element('Datum', data[:datum]) if data.key? :datum
+        root << build_element('DatUplDPH', data[:dat_upl_dph]) if data.key? :dat_upl_dph
+        root << build_element('Castka', data[:castka]) if data.key? :castka
+        root << build_element('ZpusobUhr', data[:zpusob_uhr]) if data.key? :zpusob_uhr
+        root << build_element('Platidlo', data[:platidlo]) if data.key? :platidlo
+
+        if data.key? :doklad_uhr
+          root << DoklRefType.new('DokladUhr', data[:doklad_uhr]).builder
         end
 
-        if attributes.key? :rok_poradi
-          element = Ox::Element.new('RokPoradi')
-          element << attributes[:rok_poradi] if attributes[:rok_poradi]
-          root << element
+        if data.key? :doklad_hraz
+          root << DokladHraz.new('DokladHraz', data[:doklad_hraz]).builder
         end
 
-        if attributes.key? :datum
-          element = Ox::Element.new('Datum')
-          element << attributes[:datum] if attributes[:datum]
-          root << element
+        if data.key? :valuty_hraz
+          root << ValutyHraz.new('ValutyHraz', data[:valuty_hraz]).builder
         end
 
-        if attributes.key? :dat_upl_dph
-          element = Ox::Element.new('DatUplDPH')
-          element << attributes[:dat_upl_dph] if attributes[:dat_upl_dph]
-          root << element
+        if data.key? :valuty_uhr
+          root << ValutyUhr.new('ValutyUhr', data[:valuty_uhr]).builder
         end
 
-        if attributes.key? :castka
-          element = Ox::Element.new('Castka')
-          element << attributes[:castka] if attributes[:castka]
-          root << element
+        if data.key? :kurz_rozd
+          root << KurzRozd.new('KurzRozd', data[:kurz_rozd]).builder
         end
 
-        if attributes.key? :zpusob_uhr
-          element = Ox::Element.new('ZpusobUhr')
-          element << attributes[:zpusob_uhr] if attributes[:zpusob_uhr]
-          root << element
-        end
-
-        if attributes.key? :platidlo
-          element = Ox::Element.new('Platidlo')
-          element << attributes[:platidlo] if attributes[:platidlo]
-          root << element
-        end
-
-        if attributes.key? :doklad_uhr
-          root << DoklRefType.new(attributes[:doklad_uhr], 'DokladUhr').builder
-        end
-
-        if attributes.key? :doklad_hraz
-          root << DokladHraz.new(attributes[:doklad_hraz], 'DokladHraz').builder
-        end
-
-        if attributes.key? :valuty_hraz
-          root << ValutyHraz.new(attributes[:valuty_hraz], 'ValutyHraz').builder
-        end
-
-        if attributes.key? :valuty_uhr
-          root << ValutyUhr.new(attributes[:valuty_uhr], 'ValutyUhr').builder
-        end
-
-        if attributes.key? :kurz_rozd
-          root << KurzRozd.new(attributes[:kurz_rozd], 'KurzRozd').builder
-        end
-
-        if attributes.key? :seznam_pd_uhrad
+        if data.key? :seznam_pd_uhrad
           element = Ox::Element.new('SeznamPDUhrad')
-          attributes[:seznam_pd_uhrad].each { |i| element << UhradaPduhrada.new(i, 'Uhrada_PDUhrada').builder }
+          data[:seznam_pd_uhrad].each { |i| element << UhradaPduhrada.new('Uhrada_PDUhrada', i).builder }
           root << element
         end
 

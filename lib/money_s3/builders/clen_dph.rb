@@ -6,67 +6,21 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :zkrat
-          element = Ox::Element.new('Zkrat')
-          element << attributes[:zkrat] if attributes[:zkrat]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :datum_od
-          element = Ox::Element.new('DatumOd')
-          element << attributes[:datum_od] if attributes[:datum_od]
-          root << element
-        end
-
-        if attributes.key? :popis
-          element = Ox::Element.new('Popis')
-          element << attributes[:popis] if attributes[:popis]
-          root << element
-        end
-
-        if attributes.key? :typ
-          element = Ox::Element.new('Typ')
-          element << attributes[:typ] if attributes[:typ]
-          root << element
-        end
-
-        if attributes.key? :kolonka
-          element = Ox::Element.new('Kolonka')
-          element << attributes[:kolonka] if attributes[:kolonka]
-          root << element
-        end
-
-        if attributes.key? :kod_plneni
-          element = Ox::Element.new('KodPlneni')
-          element << attributes[:kod_plneni] if attributes[:kod_plneni]
-          root << element
-        end
-
-        if attributes.key? :bez_odpoctu
-          element = Ox::Element.new('BezOdpoctu')
-          element << attributes[:bez_odpoctu] if attributes[:bez_odpoctu]
-          root << element
-        end
-
-        if attributes.key? :no_koef
-          element = Ox::Element.new('NoKoef')
-          element << attributes[:no_koef] if attributes[:no_koef]
-          root << element
-        end
-
-        if attributes.key? :majetek
-          element = Ox::Element.new('Majetek')
-          element << attributes[:majetek] if attributes[:majetek]
-          root << element
-        end
-
-        if attributes.key? :pozn
-          element = Ox::Element.new('Pozn')
-          element << attributes[:pozn] if attributes[:pozn]
-          root << element
-        end
+        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
+        root << build_element('DatumOd', data[:datum_od]) if data.key? :datum_od
+        root << build_element('Popis', data[:popis]) if data.key? :popis
+        root << build_element('Typ', data[:typ]) if data.key? :typ
+        root << build_element('Kolonka', data[:kolonka]) if data.key? :kolonka
+        root << build_element('KodPlneni', data[:kod_plneni]) if data.key? :kod_plneni
+        root << build_element('BezOdpoctu', data[:bez_odpoctu]) if data.key? :bez_odpoctu
+        root << build_element('NoKoef', data[:no_koef]) if data.key? :no_koef
+        root << build_element('Majetek', data[:majetek]) if data.key? :majetek
+        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
 
         root
       end

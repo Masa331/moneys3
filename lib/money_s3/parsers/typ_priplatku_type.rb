@@ -6,48 +6,49 @@ module MoneyS3
       include BaseParser
 
       def zkratka
-        at :Zkratka
+        at 'Zkratka'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def poznamka
-        at :Poznamka
+        at 'Poznamka'
       end
 
       def druh
-        at :Druh
+        at 'Druh'
       end
 
       def sazba
-        at :Sazba
+        at 'Sazba'
       end
 
       def typ
-        at :Typ
+        at 'Typ'
       end
 
       def auto_load
-        at :AutoLoad
+        at 'AutoLoad'
       end
 
       def pr_nah_off
-        at :PrNahOff
+        at 'PrNahOff'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zkratka] = zkratka if has? :Zkratka
-        hash[:popis] = popis if has? :Popis
-        hash[:poznamka] = poznamka if has? :Poznamka
-        hash[:druh] = druh if has? :Druh
-        hash[:sazba] = sazba if has? :Sazba
-        hash[:typ] = typ if has? :Typ
-        hash[:auto_load] = auto_load if has? :AutoLoad
-        hash[:pr_nah_off] = pr_nah_off if has? :PrNahOff
+        hash[:zkratka] = zkratka if has? 'Zkratka'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:poznamka] = poznamka if has? 'Poznamka'
+        hash[:druh] = druh if has? 'Druh'
+        hash[:sazba] = sazba if has? 'Sazba'
+        hash[:typ] = typ if has? 'Typ'
+        hash[:auto_load] = auto_load if has? 'AutoLoad'
+        hash[:pr_nah_off] = pr_nah_off if has? 'PrNahOff'
 
         hash
       end

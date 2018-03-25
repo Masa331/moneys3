@@ -14,271 +14,100 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :guid
-          element = Ox::Element.new('GUID')
-          element << attributes[:guid] if attributes[:guid]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :nazev
-          element = Ox::Element.new('Nazev')
-          element << attributes[:nazev] if attributes[:nazev]
-          root << element
+        root << build_element('GUID', data[:guid]) if data.key? :guid
+        root << build_element('Nazev', data[:nazev]) if data.key? :nazev
+        root << build_element('SkupinaID', data[:skupina_id]) if data.key? :skupina_id
+        root << build_element('ObchNazev', data[:obch_nazev]) if data.key? :obch_nazev
+        root << build_element('FaktNazev', data[:fakt_nazev]) if data.key? :fakt_nazev
+        root << build_element('EMail', data[:e_mail]) if data.key? :e_mail
+        root << build_element('WWW', data[:www]) if data.key? :www
+        root << build_element('Spojeni', data[:spojeni]) if data.key? :spojeni
+        root << build_element('ICO', data[:ico]) if data.key? :ico
+        root << build_element('DIC', data[:dic]) if data.key? :dic
+        root << build_element('DICSK', data[:dicsk]) if data.key? :dicsk
+        root << build_element('PlatceDPH', data[:platce_dph]) if data.key? :platce_dph
+        root << build_element('FyzOsoba', data[:fyz_osoba]) if data.key? :fyz_osoba
+        root << build_element('KodDanUr', data[:kod_dan_ur]) if data.key? :kod_dan_ur
+        root << build_element('Banka', data[:banka]) if data.key? :banka
+        root << build_element('Ucet', data[:ucet]) if data.key? :ucet
+        root << build_element('KodBanky', data[:kod_banky]) if data.key? :kod_banky
+        root << build_element('VSymb', data[:v_symb]) if data.key? :v_symb
+        root << build_element('SpecSym', data[:spec_sym]) if data.key? :spec_sym
+        root << build_element('Cinnosti', data[:cinnosti]) if data.key? :cinnosti
+        root << build_element('AdrKlice', data[:adr_klice]) if data.key? :adr_klice
+        root << build_element('Ceny', data[:ceny]) if data.key? :ceny
+        root << build_element('Ceniky', data[:ceniky]) if data.key? :ceniky
+        root << build_element('Kredit', data[:kredit]) if data.key? :kredit
+        root << build_element('KreditVal', data[:kredit_val]) if data.key? :kredit_val
+        root << build_element('SplatPoh', data[:splat_poh]) if data.key? :splat_poh
+        root << build_element('SplatZav', data[:splat_zav]) if data.key? :splat_zav
+        root << build_element('SplPohDni', data[:spl_poh_dni]) if data.key? :spl_poh_dni
+        root << build_element('SplZavDni', data[:spl_zav_dni]) if data.key? :spl_zav_dni
+        root << build_element('Sleva', data[:sleva]) if data.key? :sleva
+        root << build_element('FlagSleva', data[:flag_sleva]) if data.key? :flag_sleva
+        root << build_element('Mail', data[:mail]) if data.key? :mail
+        root << build_element('Zprava', data[:zprava]) if data.key? :zprava
+        root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
+        root << build_element('KodPartn', data[:kod_partn]) if data.key? :kod_partn
+
+        if data.key? :adresa
+          root << AdresaType.new('Adresa', data[:adresa]).builder
         end
 
-        if attributes.key? :skupina_id
-          element = Ox::Element.new('SkupinaID')
-          element << attributes[:skupina_id] if attributes[:skupina_id]
-          root << element
+        if data.key? :obch_adresa
+          root << AdresaType.new('ObchAdresa', data[:obch_adresa]).builder
         end
 
-        if attributes.key? :obch_nazev
-          element = Ox::Element.new('ObchNazev')
-          element << attributes[:obch_nazev] if attributes[:obch_nazev]
-          root << element
+        if data.key? :fakt_adresa
+          root << AdresaType.new('FaktAdresa', data[:fakt_adresa]).builder
         end
 
-        if attributes.key? :fakt_nazev
-          element = Ox::Element.new('FaktNazev')
-          element << attributes[:fakt_nazev] if attributes[:fakt_nazev]
-          root << element
+        if data.key? :tel
+          root << TelefonType.new('Tel', data[:tel]).builder
         end
 
-        if attributes.key? :e_mail
-          element = Ox::Element.new('EMail')
-          element << attributes[:e_mail] if attributes[:e_mail]
-          root << element
+        if data.key? :fax
+          root << TelefonType.new('Fax', data[:fax]).builder
         end
 
-        if attributes.key? :www
-          element = Ox::Element.new('WWW')
-          element << attributes[:www] if attributes[:www]
-          root << element
+        if data.key? :mobil
+          root << TelefonType.new('Mobil', data[:mobil]).builder
         end
 
-        if attributes.key? :spojeni
-          element = Ox::Element.new('Spojeni')
-          element << attributes[:spojeni] if attributes[:spojeni]
-          root << element
+        if data.key? :isdoc
+          root << ISDOC.new('ISDOC', data[:isdoc]).builder
         end
 
-        if attributes.key? :ico
-          element = Ox::Element.new('ICO')
-          element << attributes[:ico] if attributes[:ico]
-          root << element
+        if data.key? :eshop
+          root << Eshop.new('eshop', data[:eshop]).builder
         end
 
-        if attributes.key? :dic
-          element = Ox::Element.new('DIC')
-          element << attributes[:dic] if attributes[:dic]
-          root << element
+        if data.key? :skupina
+          root << SkupinaFiremType.new('Skupina', data[:skupina]).builder
         end
 
-        if attributes.key? :dicsk
-          element = Ox::Element.new('DICSK')
-          element << attributes[:dicsk] if attributes[:dicsk]
-          root << element
+        if data.key? :vlajky
+          root << Vlajky.new('Vlajky', data[:vlajky]).builder
         end
 
-        if attributes.key? :platce_dph
-          element = Ox::Element.new('PlatceDPH')
-          element << attributes[:platce_dph] if attributes[:platce_dph]
-          root << element
+        if data.key? :osoba
+          data[:osoba].each { |i| root << OsobaType.new('Osoba', i).builder }
         end
 
-        if attributes.key? :fyz_osoba
-          element = Ox::Element.new('FyzOsoba')
-          element << attributes[:fyz_osoba] if attributes[:fyz_osoba]
-          root << element
-        end
-
-        if attributes.key? :kod_dan_ur
-          element = Ox::Element.new('KodDanUr')
-          element << attributes[:kod_dan_ur] if attributes[:kod_dan_ur]
-          root << element
-        end
-
-        if attributes.key? :banka
-          element = Ox::Element.new('Banka')
-          element << attributes[:banka] if attributes[:banka]
-          root << element
-        end
-
-        if attributes.key? :ucet
-          element = Ox::Element.new('Ucet')
-          element << attributes[:ucet] if attributes[:ucet]
-          root << element
-        end
-
-        if attributes.key? :kod_banky
-          element = Ox::Element.new('KodBanky')
-          element << attributes[:kod_banky] if attributes[:kod_banky]
-          root << element
-        end
-
-        if attributes.key? :v_symb
-          element = Ox::Element.new('VSymb')
-          element << attributes[:v_symb] if attributes[:v_symb]
-          root << element
-        end
-
-        if attributes.key? :spec_sym
-          element = Ox::Element.new('SpecSym')
-          element << attributes[:spec_sym] if attributes[:spec_sym]
-          root << element
-        end
-
-        if attributes.key? :cinnosti
-          element = Ox::Element.new('Cinnosti')
-          element << attributes[:cinnosti] if attributes[:cinnosti]
-          root << element
-        end
-
-        if attributes.key? :adr_klice
-          element = Ox::Element.new('AdrKlice')
-          element << attributes[:adr_klice] if attributes[:adr_klice]
-          root << element
-        end
-
-        if attributes.key? :ceny
-          element = Ox::Element.new('Ceny')
-          element << attributes[:ceny] if attributes[:ceny]
-          root << element
-        end
-
-        if attributes.key? :ceniky
-          element = Ox::Element.new('Ceniky')
-          element << attributes[:ceniky] if attributes[:ceniky]
-          root << element
-        end
-
-        if attributes.key? :kredit
-          element = Ox::Element.new('Kredit')
-          element << attributes[:kredit] if attributes[:kredit]
-          root << element
-        end
-
-        if attributes.key? :kredit_val
-          element = Ox::Element.new('KreditVal')
-          element << attributes[:kredit_val] if attributes[:kredit_val]
-          root << element
-        end
-
-        if attributes.key? :splat_poh
-          element = Ox::Element.new('SplatPoh')
-          element << attributes[:splat_poh] if attributes[:splat_poh]
-          root << element
-        end
-
-        if attributes.key? :splat_zav
-          element = Ox::Element.new('SplatZav')
-          element << attributes[:splat_zav] if attributes[:splat_zav]
-          root << element
-        end
-
-        if attributes.key? :spl_poh_dni
-          element = Ox::Element.new('SplPohDni')
-          element << attributes[:spl_poh_dni] if attributes[:spl_poh_dni]
-          root << element
-        end
-
-        if attributes.key? :spl_zav_dni
-          element = Ox::Element.new('SplZavDni')
-          element << attributes[:spl_zav_dni] if attributes[:spl_zav_dni]
-          root << element
-        end
-
-        if attributes.key? :sleva
-          element = Ox::Element.new('Sleva')
-          element << attributes[:sleva] if attributes[:sleva]
-          root << element
-        end
-
-        if attributes.key? :flag_sleva
-          element = Ox::Element.new('FlagSleva')
-          element << attributes[:flag_sleva] if attributes[:flag_sleva]
-          root << element
-        end
-
-        if attributes.key? :mail
-          element = Ox::Element.new('Mail')
-          element << attributes[:mail] if attributes[:mail]
-          root << element
-        end
-
-        if attributes.key? :zprava
-          element = Ox::Element.new('Zprava')
-          element << attributes[:zprava] if attributes[:zprava]
-          root << element
-        end
-
-        if attributes.key? :poznamka
-          element = Ox::Element.new('Poznamka')
-          element << attributes[:poznamka] if attributes[:poznamka]
-          root << element
-        end
-
-        if attributes.key? :kod_partn
-          element = Ox::Element.new('KodPartn')
-          element << attributes[:kod_partn] if attributes[:kod_partn]
-          root << element
-        end
-
-        if attributes.key? :adresa
-          root << AdresaType.new(attributes[:adresa], 'Adresa').builder
-        end
-
-        if attributes.key? :obch_adresa
-          root << AdresaType.new(attributes[:obch_adresa], 'ObchAdresa').builder
-        end
-
-        if attributes.key? :fakt_adresa
-          root << AdresaType.new(attributes[:fakt_adresa], 'FaktAdresa').builder
-        end
-
-        if attributes.key? :tel
-          root << TelefonType.new(attributes[:tel], 'Tel').builder
-        end
-
-        if attributes.key? :fax
-          root << TelefonType.new(attributes[:fax], 'Fax').builder
-        end
-
-        if attributes.key? :mobil
-          root << TelefonType.new(attributes[:mobil], 'Mobil').builder
-        end
-
-        if attributes.key? :isdoc
-          root << ISDOC.new(attributes[:isdoc], 'ISDOC').builder
-        end
-
-        if attributes.key? :eshop
-          root << Eshop.new(attributes[:eshop], 'eshop').builder
-        end
-
-        if attributes.key? :skupina
-          root << SkupinaFiremType.new(attributes[:skupina], 'Skupina').builder
-        end
-
-        if attributes.key? :vlajky
-          root << Vlajky.new(attributes[:vlajky], 'Vlajky').builder
-        end
-
-        if attributes.key? :osoba
-          attributes[:osoba].each { |i| root << OsobaType.new(i, 'Osoba').builder }
-        end
-
-        if attributes.key? :seznam_bank_spojeni
+        if data.key? :seznam_bank_spojeni
           element = Ox::Element.new('SeznamBankSpojeni')
-          attributes[:seznam_bank_spojeni].each { |i| element << BankSpojeniType.new(i, 'BankSpojeni').builder }
+          data[:seznam_bank_spojeni].each { |i| element << BankSpojeniType.new('BankSpojeni', i).builder }
           root << element
         end
 
-        if attributes.key? :dokumenty
+        if data.key? :dokumenty
           element = Ox::Element.new('Dokumenty')
-          attributes[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
+          data[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
           root << element
         end
 

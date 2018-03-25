@@ -6,43 +6,44 @@ module MoneyS3
       include BaseParser
 
       def zkrat
-        at :Zkrat
+        at 'Zkrat'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def typ
-        at :Typ
+        at 'Typ'
       end
 
       def poh_zak
-        at :PohZak
+        at 'PohZak'
       end
 
       def zauct_dph
-        at :ZauctDPH
+        at 'ZauctDPH'
       end
 
       def cleneni
-        at :Cleneni
+        at 'Cleneni'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zkrat] = zkrat if has? :Zkrat
-        hash[:popis] = popis if has? :Popis
-        hash[:typ] = typ if has? :Typ
-        hash[:poh_zak] = poh_zak if has? :PohZak
-        hash[:zauct_dph] = zauct_dph if has? :ZauctDPH
-        hash[:cleneni] = cleneni if has? :Cleneni
-        hash[:pozn] = pozn if has? :Pozn
+        hash[:zkrat] = zkrat if has? 'Zkrat'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:typ] = typ if has? 'Typ'
+        hash[:poh_zak] = poh_zak if has? 'PohZak'
+        hash[:zauct_dph] = zauct_dph if has? 'ZauctDPH'
+        hash[:cleneni] = cleneni if has? 'Cleneni'
+        hash[:pozn] = pozn if has? 'Pozn'
 
         hash
       end

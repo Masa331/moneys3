@@ -6,13 +6,14 @@ module MoneyS3
       include BaseParser
 
       def id
-        array_of_at(String, [:ID])
+        array_of_at(String, ['ID'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:id] = id if has? :ID
+        hash[:id] = id if has? 'ID'
 
         hash
       end

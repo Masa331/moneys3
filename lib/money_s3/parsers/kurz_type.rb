@@ -6,58 +6,59 @@ module MoneyS3
       include BaseParser
 
       def banka
-        at :Banka
+        at 'Banka'
       end
 
       def datum
-        at :Datum
+        at 'Datum'
       end
 
       def kod
-        at :Kod
+        at 'Kod'
       end
 
       def zeme
-        at :Zeme
+        at 'Zeme'
       end
 
       def mnozstvi
-        at :Mnozstvi
+        at 'Mnozstvi'
       end
 
       def nb_stred
-        at :NBStred
+        at 'NBStred'
       end
 
       def devizy_nakup
-        at :DevizyNakup
+        at 'DevizyNakup'
       end
 
       def devizy_prodej
-        at :DevizyProdej
+        at 'DevizyProdej'
       end
 
       def valuty_nakup
-        at :ValutyNakup
+        at 'ValutyNakup'
       end
 
       def valuty_prodej
-        at :ValutyProdej
+        at 'ValutyProdej'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:banka] = banka if has? :Banka
-        hash[:datum] = datum if has? :Datum
-        hash[:kod] = kod if has? :Kod
-        hash[:zeme] = zeme if has? :Zeme
-        hash[:mnozstvi] = mnozstvi if has? :Mnozstvi
-        hash[:nb_stred] = nb_stred if has? :NBStred
-        hash[:devizy_nakup] = devizy_nakup if has? :DevizyNakup
-        hash[:devizy_prodej] = devizy_prodej if has? :DevizyProdej
-        hash[:valuty_nakup] = valuty_nakup if has? :ValutyNakup
-        hash[:valuty_prodej] = valuty_prodej if has? :ValutyProdej
+        hash[:banka] = banka if has? 'Banka'
+        hash[:datum] = datum if has? 'Datum'
+        hash[:kod] = kod if has? 'Kod'
+        hash[:zeme] = zeme if has? 'Zeme'
+        hash[:mnozstvi] = mnozstvi if has? 'Mnozstvi'
+        hash[:nb_stred] = nb_stred if has? 'NBStred'
+        hash[:devizy_nakup] = devizy_nakup if has? 'DevizyNakup'
+        hash[:devizy_prodej] = devizy_prodej if has? 'DevizyProdej'
+        hash[:valuty_nakup] = valuty_nakup if has? 'ValutyNakup'
+        hash[:valuty_prodej] = valuty_prodej if has? 'ValutyProdej'
 
         hash
       end

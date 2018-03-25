@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def predkontace_de
-        array_of_at(PredkontaceDEType, [:PredkontaceDE])
+        array_of_at(PredkontaceDEType, ['PredkontaceDE'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:predkontace_de] = predkontace_de.map(&:to_h) if has? :PredkontaceDE
+        hash[:predkontace_de] = predkontace_de.map(&:to_h) if has? 'PredkontaceDE'
 
         hash
       end

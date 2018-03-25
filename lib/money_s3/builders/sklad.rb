@@ -7,126 +7,40 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :nazev
-          element = Ox::Element.new('Nazev')
-          element << attributes[:nazev] if attributes[:nazev]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :kod_skladu
-          element = Ox::Element.new('KodSkladu')
-          element << attributes[:kod_skladu] if attributes[:kod_skladu]
-          root << element
+        root << build_element('Nazev', data[:nazev]) if data.key? :nazev
+        root << build_element('KodSkladu', data[:kod_skladu]) if data.key? :kod_skladu
+        root << build_element('GUID', data[:guid]) if data.key? :guid
+        root << build_element('CenikSklad', data[:cenik_sklad]) if data.key? :cenik_sklad
+        root << build_element('PlatnoOd', data[:platno_od]) if data.key? :platno_od
+        root << build_element('PlatnoDo', data[:platno_do]) if data.key? :platno_do
+        root << build_element('Minus', data[:minus]) if data.key? :minus
+        root << build_element('Neupoz', data[:neupoz]) if data.key? :neupoz
+        root << build_element('Vyber_cen', data[:vyber_cen]) if data.key? :vyber_cen
+        root << build_element('Vyber_dod', data[:vyber_dod]) if data.key? :vyber_dod
+        root << build_element('Zpusob', data[:zpusob]) if data.key? :zpusob
+        root << build_element('ProdCenyD', data[:prod_ceny_d]) if data.key? :prod_ceny_d
+        root << build_element('Prepocet', data[:prepocet]) if data.key? :prepocet
+        root << build_element('Ceny', data[:ceny]) if data.key? :ceny
+        root << build_element('UcVyrobkVV', data[:uc_vyrobk_vv]) if data.key? :uc_vyrobk_vv
+        root << build_element('ProdejkVz', data[:prodejk_vz]) if data.key? :prodejk_vz
+        root << build_element('VDodLstVz', data[:v_dod_lst_vz]) if data.key? :v_dod_lst_vz
+        root << build_element('PDodLstVz', data[:p_dod_lst_vz]) if data.key? :p_dod_lst_vz
+
+        if data.key? :uc_pohyb_m
+          root << UctyPohybuType.new('UcPohybM', data[:uc_pohyb_m]).builder
         end
 
-        if attributes.key? :guid
-          element = Ox::Element.new('GUID')
-          element << attributes[:guid] if attributes[:guid]
-          root << element
+        if data.key? :uc_pohyb_z
+          root << UctyPohybuType.new('UcPohybZ', data[:uc_pohyb_z]).builder
         end
 
-        if attributes.key? :cenik_sklad
-          element = Ox::Element.new('CenikSklad')
-          element << attributes[:cenik_sklad] if attributes[:cenik_sklad]
-          root << element
-        end
-
-        if attributes.key? :platno_od
-          element = Ox::Element.new('PlatnoOd')
-          element << attributes[:platno_od] if attributes[:platno_od]
-          root << element
-        end
-
-        if attributes.key? :platno_do
-          element = Ox::Element.new('PlatnoDo')
-          element << attributes[:platno_do] if attributes[:platno_do]
-          root << element
-        end
-
-        if attributes.key? :minus
-          element = Ox::Element.new('Minus')
-          element << attributes[:minus] if attributes[:minus]
-          root << element
-        end
-
-        if attributes.key? :neupoz
-          element = Ox::Element.new('Neupoz')
-          element << attributes[:neupoz] if attributes[:neupoz]
-          root << element
-        end
-
-        if attributes.key? :vyber_cen
-          element = Ox::Element.new('Vyber_cen')
-          element << attributes[:vyber_cen] if attributes[:vyber_cen]
-          root << element
-        end
-
-        if attributes.key? :vyber_dod
-          element = Ox::Element.new('Vyber_dod')
-          element << attributes[:vyber_dod] if attributes[:vyber_dod]
-          root << element
-        end
-
-        if attributes.key? :zpusob
-          element = Ox::Element.new('Zpusob')
-          element << attributes[:zpusob] if attributes[:zpusob]
-          root << element
-        end
-
-        if attributes.key? :prod_ceny_d
-          element = Ox::Element.new('ProdCenyD')
-          element << attributes[:prod_ceny_d] if attributes[:prod_ceny_d]
-          root << element
-        end
-
-        if attributes.key? :prepocet
-          element = Ox::Element.new('Prepocet')
-          element << attributes[:prepocet] if attributes[:prepocet]
-          root << element
-        end
-
-        if attributes.key? :ceny
-          element = Ox::Element.new('Ceny')
-          element << attributes[:ceny] if attributes[:ceny]
-          root << element
-        end
-
-        if attributes.key? :uc_vyrobk_vv
-          element = Ox::Element.new('UcVyrobkVV')
-          element << attributes[:uc_vyrobk_vv] if attributes[:uc_vyrobk_vv]
-          root << element
-        end
-
-        if attributes.key? :prodejk_vz
-          element = Ox::Element.new('ProdejkVz')
-          element << attributes[:prodejk_vz] if attributes[:prodejk_vz]
-          root << element
-        end
-
-        if attributes.key? :v_dod_lst_vz
-          element = Ox::Element.new('VDodLstVz')
-          element << attributes[:v_dod_lst_vz] if attributes[:v_dod_lst_vz]
-          root << element
-        end
-
-        if attributes.key? :p_dod_lst_vz
-          element = Ox::Element.new('PDodLstVz')
-          element << attributes[:p_dod_lst_vz] if attributes[:p_dod_lst_vz]
-          root << element
-        end
-
-        if attributes.key? :uc_pohyb_m
-          root << UctyPohybuType.new(attributes[:uc_pohyb_m], 'UcPohybM').builder
-        end
-
-        if attributes.key? :uc_pohyb_z
-          root << UctyPohybuType.new(attributes[:uc_pohyb_z], 'UcPohybZ').builder
-        end
-
-        if attributes.key? :uc_pohyb_v
-          root << UctyPohybuType.new(attributes[:uc_pohyb_v], 'UcPohybV').builder
+        if data.key? :uc_pohyb_v
+          root << UctyPohybuType.new('UcPohybV', data[:uc_pohyb_v]).builder
         end
 
         root

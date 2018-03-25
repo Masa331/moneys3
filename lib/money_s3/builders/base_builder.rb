@@ -4,8 +4,8 @@ module MoneyS3
       attr_accessor :name, :data
 
       def initialize(name, data = {})
-        @data = data || {}
         @name = name
+        @data = data || {}
       end
 
       def to_xml
@@ -21,7 +21,11 @@ module MoneyS3
           content.attributes.each { |k, v| element[k] = v }
         end
 
-        element << content.to_s if content
+        if content.respond_to? :value
+          element << content.value if content.value
+        else
+          element << content if content
+        end
         element
       end
     end

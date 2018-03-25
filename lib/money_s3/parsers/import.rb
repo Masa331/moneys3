@@ -12,48 +12,49 @@ module MoneyS3
       include BaseParser
 
       def status
-        at :Status
+        at 'Status'
       end
 
       def dod_odb
-        submodel_at(MsgFirmaType, :DodOdb)
+        submodel_at(MsgFirmaType, 'DodOdb')
       end
 
       def konec_prij
-        submodel_at(MsgFirmaType, :KonecPrij)
+        submodel_at(MsgFirmaType, 'KonecPrij')
       end
 
       def data
-        submodel_at(Data, :Data)
+        submodel_at(Data, 'Data')
       end
 
       def reference
-        submodel_at(ReferenceType, :Reference)
+        submodel_at(ReferenceType, 'Reference')
       end
 
       def polozka
-        array_of_at(MsgFaktPolozType, [:Polozka])
+        array_of_at(MsgFaktPolozType, ['Polozka'])
       end
 
       def uhrada
-        array_of_at(MessageType, [:Uhrada])
+        array_of_at(MessageType, ['Uhrada'])
       end
 
       def error_info
-        array_of_at(ErrorInfoType, [:ErrorInfo])
+        array_of_at(ErrorInfoType, ['ErrorInfo'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:status] = status if has? :Status
-        hash[:dod_odb] = dod_odb.to_h if has? :DodOdb
-        hash[:konec_prij] = konec_prij.to_h if has? :KonecPrij
-        hash[:data] = data.to_h if has? :Data
-        hash[:reference] = reference.to_h if has? :Reference
-        hash[:polozka] = polozka.map(&:to_h) if has? :Polozka
-        hash[:uhrada] = uhrada.map(&:to_h) if has? :Uhrada
-        hash[:error_info] = error_info.map(&:to_h) if has? :ErrorInfo
+        hash[:status] = status if has? 'Status'
+        hash[:dod_odb] = dod_odb.to_h if has? 'DodOdb'
+        hash[:konec_prij] = konec_prij.to_h if has? 'KonecPrij'
+        hash[:data] = data.to_h if has? 'Data'
+        hash[:reference] = reference.to_h if has? 'Reference'
+        hash[:polozka] = polozka.map(&:to_h) if has? 'Polozka'
+        hash[:uhrada] = uhrada.map(&:to_h) if has? 'Uhrada'
+        hash[:error_info] = error_info.map(&:to_h) if has? 'ErrorInfo'
 
         hash
       end

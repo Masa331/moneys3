@@ -13,188 +13,189 @@ module MoneyS3
       include BaseParser
 
       def doklad
-        at :Doklad
+        at 'Doklad'
       end
 
       def zpusob_uctovani
-        at :ZpusobUctovani
+        at 'ZpusobUctovani'
       end
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def dat_uc_pr
-        at :DatUcPr
+        at 'DatUcPr'
       end
 
       def dat_pln
-        at :DatPln
+        at 'DatPln'
       end
 
       def dat_upl_dph
-        at :DatUplDPH
+        at 'DatUplDPH'
       end
 
       def datum_kv
-        at :DatumKV
+        at 'DatumKV'
       end
 
       def cislo_zapoc
-        at :CisloZapoc
+        at 'CisloZapoc'
       end
 
       def prijat_dokl
-        at :PrijatDokl
+        at 'PrijatDokl'
       end
 
       def var_sym
-        at :VarSym
+        at 'VarSym'
       end
 
       def par_sym
-        at :ParSym
+        at 'ParSym'
       end
 
       def pr_kont
-        at :PrKont
+        at 'PrKont'
       end
 
       def cleneni
-        at :Cleneni
+        at 'Cleneni'
       end
 
       def stred
-        at :Stred
+        at 'Stred'
       end
 
       def zakazka
-        at :Zakazka
+        at 'Zakazka'
       end
 
       def cinnost
-        at :Cinnost
+        at 'Cinnost'
       end
 
       def vyroba
-        at :Vyroba
+        at 'Vyroba'
       end
 
       def stat_moss
-        at :StatMOSS
+        at 'StatMOSS'
       end
 
       def s_sazba
-        at :SSazba
+        at 'SSazba'
       end
 
       def z_sazba
-        at :ZSazba
+        at 'ZSazba'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def d_rada
-        at :DRada
+        at 'DRada'
       end
 
       def d_cislo
-        at :DCislo
+        at 'DCislo'
       end
 
       def vyst
-        at :Vyst
+        at 'Vyst'
       end
 
       def rezim
-        at :Rezim
+        at 'Rezim'
       end
 
       def korekce_cen
-        at :KorekceCen
+        at 'KorekceCen'
       end
 
       def typ_dokl
-        at :TypDokl
+        at 'TypDokl'
       end
 
       def celkem
-        at :Celkem
+        at 'Celkem'
       end
 
       def eet
-        submodel_at(EETType, :EET)
+        submodel_at(EETType, 'EET')
       end
 
       def adresa
-        submodel_at(DokladFirmaType, :Adresa)
+        submodel_at(DokladFirmaType, 'Adresa')
       end
 
       def valuty
-        submodel_at(Valuty, :Valuty)
+        submodel_at(Valuty, 'Valuty')
       end
 
       def vlajky
-        submodel_at(Vlajky, :Vlajky)
+        submodel_at(Vlajky, 'Vlajky')
       end
 
       def souhrn_dph
-        submodel_at(SouhrnDPHType, :SouhrnDPH)
+        submodel_at(SouhrnDPHType, 'SouhrnDPH')
       end
 
       def rozuct_polozka
-        array_of_at(RozuctPolozIDType, [:RozuctPolozka])
+        array_of_at(RozuctPolozIDType, ['RozuctPolozka'])
       end
 
       def norm_polozka
-        array_of_at(NormPolozIDType, [:NormPolozka])
+        array_of_at(NormPolozIDType, ['NormPolozka'])
       end
 
       def dokumenty
-        array_of_at(String, [:Dokumenty, :Dokument])
+        array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:doklad] = doklad if has? :Doklad
-        hash[:zpusob_uctovani] = zpusob_uctovani if has? :ZpusobUctovani
-        hash[:popis] = popis if has? :Popis
-        hash[:dat_uc_pr] = dat_uc_pr if has? :DatUcPr
-        hash[:dat_pln] = dat_pln if has? :DatPln
-        hash[:dat_upl_dph] = dat_upl_dph if has? :DatUplDPH
-        hash[:datum_kv] = datum_kv if has? :DatumKV
-        hash[:cislo_zapoc] = cislo_zapoc if has? :CisloZapoc
-        hash[:prijat_dokl] = prijat_dokl if has? :PrijatDokl
-        hash[:var_sym] = var_sym if has? :VarSym
-        hash[:par_sym] = par_sym if has? :ParSym
-        hash[:pr_kont] = pr_kont if has? :PrKont
-        hash[:cleneni] = cleneni if has? :Cleneni
-        hash[:stred] = stred if has? :Stred
-        hash[:zakazka] = zakazka if has? :Zakazka
-        hash[:cinnost] = cinnost if has? :Cinnost
-        hash[:vyroba] = vyroba if has? :Vyroba
-        hash[:stat_moss] = stat_moss if has? :StatMOSS
-        hash[:s_sazba] = s_sazba if has? :SSazba
-        hash[:z_sazba] = z_sazba if has? :ZSazba
-        hash[:pozn] = pozn if has? :Pozn
-        hash[:d_rada] = d_rada if has? :DRada
-        hash[:d_cislo] = d_cislo if has? :DCislo
-        hash[:vyst] = vyst if has? :Vyst
-        hash[:rezim] = rezim if has? :Rezim
-        hash[:korekce_cen] = korekce_cen if has? :KorekceCen
-        hash[:typ_dokl] = typ_dokl if has? :TypDokl
-        hash[:celkem] = celkem if has? :Celkem
-        hash[:eet] = eet.to_h if has? :EET
-        hash[:adresa] = adresa.to_h if has? :Adresa
-        hash[:valuty] = valuty.to_h if has? :Valuty
-        hash[:vlajky] = vlajky.to_h if has? :Vlajky
-        hash[:souhrn_dph] = souhrn_dph.to_h if has? :SouhrnDPH
-        hash[:rozuct_polozka] = rozuct_polozka.map(&:to_h) if has? :RozuctPolozka
-        hash[:norm_polozka] = norm_polozka.map(&:to_h) if has? :NormPolozka
-        hash[:dokumenty] = dokumenty if has? :Dokumenty
+        hash[:doklad] = doklad if has? 'Doklad'
+        hash[:zpusob_uctovani] = zpusob_uctovani if has? 'ZpusobUctovani'
+        hash[:popis] = popis if has? 'Popis'
+        hash[:dat_uc_pr] = dat_uc_pr if has? 'DatUcPr'
+        hash[:dat_pln] = dat_pln if has? 'DatPln'
+        hash[:dat_upl_dph] = dat_upl_dph if has? 'DatUplDPH'
+        hash[:datum_kv] = datum_kv if has? 'DatumKV'
+        hash[:cislo_zapoc] = cislo_zapoc if has? 'CisloZapoc'
+        hash[:prijat_dokl] = prijat_dokl if has? 'PrijatDokl'
+        hash[:var_sym] = var_sym if has? 'VarSym'
+        hash[:par_sym] = par_sym if has? 'ParSym'
+        hash[:pr_kont] = pr_kont if has? 'PrKont'
+        hash[:cleneni] = cleneni if has? 'Cleneni'
+        hash[:stred] = stred if has? 'Stred'
+        hash[:zakazka] = zakazka if has? 'Zakazka'
+        hash[:cinnost] = cinnost if has? 'Cinnost'
+        hash[:vyroba] = vyroba if has? 'Vyroba'
+        hash[:stat_moss] = stat_moss if has? 'StatMOSS'
+        hash[:s_sazba] = s_sazba if has? 'SSazba'
+        hash[:z_sazba] = z_sazba if has? 'ZSazba'
+        hash[:pozn] = pozn if has? 'Pozn'
+        hash[:d_rada] = d_rada if has? 'DRada'
+        hash[:d_cislo] = d_cislo if has? 'DCislo'
+        hash[:vyst] = vyst if has? 'Vyst'
+        hash[:rezim] = rezim if has? 'Rezim'
+        hash[:korekce_cen] = korekce_cen if has? 'KorekceCen'
+        hash[:typ_dokl] = typ_dokl if has? 'TypDokl'
+        hash[:celkem] = celkem if has? 'Celkem'
+        hash[:eet] = eet.to_h if has? 'EET'
+        hash[:adresa] = adresa.to_h if has? 'Adresa'
+        hash[:valuty] = valuty.to_h if has? 'Valuty'
+        hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
+        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
+        hash[:rozuct_polozka] = rozuct_polozka.map(&:to_h) if has? 'RozuctPolozka'
+        hash[:norm_polozka] = norm_polozka.map(&:to_h) if has? 'NormPolozka'
+        hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash
       end

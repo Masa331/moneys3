@@ -7,38 +7,39 @@ module MoneyS3
       include BaseParser
 
       def zkrat
-        at :Zkrat
+        at 'Zkrat'
       end
 
       def nazev
-        at :Nazev
+        at 'Nazev'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def skup
-        at :Skup
+        at 'Skup'
       end
 
       def ceny
-        at :Ceny
+        at 'Ceny'
       end
 
       def mena
-        submodel_at(MenaType, :Mena)
+        submodel_at(MenaType, 'Mena')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:zkrat] = zkrat if has? :Zkrat
-        hash[:nazev] = nazev if has? :Nazev
-        hash[:pozn] = pozn if has? :Pozn
-        hash[:skup] = skup if has? :Skup
-        hash[:ceny] = ceny if has? :Ceny
-        hash[:mena] = mena.to_h if has? :Mena
+        hash[:zkrat] = zkrat if has? 'Zkrat'
+        hash[:nazev] = nazev if has? 'Nazev'
+        hash[:pozn] = pozn if has? 'Pozn'
+        hash[:skup] = skup if has? 'Skup'
+        hash[:ceny] = ceny if has? 'Ceny'
+        hash[:mena] = mena.to_h if has? 'Mena'
 
         hash
       end

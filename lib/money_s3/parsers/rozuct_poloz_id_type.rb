@@ -6,68 +6,69 @@ module MoneyS3
       include BaseParser
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def uc_md
-        at :UcMD
+        at 'UcMD'
       end
 
       def uc_d
-        at :UcD
+        at 'UcD'
       end
 
       def castka
-        at :Castka
+        at 'Castka'
       end
 
       def stred
-        at :Stred
+        at 'Stred'
       end
 
       def zakazka
-        at :Zakazka
+        at 'Zakazka'
       end
 
       def cinnost
-        at :Cinnost
+        at 'Cinnost'
       end
 
       def par_sym
-        at :ParSym
+        at 'ParSym'
       end
 
       def par_ico
-        at :ParICO
+        at 'ParICO'
       end
 
       def pozn
-        at :Pozn
+        at 'Pozn'
       end
 
       def typ_cena
-        at :TypCena
+        at 'TypCena'
       end
 
       def sazba_dph
-        at :SazbaDPH
+        at 'SazbaDPH'
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:popis] = popis if has? :Popis
-        hash[:uc_md] = uc_md if has? :UcMD
-        hash[:uc_d] = uc_d if has? :UcD
-        hash[:castka] = castka if has? :Castka
-        hash[:stred] = stred if has? :Stred
-        hash[:zakazka] = zakazka if has? :Zakazka
-        hash[:cinnost] = cinnost if has? :Cinnost
-        hash[:par_sym] = par_sym if has? :ParSym
-        hash[:par_ico] = par_ico if has? :ParICO
-        hash[:pozn] = pozn if has? :Pozn
-        hash[:typ_cena] = typ_cena if has? :TypCena
-        hash[:sazba_dph] = sazba_dph if has? :SazbaDPH
+        hash[:popis] = popis if has? 'Popis'
+        hash[:uc_md] = uc_md if has? 'UcMD'
+        hash[:uc_d] = uc_d if has? 'UcD'
+        hash[:castka] = castka if has? 'Castka'
+        hash[:stred] = stred if has? 'Stred'
+        hash[:zakazka] = zakazka if has? 'Zakazka'
+        hash[:cinnost] = cinnost if has? 'Cinnost'
+        hash[:par_sym] = par_sym if has? 'ParSym'
+        hash[:par_ico] = par_ico if has? 'ParICO'
+        hash[:pozn] = pozn if has? 'Pozn'
+        hash[:typ_cena] = typ_cena if has? 'TypCena'
+        hash[:sazba_dph] = sazba_dph if has? 'SazbaDPH'
 
         hash
       end

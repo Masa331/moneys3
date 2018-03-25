@@ -8,43 +8,44 @@ module MoneyS3
       include BaseParser
 
       def popis
-        at :Popis
+        at 'Popis'
       end
 
       def poc_mj
-        at :PocMJ
+        at 'PocMJ'
       end
 
       def poradi
-        at :Poradi
+        at 'Poradi'
       end
 
       def druh_komp
-        at :DruhKomp
+        at 'DruhKomp'
       end
 
       def symetric
-        at :Symetric
+        at 'Symetric'
       end
 
       def km_karta
-        submodel_at(KmKartaType, :KmKarta)
+        submodel_at(KmKartaType, 'KmKarta')
       end
 
       def sklad
-        submodel_at(SkladType, :Sklad)
+        submodel_at(SkladType, 'Sklad')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:popis] = popis if has? :Popis
-        hash[:poc_mj] = poc_mj if has? :PocMJ
-        hash[:poradi] = poradi if has? :Poradi
-        hash[:druh_komp] = druh_komp if has? :DruhKomp
-        hash[:symetric] = symetric if has? :Symetric
-        hash[:km_karta] = km_karta.to_h if has? :KmKarta
-        hash[:sklad] = sklad.to_h if has? :Sklad
+        hash[:popis] = popis if has? 'Popis'
+        hash[:poc_mj] = poc_mj if has? 'PocMJ'
+        hash[:poradi] = poradi if has? 'Poradi'
+        hash[:druh_komp] = druh_komp if has? 'DruhKomp'
+        hash[:symetric] = symetric if has? 'Symetric'
+        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
+        hash[:sklad] = sklad.to_h if has? 'Sklad'
 
         hash
       end

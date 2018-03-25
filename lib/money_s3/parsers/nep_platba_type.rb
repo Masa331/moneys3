@@ -7,23 +7,24 @@ module MoneyS3
       include BaseParser
 
       def mnozstvi_mj
-        at :MnozstviMJ
+        at 'MnozstviMJ'
       end
 
       def castka
-        at :Castka
+        at 'Castka'
       end
 
       def platidlo
-        submodel_at(NepPlatidloType, :Platidlo)
+        submodel_at(NepPlatidloType, 'Platidlo')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:mnozstvi_mj] = mnozstvi_mj if has? :MnozstviMJ
-        hash[:castka] = castka if has? :Castka
-        hash[:platidlo] = platidlo.to_h if has? :Platidlo
+        hash[:mnozstvi_mj] = mnozstvi_mj if has? 'MnozstviMJ'
+        hash[:castka] = castka if has? 'Castka'
+        hash[:platidlo] = platidlo.to_h if has? 'Platidlo'
 
         hash
       end

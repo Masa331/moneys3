@@ -12,6 +12,6 @@ module MoneyS3
   end
 
   def self.build(data)
-    Builders::MoneyData.new(data, 'MoneyData').to_xml
+    Builders::MoneyData.new('MoneyData', data).to_xml
   end
 end

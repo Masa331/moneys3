@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def mzda
-        array_of_at(MzdaType, [:Mzda])
+        array_of_at(MzdaType, ['Mzda'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:mzda] = mzda.map(&:to_h) if has? :Mzda
+        hash[:mzda] = mzda.map(&:to_h) if has? 'Mzda'
 
         hash
       end

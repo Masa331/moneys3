@@ -7,41 +7,20 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :zaklad0
-          element = Ox::Element.new('Zaklad0')
-          element << attributes[:zaklad0] if attributes[:zaklad0]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :zaklad5
-          element = Ox::Element.new('Zaklad5')
-          element << attributes[:zaklad5] if attributes[:zaklad5]
-          root << element
-        end
+        root << build_element('Zaklad0', data[:zaklad0]) if data.key? :zaklad0
+        root << build_element('Zaklad5', data[:zaklad5]) if data.key? :zaklad5
+        root << build_element('Zaklad22', data[:zaklad22]) if data.key? :zaklad22
+        root << build_element('DPH5', data[:dph5]) if data.key? :dph5
+        root << build_element('DPH22', data[:dph22]) if data.key? :dph22
 
-        if attributes.key? :zaklad22
-          element = Ox::Element.new('Zaklad22')
-          element << attributes[:zaklad22] if attributes[:zaklad22]
-          root << element
-        end
-
-        if attributes.key? :dph5
-          element = Ox::Element.new('DPH5')
-          element << attributes[:dph5] if attributes[:dph5]
-          root << element
-        end
-
-        if attributes.key? :dph22
-          element = Ox::Element.new('DPH22')
-          element << attributes[:dph22] if attributes[:dph22]
-          root << element
-        end
-
-        if attributes.key? :seznam_dalsi_sazby
+        if data.key? :seznam_dalsi_sazby
           element = Ox::Element.new('SeznamDalsiSazby')
-          attributes[:seznam_dalsi_sazby].each { |i| element << DalsiSazba.new(i, 'DalsiSazba').builder }
+          data[:seznam_dalsi_sazby].each { |i| element << DalsiSazba.new('DalsiSazba', i).builder }
           root << element
         end
 

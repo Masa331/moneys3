@@ -7,18 +7,19 @@ module MoneyS3
       include BaseParser
 
       def km_karta
-        submodel_at(MessageType, :KmKarta)
+        submodel_at(MessageType, 'KmKarta')
       end
 
       def sklad
-        submodel_at(MessageType, :Sklad)
+        submodel_at(MessageType, 'Sklad')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:km_karta] = km_karta.to_h if has? :KmKarta
-        hash[:sklad] = sklad.to_h if has? :Sklad
+        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
+        hash[:sklad] = sklad.to_h if has? 'Sklad'
 
         hash
       end

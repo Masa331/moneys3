@@ -7,28 +7,29 @@ module MoneyS3
       include BaseParser
 
       def mesic
-        at :Mesic
+        at 'Mesic'
       end
 
       def rok
-        at :Rok
+        at 'Rok'
       end
 
       def funkce
-        at :Funkce
+        at 'Funkce'
       end
 
       def prac_pomer
-        submodel_at(PracPomer, :PracPomer)
+        submodel_at(PracPomer, 'PracPomer')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:mesic] = mesic if has? :Mesic
-        hash[:rok] = rok if has? :Rok
-        hash[:funkce] = funkce if has? :Funkce
-        hash[:prac_pomer] = prac_pomer.to_h if has? :PracPomer
+        hash[:mesic] = mesic if has? 'Mesic'
+        hash[:rok] = rok if has? 'Rok'
+        hash[:funkce] = funkce if has? 'Funkce'
+        hash[:prac_pomer] = prac_pomer.to_h if has? 'PracPomer'
 
         hash
       end

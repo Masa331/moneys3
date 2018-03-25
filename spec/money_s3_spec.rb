@@ -55,7 +55,10 @@ RSpec.describe MoneyS3 do
     end
 
     it 'creates xml with attributes if given' do
-      xml = MoneyS3.build({ seznam_fakt_vyd: { _attributes: {}, fakt_vyd: [{ _attributes: { version: '1' }, doklad: '123' }] } }).strip
+      invoice_with_attributes = MoneyS3::WithAttributes.new({ doklad: '123' })
+      invoice_with_attributes.attributes = { version: '1' }
+      with_attributes = MoneyS3::WithAttributes.new({ fakt_vyd: [invoice_with_attributes] })
+      xml = MoneyS3.build({ seznam_fakt_vyd: with_attributes }).strip
 
       expect(xml).to eq_multiline(%{
         |<?xml version="1.0"?>

@@ -7,41 +7,20 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :os_cislo
-          element = Ox::Element.new('OsCislo')
-          element << attributes[:os_cislo] if attributes[:os_cislo]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :jmeno
-          element = Ox::Element.new('Jmeno')
-          element << attributes[:jmeno] if attributes[:jmeno]
-          root << element
-        end
+        root << build_element('OsCislo', data[:os_cislo]) if data.key? :os_cislo
+        root << build_element('Jmeno', data[:jmeno]) if data.key? :jmeno
+        root << build_element('Stredisko', data[:stredisko]) if data.key? :stredisko
+        root << build_element('DatNastup', data[:dat_nastup]) if data.key? :dat_nastup
+        root << build_element('DatOdchod', data[:dat_odchod]) if data.key? :dat_odchod
 
-        if attributes.key? :stredisko
-          element = Ox::Element.new('Stredisko')
-          element << attributes[:stredisko] if attributes[:stredisko]
-          root << element
-        end
-
-        if attributes.key? :dat_nastup
-          element = Ox::Element.new('DatNastup')
-          element << attributes[:dat_nastup] if attributes[:dat_nastup]
-          root << element
-        end
-
-        if attributes.key? :dat_odchod
-          element = Ox::Element.new('DatOdchod')
-          element << attributes[:dat_odchod] if attributes[:dat_odchod]
-          root << element
-        end
-
-        if attributes.key? :seznam_mzdovych_obdobi
+        if data.key? :seznam_mzdovych_obdobi
           element = Ox::Element.new('SeznamMzdovychObdobi')
-          attributes[:seznam_mzdovych_obdobi].each { |i| element << MzdoveObdobiType.new(i, 'MzdoveObdobi').builder }
+          data[:seznam_mzdovych_obdobi].each { |i| element << MzdoveObdobiType.new('MzdoveObdobi', i).builder }
           root << element
         end
 

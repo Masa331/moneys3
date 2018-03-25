@@ -7,33 +7,34 @@ module MoneyS3
       include BaseParser
 
       def typ
-        at :Typ
+        at 'Typ'
       end
 
       def preceneni
-        at :Preceneni
+        at 'Preceneni'
       end
 
       def castka
-        at :Castka
+        at 'Castka'
       end
 
       def kr_poradi
-        at :KRPoradi
+        at 'KRPoradi'
       end
 
       def doklad
-        submodel_at(DoklRefType, :Doklad)
+        submodel_at(DoklRefType, 'Doklad')
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:typ] = typ if has? :Typ
-        hash[:preceneni] = preceneni if has? :Preceneni
-        hash[:castka] = castka if has? :Castka
-        hash[:kr_poradi] = kr_poradi if has? :KRPoradi
-        hash[:doklad] = doklad.to_h if has? :Doklad
+        hash[:typ] = typ if has? 'Typ'
+        hash[:preceneni] = preceneni if has? 'Preceneni'
+        hash[:castka] = castka if has? 'Castka'
+        hash[:kr_poradi] = kr_poradi if has? 'KRPoradi'
+        hash[:doklad] = doklad.to_h if has? 'Doklad'
 
         hash
       end

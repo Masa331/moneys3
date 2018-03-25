@@ -7,16 +7,15 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :mn_sada
-          element = Ox::Element.new('MnSada')
-          element << attributes[:mn_sada] if attributes[:mn_sada]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :polozka
-          root << PolInvDoklType.new(attributes[:polozka], 'Polozka').builder
+        root << build_element('MnSada', data[:mn_sada]) if data.key? :mn_sada
+
+        if data.key? :polozka
+          root << PolInvDoklType.new('Polozka', data[:polozka]).builder
         end
 
         root

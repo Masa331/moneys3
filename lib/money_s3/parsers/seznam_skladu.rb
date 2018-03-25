@@ -7,13 +7,14 @@ module MoneyS3
       include BaseParser
 
       def sklad
-        array_of_at(Sklad, [:Sklad])
+        array_of_at(Sklad, ['Sklad'])
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
-        hash[:sklad] = sklad.map(&:to_h) if has? :Sklad
+        hash[:sklad] = sklad.map(&:to_h) if has? 'Sklad'
 
         hash
       end

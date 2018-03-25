@@ -10,130 +10,44 @@ module MoneyS3
       include BaseBuilder
 
       def builder
-        root = Ox::Element.new(element_name)
-
-        if attributes.key? :popis
-          element = Ox::Element.new('Popis')
-          element << attributes[:popis] if attributes[:popis]
-          root << element
+        root = Ox::Element.new(name)
+        if data.respond_to? :attributes
+          data.attributes.each { |k, v| root[k] = v }
         end
 
-        if attributes.key? :poznamka
-          element = Ox::Element.new('Poznamka')
-          element << attributes[:poznamka] if attributes[:poznamka]
-          root << element
+        root << build_element('Popis', data[:popis]) if data.key? :popis
+        root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
+        root << build_element('PocetMJ', data[:pocet_mj]) if data.key? :pocet_mj
+        root << build_element('SazbaDPH', data[:sazba_dph]) if data.key? :sazba_dph
+        root << build_element('Cena', data[:cena]) if data.key? :cena
+        root << build_element('CenaTyp', data[:cena_typ]) if data.key? :cena_typ
+        root << build_element('Sleva', data[:sleva]) if data.key? :sleva
+        root << build_element('Cinnost', data[:cinnost]) if data.key? :cinnost
+        root << build_element('Poradi', data[:poradi]) if data.key? :poradi
+        root << build_element('KodDPH', data[:kod_dph]) if data.key? :kod_dph
+        root << build_element('Stredisko', data[:stredisko]) if data.key? :stredisko
+        root << build_element('Zakazka', data[:zakazka]) if data.key? :zakazka
+        root << build_element('Predkontac', data[:predkontac]) if data.key? :predkontac
+        root << build_element('Valuty', data[:valuty]) if data.key? :valuty
+        root << build_element('CenaPoSleve', data[:cena_po_sleve]) if data.key? :cena_po_sleve
+        root << build_element('ZvlRezim', data[:zvl_rezim]) if data.key? :zvl_rezim
+        root << build_element('ZvlDPH', data[:zvl_dph]) if data.key? :zvl_dph
+        root << build_element('RezimEET', data[:rezim_eet]) if data.key? :rezim_eet
+
+        if data.key? :souhrn_dph
+          root << SouhrnDPHPolType.new('SouhrnDPH', data[:souhrn_dph]).builder
         end
 
-        if attributes.key? :pocet_mj
-          element = Ox::Element.new('PocetMJ')
-          element << attributes[:pocet_mj] if attributes[:pocet_mj]
-          root << element
+        if data.key? :neskl_polozka
+          root << NesklPolozka.new('NesklPolozka', data[:neskl_polozka]).builder
         end
 
-        if attributes.key? :sazba_dph
-          element = Ox::Element.new('SazbaDPH')
-          element << attributes[:sazba_dph] if attributes[:sazba_dph]
-          root << element
+        if data.key? :skl_polozka
+          root << PolSklDoklType.new('SklPolozka', data[:skl_polozka]).builder
         end
 
-        if attributes.key? :cena
-          element = Ox::Element.new('Cena')
-          element << attributes[:cena] if attributes[:cena]
-          root << element
-        end
-
-        if attributes.key? :cena_typ
-          element = Ox::Element.new('CenaTyp')
-          element << attributes[:cena_typ] if attributes[:cena_typ]
-          root << element
-        end
-
-        if attributes.key? :sleva
-          element = Ox::Element.new('Sleva')
-          element << attributes[:sleva] if attributes[:sleva]
-          root << element
-        end
-
-        if attributes.key? :cinnost
-          element = Ox::Element.new('Cinnost')
-          element << attributes[:cinnost] if attributes[:cinnost]
-          root << element
-        end
-
-        if attributes.key? :poradi
-          element = Ox::Element.new('Poradi')
-          element << attributes[:poradi] if attributes[:poradi]
-          root << element
-        end
-
-        if attributes.key? :kod_dph
-          element = Ox::Element.new('KodDPH')
-          element << attributes[:kod_dph] if attributes[:kod_dph]
-          root << element
-        end
-
-        if attributes.key? :stredisko
-          element = Ox::Element.new('Stredisko')
-          element << attributes[:stredisko] if attributes[:stredisko]
-          root << element
-        end
-
-        if attributes.key? :zakazka
-          element = Ox::Element.new('Zakazka')
-          element << attributes[:zakazka] if attributes[:zakazka]
-          root << element
-        end
-
-        if attributes.key? :predkontac
-          element = Ox::Element.new('Predkontac')
-          element << attributes[:predkontac] if attributes[:predkontac]
-          root << element
-        end
-
-        if attributes.key? :valuty
-          element = Ox::Element.new('Valuty')
-          element << attributes[:valuty] if attributes[:valuty]
-          root << element
-        end
-
-        if attributes.key? :cena_po_sleve
-          element = Ox::Element.new('CenaPoSleve')
-          element << attributes[:cena_po_sleve] if attributes[:cena_po_sleve]
-          root << element
-        end
-
-        if attributes.key? :zvl_rezim
-          element = Ox::Element.new('ZvlRezim')
-          element << attributes[:zvl_rezim] if attributes[:zvl_rezim]
-          root << element
-        end
-
-        if attributes.key? :zvl_dph
-          element = Ox::Element.new('ZvlDPH')
-          element << attributes[:zvl_dph] if attributes[:zvl_dph]
-          root << element
-        end
-
-        if attributes.key? :rezim_eet
-          element = Ox::Element.new('RezimEET')
-          element << attributes[:rezim_eet] if attributes[:rezim_eet]
-          root << element
-        end
-
-        if attributes.key? :souhrn_dph
-          root << SouhrnDPHPolType.new(attributes[:souhrn_dph], 'SouhrnDPH').builder
-        end
-
-        if attributes.key? :neskl_polozka
-          root << NesklPolozka.new(attributes[:neskl_polozka], 'NesklPolozka').builder
-        end
-
-        if attributes.key? :skl_polozka
-          root << PolSklDoklType.new(attributes[:skl_polozka], 'SklPolozka').builder
-        end
-
-        if attributes.key? :seznam_vazeb
-          root << SeznamVazeb.new(attributes[:seznam_vazeb], 'SeznamVazeb').builder
+        if data.key? :seznam_vazeb
+          root << SeznamVazeb.new('SeznamVazeb', data[:seznam_vazeb]).builder
         end
 
         root
