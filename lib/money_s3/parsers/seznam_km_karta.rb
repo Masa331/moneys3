@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:km_karta] = km_karta.map(&:to_h) if raw.key? :KmKarta
+        hash[:km_karta] = km_karta.map(&:to_h) if has? :KmKarta
 
         hash
       end

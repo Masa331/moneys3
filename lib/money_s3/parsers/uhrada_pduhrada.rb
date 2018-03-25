@@ -52,17 +52,17 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:poradi] = poradi if raw.key? :Poradi
-        hash[:kontace] = kontace if raw.key? :Kontace
-        hash[:stredisko] = stredisko if raw.key? :Stredisko
-        hash[:zakazka] = zakazka if raw.key? :Zakazka
-        hash[:cinnost] = cinnost if raw.key? :Cinnost
-        hash[:zaklad] = zaklad if raw.key? :Zaklad
-        hash[:dphzs] = dphzs if raw.key? :DPHZS
-        hash[:dphss] = dphss if raw.key? :DPHSS
-        hash[:wl_zaklady] = wl_zaklady if raw.key? :WLZaklady
-        hash[:wldph1] = wldph1 if raw.key? :WLDPH1
-        hash[:wldph2] = wldph2 if raw.key? :WLDPH2
+        hash[:poradi] = poradi if has? :Poradi
+        hash[:kontace] = kontace if has? :Kontace
+        hash[:stredisko] = stredisko if has? :Stredisko
+        hash[:zakazka] = zakazka if has? :Zakazka
+        hash[:cinnost] = cinnost if has? :Cinnost
+        hash[:zaklad] = zaklad if has? :Zaklad
+        hash[:dphzs] = dphzs if has? :DPHZS
+        hash[:dphss] = dphss if has? :DPHSS
+        hash[:wl_zaklady] = wl_zaklady if has? :WLZaklady
+        hash[:wldph1] = wldph1 if has? :WLDPH1
+        hash[:wldph2] = wldph2 if has? :WLDPH2
 
         hash
       end

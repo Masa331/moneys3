@@ -94,27 +94,27 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:eet_odesl] = eet_odesl if raw.key? :EETOdesl
-        hash[:prod_misto] = prod_misto if raw.key? :ProdMisto
-        hash[:uuid] = uuid if raw.key? :UUID
-        hash[:dat_odesl] = dat_odesl if raw.key? :DatOdesl
-        hash[:cas_odesl] = cas_odesl if raw.key? :CasOdesl
-        hash[:prvni_zasl] = prvni_zasl if raw.key? :PrvniZasl
-        hash[:dic_popl] = dic_popl if raw.key? :DICPopl
-        hash[:dic_pover] = dic_pover if raw.key? :DICPover
-        hash[:provozovna] = provozovna if raw.key? :Provozovna
-        hash[:pokl_zariz] = pokl_zariz if raw.key? :PoklZariz
-        hash[:porad_cis] = porad_cis if raw.key? :PoradCis
-        hash[:dat_trzby] = dat_trzby if raw.key? :DatTrzby
-        hash[:cas_trzby] = cas_trzby if raw.key? :CasTrzby
-        hash[:rezim] = rezim if raw.key? :Rezim
-        hash[:pkp] = pkp if raw.key? :PKP
-        hash[:bkp] = bkp if raw.key? :BKP
-        hash[:fik] = fik if raw.key? :FIK
-        hash[:cert_pkp] = cert_pkp if raw.key? :CertPKP
-        hash[:cert_eet] = cert_eet if raw.key? :CertEET
-        hash[:castky] = castky.to_h if raw.key? :Castky
-        hash[:vysledek_odesl] = vysledek_odesl.to_h if raw.key? :VysledekOdesl
+        hash[:eet_odesl] = eet_odesl if has? :EETOdesl
+        hash[:prod_misto] = prod_misto if has? :ProdMisto
+        hash[:uuid] = uuid if has? :UUID
+        hash[:dat_odesl] = dat_odesl if has? :DatOdesl
+        hash[:cas_odesl] = cas_odesl if has? :CasOdesl
+        hash[:prvni_zasl] = prvni_zasl if has? :PrvniZasl
+        hash[:dic_popl] = dic_popl if has? :DICPopl
+        hash[:dic_pover] = dic_pover if has? :DICPover
+        hash[:provozovna] = provozovna if has? :Provozovna
+        hash[:pokl_zariz] = pokl_zariz if has? :PoklZariz
+        hash[:porad_cis] = porad_cis if has? :PoradCis
+        hash[:dat_trzby] = dat_trzby if has? :DatTrzby
+        hash[:cas_trzby] = cas_trzby if has? :CasTrzby
+        hash[:rezim] = rezim if has? :Rezim
+        hash[:pkp] = pkp if has? :PKP
+        hash[:bkp] = bkp if has? :BKP
+        hash[:fik] = fik if has? :FIK
+        hash[:cert_pkp] = cert_pkp if has? :CertPKP
+        hash[:cert_eet] = cert_eet if has? :CertEET
+        hash[:castky] = castky.to_h if has? :Castky
+        hash[:vysledek_odesl] = vysledek_odesl.to_h if has? :VysledekOdesl
 
         hash
       end

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <MoneyData>
   <SeznamFaktVyd>
-    <FaktVyd>
-      <Doklad>171372</Doklad>
+    <FaktVyd version="1">
+      <Doklad type="ordered">171372</Doklad>
       <GUID>{EAEAFE6E-8DF3-4E81-83B9-688C9519A55E}</GUID>
       <Rada>rr1</Rada>
       <CisRada>372</CisRada>

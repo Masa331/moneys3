@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:vydejka] = vydejka.map(&:to_h) if raw.key? :Vydejka
+        hash[:vydejka] = vydejka.map(&:to_h) if has? :Vydejka
 
         hash
       end

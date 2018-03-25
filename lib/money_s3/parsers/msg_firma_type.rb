@@ -18,8 +18,8 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:data] = data.to_h if raw.key? :Data
-        hash[:osoba] = osoba.map(&:to_h) if raw.key? :Osoba
+        hash[:data] = data.to_h if has? :Data
+        hash[:osoba] = osoba.map(&:to_h) if has? :Osoba
 
         hash
       end

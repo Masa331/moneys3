@@ -100,28 +100,28 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:poznamka] = poznamka if raw.key? :Poznamka
-        hash[:pocet_mj] = pocet_mj if raw.key? :PocetMJ
-        hash[:sazba_dph] = sazba_dph if raw.key? :SazbaDPH
-        hash[:cena] = cena if raw.key? :Cena
-        hash[:cena_typ] = cena_typ if raw.key? :CenaTyp
-        hash[:sleva] = sleva if raw.key? :Sleva
-        hash[:cinnost] = cinnost if raw.key? :Cinnost
-        hash[:poradi] = poradi if raw.key? :Poradi
-        hash[:kod_dph] = kod_dph if raw.key? :KodDPH
-        hash[:stredisko] = stredisko if raw.key? :Stredisko
-        hash[:zakazka] = zakazka if raw.key? :Zakazka
-        hash[:predkontac] = predkontac if raw.key? :Predkontac
-        hash[:valuty] = valuty if raw.key? :Valuty
-        hash[:cena_po_sleve] = cena_po_sleve if raw.key? :CenaPoSleve
-        hash[:zvl_rezim] = zvl_rezim if raw.key? :ZvlRezim
-        hash[:zvl_dph] = zvl_dph if raw.key? :ZvlDPH
-        hash[:rezim_eet] = rezim_eet if raw.key? :RezimEET
-        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
-        hash[:neskl_polozka] = neskl_polozka.to_h if raw.key? :NesklPolozka
-        hash[:skl_polozka] = skl_polozka.to_h if raw.key? :SklPolozka
-        hash[:seznam_vazeb] = seznam_vazeb.to_h if raw.key? :SeznamVazeb
+        hash[:popis] = popis if has? :Popis
+        hash[:poznamka] = poznamka if has? :Poznamka
+        hash[:pocet_mj] = pocet_mj if has? :PocetMJ
+        hash[:sazba_dph] = sazba_dph if has? :SazbaDPH
+        hash[:cena] = cena if has? :Cena
+        hash[:cena_typ] = cena_typ if has? :CenaTyp
+        hash[:sleva] = sleva if has? :Sleva
+        hash[:cinnost] = cinnost if has? :Cinnost
+        hash[:poradi] = poradi if has? :Poradi
+        hash[:kod_dph] = kod_dph if has? :KodDPH
+        hash[:stredisko] = stredisko if has? :Stredisko
+        hash[:zakazka] = zakazka if has? :Zakazka
+        hash[:predkontac] = predkontac if has? :Predkontac
+        hash[:valuty] = valuty if has? :Valuty
+        hash[:cena_po_sleve] = cena_po_sleve if has? :CenaPoSleve
+        hash[:zvl_rezim] = zvl_rezim if has? :ZvlRezim
+        hash[:zvl_dph] = zvl_dph if has? :ZvlDPH
+        hash[:rezim_eet] = rezim_eet if has? :RezimEET
+        hash[:souhrn_dph] = souhrn_dph.to_h if has? :SouhrnDPH
+        hash[:neskl_polozka] = neskl_polozka.to_h if has? :NesklPolozka
+        hash[:skl_polozka] = skl_polozka.to_h if has? :SklPolozka
+        hash[:seznam_vazeb] = seznam_vazeb.to_h if has? :SeznamVazeb
 
         hash
       end

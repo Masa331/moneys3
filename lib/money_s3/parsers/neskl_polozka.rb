@@ -81,24 +81,24 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:zkrat] = zkrat if raw.key? :Zkrat
-        hash[:mj] = mj if raw.key? :MJ
-        hash[:uziv_code] = uziv_code if raw.key? :UzivCode
-        hash[:katalog] = katalog if raw.key? :Katalog
-        hash[:bar_code] = bar_code if raw.key? :BarCode
-        hash[:zaloha] = zaloha if raw.key? :Zaloha
-        hash[:zdan_zaloha] = zdan_zaloha if raw.key? :ZdanZaloha
-        hash[:konec_odpocet] = konec_odpocet if raw.key? :KonecOdpocet
-        hash[:typ_zar_doby] = typ_zar_doby if raw.key? :TypZarDoby
-        hash[:zar_doba] = zar_doba if raw.key? :ZarDoba
-        hash[:protizapis] = protizapis if raw.key? :Protizapis
-        hash[:plneno_dph] = plneno_dph if raw.key? :PlnenoDPH
-        hash[:hmotnost] = hmotnost if raw.key? :Hmotnost
-        hash[:vyrobni_cis] = vyrobni_cis if raw.key? :VyrobniCis
-        hash[:dat_exp] = dat_exp if raw.key? :DatExp
-        hash[:dat_nakupu] = dat_nakupu if raw.key? :DatNakupu
-        hash[:predm_pln] = predm_pln if raw.key? :PredmPln
-        hash[:dodavatel] = dodavatel.to_h if raw.key? :Dodavatel
+        hash[:zkrat] = zkrat if has? :Zkrat
+        hash[:mj] = mj if has? :MJ
+        hash[:uziv_code] = uziv_code if has? :UzivCode
+        hash[:katalog] = katalog if has? :Katalog
+        hash[:bar_code] = bar_code if has? :BarCode
+        hash[:zaloha] = zaloha if has? :Zaloha
+        hash[:zdan_zaloha] = zdan_zaloha if has? :ZdanZaloha
+        hash[:konec_odpocet] = konec_odpocet if has? :KonecOdpocet
+        hash[:typ_zar_doby] = typ_zar_doby if has? :TypZarDoby
+        hash[:zar_doba] = zar_doba if has? :ZarDoba
+        hash[:protizapis] = protizapis if has? :Protizapis
+        hash[:plneno_dph] = plneno_dph if has? :PlnenoDPH
+        hash[:hmotnost] = hmotnost if has? :Hmotnost
+        hash[:vyrobni_cis] = vyrobni_cis if has? :VyrobniCis
+        hash[:dat_exp] = dat_exp if has? :DatExp
+        hash[:dat_nakupu] = dat_nakupu if has? :DatNakupu
+        hash[:predm_pln] = predm_pln if has? :PredmPln
+        hash[:dodavatel] = dodavatel.to_h if has? :Dodavatel
 
         hash
       end

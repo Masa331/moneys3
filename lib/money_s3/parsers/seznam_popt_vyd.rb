@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:popt_vyd] = popt_vyd.map(&:to_h) if raw.key? :PoptVyd
+        hash[:popt_vyd] = popt_vyd.map(&:to_h) if has? :PoptVyd
 
         hash
       end

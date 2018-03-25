@@ -20,9 +20,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:kod] = kod if raw.key? :Kod
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:var_symb] = var_symb if raw.key? :VarSymb
+        hash[:kod] = kod if has? :Kod
+        hash[:popis] = popis if has? :Popis
+        hash[:var_symb] = var_symb if has? :VarSymb
 
         hash
       end

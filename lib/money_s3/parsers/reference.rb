@@ -18,8 +18,8 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:typ_kusovnik] = typ_kusovnik.to_h if raw.key? :TypKusovnik
-        hash[:vzor] = vzor.to_h if raw.key? :Vzor
+        hash[:typ_kusovnik] = typ_kusovnik.to_h if has? :TypKusovnik
+        hash[:vzor] = vzor.to_h if has? :Vzor
 
         hash
       end

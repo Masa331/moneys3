@@ -38,13 +38,13 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:poc_mj] = poc_mj if raw.key? :PocMJ
-        hash[:poradi] = poradi if raw.key? :Poradi
-        hash[:druh_komp] = druh_komp if raw.key? :DruhKomp
-        hash[:symetric] = symetric if raw.key? :Symetric
-        hash[:km_karta] = km_karta.to_h if raw.key? :KmKarta
-        hash[:sklad] = sklad.to_h if raw.key? :Sklad
+        hash[:popis] = popis if has? :Popis
+        hash[:poc_mj] = poc_mj if has? :PocMJ
+        hash[:poradi] = poradi if has? :Poradi
+        hash[:druh_komp] = druh_komp if has? :DruhKomp
+        hash[:symetric] = symetric if has? :Symetric
+        hash[:km_karta] = km_karta.to_h if has? :KmKarta
+        hash[:sklad] = sklad.to_h if has? :Sklad
 
         hash
       end

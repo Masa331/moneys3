@@ -25,10 +25,10 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:banka] = banka if raw.key? :Banka
-        hash[:por_cislo] = por_cislo if raw.key? :PorCislo
-        hash[:datum] = datum if raw.key? :Datum
-        hash[:seznam_kurzu] = seznam_kurzu.map(&:to_h) if raw.key? :SeznamKurzu
+        hash[:banka] = banka if has? :Banka
+        hash[:por_cislo] = por_cislo if has? :PorCislo
+        hash[:datum] = datum if has? :Datum
+        hash[:seznam_kurzu] = seznam_kurzu.map(&:to_h) if has? :SeznamKurzu
 
         hash
       end

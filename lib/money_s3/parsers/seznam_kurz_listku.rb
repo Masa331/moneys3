@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:kurz_listek] = kurz_listek.map(&:to_h) if raw.key? :KurzListek
+        hash[:kurz_listek] = kurz_listek.map(&:to_h) if has? :KurzListek
 
         hash
       end

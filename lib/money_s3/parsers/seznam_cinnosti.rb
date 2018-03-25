@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:cinnost] = cinnost.map(&:to_h) if raw.key? :Cinnost
+        hash[:cinnost] = cinnost.map(&:to_h) if has? :Cinnost
 
         hash
       end

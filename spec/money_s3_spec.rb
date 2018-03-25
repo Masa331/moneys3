@@ -24,12 +24,17 @@ RSpec.describe MoneyS3 do
     end
 
     context 'data with attributes' do
-      let(:raw) { File.read('./spec/fixtures/invoice_with_attributes.xml') }
+      let(:raw) { File.read('./spec/fixtures/invoices_with_attributes.xml') }
       let(:parsed) { MoneyS3.parse(raw) }
 
       it 'is parsed correctly' do
+        expect(parsed.seznam_fakt_vyd.fakt_vyd.size).to eq 2
+
         expect(parsed.seznam_fakt_vyd.fakt_vyd.first.attributes).to eq({ version: '1' })
         expect(parsed.seznam_fakt_vyd.fakt_vyd.first.doklad).to eq('123')
+
+        expect(parsed.seznam_fakt_vyd.fakt_vyd.last.attributes).to eq({ version: '2' })
+        expect(parsed.seznam_fakt_vyd.fakt_vyd.last.doklad).to eq('456')
       end
     end
   end

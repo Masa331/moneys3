@@ -37,13 +37,13 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:cislo_d] = cislo_d if raw.key? :CisloD
-        hash[:inv_id] = inv_id if raw.key? :InvID
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:prac] = prac if raw.key? :Prac
-        hash[:kontr] = kontr if raw.key? :Kontr
-        hash[:poznamka] = poznamka if raw.key? :Poznamka
-        hash[:polozka] = polozka.map(&:to_h) if raw.key? :Polozka
+        hash[:cislo_d] = cislo_d if has? :CisloD
+        hash[:inv_id] = inv_id if has? :InvID
+        hash[:popis] = popis if has? :Popis
+        hash[:prac] = prac if has? :Prac
+        hash[:kontr] = kontr if has? :Kontr
+        hash[:poznamka] = poznamka if has? :Poznamka
+        hash[:polozka] = polozka.map(&:to_h) if has? :Polozka
 
         hash
       end

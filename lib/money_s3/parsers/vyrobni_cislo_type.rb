@@ -20,9 +20,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:vyrobni_cis] = vyrobni_cis if raw.key? :VyrobniCis
-        hash[:datum_vyrob] = datum_vyrob if raw.key? :DatumVyrob
-        hash[:carovy_kod] = carovy_kod if raw.key? :CarovyKod
+        hash[:vyrobni_cis] = vyrobni_cis if has? :VyrobniCis
+        hash[:datum_vyrob] = datum_vyrob if has? :DatumVyrob
+        hash[:carovy_kod] = carovy_kod if has? :CarovyKod
 
         hash
       end

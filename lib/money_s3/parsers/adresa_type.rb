@@ -28,11 +28,11 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:ulice] = ulice if raw.key? :Ulice
-        hash[:misto] = misto if raw.key? :Misto
-        hash[:psc] = psc if raw.key? :PSC
-        hash[:stat] = stat if raw.key? :Stat
-        hash[:kod_statu] = kod_statu if raw.key? :KodStatu
+        hash[:ulice] = ulice if has? :Ulice
+        hash[:misto] = misto if has? :Misto
+        hash[:psc] = psc if has? :PSC
+        hash[:stat] = stat if has? :Stat
+        hash[:kod_statu] = kod_statu if has? :KodStatu
 
         hash
       end

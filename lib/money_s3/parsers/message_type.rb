@@ -22,9 +22,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:status] = status if raw.key? :Status
-        hash[:reference] = reference.to_h if raw.key? :Reference
-        hash[:error_info] = error_info.map(&:to_h) if raw.key? :ErrorInfo
+        hash[:status] = status if has? :Status
+        hash[:reference] = reference.to_h if has? :Reference
+        hash[:error_info] = error_info.map(&:to_h) if has? :ErrorInfo
 
         hash
       end

@@ -75,22 +75,22 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:dealer_skupina] = dealer_skupina if raw.key? :DealerSkupina
-        hash[:sdph] = sdph if raw.key? :SDPH
-        hash[:zaok] = zaok if raw.key? :Zaok
-        hash[:zpusob_zao] = zpusob_zao if raw.key? :ZpusobZao
-        hash[:vyp_pr_ceny] = vyp_pr_ceny if raw.key? :VypPrCeny
-        hash[:vych_a] = vych_a if raw.key? :VychA
-        hash[:zpusob_zm_a] = zpusob_zm_a if raw.key? :ZpusobZmA
-        hash[:vych_b] = vych_b if raw.key? :VychB
-        hash[:zpusob_zm_b] = zpusob_zm_b if raw.key? :ZpusobZmB
-        hash[:hladina] = hladina.to_h if raw.key? :Hladina
-        hash[:mena] = mena.to_h if raw.key? :Mena
-        hash[:cena1] = cena1.to_h if raw.key? :Cena1
-        hash[:cena2] = cena2.to_h if raw.key? :Cena2
-        hash[:cena3] = cena3.to_h if raw.key? :Cena3
-        hash[:cena4] = cena4.to_h if raw.key? :Cena4
-        hash[:cena5] = cena5.to_h if raw.key? :Cena5
+        hash[:dealer_skupina] = dealer_skupina if has? :DealerSkupina
+        hash[:sdph] = sdph if has? :SDPH
+        hash[:zaok] = zaok if has? :Zaok
+        hash[:zpusob_zao] = zpusob_zao if has? :ZpusobZao
+        hash[:vyp_pr_ceny] = vyp_pr_ceny if has? :VypPrCeny
+        hash[:vych_a] = vych_a if has? :VychA
+        hash[:zpusob_zm_a] = zpusob_zm_a if has? :ZpusobZmA
+        hash[:vych_b] = vych_b if has? :VychB
+        hash[:zpusob_zm_b] = zpusob_zm_b if has? :ZpusobZmB
+        hash[:hladina] = hladina.to_h if has? :Hladina
+        hash[:mena] = mena.to_h if has? :Mena
+        hash[:cena1] = cena1.to_h if has? :Cena1
+        hash[:cena2] = cena2.to_h if has? :Cena2
+        hash[:cena3] = cena3.to_h if has? :Cena3
+        hash[:cena4] = cena4.to_h if has? :Cena4
+        hash[:cena5] = cena5.to_h if has? :Cena5
 
         hash
       end

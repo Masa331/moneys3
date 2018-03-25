@@ -24,10 +24,10 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:error_type_coded] = error_type_coded if raw.key? :ErrorTypeCoded
-        hash[:error_type_other] = error_type_other if raw.key? :ErrorTypeOther
-        hash[:error_code] = error_code if raw.key? :ErrorCode
-        hash[:error_description] = error_description if raw.key? :ErrorDescription
+        hash[:error_type_coded] = error_type_coded if has? :ErrorTypeCoded
+        hash[:error_type_other] = error_type_other if has? :ErrorTypeOther
+        hash[:error_code] = error_code if has? :ErrorCode
+        hash[:error_description] = error_description if has? :ErrorDescription
 
         hash
       end

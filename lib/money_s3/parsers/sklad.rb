@@ -93,27 +93,27 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:nazev] = nazev if raw.key? :Nazev
-        hash[:kod_skladu] = kod_skladu if raw.key? :KodSkladu
-        hash[:guid] = guid if raw.key? :GUID
-        hash[:cenik_sklad] = cenik_sklad if raw.key? :CenikSklad
-        hash[:platno_od] = platno_od if raw.key? :PlatnoOd
-        hash[:platno_do] = platno_do if raw.key? :PlatnoDo
-        hash[:minus] = minus if raw.key? :Minus
-        hash[:neupoz] = neupoz if raw.key? :Neupoz
-        hash[:vyber_cen] = vyber_cen if raw.key? :Vyber_cen
-        hash[:vyber_dod] = vyber_dod if raw.key? :Vyber_dod
-        hash[:zpusob] = zpusob if raw.key? :Zpusob
-        hash[:prod_ceny_d] = prod_ceny_d if raw.key? :ProdCenyD
-        hash[:prepocet] = prepocet if raw.key? :Prepocet
-        hash[:ceny] = ceny if raw.key? :Ceny
-        hash[:uc_vyrobk_vv] = uc_vyrobk_vv if raw.key? :UcVyrobkVV
-        hash[:prodejk_vz] = prodejk_vz if raw.key? :ProdejkVz
-        hash[:v_dod_lst_vz] = v_dod_lst_vz if raw.key? :VDodLstVz
-        hash[:p_dod_lst_vz] = p_dod_lst_vz if raw.key? :PDodLstVz
-        hash[:uc_pohyb_m] = uc_pohyb_m.to_h if raw.key? :UcPohybM
-        hash[:uc_pohyb_z] = uc_pohyb_z.to_h if raw.key? :UcPohybZ
-        hash[:uc_pohyb_v] = uc_pohyb_v.to_h if raw.key? :UcPohybV
+        hash[:nazev] = nazev if has? :Nazev
+        hash[:kod_skladu] = kod_skladu if has? :KodSkladu
+        hash[:guid] = guid if has? :GUID
+        hash[:cenik_sklad] = cenik_sklad if has? :CenikSklad
+        hash[:platno_od] = platno_od if has? :PlatnoOd
+        hash[:platno_do] = platno_do if has? :PlatnoDo
+        hash[:minus] = minus if has? :Minus
+        hash[:neupoz] = neupoz if has? :Neupoz
+        hash[:vyber_cen] = vyber_cen if has? :Vyber_cen
+        hash[:vyber_dod] = vyber_dod if has? :Vyber_dod
+        hash[:zpusob] = zpusob if has? :Zpusob
+        hash[:prod_ceny_d] = prod_ceny_d if has? :ProdCenyD
+        hash[:prepocet] = prepocet if has? :Prepocet
+        hash[:ceny] = ceny if has? :Ceny
+        hash[:uc_vyrobk_vv] = uc_vyrobk_vv if has? :UcVyrobkVV
+        hash[:prodejk_vz] = prodejk_vz if has? :ProdejkVz
+        hash[:v_dod_lst_vz] = v_dod_lst_vz if has? :VDodLstVz
+        hash[:p_dod_lst_vz] = p_dod_lst_vz if has? :PDodLstVz
+        hash[:uc_pohyb_m] = uc_pohyb_m.to_h if has? :UcPohybM
+        hash[:uc_pohyb_z] = uc_pohyb_z.to_h if has? :UcPohybZ
+        hash[:uc_pohyb_v] = uc_pohyb_v.to_h if has? :UcPohybV
 
         hash
       end

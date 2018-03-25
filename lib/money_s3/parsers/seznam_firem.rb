@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:firma] = firma.map(&:to_h) if raw.key? :Firma
+        hash[:firma] = firma.map(&:to_h) if has? :Firma
 
         hash
       end

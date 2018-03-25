@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:dl_vyd] = dl_vyd.map(&:to_h) if raw.key? :DLVyd
+        hash[:dl_vyd] = dl_vyd.map(&:to_h) if has? :DLVyd
 
         hash
       end

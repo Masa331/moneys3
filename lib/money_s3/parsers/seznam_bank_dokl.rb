@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:bank_dokl] = bank_dokl.map(&:to_h) if raw.key? :BankDokl
+        hash[:bank_dokl] = bank_dokl.map(&:to_h) if has? :BankDokl
 
         hash
       end

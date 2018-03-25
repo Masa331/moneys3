@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:dl_prij] = dl_prij.map(&:to_h) if raw.key? :DLPrij
+        hash[:dl_prij] = dl_prij.map(&:to_h) if has? :DLPrij
 
         hash
       end

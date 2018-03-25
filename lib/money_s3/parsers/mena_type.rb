@@ -20,9 +20,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:kod] = kod if raw.key? :Kod
-        hash[:mnozstvi] = mnozstvi if raw.key? :Mnozstvi
-        hash[:kurs] = kurs if raw.key? :Kurs
+        hash[:kod] = kod if has? :Kod
+        hash[:mnozstvi] = mnozstvi if has? :Mnozstvi
+        hash[:kurs] = kurs if has? :Kurs
 
         hash
       end

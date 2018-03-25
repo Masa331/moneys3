@@ -20,9 +20,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:zkratka] = zkratka if raw.key? :Zkratka
-        hash[:nazev] = nazev if raw.key? :Nazev
-        hash[:poznamka] = poznamka if raw.key? :Poznamka
+        hash[:zkratka] = zkratka if has? :Zkratka
+        hash[:nazev] = nazev if has? :Nazev
+        hash[:poznamka] = poznamka if has? :Poznamka
 
         hash
       end

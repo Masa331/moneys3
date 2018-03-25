@@ -48,16 +48,16 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:in_export] = in_export if raw.key? :IN_Export
-        hash[:in_changed] = in_changed if raw.key? :IN_Changed
-        hash[:in_id] = in_id if raw.key? :IN_Id
-        hash[:in_jmeno] = in_jmeno if raw.key? :IN_Jmeno
-        hash[:in_heslo] = in_heslo if raw.key? :IN_Heslo
-        hash[:in_dealer] = in_dealer if raw.key? :IN_Dealer
-        hash[:in_d_skup] = in_d_skup if raw.key? :IN_DSkup
-        hash[:in_ind_slev] = in_ind_slev if raw.key? :IN_IndSlev
-        hash[:in_soukrom] = in_soukrom if raw.key? :IN_Soukrom
-        hash[:in_d_skup_zkratka] = in_d_skup_zkratka if raw.key? :IN_DSkupZkratka
+        hash[:in_export] = in_export if has? :IN_Export
+        hash[:in_changed] = in_changed if has? :IN_Changed
+        hash[:in_id] = in_id if has? :IN_Id
+        hash[:in_jmeno] = in_jmeno if has? :IN_Jmeno
+        hash[:in_heslo] = in_heslo if has? :IN_Heslo
+        hash[:in_dealer] = in_dealer if has? :IN_Dealer
+        hash[:in_d_skup] = in_d_skup if has? :IN_DSkup
+        hash[:in_ind_slev] = in_ind_slev if has? :IN_IndSlev
+        hash[:in_soukrom] = in_soukrom if has? :IN_Soukrom
+        hash[:in_d_skup_zkratka] = in_d_skup_zkratka if has? :IN_DSkupZkratka
 
         hash
       end

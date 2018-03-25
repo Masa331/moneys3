@@ -37,13 +37,13 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:id] = id if raw.key? :ID
-        hash[:name] = name if raw.key? :Name
-        hash[:descript] = descript if raw.key? :Descript
-        hash[:poznamka] = poznamka if raw.key? :Poznamka
-        hash[:changed] = changed if raw.key? :Changed
-        hash[:public] = public if raw.key? :Public
-        hash[:parent] = parent.to_h if raw.key? :Parent
+        hash[:id] = id if has? :ID
+        hash[:name] = name if has? :Name
+        hash[:descript] = descript if has? :Descript
+        hash[:poznamka] = poznamka if has? :Poznamka
+        hash[:changed] = changed if has? :Changed
+        hash[:public] = public if has? :Public
+        hash[:parent] = parent.to_h if has? :Parent
 
         hash
       end

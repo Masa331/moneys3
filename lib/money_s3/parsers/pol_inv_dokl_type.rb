@@ -48,15 +48,15 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:zkrat] = zkrat if raw.key? :Zkrat
-        hash[:slupina] = slupina if raw.key? :Slupina
-        hash[:mj] = mj if raw.key? :MJ
-        hash[:mn_inv] = mn_inv if raw.key? :MnInv
-        hash[:sklad] = sklad.to_h if raw.key? :Sklad
-        hash[:km_karta] = km_karta.to_h if raw.key? :KmKarta
-        hash[:seznam_vc] = seznam_vc.map(&:to_h) if raw.key? :SeznamVC
-        hash[:slozeni] = slozeni.map(&:to_h) if raw.key? :Slozeni
+        hash[:popis] = popis if has? :Popis
+        hash[:zkrat] = zkrat if has? :Zkrat
+        hash[:slupina] = slupina if has? :Slupina
+        hash[:mj] = mj if has? :MJ
+        hash[:mn_inv] = mn_inv if has? :MnInv
+        hash[:sklad] = sklad.to_h if has? :Sklad
+        hash[:km_karta] = km_karta.to_h if has? :KmKarta
+        hash[:seznam_vc] = seznam_vc.map(&:to_h) if has? :SeznamVC
+        hash[:slozeni] = slozeni.map(&:to_h) if has? :Slozeni
 
         hash
       end

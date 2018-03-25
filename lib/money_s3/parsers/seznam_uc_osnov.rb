@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:uc_osnova] = uc_osnova.map(&:to_h) if raw.key? :UcOsnova
+        hash[:uc_osnova] = uc_osnova.map(&:to_h) if has? :UcOsnova
 
         hash
       end

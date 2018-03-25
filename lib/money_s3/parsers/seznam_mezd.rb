@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:mzda] = mzda.map(&:to_h) if raw.key? :Mzda
+        hash[:mzda] = mzda.map(&:to_h) if has? :Mzda
 
         hash
       end

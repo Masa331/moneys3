@@ -100,29 +100,29 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:zkrat] = zkrat if raw.key? :Zkrat
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:uc_pokl] = uc_pokl if raw.key? :UcPokl
-        hash[:poc_stav] = poc_stav if raw.key? :PocStav
-        hash[:mena] = mena if raw.key? :Mena
-        hash[:b_mena] = b_mena if raw.key? :BMena
-        hash[:ps_kurz] = ps_kurz if raw.key? :PSKurz
-        hash[:ps_mnozstvi] = ps_mnozstvi if raw.key? :PSMnozstvi
-        hash[:prim_ucet] = prim_ucet if raw.key? :PrimUcet
-        hash[:ucet] = ucet if raw.key? :Ucet
-        hash[:b_kod] = b_kod if raw.key? :BKod
-        hash[:b_nazev] = b_nazev if raw.key? :BNazev
-        hash[:b_zkrat] = b_zkrat if raw.key? :BZkrat
-        hash[:iban] = iban if raw.key? :IBAN
-        hash[:swift] = swift if raw.key? :SWIFT
-        hash[:uver] = uver if raw.key? :Uver
-        hash[:hbid] = hbid if raw.key? :HBID
-        hash[:hb_nazev] = hb_nazev if raw.key? :HBNazev
-        hash[:druh] = druh if raw.key? :Druh
-        hash[:typ_prijem] = typ_prijem if raw.key? :TypPrijem
-        hash[:typ_vydej] = typ_vydej if raw.key? :TypVydej
-        hash[:pokladni] = pokladni if raw.key? :Pokladni
-        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:zkrat] = zkrat if has? :Zkrat
+        hash[:popis] = popis if has? :Popis
+        hash[:uc_pokl] = uc_pokl if has? :UcPokl
+        hash[:poc_stav] = poc_stav if has? :PocStav
+        hash[:mena] = mena if has? :Mena
+        hash[:b_mena] = b_mena if has? :BMena
+        hash[:ps_kurz] = ps_kurz if has? :PSKurz
+        hash[:ps_mnozstvi] = ps_mnozstvi if has? :PSMnozstvi
+        hash[:prim_ucet] = prim_ucet if has? :PrimUcet
+        hash[:ucet] = ucet if has? :Ucet
+        hash[:b_kod] = b_kod if has? :BKod
+        hash[:b_nazev] = b_nazev if has? :BNazev
+        hash[:b_zkrat] = b_zkrat if has? :BZkrat
+        hash[:iban] = iban if has? :IBAN
+        hash[:swift] = swift if has? :SWIFT
+        hash[:uver] = uver if has? :Uver
+        hash[:hbid] = hbid if has? :HBID
+        hash[:hb_nazev] = hb_nazev if has? :HBNazev
+        hash[:druh] = druh if has? :Druh
+        hash[:typ_prijem] = typ_prijem if has? :TypPrijem
+        hash[:typ_vydej] = typ_vydej if has? :TypVydej
+        hash[:pokladni] = pokladni if has? :Pokladni
+        hash[:pozn] = pozn if has? :Pozn
 
         hash
       end

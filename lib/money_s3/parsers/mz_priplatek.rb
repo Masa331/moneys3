@@ -17,8 +17,8 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:prip_hodin] = prip_hodin if raw.key? :PripHodin
-        hash[:typ_priplatku] = typ_priplatku.to_h if raw.key? :TypPriplatku
+        hash[:prip_hodin] = prip_hodin if has? :PripHodin
+        hash[:typ_priplatku] = typ_priplatku.to_h if has? :TypPriplatku
 
         hash
       end

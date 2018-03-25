@@ -55,17 +55,17 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:mesic] = mesic if raw.key? :Mesic
-        hash[:rok] = rok if raw.key? :Rok
-        hash[:prac_dnu] = prac_dnu if raw.key? :PracDnu
-        hash[:prac_hod] = prac_hod if raw.key? :PracHod
-        hash[:odpr_dnu] = odpr_dnu if raw.key? :OdprDnu
-        hash[:odpr_hod] = odpr_hod if raw.key? :OdprHod
-        hash[:odpr_sv_dnu] = odpr_sv_dnu if raw.key? :OdprSvDnu
-        hash[:odpr_sv_hod] = odpr_sv_hod if raw.key? :OdprSvHod
-        hash[:zamestnanec] = zamestnanec.to_h if raw.key? :Zamestnanec
-        hash[:seznam_nepritomnosti] = seznam_nepritomnosti.map(&:to_h) if raw.key? :SeznamNepritomnosti
-        hash[:seznam_mz_priplatku] = seznam_mz_priplatku.map(&:to_h) if raw.key? :SeznamMzPriplatku
+        hash[:mesic] = mesic if has? :Mesic
+        hash[:rok] = rok if has? :Rok
+        hash[:prac_dnu] = prac_dnu if has? :PracDnu
+        hash[:prac_hod] = prac_hod if has? :PracHod
+        hash[:odpr_dnu] = odpr_dnu if has? :OdprDnu
+        hash[:odpr_hod] = odpr_hod if has? :OdprHod
+        hash[:odpr_sv_dnu] = odpr_sv_dnu if has? :OdprSvDnu
+        hash[:odpr_sv_hod] = odpr_sv_hod if has? :OdprSvHod
+        hash[:zamestnanec] = zamestnanec.to_h if has? :Zamestnanec
+        hash[:seznam_nepritomnosti] = seznam_nepritomnosti.map(&:to_h) if has? :SeznamNepritomnosti
+        hash[:seznam_mz_priplatku] = seznam_mz_priplatku.map(&:to_h) if has? :SeznamMzPriplatku
 
         hash
       end

@@ -36,13 +36,13 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:zkrat] = zkrat if raw.key? :Zkrat
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:poh_zak] = poh_zak if raw.key? :PohZak
-        hash[:zauct_dph] = zauct_dph if raw.key? :ZauctDPH
-        hash[:cleneni] = cleneni if raw.key? :Cleneni
-        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:zkrat] = zkrat if has? :Zkrat
+        hash[:popis] = popis if has? :Popis
+        hash[:typ] = typ if has? :Typ
+        hash[:poh_zak] = poh_zak if has? :PohZak
+        hash[:zauct_dph] = zauct_dph if has? :ZauctDPH
+        hash[:cleneni] = cleneni if has? :Cleneni
+        hash[:pozn] = pozn if has? :Pozn
 
         hash
       end

@@ -29,11 +29,11 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:preceneni] = preceneni if raw.key? :Preceneni
-        hash[:castka] = castka if raw.key? :Castka
-        hash[:kr_poradi] = kr_poradi if raw.key? :KRPoradi
-        hash[:doklad] = doklad.to_h if raw.key? :Doklad
+        hash[:typ] = typ if has? :Typ
+        hash[:preceneni] = preceneni if has? :Preceneni
+        hash[:castka] = castka if has? :Castka
+        hash[:kr_poradi] = kr_poradi if has? :KRPoradi
+        hash[:doklad] = doklad.to_h if has? :Doklad
 
         hash
       end

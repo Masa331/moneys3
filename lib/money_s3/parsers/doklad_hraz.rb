@@ -29,11 +29,11 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:id_dokladu] = id_dokladu if raw.key? :IDDokladu
-        hash[:cislo_dokladu] = cislo_dokladu if raw.key? :CisloDokladu
-        hash[:druh_dokladu] = druh_dokladu if raw.key? :DruhDokladu
-        hash[:rok] = rok if raw.key? :Rok
-        hash[:eet] = eet.to_h if raw.key? :EET
+        hash[:id_dokladu] = id_dokladu if has? :IDDokladu
+        hash[:cislo_dokladu] = cislo_dokladu if has? :CisloDokladu
+        hash[:druh_dokladu] = druh_dokladu if has? :DruhDokladu
+        hash[:rok] = rok if has? :Rok
+        hash[:eet] = eet.to_h if has? :EET
 
         hash
       end

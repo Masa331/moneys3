@@ -18,8 +18,8 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:child] = child.to_h if raw.key? :Child
-        hash[:reference] = reference.to_h if raw.key? :Reference
+        hash[:child] = child.to_h if has? :Child
+        hash[:reference] = reference.to_h if has? :Reference
 
         hash
       end

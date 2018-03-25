@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:clen_dph] = clen_dph.map(&:to_h) if raw.key? :ClenDPH
+        hash[:clen_dph] = clen_dph.map(&:to_h) if has? :ClenDPH
 
         hash
       end

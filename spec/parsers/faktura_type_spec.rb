@@ -7,6 +7,15 @@ RSpec.describe MoneyS3::Parsers::FakturaType do
     let(:parsed) { MoneyS3.parse(raw) }
     subject(:invoice) { parsed.seznam_fakt_vyd.fakt_vyd.first }
 
+    describe 'attributes' do
+      it 'parses attributes on parent elements' do
+        expect(subject.attributes).to eq({ version: '1' })
+      end
+      it 'parses attributes on value elements' do
+        expect(subject.doklad.attributes).to eq({ type: 'ordered' })
+      end
+    end
+
     its('zpusob_uctovani') { is_expected.to eq '1' }
     its('vystaveno') { is_expected.to eq '2017-08-03' }
     its('dat_uc_pr') { is_expected.to eq '2017-08-03' }
@@ -258,7 +267,9 @@ RSpec.describe MoneyS3::Parsers::FakturaType do
     its('moje_firma.tel.cislo') { is_expected.to eq '111222333' }
     its('moje_firma.tel.klap') { is_expected.to eq nil }
 
-    its('moje_firma.fax') { is_expected.to eq nil }
+    its('moje_firma.fax.pred') { is_expected.to eq nil }
+    its('moje_firma.fax.cislo') { is_expected.to eq nil }
+    its('moje_firma.fax.klap') { is_expected.to eq nil }
 
     its('moje_firma.mobil.pred') { is_expected.to eq nil }
     its('moje_firma.mobil.cislo') { is_expected.to eq nil }

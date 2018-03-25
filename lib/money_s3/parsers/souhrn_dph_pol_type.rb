@@ -29,11 +29,11 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:zaklad_mj] = zaklad_mj if raw.key? :Zaklad_MJ
-        hash[:dph_mj] = dph_mj if raw.key? :DPH_MJ
-        hash[:zaklad] = zaklad if raw.key? :Zaklad
-        hash[:dph] = dph if raw.key? :DPH
-        hash[:valuty] = valuty.to_h if raw.key? :Valuty
+        hash[:zaklad_mj] = zaklad_mj if has? :Zaklad_MJ
+        hash[:dph_mj] = dph_mj if has? :DPH_MJ
+        hash[:zaklad] = zaklad if has? :Zaklad
+        hash[:dph] = dph if has? :DPH
+        hash[:valuty] = valuty.to_h if has? :Valuty
 
         hash
       end

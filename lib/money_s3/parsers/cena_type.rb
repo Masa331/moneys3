@@ -20,9 +20,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:limit] = limit if raw.key? :Limit
-        hash[:cena] = cena if raw.key? :Cena
-        hash[:sleva] = sleva if raw.key? :Sleva
+        hash[:limit] = limit if has? :Limit
+        hash[:cena] = cena if has? :Cena
+        hash[:sleva] = sleva if has? :Sleva
 
         hash
       end

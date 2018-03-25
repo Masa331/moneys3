@@ -20,9 +20,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:e_shop_id] = e_shop_id if raw.key? :eShopID
-        hash[:e_shop_name] = e_shop_name if raw.key? :eShopName
-        hash[:e_sale_id] = e_sale_id if raw.key? :eSaleID
+        hash[:e_shop_id] = e_shop_id if has? :eShopID
+        hash[:e_shop_name] = e_shop_name if has? :eShopName
+        hash[:e_sale_id] = e_sale_id if has? :eSaleID
 
         hash
       end

@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:pok_dokl] = pok_dokl.map(&:to_h) if raw.key? :PokDokl
+        hash[:pok_dokl] = pok_dokl.map(&:to_h) if has? :PokDokl
 
         hash
       end

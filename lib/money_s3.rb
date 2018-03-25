@@ -1,24 +1,14 @@
 require 'ox'
 require 'money_s3/parsers/money_data'
 require 'money_s3/builders/money_data'
+require 'money_s3/with_attributes'
 
 module MoneyS3
   def self.parse(raw)
-    hash = Ox.load(raw, mode: :hash)
+    parsed = Ox.load(raw)
+    content = parsed.locate('MoneyData').first
 
-    if hash.key? :MoneyData
-      content = hash[:MoneyData]
-
-      if content.is_a? Array
-        attributes = content.shift
-        raw = content.inject({}) { |memo, member| memo.merge(member) }
-      else
-        attributes = {}
-        raw = content
-      end
-
-      Parsers::MoneyData.new(raw, attributes)
-    end
+    Parsers::MoneyData.new(content)
   end
 
   def self.build(data)

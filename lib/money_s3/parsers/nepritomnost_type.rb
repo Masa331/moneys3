@@ -68,21 +68,21 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:zacatek] = zacatek if raw.key? :Zacatek
-        hash[:konec] = konec if raw.key? :Konec
-        hash[:dat_porodu] = dat_porodu if raw.key? :DatPorodu
-        hash[:odp_hod_z] = odp_hod_z if raw.key? :OdpHodZ
-        hash[:odp_hod_k] = odp_hod_k if raw.key? :OdpHodK
-        hash[:kal_dnu] = kal_dnu if raw.key? :KalDnu
-        hash[:prac_dnu] = prac_dnu if raw.key? :PracDnu
-        hash[:hodin] = hodin if raw.key? :Hodin
-        hash[:svat_dnu] = svat_dnu if raw.key? :SvatDnu
-        hash[:svat_hod] = svat_hod if raw.key? :SvatHod
-        hash[:pokrac_nepr] = pokrac_nepr if raw.key? :PokracNepr
-        hash[:nahr_mzdy] = nahr_mzdy if raw.key? :NahrMzdy
-        hash[:prepoc_dny] = prepoc_dny if raw.key? :PrepocDny
-        hash[:pozn] = pozn if raw.key? :Pozn
+        hash[:typ] = typ if has? :Typ
+        hash[:zacatek] = zacatek if has? :Zacatek
+        hash[:konec] = konec if has? :Konec
+        hash[:dat_porodu] = dat_porodu if has? :DatPorodu
+        hash[:odp_hod_z] = odp_hod_z if has? :OdpHodZ
+        hash[:odp_hod_k] = odp_hod_k if has? :OdpHodK
+        hash[:kal_dnu] = kal_dnu if has? :KalDnu
+        hash[:prac_dnu] = prac_dnu if has? :PracDnu
+        hash[:hodin] = hodin if has? :Hodin
+        hash[:svat_dnu] = svat_dnu if has? :SvatDnu
+        hash[:svat_hod] = svat_hod if has? :SvatHod
+        hash[:pokrac_nepr] = pokrac_nepr if has? :PokracNepr
+        hash[:nahr_mzdy] = nahr_mzdy if has? :NahrMzdy
+        hash[:prepoc_dny] = prepoc_dny if has? :PrepocDny
+        hash[:pozn] = pozn if has? :Pozn
 
         hash
       end

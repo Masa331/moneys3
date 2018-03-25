@@ -20,9 +20,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:pred] = pred if raw.key? :Pred
-        hash[:cislo] = cislo if raw.key? :Cislo
-        hash[:klap] = klap if raw.key? :Klap
+        hash[:pred] = pred if has? :Pred
+        hash[:cislo] = cislo if has? :Cislo
+        hash[:klap] = klap if has? :Klap
 
         hash
       end

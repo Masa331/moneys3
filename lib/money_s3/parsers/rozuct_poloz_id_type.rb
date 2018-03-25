@@ -56,18 +56,18 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:uc_md] = uc_md if raw.key? :UcMD
-        hash[:uc_d] = uc_d if raw.key? :UcD
-        hash[:castka] = castka if raw.key? :Castka
-        hash[:stred] = stred if raw.key? :Stred
-        hash[:zakazka] = zakazka if raw.key? :Zakazka
-        hash[:cinnost] = cinnost if raw.key? :Cinnost
-        hash[:par_sym] = par_sym if raw.key? :ParSym
-        hash[:par_ico] = par_ico if raw.key? :ParICO
-        hash[:pozn] = pozn if raw.key? :Pozn
-        hash[:typ_cena] = typ_cena if raw.key? :TypCena
-        hash[:sazba_dph] = sazba_dph if raw.key? :SazbaDPH
+        hash[:popis] = popis if has? :Popis
+        hash[:uc_md] = uc_md if has? :UcMD
+        hash[:uc_d] = uc_d if has? :UcD
+        hash[:castka] = castka if has? :Castka
+        hash[:stred] = stred if has? :Stred
+        hash[:zakazka] = zakazka if has? :Zakazka
+        hash[:cinnost] = cinnost if has? :Cinnost
+        hash[:par_sym] = par_sym if has? :ParSym
+        hash[:par_ico] = par_ico if has? :ParICO
+        hash[:pozn] = pozn if has? :Pozn
+        hash[:typ_cena] = typ_cena if has? :TypCena
+        hash[:sazba_dph] = sazba_dph if has? :SazbaDPH
 
         hash
       end

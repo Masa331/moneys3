@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:predkontace_de] = predkontace_de.map(&:to_h) if raw.key? :PredkontaceDE
+        hash[:predkontace_de] = predkontace_de.map(&:to_h) if has? :PredkontaceDE
 
         hash
       end

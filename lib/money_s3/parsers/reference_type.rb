@@ -12,7 +12,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:id] = id if raw.key? :ID
+        hash[:id] = id if has? :ID
 
         hash
       end

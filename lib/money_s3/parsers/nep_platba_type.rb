@@ -21,9 +21,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:mnozstvi_mj] = mnozstvi_mj if raw.key? :MnozstviMJ
-        hash[:castka] = castka if raw.key? :Castka
-        hash[:platidlo] = platidlo.to_h if raw.key? :Platidlo
+        hash[:mnozstvi_mj] = mnozstvi_mj if has? :MnozstviMJ
+        hash[:castka] = castka if has? :Castka
+        hash[:platidlo] = platidlo.to_h if has? :Platidlo
 
         hash
       end

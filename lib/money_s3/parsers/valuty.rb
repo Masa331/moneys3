@@ -22,9 +22,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:celkem] = celkem if raw.key? :Celkem
-        hash[:mena] = mena.to_h if raw.key? :Mena
-        hash[:souhrn_dph] = souhrn_dph.to_h if raw.key? :SouhrnDPH
+        hash[:celkem] = celkem if has? :Celkem
+        hash[:mena] = mena.to_h if has? :Mena
+        hash[:souhrn_dph] = souhrn_dph.to_h if has? :SouhrnDPH
 
         hash
       end

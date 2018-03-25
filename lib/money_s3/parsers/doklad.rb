@@ -40,14 +40,14 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:druh] = druh if raw.key? :Druh
-        hash[:cislo] = cislo if raw.key? :Cislo
-        hash[:guid] = guid if raw.key? :GUID
-        hash[:prijat_dokl] = prijat_dokl if raw.key? :PrijatDokl
-        hash[:var_symbol] = var_symbol if raw.key? :VarSymbol
-        hash[:vystaveno] = vystaveno if raw.key? :Vystaveno
-        hash[:dat_uc_pr] = dat_uc_pr if raw.key? :DatUcPr
-        hash[:plneno_dph] = plneno_dph if raw.key? :PlnenoDPH
+        hash[:druh] = druh if has? :Druh
+        hash[:cislo] = cislo if has? :Cislo
+        hash[:guid] = guid if has? :GUID
+        hash[:prijat_dokl] = prijat_dokl if has? :PrijatDokl
+        hash[:var_symbol] = var_symbol if has? :VarSymbol
+        hash[:vystaveno] = vystaveno if has? :Vystaveno
+        hash[:dat_uc_pr] = dat_uc_pr if has? :DatUcPr
+        hash[:plneno_dph] = plneno_dph if has? :PlnenoDPH
 
         hash
       end

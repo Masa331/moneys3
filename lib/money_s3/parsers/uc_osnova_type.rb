@@ -68,21 +68,21 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:ucet] = ucet if raw.key? :Ucet
-        hash[:nazev] = nazev if raw.key? :Nazev
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:saldo] = saldo if raw.key? :Saldo
-        hash[:radek] = radek if raw.key? :Radek
-        hash[:uc_prev] = uc_prev if raw.key? :UcPrev
-        hash[:pozn] = pozn if raw.key? :Pozn
-        hash[:radek_zkr] = radek_zkr if raw.key? :RadekZkr
-        hash[:druh_uctu] = druh_uctu if raw.key? :DruhUctu
-        hash[:ucet_typ] = ucet_typ if raw.key? :UcetTyp
-        hash[:ucet_pod_typ] = ucet_pod_typ if raw.key? :UcetPodTyp
-        hash[:vnitro] = vnitro if raw.key? :Vnitro
-        hash[:technicky] = technicky if raw.key? :Technicky
-        hash[:opravky] = opravky if raw.key? :Opravky
-        hash[:druh_cin] = druh_cin if raw.key? :DruhCin
+        hash[:ucet] = ucet if has? :Ucet
+        hash[:nazev] = nazev if has? :Nazev
+        hash[:typ] = typ if has? :Typ
+        hash[:saldo] = saldo if has? :Saldo
+        hash[:radek] = radek if has? :Radek
+        hash[:uc_prev] = uc_prev if has? :UcPrev
+        hash[:pozn] = pozn if has? :Pozn
+        hash[:radek_zkr] = radek_zkr if has? :RadekZkr
+        hash[:druh_uctu] = druh_uctu if has? :DruhUctu
+        hash[:ucet_typ] = ucet_typ if has? :UcetTyp
+        hash[:ucet_pod_typ] = ucet_pod_typ if has? :UcetPodTyp
+        hash[:vnitro] = vnitro if has? :Vnitro
+        hash[:technicky] = technicky if has? :Technicky
+        hash[:opravky] = opravky if has? :Opravky
+        hash[:druh_cin] = druh_cin if has? :DruhCin
 
         hash
       end

@@ -70,20 +70,20 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:prijem] = prijem if raw.key? :Prijem
-        hash[:poradi] = poradi if raw.key? :Poradi
-        hash[:rok_poradi] = rok_poradi if raw.key? :RokPoradi
-        hash[:datum] = datum if raw.key? :Datum
-        hash[:dat_upl_dph] = dat_upl_dph if raw.key? :DatUplDPH
-        hash[:castka] = castka if raw.key? :Castka
-        hash[:zpusob_uhr] = zpusob_uhr if raw.key? :ZpusobUhr
-        hash[:platidlo] = platidlo if raw.key? :Platidlo
-        hash[:doklad_uhr] = doklad_uhr.to_h if raw.key? :DokladUhr
-        hash[:doklad_hraz] = doklad_hraz.to_h if raw.key? :DokladHraz
-        hash[:valuty_hraz] = valuty_hraz.to_h if raw.key? :ValutyHraz
-        hash[:valuty_uhr] = valuty_uhr.to_h if raw.key? :ValutyUhr
-        hash[:kurz_rozd] = kurz_rozd.to_h if raw.key? :KurzRozd
-        hash[:seznam_pd_uhrad] = seznam_pd_uhrad.map(&:to_h) if raw.key? :SeznamPDUhrad
+        hash[:prijem] = prijem if has? :Prijem
+        hash[:poradi] = poradi if has? :Poradi
+        hash[:rok_poradi] = rok_poradi if has? :RokPoradi
+        hash[:datum] = datum if has? :Datum
+        hash[:dat_upl_dph] = dat_upl_dph if has? :DatUplDPH
+        hash[:castka] = castka if has? :Castka
+        hash[:zpusob_uhr] = zpusob_uhr if has? :ZpusobUhr
+        hash[:platidlo] = platidlo if has? :Platidlo
+        hash[:doklad_uhr] = doklad_uhr.to_h if has? :DokladUhr
+        hash[:doklad_hraz] = doklad_hraz.to_h if has? :DokladHraz
+        hash[:valuty_hraz] = valuty_hraz.to_h if has? :ValutyHraz
+        hash[:valuty_uhr] = valuty_uhr.to_h if has? :ValutyUhr
+        hash[:kurz_rozd] = kurz_rozd.to_h if has? :KurzRozd
+        hash[:seznam_pd_uhrad] = seznam_pd_uhrad.map(&:to_h) if has? :SeznamPDUhrad
 
         hash
       end

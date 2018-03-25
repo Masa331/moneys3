@@ -21,9 +21,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:pod_typ] = pod_typ if raw.key? :PodTyp
-        hash[:doklad] = doklad.to_h if raw.key? :Doklad
+        hash[:typ] = typ if has? :Typ
+        hash[:pod_typ] = pod_typ if has? :PodTyp
+        hash[:doklad] = doklad.to_h if has? :Doklad
 
         hash
       end

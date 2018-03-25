@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:cenova_hladina] = cenova_hladina.map(&:to_h) if raw.key? :CenovaHladina
+        hash[:cenova_hladina] = cenova_hladina.map(&:to_h) if has? :CenovaHladina
 
         hash
       end

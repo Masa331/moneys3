@@ -23,9 +23,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:header] = header.to_h if raw.key? :Header
-        hash[:child] = child.to_h if raw.key? :Child
-        hash[:seznam_komponent] = seznam_komponent.map(&:to_h) if raw.key? :SeznamKomponent
+        hash[:header] = header.to_h if has? :Header
+        hash[:child] = child.to_h if has? :Child
+        hash[:seznam_komponent] = seznam_komponent.map(&:to_h) if has? :SeznamKomponent
 
         hash
       end

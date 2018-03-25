@@ -16,8 +16,8 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:chyba] = chyba if raw.key? :Chyba
-        hash[:varovani] = varovani if raw.key? :Varovani
+        hash[:chyba] = chyba if has? :Chyba
+        hash[:varovani] = varovani if has? :Varovani
 
         hash
       end

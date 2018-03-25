@@ -33,12 +33,12 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:zaklad0] = zaklad0 if raw.key? :Zaklad0
-        hash[:zaklad5] = zaklad5 if raw.key? :Zaklad5
-        hash[:zaklad22] = zaklad22 if raw.key? :Zaklad22
-        hash[:dph5] = dph5 if raw.key? :DPH5
-        hash[:dph22] = dph22 if raw.key? :DPH22
-        hash[:seznam_dalsi_sazby] = seznam_dalsi_sazby.map(&:to_h) if raw.key? :SeznamDalsiSazby
+        hash[:zaklad0] = zaklad0 if has? :Zaklad0
+        hash[:zaklad5] = zaklad5 if has? :Zaklad5
+        hash[:zaklad22] = zaklad22 if has? :Zaklad22
+        hash[:dph5] = dph5 if has? :DPH5
+        hash[:dph22] = dph22 if has? :DPH22
+        hash[:seznam_dalsi_sazby] = seznam_dalsi_sazby.map(&:to_h) if has? :SeznamDalsiSazby
 
         hash
       end

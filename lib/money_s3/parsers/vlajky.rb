@@ -17,8 +17,8 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:global] = global.to_h if raw.key? :Global
-        hash[:user] = user.to_h if raw.key? :User
+        hash[:global] = global.to_h if has? :Global
+        hash[:user] = user.to_h if has? :User
 
         hash
       end

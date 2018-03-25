@@ -90,26 +90,26 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:osloveni] = osloveni if raw.key? :Osloveni
-        hash[:titul_pred] = titul_pred if raw.key? :TitulPred
-        hash[:titul_za] = titul_za if raw.key? :TitulZa
-        hash[:jmeno] = jmeno if raw.key? :Jmeno
-        hash[:prijmeni] = prijmeni if raw.key? :Prijmeni
-        hash[:dat_nar] = dat_nar if raw.key? :DatNar
-        hash[:pohlavi] = pohlavi if raw.key? :Pohlavi
-        hash[:funkce] = funkce if raw.key? :Funkce
-        hash[:spojeni] = spojeni if raw.key? :Spojeni
-        hash[:e_mail] = e_mail if raw.key? :EMail
-        hash[:mail] = mail if raw.key? :Mail
-        hash[:mail_datum] = mail_datum if raw.key? :MailDatum
-        hash[:pozn] = pozn if raw.key? :Pozn
-        hash[:kod_partn] = kod_partn if raw.key? :KodPartn
-        hash[:guid] = guid if raw.key? :GUID
-        hash[:jednatel] = jednatel if raw.key? :Jednatel
-        hash[:adresa] = adresa.to_h if raw.key? :Adresa
-        hash[:tel] = tel.to_h if raw.key? :Tel
-        hash[:fax] = fax.to_h if raw.key? :Fax
-        hash[:mobil] = mobil.to_h if raw.key? :Mobil
+        hash[:osloveni] = osloveni if has? :Osloveni
+        hash[:titul_pred] = titul_pred if has? :TitulPred
+        hash[:titul_za] = titul_za if has? :TitulZa
+        hash[:jmeno] = jmeno if has? :Jmeno
+        hash[:prijmeni] = prijmeni if has? :Prijmeni
+        hash[:dat_nar] = dat_nar if has? :DatNar
+        hash[:pohlavi] = pohlavi if has? :Pohlavi
+        hash[:funkce] = funkce if has? :Funkce
+        hash[:spojeni] = spojeni if has? :Spojeni
+        hash[:e_mail] = e_mail if has? :EMail
+        hash[:mail] = mail if has? :Mail
+        hash[:mail_datum] = mail_datum if has? :MailDatum
+        hash[:pozn] = pozn if has? :Pozn
+        hash[:kod_partn] = kod_partn if has? :KodPartn
+        hash[:guid] = guid if has? :GUID
+        hash[:jednatel] = jednatel if has? :Jednatel
+        hash[:adresa] = adresa.to_h if has? :Adresa
+        hash[:tel] = tel.to_h if has? :Tel
+        hash[:fax] = fax.to_h if has? :Fax
+        hash[:mobil] = mobil.to_h if has? :Mobil
 
         hash
       end

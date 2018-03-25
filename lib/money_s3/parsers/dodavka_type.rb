@@ -24,10 +24,10 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:oznaceni] = oznaceni if raw.key? :Oznaceni
-        hash[:dat_exp] = dat_exp if raw.key? :DatExp
-        hash[:pocet_mj] = pocet_mj if raw.key? :PocetMJ
-        hash[:cena] = cena if raw.key? :Cena
+        hash[:oznaceni] = oznaceni if has? :Oznaceni
+        hash[:dat_exp] = dat_exp if has? :DatExp
+        hash[:pocet_mj] = pocet_mj if has? :PocetMJ
+        hash[:cena] = cena if has? :Cena
 
         hash
       end

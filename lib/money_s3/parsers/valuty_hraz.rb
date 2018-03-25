@@ -17,8 +17,8 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:castka] = castka if raw.key? :Castka
-        hash[:mena] = mena.to_h if raw.key? :Mena
+        hash[:castka] = castka if has? :Castka
+        hash[:mena] = mena.to_h if has? :Mena
 
         hash
       end

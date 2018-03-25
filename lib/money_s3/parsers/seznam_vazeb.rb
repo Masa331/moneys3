@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:vazba] = vazba.to_h if raw.key? :Vazba
+        hash[:vazba] = vazba.to_h if has? :Vazba
 
         hash
       end

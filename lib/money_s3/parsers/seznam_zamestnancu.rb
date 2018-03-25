@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:zamestnanec] = zamestnanec.map(&:to_h) if raw.key? :Zamestnanec
+        hash[:zamestnanec] = zamestnanec.map(&:to_h) if has? :Zamestnanec
 
         hash
       end

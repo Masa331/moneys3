@@ -21,9 +21,9 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:poradi] = poradi if raw.key? :Poradi
-        hash[:value] = value if raw.key? :Value
-        hash[:parametr] = parametr.to_h if raw.key? :Parametr
+        hash[:poradi] = poradi if has? :Poradi
+        hash[:value] = value if has? :Value
+        hash[:parametr] = parametr.to_h if has? :Parametr
 
         hash
       end

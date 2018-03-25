@@ -89,26 +89,26 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:cislo] = cislo if raw.key? :Cislo
-        hash[:druh] = druh if raw.key? :Druh
-        hash[:typ] = typ if raw.key? :Typ
-        hash[:cis_karty] = cis_karty if raw.key? :CisKarty
-        hash[:zkratka] = zkratka if raw.key? :Zkratka
-        hash[:popis] = popis if raw.key? :Popis
-        hash[:naklad_mat] = naklad_mat if raw.key? :NakladMat
-        hash[:naklad_mzd] = naklad_mzd if raw.key? :NakladMzd
-        hash[:naklad_koop] = naklad_koop if raw.key? :NakladKoop
-        hash[:naklad_str] = naklad_str if raw.key? :NakladStr
-        hash[:vyuziti] = vyuziti if raw.key? :Vyuziti
-        hash[:kalendar] = kalendar if raw.key? :Kalendar
-        hash[:des_mist] = des_mist if raw.key? :DesMist
-        hash[:var_kus] = var_kus if raw.key? :VarKus
-        hash[:price_mask] = price_mask if raw.key? :PriceMask
-        hash[:time_mask] = time_mask if raw.key? :TimeMask
-        hash[:id_uziv] = id_uziv if raw.key? :IDUziv
-        hash[:datum_zmeny] = datum_zmeny if raw.key? :DatumZmeny
-        hash[:cas_zmeny] = cas_zmeny if raw.key? :CasZmeny
-        hash[:skupina] = skupina.to_h if raw.key? :Skupina
+        hash[:cislo] = cislo if has? :Cislo
+        hash[:druh] = druh if has? :Druh
+        hash[:typ] = typ if has? :Typ
+        hash[:cis_karty] = cis_karty if has? :CisKarty
+        hash[:zkratka] = zkratka if has? :Zkratka
+        hash[:popis] = popis if has? :Popis
+        hash[:naklad_mat] = naklad_mat if has? :NakladMat
+        hash[:naklad_mzd] = naklad_mzd if has? :NakladMzd
+        hash[:naklad_koop] = naklad_koop if has? :NakladKoop
+        hash[:naklad_str] = naklad_str if has? :NakladStr
+        hash[:vyuziti] = vyuziti if has? :Vyuziti
+        hash[:kalendar] = kalendar if has? :Kalendar
+        hash[:des_mist] = des_mist if has? :DesMist
+        hash[:var_kus] = var_kus if has? :VarKus
+        hash[:price_mask] = price_mask if has? :PriceMask
+        hash[:time_mask] = time_mask if has? :TimeMask
+        hash[:id_uziv] = id_uziv if has? :IDUziv
+        hash[:datum_zmeny] = datum_zmeny if has? :DatumZmeny
+        hash[:cas_zmeny] = cas_zmeny if has? :CasZmeny
+        hash[:skupina] = skupina.to_h if has? :Skupina
 
         hash
       end

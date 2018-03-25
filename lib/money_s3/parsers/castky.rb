@@ -64,20 +64,20 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:celkem] = celkem if raw.key? :Celkem
-        hash[:zaklad_0] = zaklad_0 if raw.key? :Zaklad_0
-        hash[:zaklad_1] = zaklad_1 if raw.key? :Zaklad_1
-        hash[:zaklad_2] = zaklad_2 if raw.key? :Zaklad_2
-        hash[:zaklad_3] = zaklad_3 if raw.key? :Zaklad_3
-        hash[:dph_1] = dph_1 if raw.key? :DPH_1
-        hash[:dph_2] = dph_2 if raw.key? :DPH_2
-        hash[:dph_3] = dph_3 if raw.key? :DPH_3
-        hash[:cest_sluzba] = cest_sluzba if raw.key? :CestSluzba
-        hash[:pouz_zb_1] = pouz_zb_1 if raw.key? :PouzZb_1
-        hash[:pouz_zb_2] = pouz_zb_2 if raw.key? :PouzZb_2
-        hash[:pouz_zb_3] = pouz_zb_3 if raw.key? :PouzZb_3
-        hash[:urc_cerp_zct] = urc_cerp_zct if raw.key? :UrcCerpZct
-        hash[:cerp_zuct] = cerp_zuct if raw.key? :CerpZuct
+        hash[:celkem] = celkem if has? :Celkem
+        hash[:zaklad_0] = zaklad_0 if has? :Zaklad_0
+        hash[:zaklad_1] = zaklad_1 if has? :Zaklad_1
+        hash[:zaklad_2] = zaklad_2 if has? :Zaklad_2
+        hash[:zaklad_3] = zaklad_3 if has? :Zaklad_3
+        hash[:dph_1] = dph_1 if has? :DPH_1
+        hash[:dph_2] = dph_2 if has? :DPH_2
+        hash[:dph_3] = dph_3 if has? :DPH_3
+        hash[:cest_sluzba] = cest_sluzba if has? :CestSluzba
+        hash[:pouz_zb_1] = pouz_zb_1 if has? :PouzZb_1
+        hash[:pouz_zb_2] = pouz_zb_2 if has? :PouzZb_2
+        hash[:pouz_zb_3] = pouz_zb_3 if has? :PouzZb_3
+        hash[:urc_cerp_zct] = urc_cerp_zct if has? :UrcCerpZct
+        hash[:cerp_zuct] = cerp_zuct if has? :CerpZuct
 
         hash
       end

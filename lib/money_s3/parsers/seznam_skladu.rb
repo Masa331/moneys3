@@ -13,7 +13,7 @@ module MoneyS3
       def to_h
         hash = {}
 
-        hash[:sklad] = sklad.map(&:to_h) if raw.key? :Sklad
+        hash[:sklad] = sklad.map(&:to_h) if has? :Sklad
 
         hash
       end
