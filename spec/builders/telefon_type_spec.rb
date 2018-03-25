@@ -4,7 +4,7 @@ require 'money_s3/with_attributes'
 RSpec.describe MoneyS3::Builders::MoneyData do
   describe '::to_xml' do
     it 'outputs proper xml' do
-      xml = MoneyS3::Builders::TelefonType.new({ cislo: '123' }, 'Tel').to_xml.strip
+      xml = MoneyS3::Builders::TelefonType.new('Tel', { cislo: '123' }).to_xml.strip
 
       expect(xml).to eq_multiline(%{
         |<?xml version="1.0"?>
@@ -19,7 +19,7 @@ RSpec.describe MoneyS3::Builders::MoneyData do
 
       hash = MoneyS3::WithAttributes.new({ cislo: str })
       hash.attributes = { version:  '1', license: 'ab123' }
-      xml = MoneyS3::Builders::TelefonType.new(hash, 'Tel').to_xml.strip
+      xml = MoneyS3::Builders::TelefonType.new('Tel', hash).to_xml.strip
 
       expect(xml).to eq_multiline(%{
         |<?xml version="1.0"?>

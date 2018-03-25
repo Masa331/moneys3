@@ -6,24 +6,24 @@ module MoneyS3
       include BaseParser
 
       def pred
-        at :Pred
+        at 'Pred'
       end
 
       def cislo
-        at :Cislo
+        at 'Cislo'
       end
 
       def klap
-        at :Klap
+        at 'Klap'
       end
 
       def to_h
         hash = WithAttributes.new({})
         hash.attributes = attributes
 
-        hash[:pred] = pred if has? :Pred
-        hash[:cislo] = cislo if has? :Cislo
-        hash[:klap] = klap if has? :Klap
+        hash[:pred] = pred if has? 'Pred'
+        hash[:cislo] = cislo if has? 'Cislo'
+        hash[:klap] = klap if has? 'Klap'
 
         hash
       end

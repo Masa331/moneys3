@@ -1,12 +1,11 @@
 module MoneyS3
   module Builders
     module BaseBuilder
-      attr_accessor :attributes, :element_name, :actual_attributes
+      attr_accessor :name, :data
 
-      def initialize(attributes = {}, element_name)
-        @element_name = element_name
-        @attributes = attributes || {}
-        @actual_attributes = attributes.delete(:_attributes) || {}
+      def initialize(name, data = {})
+        @data = data || {}
+        @name = name
       end
 
       def to_xml
@@ -14,6 +13,16 @@ module MoneyS3
         doc << builder
 
         Ox.dump(doc, with_xml: true)
+      end
+
+      def build_element(name, content)
+        element = Ox::Element.new(name)
+        if content.respond_to? :attributes
+          content.attributes.each { |k, v| element[k] = v }
+        end
+
+        element << content.to_s if content
+        element
       end
     end
   end

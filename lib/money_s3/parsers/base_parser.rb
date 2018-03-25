@@ -2,7 +2,6 @@ module MoneyS3
   module Parsers
     module BaseParser
       EMPTY_ARRAY = []
-      EMPTY_ATTRIBUTES = {}
 
       attr_accessor :raw
 
@@ -19,21 +18,21 @@ module MoneyS3
       def at(locator)
         return nil if raw.nil?
 
-        first = raw.locate(locator.to_s).first
+        element = raw.locate(locator.to_s).first
 
-        if first
-          str = WithAttributes.new(first.text)
-          str.attributes = first.attributes
-          str
+        if element
+          text = WithAttributes.new(element.text)
+          text.attributes = element.attributes
+          text
         end
       end
 
       def has?(locator)
-        raw.locate(locator.to_s).any?
+        raw.locate(locator).any?
       end
 
       def submodel_at(klass, locator)
-        element_xml = raw.locate(locator.to_s).first
+        element_xml = raw.locate(locator).first
 
         klass.new(element_xml) if element_xml
       end
