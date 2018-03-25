@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Tel>
+<Tel version="1">
   <Pred>+420</Pred>
   <Cislo type="cellphone">111222333</Cislo>
   <Klap/>

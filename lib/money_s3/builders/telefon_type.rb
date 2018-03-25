@@ -7,6 +7,9 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(element_name)
+        if attributes.respond_to? :attributes
+          attributes.attributes.each { |k, v| root[k] = v }
+        end
 
         if attributes.key? :pred
           element = Ox::Element.new('Pred')
@@ -16,7 +19,10 @@ module MoneyS3
 
         if attributes.key? :cislo
           element = Ox::Element.new('Cislo')
-          element << attributes[:cislo] if attributes[:cislo]
+          if attributes[:cislo].respond_to? :attributes
+            attributes[:cislo].attributes.each { |k, v| element[k] = v }
+          end
+          element << attributes[:cislo].to_s if attributes[:cislo]
           root << element
         end
 

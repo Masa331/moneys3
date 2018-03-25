@@ -14,14 +14,17 @@ RSpec.describe MoneyS3::Builders::MoneyData do
     end
 
     it 'outputs proper xml with attributes' do
-      str = WithAttributes.new('123')
+      str = MoneyS3::WithAttributes.new('123')
       str.attributes = { type: 'cellphone' }
-      xml = MoneyS3::Builders::TelefonType.new({ cislo: str }, 'Tel').to_xml.strip
+
+      hash = MoneyS3::WithAttributes.new({ cislo: str })
+      hash.attributes = { version:  '1', license: 'ab123' }
+      xml = MoneyS3::Builders::TelefonType.new(hash, 'Tel').to_xml.strip
 
       expect(xml).to eq_multiline(%{
         |<?xml version="1.0"?>
-        |<Tel>
-        |  <Cislo>123</Cislo>
+        |<Tel version="1" license="ab123">
+        |  <Cislo type="cellphone">123</Cislo>
         |</Tel> })
     end
   end

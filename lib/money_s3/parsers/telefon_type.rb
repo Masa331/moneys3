@@ -18,7 +18,8 @@ module MoneyS3
       end
 
       def to_h
-        hash = {}
+        hash = WithAttributes.new({})
+        hash.attributes = attributes
 
         hash[:pred] = pred if has? :Pred
         hash[:cislo] = cislo if has? :Cislo
