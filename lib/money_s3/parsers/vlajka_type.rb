@@ -37,9 +37,8 @@ module MoneyS3
         at 'RFHeight'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:id_user] = id_user if has? 'IDUser'
         hash[:name_user] = name_user if has? 'NameUser'

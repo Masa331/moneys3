@@ -109,9 +109,8 @@ module MoneyS3
         submodel_at(Eshop, 'eshop')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:obch_nazev] = obch_nazev if has? 'ObchNazev'
         hash[:fakt_nazev] = fakt_nazev if has? 'FaktNazev'
@@ -130,14 +129,14 @@ module MoneyS3
         hash[:v_symb] = v_symb if has? 'VSymb'
         hash[:spec_sym] = spec_sym if has? 'SpecSym'
         hash[:kod_partn] = kod_partn if has? 'KodPartn'
-        hash[:obch_adresa] = obch_adresa.to_h if has? 'ObchAdresa'
-        hash[:fakt_adresa] = fakt_adresa.to_h if has? 'FaktAdresa'
-        hash[:adresa] = adresa.to_h if has? 'Adresa'
-        hash[:tel] = tel.to_h if has? 'Tel'
-        hash[:fax] = fax.to_h if has? 'Fax'
-        hash[:mobil] = mobil.to_h if has? 'Mobil'
-        hash[:isdoc] = isdoc.to_h if has? 'ISDOC'
-        hash[:eshop] = eshop.to_h if has? 'eshop'
+        hash[:obch_adresa] = obch_adresa.to_h_with_attrs if has? 'ObchAdresa'
+        hash[:fakt_adresa] = fakt_adresa.to_h_with_attrs if has? 'FaktAdresa'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
+        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
+        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
+        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
+        hash[:isdoc] = isdoc.to_h_with_attrs if has? 'ISDOC'
+        hash[:eshop] = eshop.to_h_with_attrs if has? 'eshop'
 
         hash
       end

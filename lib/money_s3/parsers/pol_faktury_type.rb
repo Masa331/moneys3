@@ -97,9 +97,8 @@ module MoneyS3
         submodel_at(SeznamVazeb, 'SeznamVazeb')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:popis] = popis if has? 'Popis'
         hash[:poznamka] = poznamka if has? 'Poznamka'
@@ -119,10 +118,10 @@ module MoneyS3
         hash[:zvl_rezim] = zvl_rezim if has? 'ZvlRezim'
         hash[:zvl_dph] = zvl_dph if has? 'ZvlDPH'
         hash[:rezim_eet] = rezim_eet if has? 'RezimEET'
-        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
-        hash[:neskl_polozka] = neskl_polozka.to_h if has? 'NesklPolozka'
-        hash[:skl_polozka] = skl_polozka.to_h if has? 'SklPolozka'
-        hash[:seznam_vazeb] = seznam_vazeb.to_h if has? 'SeznamVazeb'
+        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
+        hash[:neskl_polozka] = neskl_polozka.to_h_with_attrs if has? 'NesklPolozka'
+        hash[:skl_polozka] = skl_polozka.to_h_with_attrs if has? 'SklPolozka'
+        hash[:seznam_vazeb] = seznam_vazeb.to_h_with_attrs if has? 'SeznamVazeb'
 
         hash
       end

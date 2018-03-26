@@ -14,12 +14,11 @@ module MoneyS3
         submodel_at(TypPriplatkuType, 'TypPriplatku')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:prip_hodin] = prip_hodin if has? 'PripHodin'
-        hash[:typ_priplatku] = typ_priplatku.to_h if has? 'TypPriplatku'
+        hash[:typ_priplatku] = typ_priplatku.to_h_with_attrs if has? 'TypPriplatku'
 
         hash
       end

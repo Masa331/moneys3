@@ -45,9 +45,8 @@ module MoneyS3
         at 'Pozn'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:zkrat] = zkrat if has? 'Zkrat'
         hash[:datum_od] = datum_od if has? 'DatumOd'

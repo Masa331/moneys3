@@ -53,9 +53,8 @@ module MoneyS3
         at 'SazbaDPH'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:popis] = popis if has? 'Popis'
         hash[:uc_md] = uc_md if has? 'UcMD'

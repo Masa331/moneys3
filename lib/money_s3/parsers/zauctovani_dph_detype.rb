@@ -34,9 +34,8 @@ module MoneyS3
         array_of_at(ObdobiDPH, ['SeznamObdobiDPH', 'ObdobiDPH'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:zkrat] = zkrat if has? 'Zkrat'
         hash[:typ] = typ if has? 'Typ'
@@ -44,7 +43,7 @@ module MoneyS3
         hash[:poh_dss] = poh_dss if has? 'PohDSS'
         hash[:poh_dzs] = poh_dzs if has? 'PohDZS'
         hash[:pozn] = pozn if has? 'Pozn'
-        hash[:seznam_obdobi_dph] = seznam_obdobi_dph.map(&:to_h) if has? 'SeznamObdobiDPH'
+        hash[:seznam_obdobi_dph] = seznam_obdobi_dph.map(&:to_h_with_attrs) if has? 'SeznamObdobiDPH'
 
         hash
       end

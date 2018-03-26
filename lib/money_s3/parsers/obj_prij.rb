@@ -237,9 +237,8 @@ module MoneyS3
         array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:doklad] = doklad if has? 'Doklad'
         hash[:popis] = popis if has? 'Popis'
@@ -281,20 +280,20 @@ module MoneyS3
         hash[:sleva] = sleva if has? 'Sleva'
         hash[:pojisteno] = pojisteno if has? 'Pojisteno'
         hash[:celkem] = celkem if has? 'Celkem'
-        hash[:dod_odb] = dod_odb.to_h if has? 'DodOdb'
-        hash[:konec_prij] = konec_prij.to_h if has? 'KonecPrij'
-        hash[:valuty] = valuty.to_h if has? 'Valuty'
-        hash[:eshop] = eshop.to_h if has? 'eshop'
-        hash[:prepravce] = prepravce.to_h if has? 'Prepravce'
-        hash[:typ_zasillky] = typ_zasillky.to_h if has? 'TypZasillky'
-        hash[:prepr_vyplatne] = prepr_vyplatne.to_h if has? 'Prepr_Vyplatne'
-        hash[:prepr_uhrada_dobirky] = prepr_uhrada_dobirky.to_h if has? 'Prepr_UhradaDobirky'
-        hash[:prepr_trida] = prepr_trida.to_h if has? 'Prepr_Trida'
-        hash[:moje_firma] = moje_firma.to_h if has? 'MojeFirma'
-        hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
-        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
-        hash[:prepr_seznam_sluzeb] = prepr_seznam_sluzeb.map(&:to_h) if has? 'Prepr_SeznamSluzeb'
-        hash[:polozka] = polozka.map(&:to_h) if has? 'Polozka'
+        hash[:dod_odb] = dod_odb.to_h_with_attrs if has? 'DodOdb'
+        hash[:konec_prij] = konec_prij.to_h_with_attrs if has? 'KonecPrij'
+        hash[:valuty] = valuty.to_h_with_attrs if has? 'Valuty'
+        hash[:eshop] = eshop.to_h_with_attrs if has? 'eshop'
+        hash[:prepravce] = prepravce.to_h_with_attrs if has? 'Prepravce'
+        hash[:typ_zasillky] = typ_zasillky.to_h_with_attrs if has? 'TypZasillky'
+        hash[:prepr_vyplatne] = prepr_vyplatne.to_h_with_attrs if has? 'Prepr_Vyplatne'
+        hash[:prepr_uhrada_dobirky] = prepr_uhrada_dobirky.to_h_with_attrs if has? 'Prepr_UhradaDobirky'
+        hash[:prepr_trida] = prepr_trida.to_h_with_attrs if has? 'Prepr_Trida'
+        hash[:moje_firma] = moje_firma.to_h_with_attrs if has? 'MojeFirma'
+        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
+        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
+        hash[:prepr_seznam_sluzeb] = prepr_seznam_sluzeb.map(&:to_h_with_attrs) if has? 'Prepr_SeznamSluzeb'
+        hash[:polozka] = polozka.map(&:to_h_with_attrs) if has? 'Polozka'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash

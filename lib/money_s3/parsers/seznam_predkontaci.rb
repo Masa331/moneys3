@@ -10,11 +10,10 @@ module MoneyS3
         array_of_at(Predkontace, ['Predkontace'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:predkontace] = predkontace.map(&:to_h) if has? 'Predkontace'
+        hash[:predkontace] = predkontace.map(&:to_h_with_attrs) if has? 'Predkontace'
 
         hash
       end

@@ -10,11 +10,10 @@ module MoneyS3
         submodel_at(MsgPolozType, 'SklPolozka')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:skl_polozka] = skl_polozka.to_h if has? 'SklPolozka'
+        hash[:skl_polozka] = skl_polozka.to_h_with_attrs if has? 'SklPolozka'
 
         hash
       end

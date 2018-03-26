@@ -72,9 +72,8 @@ module MoneyS3
         submodel_at(CenaType, 'Cena5')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:dealer_skupina] = dealer_skupina if has? 'DealerSkupina'
         hash[:sdph] = sdph if has? 'SDPH'
@@ -85,13 +84,13 @@ module MoneyS3
         hash[:zpusob_zm_a] = zpusob_zm_a if has? 'ZpusobZmA'
         hash[:vych_b] = vych_b if has? 'VychB'
         hash[:zpusob_zm_b] = zpusob_zm_b if has? 'ZpusobZmB'
-        hash[:hladina] = hladina.to_h if has? 'Hladina'
-        hash[:mena] = mena.to_h if has? 'Mena'
-        hash[:cena1] = cena1.to_h if has? 'Cena1'
-        hash[:cena2] = cena2.to_h if has? 'Cena2'
-        hash[:cena3] = cena3.to_h if has? 'Cena3'
-        hash[:cena4] = cena4.to_h if has? 'Cena4'
-        hash[:cena5] = cena5.to_h if has? 'Cena5'
+        hash[:hladina] = hladina.to_h_with_attrs if has? 'Hladina'
+        hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
+        hash[:cena1] = cena1.to_h_with_attrs if has? 'Cena1'
+        hash[:cena2] = cena2.to_h_with_attrs if has? 'Cena2'
+        hash[:cena3] = cena3.to_h_with_attrs if has? 'Cena3'
+        hash[:cena4] = cena4.to_h_with_attrs if has? 'Cena4'
+        hash[:cena5] = cena5.to_h_with_attrs if has? 'Cena5'
 
         hash
       end

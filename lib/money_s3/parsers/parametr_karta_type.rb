@@ -18,13 +18,12 @@ module MoneyS3
         submodel_at(ParametrType, 'Parametr')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:poradi] = poradi if has? 'Poradi'
         hash[:value] = value if has? 'Value'
-        hash[:parametr] = parametr.to_h if has? 'Parametr'
+        hash[:parametr] = parametr.to_h_with_attrs if has? 'Parametr'
 
         hash
       end

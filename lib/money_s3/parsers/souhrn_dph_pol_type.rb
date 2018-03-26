@@ -26,15 +26,14 @@ module MoneyS3
         submodel_at(Valuty, 'Valuty')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:zaklad_mj] = zaklad_mj if has? 'Zaklad_MJ'
         hash[:dph_mj] = dph_mj if has? 'DPH_MJ'
         hash[:zaklad] = zaklad if has? 'Zaklad'
         hash[:dph] = dph if has? 'DPH'
-        hash[:valuty] = valuty.to_h if has? 'Valuty'
+        hash[:valuty] = valuty.to_h_with_attrs if has? 'Valuty'
 
         hash
       end

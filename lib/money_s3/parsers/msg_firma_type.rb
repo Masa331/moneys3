@@ -15,12 +15,11 @@ module MoneyS3
         array_of_at(MessageType, ['Osoba'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:data] = data.to_h if has? 'Data'
-        hash[:osoba] = osoba.map(&:to_h) if has? 'Osoba'
+        hash[:data] = data.to_h_with_attrs if has? 'Data'
+        hash[:osoba] = osoba.map(&:to_h_with_attrs) if has? 'Osoba'
 
         hash
       end

@@ -17,9 +17,8 @@ module MoneyS3
         at 'Objednano'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:zasoba] = zasoba if has? 'Zasoba'
         hash[:rezervace] = rezervace if has? 'Rezervace'

@@ -45,19 +45,18 @@ module MoneyS3
         array_of_at(SubpolInvDType, ['Slozeni', 'SubPolozka'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:popis] = popis if has? 'Popis'
         hash[:zkrat] = zkrat if has? 'Zkrat'
         hash[:slupina] = slupina if has? 'Slupina'
         hash[:mj] = mj if has? 'MJ'
         hash[:mn_inv] = mn_inv if has? 'MnInv'
-        hash[:sklad] = sklad.to_h if has? 'Sklad'
-        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
-        hash[:seznam_vc] = seznam_vc.map(&:to_h) if has? 'SeznamVC'
-        hash[:slozeni] = slozeni.map(&:to_h) if has? 'Slozeni'
+        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
+        hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
+        hash[:seznam_vc] = seznam_vc.map(&:to_h_with_attrs) if has? 'SeznamVC'
+        hash[:slozeni] = slozeni.map(&:to_h_with_attrs) if has? 'Slozeni'
 
         hash
       end

@@ -62,9 +62,8 @@ module MoneyS3
         submodel_at(FirmaType, 'Adresa')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:popis] = popis if has? 'Popis'
         hash[:castka] = castka if has? 'Castka'
@@ -79,7 +78,7 @@ module MoneyS3
         hash[:pohyb] = pohyb if has? 'Pohyb'
         hash[:par_sym] = par_sym if has? 'ParSym'
         hash[:var_sym] = var_sym if has? 'VarSym'
-        hash[:adresa] = adresa.to_h if has? 'Adresa'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
 
         hash
       end

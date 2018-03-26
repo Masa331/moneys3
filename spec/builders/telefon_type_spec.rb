@@ -1,7 +1,22 @@
 require 'spec_helper'
-require 'money_s3/with_attributes'
 
 RSpec.describe MoneyS3::Builders::MoneyData do
+  it 'can process output from MoneyS3::Parsers::TelefonType' do
+    raw = File.read('./spec/fixtures/telefone_type.xml')
+    ox = Ox.load(raw).locate('Tel').first
+    parsed = MoneyS3::Parsers::TelefonType.new(ox)
+
+    xml = MoneyS3::Builders::TelefonType.new('Tel', parsed.to_h_with_attrs).to_xml.strip
+
+    expect(xml).to eq_multiline(%{
+      |<?xml version="1.0"?>
+      |<Tel version="1">
+      |  <Pred>+420</Pred>
+      |  <Cislo type="cellphone">111222333</Cislo>
+      |  <Klap/>
+      |</Tel> })
+  end
+
   describe '::to_xml' do
     it 'outputs xml string' do
       xml = MoneyS3::Builders::TelefonType.new('Tel', { cislo: '123' }).to_xml.strip
@@ -14,11 +29,9 @@ RSpec.describe MoneyS3::Builders::MoneyData do
     end
 
     it 'outputs xml string with attributes' do
-      str = MoneyS3::WithAttributes.new('123')
-      str.attributes = { type: 'cellphone' }
+      str = MoneyS3::StringWithAttributes.new('123', { type: 'cellphone' })
+      hash = MoneyS3::HashWithAttributes.new({ cislo: str }, { version:  '1', license: 'ab123' })
 
-      hash = MoneyS3::WithAttributes.new({ cislo: str })
-      hash.attributes = { version:  '1', license: 'ab123' }
       xml = MoneyS3::Builders::TelefonType.new('Tel', hash).to_xml.strip
 
       expect(xml).to eq_multiline(%{

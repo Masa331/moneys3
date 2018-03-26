@@ -34,9 +34,8 @@ module MoneyS3
         submodel_at(EkategorieZasobaType, 'Parent')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:id] = id if has? 'ID'
         hash[:name] = name if has? 'Name'
@@ -44,7 +43,7 @@ module MoneyS3
         hash[:poznamka] = poznamka if has? 'Poznamka'
         hash[:changed] = changed if has? 'Changed'
         hash[:public] = public if has? 'Public'
-        hash[:parent] = parent.to_h if has? 'Parent'
+        hash[:parent] = parent.to_h_with_attrs if has? 'Parent'
 
         hash
       end

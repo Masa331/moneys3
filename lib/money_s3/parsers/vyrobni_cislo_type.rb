@@ -17,9 +17,8 @@ module MoneyS3
         at 'CarovyKod'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:vyrobni_cis] = vyrobni_cis if has? 'VyrobniCis'
         hash[:datum_vyrob] = datum_vyrob if has? 'DatumVyrob'

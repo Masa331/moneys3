@@ -37,9 +37,8 @@ module MoneyS3
         at 'UcPreb'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:uc_prodejk] = uc_prodejk if has? 'UcProdejk'
         hash[:uc_prijemk] = uc_prijemk if has? 'UcPrijemk'

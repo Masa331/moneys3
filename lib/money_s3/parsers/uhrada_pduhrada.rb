@@ -49,9 +49,8 @@ module MoneyS3
         at 'WLDPH2'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:poradi] = poradi if has? 'Poradi'
         hash[:kontace] = kontace if has? 'Kontace'

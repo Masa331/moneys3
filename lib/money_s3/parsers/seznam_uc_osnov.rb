@@ -10,11 +10,10 @@ module MoneyS3
         array_of_at(UcOsnovaType, ['UcOsnova'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:uc_osnova] = uc_osnova.map(&:to_h) if has? 'UcOsnova'
+        hash[:uc_osnova] = uc_osnova.map(&:to_h_with_attrs) if has? 'UcOsnova'
 
         hash
       end

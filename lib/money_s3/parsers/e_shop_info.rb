@@ -17,9 +17,8 @@ module MoneyS3
         at 'eSaleID'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:e_shop_id] = e_shop_id if has? 'eShopID'
         hash[:e_shop_name] = e_shop_name if has? 'eShopName'

@@ -21,9 +21,8 @@ module MoneyS3
         at 'Cena'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:oznaceni] = oznaceni if has? 'Oznaceni'
         hash[:dat_exp] = dat_exp if has? 'DatExp'

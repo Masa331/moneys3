@@ -212,9 +212,8 @@ module MoneyS3
         array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:doklad] = doklad if has? 'Doklad'
         hash[:zpusob_uctovani] = zpusob_uctovani if has? 'ZpusobUctovani'
@@ -258,13 +257,13 @@ module MoneyS3
         hash[:zjedn_d] = zjedn_d if has? 'ZjednD'
         hash[:vyst] = vyst if has? 'Vyst'
         hash[:celkem] = celkem if has? 'Celkem'
-        hash[:adresa] = adresa.to_h if has? 'Adresa'
-        hash[:valuty] = valuty.to_h if has? 'Valuty'
-        hash[:moje_firma] = moje_firma.to_h if has? 'MojeFirma'
-        hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
-        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
-        hash[:seznam_rozuct_polozek] = seznam_rozuct_polozek.map(&:to_h) if has? 'SeznamRozuctPolozek'
-        hash[:seznam_norm_polozek] = seznam_norm_polozek.map(&:to_h) if has? 'SeznamNormPolozek'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
+        hash[:valuty] = valuty.to_h_with_attrs if has? 'Valuty'
+        hash[:moje_firma] = moje_firma.to_h_with_attrs if has? 'MojeFirma'
+        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
+        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
+        hash[:seznam_rozuct_polozek] = seznam_rozuct_polozek.map(&:to_h_with_attrs) if has? 'SeznamRozuctPolozek'
+        hash[:seznam_norm_polozek] = seznam_norm_polozek.map(&:to_h_with_attrs) if has? 'SeznamNormPolozek'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash

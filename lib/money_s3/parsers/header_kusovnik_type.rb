@@ -86,9 +86,8 @@ module MoneyS3
         submodel_at(SkupinaKusovnikType, 'Skupina')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:cislo] = cislo if has? 'Cislo'
         hash[:druh] = druh if has? 'Druh'
@@ -109,7 +108,7 @@ module MoneyS3
         hash[:id_uziv] = id_uziv if has? 'IDUziv'
         hash[:datum_zmeny] = datum_zmeny if has? 'DatumZmeny'
         hash[:cas_zmeny] = cas_zmeny if has? 'CasZmeny'
-        hash[:skupina] = skupina.to_h if has? 'Skupina'
+        hash[:skupina] = skupina.to_h_with_attrs if has? 'Skupina'
 
         hash
       end

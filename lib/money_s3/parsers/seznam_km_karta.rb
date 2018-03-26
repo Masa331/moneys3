@@ -10,11 +10,10 @@ module MoneyS3
         array_of_at(KmKarta, ['KmKarta'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:km_karta] = km_karta.map(&:to_h) if has? 'KmKarta'
+        hash[:km_karta] = km_karta.map(&:to_h_with_attrs) if has? 'KmKarta'
 
         hash
       end

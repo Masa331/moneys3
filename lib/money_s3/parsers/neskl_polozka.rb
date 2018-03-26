@@ -78,9 +78,8 @@ module MoneyS3
         submodel_at(FirmaType, 'Dodavatel')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:zkrat] = zkrat if has? 'Zkrat'
         hash[:mj] = mj if has? 'MJ'
@@ -99,7 +98,7 @@ module MoneyS3
         hash[:dat_exp] = dat_exp if has? 'DatExp'
         hash[:dat_nakupu] = dat_nakupu if has? 'DatNakupu'
         hash[:predm_pln] = predm_pln if has? 'PredmPln'
-        hash[:dodavatel] = dodavatel.to_h if has? 'Dodavatel'
+        hash[:dodavatel] = dodavatel.to_h_with_attrs if has? 'Dodavatel'
 
         hash
       end

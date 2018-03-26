@@ -17,9 +17,8 @@ module MoneyS3
         at 'Kurs'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:kod] = kod if has? 'Kod'
         hash[:mnozstvi] = mnozstvi if has? 'Mnozstvi'

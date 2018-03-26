@@ -28,9 +28,9 @@ RSpec.describe MoneyS3::Parsers::TelefonType do
       ox = Ox.load(raw).locate('Tel').first
       parsed = MoneyS3::Parsers::TelefonType.new(ox)
 
-      expect(parsed.to_h).to eq({ pred: '+420', cislo: '111222333', klap: nil })
-      expect(parsed.to_h.attributes).to eq({ version: '1' })
-      expect(parsed.to_h[:cislo].attributes).to eq({ type: 'cellphone' })
+      expect(parsed.to_h_with_attrs).to eq({ pred: '+420', cislo: '111222333', klap: nil })
+      expect(parsed.to_h_with_attrs.attributes).to eq({ version: '1' })
+      expect(parsed.to_h_with_attrs[:cislo].attributes).to eq({ type: 'cellphone' })
     end
   end
 end

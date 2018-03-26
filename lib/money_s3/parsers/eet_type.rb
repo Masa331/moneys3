@@ -91,9 +91,8 @@ module MoneyS3
         submodel_at(VysledekOdesl, 'VysledekOdesl')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:eet_odesl] = eet_odesl if has? 'EETOdesl'
         hash[:prod_misto] = prod_misto if has? 'ProdMisto'
@@ -114,8 +113,8 @@ module MoneyS3
         hash[:fik] = fik if has? 'FIK'
         hash[:cert_pkp] = cert_pkp if has? 'CertPKP'
         hash[:cert_eet] = cert_eet if has? 'CertEET'
-        hash[:castky] = castky.to_h if has? 'Castky'
-        hash[:vysledek_odesl] = vysledek_odesl.to_h if has? 'VysledekOdesl'
+        hash[:castky] = castky.to_h_with_attrs if has? 'Castky'
+        hash[:vysledek_odesl] = vysledek_odesl.to_h_with_attrs if has? 'VysledekOdesl'
 
         hash
       end

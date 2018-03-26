@@ -122,9 +122,8 @@ module MoneyS3
         array_of_at(DefSubPolType, ['Slozeni', 'SubPolozka'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:nazev] = nazev if has? 'Nazev'
         hash[:pocet_mj] = pocet_mj if has? 'PocetMJ'
@@ -149,11 +148,11 @@ module MoneyS3
         hash[:zvl_rezim] = zvl_rezim if has? 'ZvlRezim'
         hash[:zvl_dph] = zvl_dph if has? 'ZvlDPH'
         hash[:rezim_eet] = rezim_eet if has? 'RezimEET'
-        hash[:sklad] = sklad.to_h if has? 'Sklad'
-        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
-        hash[:seznam_vc] = seznam_vc.map(&:to_h) if has? 'SeznamVC'
-        hash[:seznam_dodavek] = seznam_dodavek.map(&:to_h) if has? 'SeznamDodavek'
-        hash[:slozeni] = slozeni.map(&:to_h) if has? 'Slozeni'
+        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
+        hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
+        hash[:seznam_vc] = seznam_vc.map(&:to_h_with_attrs) if has? 'SeznamVC'
+        hash[:seznam_dodavek] = seznam_dodavek.map(&:to_h_with_attrs) if has? 'SeznamDodavek'
+        hash[:slozeni] = slozeni.map(&:to_h_with_attrs) if has? 'Slozeni'
 
         hash
       end

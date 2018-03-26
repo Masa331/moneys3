@@ -21,9 +21,8 @@ module MoneyS3
         at 'KodOdesil'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:zkrat] = zkrat if has? 'Zkrat'
         hash[:nazev] = nazev if has? 'Nazev'

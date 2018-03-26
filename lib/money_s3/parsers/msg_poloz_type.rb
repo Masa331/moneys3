@@ -14,12 +14,11 @@ module MoneyS3
         submodel_at(MessageType, 'Sklad')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
-        hash[:sklad] = sklad.to_h if has? 'Sklad'
+        hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
+        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
 
         hash
       end

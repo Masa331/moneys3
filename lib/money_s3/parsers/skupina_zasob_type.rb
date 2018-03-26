@@ -100,9 +100,8 @@ module MoneyS3
         submodel_at(UctyPohybuType, 'UcPohybV')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:zkratka] = zkratka if has? 'Zkratka'
         hash[:nazev] = nazev if has? 'Nazev'
@@ -122,11 +121,11 @@ module MoneyS3
         hash[:prodejk_vz] = prodejk_vz if has? 'ProdejkVz'
         hash[:v_dod_lst_vz] = v_dod_lst_vz if has? 'VDodLstVz'
         hash[:p_dod_lst_vz] = p_dod_lst_vz if has? 'PDodLstVz'
-        hash[:konfigurace] = konfigurace.to_h if has? 'konfigurace'
-        hash[:definice_ceny] = definice_ceny.to_h if has? 'definiceCeny'
-        hash[:uc_pohyb_m] = uc_pohyb_m.to_h if has? 'UcPohybM'
-        hash[:uc_pohyb_z] = uc_pohyb_z.to_h if has? 'UcPohybZ'
-        hash[:uc_pohyb_v] = uc_pohyb_v.to_h if has? 'UcPohybV'
+        hash[:konfigurace] = konfigurace.to_h_with_attrs if has? 'konfigurace'
+        hash[:definice_ceny] = definice_ceny.to_h_with_attrs if has? 'definiceCeny'
+        hash[:uc_pohyb_m] = uc_pohyb_m.to_h_with_attrs if has? 'UcPohybM'
+        hash[:uc_pohyb_z] = uc_pohyb_z.to_h_with_attrs if has? 'UcPohybZ'
+        hash[:uc_pohyb_v] = uc_pohyb_v.to_h_with_attrs if has? 'UcPohybV'
 
         hash
       end

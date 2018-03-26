@@ -10,11 +10,10 @@ module MoneyS3
         array_of_at(NabPrij, ['NabPrij'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:nab_prij] = nab_prij.map(&:to_h) if has? 'NabPrij'
+        hash[:nab_prij] = nab_prij.map(&:to_h_with_attrs) if has? 'NabPrij'
 
         hash
       end

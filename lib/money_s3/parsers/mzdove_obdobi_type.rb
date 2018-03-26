@@ -22,14 +22,13 @@ module MoneyS3
         submodel_at(PracPomer, 'PracPomer')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:mesic] = mesic if has? 'Mesic'
         hash[:rok] = rok if has? 'Rok'
         hash[:funkce] = funkce if has? 'Funkce'
-        hash[:prac_pomer] = prac_pomer.to_h if has? 'PracPomer'
+        hash[:prac_pomer] = prac_pomer.to_h_with_attrs if has? 'PracPomer'
 
         hash
       end

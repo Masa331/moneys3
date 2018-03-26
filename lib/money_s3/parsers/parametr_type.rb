@@ -33,9 +33,8 @@ module MoneyS3
         at 'Hodnoty'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:id] = id if has? 'ID'
         hash[:nazev] = nazev if has? 'Nazev'

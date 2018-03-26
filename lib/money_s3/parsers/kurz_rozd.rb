@@ -26,15 +26,14 @@ module MoneyS3
         submodel_at(DoklRefType, 'Doklad')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:typ] = typ if has? 'Typ'
         hash[:preceneni] = preceneni if has? 'Preceneni'
         hash[:castka] = castka if has? 'Castka'
         hash[:kr_poradi] = kr_poradi if has? 'KRPoradi'
-        hash[:doklad] = doklad.to_h if has? 'Doklad'
+        hash[:doklad] = doklad.to_h_with_attrs if has? 'Doklad'
 
         hash
       end

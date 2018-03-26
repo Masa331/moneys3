@@ -17,9 +17,8 @@ module MoneyS3
         at 'CarKod'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:vyrobni_cis] = vyrobni_cis if has? 'VyrobniCis'
         hash[:dat_vyr] = dat_vyr if has? 'DatVyr'

@@ -169,9 +169,8 @@ module MoneyS3
         array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:popis] = popis if has? 'Popis'
         hash[:zkrat] = zkrat if has? 'Zkrat'
@@ -208,10 +207,10 @@ module MoneyS3
         hash[:zboz_kuch] = zboz_kuch if has? 'ZbozKuch'
         hash[:i_dokl_pol] = i_dokl_pol if has? 'iDoklPol'
         hash[:i_dokl_agend] = i_dokl_agend if has? 'iDoklAgend'
-        hash[:konfigurace] = konfigurace.to_h if has? 'konfigurace'
-        hash[:definice_ceny] = definice_ceny.to_h if has? 'definiceCeny'
-        hash[:slozeni] = slozeni.map(&:to_h) if has? 'Slozeni'
-        hash[:seznam_parametru_karty] = seznam_parametru_karty.map(&:to_h) if has? 'SeznamParametruKarty'
+        hash[:konfigurace] = konfigurace.to_h_with_attrs if has? 'konfigurace'
+        hash[:definice_ceny] = definice_ceny.to_h_with_attrs if has? 'definiceCeny'
+        hash[:slozeni] = slozeni.map(&:to_h_with_attrs) if has? 'Slozeni'
+        hash[:seznam_parametru_karty] = seznam_parametru_karty.map(&:to_h_with_attrs) if has? 'SeznamParametruKarty'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash

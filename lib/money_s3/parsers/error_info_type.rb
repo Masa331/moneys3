@@ -21,9 +21,8 @@ module MoneyS3
         at 'ErrorDescription'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:error_type_coded] = error_type_coded if has? 'ErrorTypeCoded'
         hash[:error_type_other] = error_type_other if has? 'ErrorTypeOther'

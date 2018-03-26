@@ -67,9 +67,8 @@ module MoneyS3
         array_of_at(UhradaPduhrada, ['SeznamPDUhrad', 'Uhrada_PDUhrada'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:prijem] = prijem if has? 'Prijem'
         hash[:poradi] = poradi if has? 'Poradi'
@@ -79,12 +78,12 @@ module MoneyS3
         hash[:castka] = castka if has? 'Castka'
         hash[:zpusob_uhr] = zpusob_uhr if has? 'ZpusobUhr'
         hash[:platidlo] = platidlo if has? 'Platidlo'
-        hash[:doklad_uhr] = doklad_uhr.to_h if has? 'DokladUhr'
-        hash[:doklad_hraz] = doklad_hraz.to_h if has? 'DokladHraz'
-        hash[:valuty_hraz] = valuty_hraz.to_h if has? 'ValutyHraz'
-        hash[:valuty_uhr] = valuty_uhr.to_h if has? 'ValutyUhr'
-        hash[:kurz_rozd] = kurz_rozd.to_h if has? 'KurzRozd'
-        hash[:seznam_pd_uhrad] = seznam_pd_uhrad.map(&:to_h) if has? 'SeznamPDUhrad'
+        hash[:doklad_uhr] = doklad_uhr.to_h_with_attrs if has? 'DokladUhr'
+        hash[:doklad_hraz] = doklad_hraz.to_h_with_attrs if has? 'DokladHraz'
+        hash[:valuty_hraz] = valuty_hraz.to_h_with_attrs if has? 'ValutyHraz'
+        hash[:valuty_uhr] = valuty_uhr.to_h_with_attrs if has? 'ValutyUhr'
+        hash[:kurz_rozd] = kurz_rozd.to_h_with_attrs if has? 'KurzRozd'
+        hash[:seznam_pd_uhrad] = seznam_pd_uhrad.map(&:to_h_with_attrs) if has? 'SeznamPDUhrad'
 
         hash
       end

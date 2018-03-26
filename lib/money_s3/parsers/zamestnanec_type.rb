@@ -30,16 +30,15 @@ module MoneyS3
         array_of_at(MzdoveObdobiType, ['SeznamMzdovychObdobi', 'MzdoveObdobi'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:os_cislo] = os_cislo if has? 'OsCislo'
         hash[:jmeno] = jmeno if has? 'Jmeno'
         hash[:stredisko] = stredisko if has? 'Stredisko'
         hash[:dat_nastup] = dat_nastup if has? 'DatNastup'
         hash[:dat_odchod] = dat_odchod if has? 'DatOdchod'
-        hash[:seznam_mzdovych_obdobi] = seznam_mzdovych_obdobi.map(&:to_h) if has? 'SeznamMzdovychObdobi'
+        hash[:seznam_mzdovych_obdobi] = seznam_mzdovych_obdobi.map(&:to_h_with_attrs) if has? 'SeznamMzdovychObdobi'
 
         hash
       end

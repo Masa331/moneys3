@@ -18,13 +18,12 @@ module MoneyS3
         submodel_at(Doklad, 'Doklad')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:typ] = typ if has? 'Typ'
         hash[:pod_typ] = pod_typ if has? 'PodTyp'
-        hash[:doklad] = doklad.to_h if has? 'Doklad'
+        hash[:doklad] = doklad.to_h_with_attrs if has? 'Doklad'
 
         hash
       end

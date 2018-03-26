@@ -205,9 +205,8 @@ module MoneyS3
         array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:guid] = guid if has? 'GUID'
         hash[:nazev] = nazev if has? 'Nazev'
@@ -244,18 +243,18 @@ module MoneyS3
         hash[:zprava] = zprava if has? 'Zprava'
         hash[:poznamka] = poznamka if has? 'Poznamka'
         hash[:kod_partn] = kod_partn if has? 'KodPartn'
-        hash[:adresa] = adresa.to_h if has? 'Adresa'
-        hash[:obch_adresa] = obch_adresa.to_h if has? 'ObchAdresa'
-        hash[:fakt_adresa] = fakt_adresa.to_h if has? 'FaktAdresa'
-        hash[:tel] = tel.to_h if has? 'Tel'
-        hash[:fax] = fax.to_h if has? 'Fax'
-        hash[:mobil] = mobil.to_h if has? 'Mobil'
-        hash[:isdoc] = isdoc.to_h if has? 'ISDOC'
-        hash[:eshop] = eshop.to_h if has? 'eshop'
-        hash[:skupina] = skupina.to_h if has? 'Skupina'
-        hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
-        hash[:osoba] = osoba.map(&:to_h) if has? 'Osoba'
-        hash[:seznam_bank_spojeni] = seznam_bank_spojeni.map(&:to_h) if has? 'SeznamBankSpojeni'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
+        hash[:obch_adresa] = obch_adresa.to_h_with_attrs if has? 'ObchAdresa'
+        hash[:fakt_adresa] = fakt_adresa.to_h_with_attrs if has? 'FaktAdresa'
+        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
+        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
+        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
+        hash[:isdoc] = isdoc.to_h_with_attrs if has? 'ISDOC'
+        hash[:eshop] = eshop.to_h_with_attrs if has? 'eshop'
+        hash[:skupina] = skupina.to_h_with_attrs if has? 'Skupina'
+        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
+        hash[:osoba] = osoba.map(&:to_h_with_attrs) if has? 'Osoba'
+        hash[:seznam_bank_spojeni] = seznam_bank_spojeni.map(&:to_h_with_attrs) if has? 'SeznamBankSpojeni'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash

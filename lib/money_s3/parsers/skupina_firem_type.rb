@@ -17,9 +17,8 @@ module MoneyS3
         at 'Poznamka'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:zkratka] = zkratka if has? 'Zkratka'
         hash[:nazev] = nazev if has? 'Nazev'

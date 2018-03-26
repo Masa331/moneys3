@@ -139,9 +139,8 @@ module MoneyS3
         array_of_at(SubPolObjType, ['Slozeni', 'SubPolozka'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:popis] = popis if has? 'Popis'
         hash[:poznamka] = poznamka if has? 'Poznamka'
@@ -169,12 +168,12 @@ module MoneyS3
         hash[:zvl_dph] = zvl_dph if has? 'ZvlDPH'
         hash[:rezim_eet] = rezim_eet if has? 'RezimEET'
         hash[:pred_pc] = pred_pc if has? 'PredPC'
-        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
-        hash[:sklad] = sklad.to_h if has? 'Sklad'
-        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
-        hash[:neskl_polozka] = neskl_polozka.to_h if has? 'NesklPolozka'
-        hash[:seznam_vc] = seznam_vc.map(&:to_h) if has? 'SeznamVC'
-        hash[:slozeni] = slozeni.map(&:to_h) if has? 'Slozeni'
+        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
+        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
+        hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
+        hash[:neskl_polozka] = neskl_polozka.to_h_with_attrs if has? 'NesklPolozka'
+        hash[:seznam_vc] = seznam_vc.map(&:to_h_with_attrs) if has? 'SeznamVC'
+        hash[:slozeni] = slozeni.map(&:to_h_with_attrs) if has? 'Slozeni'
 
         hash
       end

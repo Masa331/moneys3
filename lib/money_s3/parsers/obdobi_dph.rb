@@ -57,9 +57,8 @@ module MoneyS3
         at 'UcD_6'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:datum_od] = datum_od if has? 'DatumOd'
         hash[:uc_md_1] = uc_md_1 if has? 'UcMD_1'

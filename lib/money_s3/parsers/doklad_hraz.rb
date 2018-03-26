@@ -26,15 +26,14 @@ module MoneyS3
         submodel_at(EETType, 'EET')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:id_dokladu] = id_dokladu if has? 'IDDokladu'
         hash[:cislo_dokladu] = cislo_dokladu if has? 'CisloDokladu'
         hash[:druh_dokladu] = druh_dokladu if has? 'DruhDokladu'
         hash[:rok] = rok if has? 'Rok'
-        hash[:eet] = eet.to_h if has? 'EET'
+        hash[:eet] = eet.to_h_with_attrs if has? 'EET'
 
         hash
       end

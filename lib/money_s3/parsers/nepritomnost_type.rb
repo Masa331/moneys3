@@ -65,9 +65,8 @@ module MoneyS3
         at 'Pozn'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:typ] = typ if has? 'Typ'
         hash[:zacatek] = zacatek if has? 'Zacatek'

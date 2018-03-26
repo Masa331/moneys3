@@ -14,12 +14,11 @@ module MoneyS3
         submodel_at(MenaType, 'Mena')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:castka] = castka if has? 'Castka'
-        hash[:mena] = mena.to_h if has? 'Mena'
+        hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
 
         hash
       end

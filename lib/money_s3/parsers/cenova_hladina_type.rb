@@ -30,16 +30,15 @@ module MoneyS3
         submodel_at(MenaType, 'Mena')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:zkrat] = zkrat if has? 'Zkrat'
         hash[:nazev] = nazev if has? 'Nazev'
         hash[:pozn] = pozn if has? 'Pozn'
         hash[:skup] = skup if has? 'Skup'
         hash[:ceny] = ceny if has? 'Ceny'
-        hash[:mena] = mena.to_h if has? 'Mena'
+        hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
 
         hash
       end

@@ -21,9 +21,7 @@ module MoneyS3
         element = raw.locate(locator.to_s).first
 
         if element
-          text = WithAttributes.new(element.text)
-          text.attributes = element.attributes
-          text
+          StringWithAttributes.new(element.text, element.attributes)
         end
       end
 

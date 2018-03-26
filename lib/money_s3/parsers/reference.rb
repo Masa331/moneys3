@@ -15,12 +15,11 @@ module MoneyS3
         submodel_at(VzorKomponentaType, 'Vzor')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:typ_kusovnik] = typ_kusovnik.to_h if has? 'TypKusovnik'
-        hash[:vzor] = vzor.to_h if has? 'Vzor'
+        hash[:typ_kusovnik] = typ_kusovnik.to_h_with_attrs if has? 'TypKusovnik'
+        hash[:vzor] = vzor.to_h_with_attrs if has? 'Vzor'
 
         hash
       end

@@ -102,9 +102,8 @@ module MoneyS3
         submodel_at(SkladType, 'Sklad')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:cislo] = cislo if has? 'Cislo'
         hash[:typ] = typ if has? 'Typ'
@@ -129,7 +128,7 @@ module MoneyS3
         hash[:zakazka] = zakazka if has? 'Zakazka'
         hash[:stav] = stav if has? 'Stav'
         hash[:poznamka] = poznamka if has? 'Poznamka'
-        hash[:sklad] = sklad.to_h if has? 'Sklad'
+        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
 
         hash
       end

@@ -169,9 +169,8 @@ module MoneyS3
         array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:nak_cena] = nak_cena if has? 'Nak_Cena'
         hash[:posl_n_cen] = posl_n_cen if has? 'Posl_N_Cen'
@@ -198,18 +197,18 @@ module MoneyS3
         hash[:uc_vyrobk_v] = uc_vyrobk_v if has? 'UcVyrobkV'
         hash[:dat_inv] = dat_inv if has? 'DatInv'
         hash[:mn_inv] = mn_inv if has? 'MnInv'
-        hash[:konfigurace] = konfigurace.to_h if has? 'konfigurace'
-        hash[:stav_zasoby] = stav_zasoby.to_h if has? 'StavZasoby'
-        hash[:uc_pohyb] = uc_pohyb.to_h if has? 'UcPohyb'
-        hash[:eshop] = eshop.to_h if has? 'eshop'
-        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
-        hash[:sklad] = sklad.to_h if has? 'Sklad'
-        hash[:skupina] = skupina.to_h if has? 'Skupina'
-        hash[:posl_dod] = posl_dod.to_h if has? 'Posl_Dod'
-        hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
-        hash[:pc] = pc.map(&:to_h) if has? 'PC'
-        hash[:seznam_alternativ] = seznam_alternativ.map(&:to_h) if has? 'SeznamAlternativ'
-        hash[:seznam_prislusenstvi] = seznam_prislusenstvi.map(&:to_h) if has? 'SeznamPrislusenstvi'
+        hash[:konfigurace] = konfigurace.to_h_with_attrs if has? 'konfigurace'
+        hash[:stav_zasoby] = stav_zasoby.to_h_with_attrs if has? 'StavZasoby'
+        hash[:uc_pohyb] = uc_pohyb.to_h_with_attrs if has? 'UcPohyb'
+        hash[:eshop] = eshop.to_h_with_attrs if has? 'eshop'
+        hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
+        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
+        hash[:skupina] = skupina.to_h_with_attrs if has? 'Skupina'
+        hash[:posl_dod] = posl_dod.to_h_with_attrs if has? 'Posl_Dod'
+        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
+        hash[:pc] = pc.map(&:to_h_with_attrs) if has? 'PC'
+        hash[:seznam_alternativ] = seznam_alternativ.map(&:to_h_with_attrs) if has? 'SeznamAlternativ'
+        hash[:seznam_prislusenstvi] = seznam_prislusenstvi.map(&:to_h_with_attrs) if has? 'SeznamPrislusenstvi'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash

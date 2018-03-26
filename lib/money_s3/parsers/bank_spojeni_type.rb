@@ -21,9 +21,8 @@ module MoneyS3
         at 'Ucel'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:ucet] = ucet if has? 'Ucet'
         hash[:kod_banky] = kod_banky if has? 'KodBanky'

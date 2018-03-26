@@ -19,13 +19,12 @@ module MoneyS3
         submodel_at(SouhrnDPHType, 'SouhrnDPH')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:celkem] = celkem if has? 'Celkem'
-        hash[:mena] = mena.to_h if has? 'Mena'
-        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
+        hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
+        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
 
         hash
       end

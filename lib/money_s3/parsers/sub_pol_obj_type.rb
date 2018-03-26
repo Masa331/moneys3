@@ -14,12 +14,11 @@ module MoneyS3
         submodel_at(PolObjednType, 'Polozka')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:mj_na_sadu] = mj_na_sadu if has? 'MJNaSadu'
-        hash[:polozka] = polozka.to_h if has? 'Polozka'
+        hash[:polozka] = polozka.to_h_with_attrs if has? 'Polozka'
 
         hash
       end

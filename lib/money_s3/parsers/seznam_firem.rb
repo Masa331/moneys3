@@ -10,11 +10,10 @@ module MoneyS3
         array_of_at(Firma, ['Firma'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:firma] = firma.map(&:to_h) if has? 'Firma'
+        hash[:firma] = firma.map(&:to_h_with_attrs) if has? 'Firma'
 
         hash
       end

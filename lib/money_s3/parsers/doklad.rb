@@ -37,9 +37,8 @@ module MoneyS3
         at 'PlnenoDPH'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:druh] = druh if has? 'Druh'
         hash[:cislo] = cislo if has? 'Cislo'

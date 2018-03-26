@@ -55,9 +55,9 @@ RSpec.describe MoneyS3 do
     end
 
     it 'creates xml with attributes if given' do
-      invoice_with_attributes = MoneyS3::WithAttributes.new({ doklad: '123' })
-      invoice_with_attributes.attributes = { version: '1' }
-      with_attributes = MoneyS3::WithAttributes.new({ fakt_vyd: [invoice_with_attributes] })
+      invoice_with_attributes = MoneyS3::HashWithAttributes.new({ doklad: '123' }, { version: '1' })
+
+      with_attributes = MoneyS3::HashWithAttributes.new({ fakt_vyd: [invoice_with_attributes] })
       xml = MoneyS3.build({ seznam_fakt_vyd: with_attributes }).strip
 
       expect(xml).to eq_multiline(%{
@@ -82,7 +82,7 @@ RSpec.describe MoneyS3 do
     raw = File.read('./spec/fixtures/various_agendas.xml')
 
     parsed = MoneyS3.parse(raw)
-    builded = MoneyS3.build(parsed.to_h)
+    builded = MoneyS3.build(parsed.to_h_with_attrs)
 
     expect(builded).to eq raw
   end
@@ -91,7 +91,7 @@ RSpec.describe MoneyS3 do
     raw = File.read('./spec/fixtures/complete_invoice.xml')
 
     parsed = MoneyS3.parse(raw)
-    builded = MoneyS3.build(parsed.to_h)
+    builded = MoneyS3.build(parsed.to_h_with_attrs)
 
     lines1 = raw.lines.sort
     lines2 = builded.force_encoding('UTF-8').lines.sort
@@ -103,7 +103,7 @@ RSpec.describe MoneyS3 do
     raw = File.read('./spec/fixtures/empty_data_set.xml')
 
     parsed = MoneyS3.parse(raw)
-    builded = MoneyS3.build(parsed.to_h)
+    builded = MoneyS3.build(parsed.to_h_with_attrs)
 
     lines1 = raw.lines.sort
     lines2 = builded.force_encoding('UTF-8').lines.sort

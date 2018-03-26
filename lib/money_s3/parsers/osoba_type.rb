@@ -87,9 +87,8 @@ module MoneyS3
         submodel_at(TelefonType, 'Mobil')
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:osloveni] = osloveni if has? 'Osloveni'
         hash[:titul_pred] = titul_pred if has? 'TitulPred'
@@ -107,10 +106,10 @@ module MoneyS3
         hash[:kod_partn] = kod_partn if has? 'KodPartn'
         hash[:guid] = guid if has? 'GUID'
         hash[:jednatel] = jednatel if has? 'Jednatel'
-        hash[:adresa] = adresa.to_h if has? 'Adresa'
-        hash[:tel] = tel.to_h if has? 'Tel'
-        hash[:fax] = fax.to_h if has? 'Fax'
-        hash[:mobil] = mobil.to_h if has? 'Mobil'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
+        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
+        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
+        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
 
         hash
       end

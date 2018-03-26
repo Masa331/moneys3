@@ -35,17 +35,16 @@ module MoneyS3
         array_of_at(EkategorieType, ['SeznamPodrKategorii', 'eKategorie'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:id] = id if has? 'ID'
         hash[:name] = name if has? 'Name'
         hash[:descript] = descript if has? 'Descript'
         hash[:in_changed] = in_changed if has? 'IN_Changed'
         hash[:no_public] = no_public if has? 'NoPublic'
-        hash[:e_shop_info] = e_shop_info.to_h if has? 'eShopInfo'
-        hash[:seznam_podr_kategorii] = seznam_podr_kategorii.map(&:to_h) if has? 'SeznamPodrKategorii'
+        hash[:e_shop_info] = e_shop_info.to_h_with_attrs if has? 'eShopInfo'
+        hash[:seznam_podr_kategorii] = seznam_podr_kategorii.map(&:to_h_with_attrs) if has? 'SeznamPodrKategorii'
 
         hash
       end

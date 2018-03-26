@@ -34,9 +34,8 @@ module MoneyS3
         array_of_at(PolInvDoklType, ['Polozka'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:cislo_d] = cislo_d if has? 'CisloD'
         hash[:inv_id] = inv_id if has? 'InvID'
@@ -44,7 +43,7 @@ module MoneyS3
         hash[:prac] = prac if has? 'Prac'
         hash[:kontr] = kontr if has? 'Kontr'
         hash[:poznamka] = poznamka if has? 'Poznamka'
-        hash[:polozka] = polozka.map(&:to_h) if has? 'Polozka'
+        hash[:polozka] = polozka.map(&:to_h_with_attrs) if has? 'Polozka'
 
         hash
       end

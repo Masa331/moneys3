@@ -17,9 +17,8 @@ module MoneyS3
         at 'Klap'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:pred] = pred if has? 'Pred'
         hash[:cislo] = cislo if has? 'Cislo'

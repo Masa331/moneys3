@@ -10,11 +10,10 @@ module MoneyS3
         array_of_at(MzdaType, ['Mzda'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:mzda] = mzda.map(&:to_h) if has? 'Mzda'
+        hash[:mzda] = mzda.map(&:to_h_with_attrs) if has? 'Mzda'
 
         hash
       end

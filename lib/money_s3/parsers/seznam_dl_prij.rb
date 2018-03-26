@@ -10,11 +10,10 @@ module MoneyS3
         array_of_at(DLPrij, ['DLPrij'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:dl_prij] = dl_prij.map(&:to_h) if has? 'DLPrij'
+        hash[:dl_prij] = dl_prij.map(&:to_h_with_attrs) if has? 'DLPrij'
 
         hash
       end

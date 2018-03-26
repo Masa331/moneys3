@@ -45,9 +45,8 @@ module MoneyS3
         at 'IN_DSkupZkratka'
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:in_export] = in_export if has? 'IN_Export'
         hash[:in_changed] = in_changed if has? 'IN_Changed'

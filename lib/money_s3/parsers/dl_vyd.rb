@@ -220,9 +220,8 @@ module MoneyS3
         array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:cislo_dokla] = cislo_dokla if has? 'CisloDokla'
         hash[:zpusob_uctovani] = zpusob_uctovani if has? 'ZpusobUctovani'
@@ -263,17 +262,17 @@ module MoneyS3
         hash[:i_doklad_id] = i_doklad_id if has? 'iDokladID'
         hash[:i_dokl_agend] = i_dokl_agend if has? 'iDoklAgend'
         hash[:celkem] = celkem if has? 'Celkem'
-        hash[:eet] = eet.to_h if has? 'EET'
-        hash[:valuty] = valuty.to_h if has? 'Valuty'
-        hash[:dod_odb] = dod_odb.to_h if has? 'DodOdb'
-        hash[:konec_prij] = konec_prij.to_h if has? 'KonecPrij'
-        hash[:import] = import.to_h if has? 'Import'
-        hash[:sklad_pro_pr] = sklad_pro_pr.to_h if has? 'SkladProPr'
-        hash[:moje_firma] = moje_firma.to_h if has? 'MojeFirma'
-        hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
-        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
-        hash[:polozka] = polozka.map(&:to_h) if has? 'Polozka'
-        hash[:seznam_nep_plateb] = seznam_nep_plateb.map(&:to_h) if has? 'SeznamNepPlateb'
+        hash[:eet] = eet.to_h_with_attrs if has? 'EET'
+        hash[:valuty] = valuty.to_h_with_attrs if has? 'Valuty'
+        hash[:dod_odb] = dod_odb.to_h_with_attrs if has? 'DodOdb'
+        hash[:konec_prij] = konec_prij.to_h_with_attrs if has? 'KonecPrij'
+        hash[:import] = import.to_h_with_attrs if has? 'Import'
+        hash[:sklad_pro_pr] = sklad_pro_pr.to_h_with_attrs if has? 'SkladProPr'
+        hash[:moje_firma] = moje_firma.to_h_with_attrs if has? 'MojeFirma'
+        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
+        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
+        hash[:polozka] = polozka.map(&:to_h_with_attrs) if has? 'Polozka'
+        hash[:seznam_nep_plateb] = seznam_nep_plateb.map(&:to_h_with_attrs) if has? 'SeznamNepPlateb'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash

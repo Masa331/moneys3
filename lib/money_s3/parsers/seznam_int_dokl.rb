@@ -10,11 +10,10 @@ module MoneyS3
         array_of_at(IntDokl, ['IntDokl'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
-        hash[:int_dokl] = int_dokl.map(&:to_h) if has? 'IntDokl'
+        hash[:int_dokl] = int_dokl.map(&:to_h_with_attrs) if has? 'IntDokl'
 
         hash
       end

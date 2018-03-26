@@ -52,9 +52,8 @@ module MoneyS3
         array_of_at(MzPriplatek, ['SeznamMzPriplatku', 'MzPriplatek'])
       end
 
-      def to_h
-        hash = WithAttributes.new({})
-        hash.attributes = attributes
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
 
         hash[:mesic] = mesic if has? 'Mesic'
         hash[:rok] = rok if has? 'Rok'
@@ -64,9 +63,9 @@ module MoneyS3
         hash[:odpr_hod] = odpr_hod if has? 'OdprHod'
         hash[:odpr_sv_dnu] = odpr_sv_dnu if has? 'OdprSvDnu'
         hash[:odpr_sv_hod] = odpr_sv_hod if has? 'OdprSvHod'
-        hash[:zamestnanec] = zamestnanec.to_h if has? 'Zamestnanec'
-        hash[:seznam_nepritomnosti] = seznam_nepritomnosti.map(&:to_h) if has? 'SeznamNepritomnosti'
-        hash[:seznam_mz_priplatku] = seznam_mz_priplatku.map(&:to_h) if has? 'SeznamMzPriplatku'
+        hash[:zamestnanec] = zamestnanec.to_h_with_attrs if has? 'Zamestnanec'
+        hash[:seznam_nepritomnosti] = seznam_nepritomnosti.map(&:to_h_with_attrs) if has? 'SeznamNepritomnosti'
+        hash[:seznam_mz_priplatku] = seznam_mz_priplatku.map(&:to_h_with_attrs) if has? 'SeznamMzPriplatku'
 
         hash
       end
