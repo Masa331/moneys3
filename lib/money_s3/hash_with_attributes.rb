@@ -18,8 +18,8 @@ module MoneyS3
     end
 
     def ==(other)
-      if other.respond_to? :attributes
-        value == other && other.attributes == attributes
+      if other.respond_to?(:value) && other.respond_to?(:attributes)
+        value == other.value && other.attributes == attributes
       else
         value == other
       end
@@ -35,6 +35,10 @@ module MoneyS3
 
     def []=(key, key_value)
       value[key] = key_value
+    end
+
+    def dig(*attrs)
+      value.dig(*attrs)
     end
   end
 end
