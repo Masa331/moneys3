@@ -37,6 +37,13 @@ RSpec.describe MoneyS3 do
         expect(parsed.seznam_fakt_vyd.fakt_vyd.last.doklad).to eq('456')
       end
     end
+
+    it 'whitespace is preserved' do
+      raw = File.read('./spec/fixtures/with_whitespace.xml')
+      parsed =  MoneyS3.parse(raw)
+
+      expect(parsed.seznam_fakt_vyd.fakt_vyd.last.doklad).to eq '171372   abc'
+    end
   end
 
   describe '::build' do

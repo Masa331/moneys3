@@ -6,7 +6,7 @@ require 'money_s3/hash_with_attributes'
 
 module MoneyS3
   def self.parse(raw)
-    parsed = Ox.load(raw)
+    parsed = Ox.load(raw, skip: :skip_none)
     content = parsed.locate('MoneyData').first
 
     Parsers::MoneyData.new(content)
