@@ -61,6 +61,20 @@ RSpec.describe MoneyS3 do
         |</MoneyData> })
     end
 
+    it 'created xml in given encoding with proper header' do
+      xml = MoneyS3.build({ seznam_fakt_vyd: { fakt_vyd: [{ doklad: '123 ěšč' }] } }, { encoding: 'UTF-8' }).strip
+
+      expect(xml).to eq_multiline(%{
+        |<?xml version="1.0" encoding="UTF-8"?>
+        |<MoneyData>
+        |  <SeznamFaktVyd>
+        |    <FaktVyd>
+        |      <Doklad>123 ěšč</Doklad>
+        |    </FaktVyd>
+        |  </SeznamFaktVyd>
+        |</MoneyData> })
+    end
+
     it 'creates xml with attributes if given' do
       invoice_with_attributes = MoneyS3::HashWithAttributes.new({ doklad: '123' }, { version: '1' })
 

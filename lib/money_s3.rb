@@ -12,7 +12,7 @@ module MoneyS3
     Parsers::MoneyData.new(content)
   end
 
-  def self.build(data)
-    Builders::MoneyData.new('MoneyData', data).to_xml
+  def self.build(data, options = {})
+    Builders::MoneyData.new('MoneyData', data, options).to_xml
   end
 end

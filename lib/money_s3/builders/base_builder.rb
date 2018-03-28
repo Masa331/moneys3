@@ -1,18 +1,25 @@
 module MoneyS3
   module Builders
     module BaseBuilder
-      attr_accessor :name, :data
+      attr_accessor :name, :data, :options
 
-      def initialize(name, data = {})
+      def initialize(name, data = {}, options = {})
         @name = name
         @data = data || {}
+        @options = options || {}
       end
 
       def to_xml
-        doc = Ox::Document.new(version: '1.0')
+        encoding = options[:encoding]
+
+        doc_options = { version: '1.0' }
+        doc_options[:encoding] = encoding if encoding
+        doc = Ox::Document.new(doc_options)
         doc << builder
 
-        Ox.dump(doc, with_xml: true)
+        dump_options = { with_xml: true }
+        dump_options[:encoding] = encoding if encoding
+        Ox.dump(doc, dump_options)
       end
 
       def build_element(name, content)
