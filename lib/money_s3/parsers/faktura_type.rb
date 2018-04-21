@@ -1,22 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/valuty'
-require 'money_s3/parsers/doklad_firma_type'
-require 'money_s3/parsers/konec_prij_firma_type'
-require 'money_s3/parsers/import'
-require 'money_s3/parsers/eshop'
-require 'money_s3/parsers/prepravce_type'
-require 'money_s3/parsers/typ_zasilky_type'
-require 'money_s3/parsers/prepr_dopln_udaj_type'
-require 'money_s3/parsers/moje_firma_type'
-require 'money_s3/parsers/vlajky'
-require 'money_s3/parsers/souhrn_dph_type'
-require 'money_s3/parsers/prepr_dopln_udaj_type'
-require 'money_s3/parsers/pol_faktury_type'
-require 'money_s3/parsers/pol_objedn_type'
-require 'money_s3/parsers/uhrada_type'
-require 'money_s3/parsers/nep_platba_type'
-require 'money_s3/parsers/vazba_type'
-
 module MoneyS3
   module Parsers
     class FakturaType
@@ -186,6 +167,18 @@ module MoneyS3
         at 'SazbaDPH2'
       end
 
+      def souhrn_dph
+        submodel_at(SouhrnDPHType, 'SouhrnDPH')
+      end
+
+      def celkem
+        at 'Celkem'
+      end
+
+      def valuty
+        submodel_at(Valuty2, 'Valuty')
+      end
+
       def typ
         at 'Typ'
       end
@@ -250,6 +243,14 @@ module MoneyS3
         at 'SumZalohaC'
       end
 
+      def dod_odb
+        submodel_at(DokladFirmaType, 'DodOdb')
+      end
+
+      def konec_prij
+        submodel_at(KonecPrijFirmaType, 'KonecPrij')
+      end
+
       def typ_transakce
         at 'TypTransakce'
       end
@@ -302,32 +303,16 @@ module MoneyS3
         at 'iDoklAgend'
       end
 
-      def pojisteno
-        at 'Pojisteno'
-      end
-
-      def celkem
-        at 'Celkem'
-      end
-
-      def valuty
-        submodel_at(Valuty, 'Valuty')
-      end
-
-      def dod_odb
-        submodel_at(DokladFirmaType, 'DodOdb')
-      end
-
-      def konec_prij
-        submodel_at(KonecPrijFirmaType, 'KonecPrij')
-      end
-
       def import
         submodel_at(Import, 'Import')
       end
 
       def eshop
         submodel_at(Eshop, 'eshop')
+      end
+
+      def pojisteno
+        at 'Pojisteno'
       end
 
       def prepravce
@@ -350,18 +335,6 @@ module MoneyS3
         submodel_at(PreprDoplnUdajType, 'Prepr_Trida')
       end
 
-      def moje_firma
-        submodel_at(MojeFirmaType, 'MojeFirma')
-      end
-
-      def vlajky
-        submodel_at(Vlajky, 'Vlajky')
-      end
-
-      def souhrn_dph
-        submodel_at(SouhrnDPHType, 'SouhrnDPH')
-      end
-
       def prepr_seznam_sluzeb
         array_of_at(PreprDoplnUdajType, ['Prepr_SeznamSluzeb', 'Prepr_Sluzba'])
       end
@@ -378,8 +351,16 @@ module MoneyS3
         array_of_at(UhradaType, ['SeznamUhrad', 'Uhrada'])
       end
 
+      def moje_firma
+        submodel_at(MojeFirmaType, 'MojeFirma')
+      end
+
       def seznam_nep_plateb
         array_of_at(NepPlatbaType, ['SeznamNepPlateb', 'NepPlatba'])
+      end
+
+      def vlajky
+        submodel_at(Vlajky, 'Vlajky')
       end
 
       def seznam_vazeb
@@ -434,6 +415,9 @@ module MoneyS3
         hash[:vyuctovano] = vyuctovano if has? 'Vyuctovano'
         hash[:sazba_dph1] = sazba_dph1 if has? 'SazbaDPH1'
         hash[:sazba_dph2] = sazba_dph2 if has? 'SazbaDPH2'
+        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
+        hash[:celkem] = celkem if has? 'Celkem'
+        hash[:valuty] = valuty.to_h_with_attrs if has? 'Valuty'
         hash[:typ] = typ if has? 'Typ'
         hash[:vystavil] = vystavil if has? 'Vystavil'
         hash[:prik_uhrady] = prik_uhrady if has? 'PrikUhrady'
@@ -450,6 +434,8 @@ module MoneyS3
         hash[:valuty_prop] = valuty_prop if has? 'ValutyProp'
         hash[:sum_zaloha] = sum_zaloha if has? 'SumZaloha'
         hash[:sum_zaloha_c] = sum_zaloha_c if has? 'SumZalohaC'
+        hash[:dod_odb] = dod_odb.to_h_with_attrs if has? 'DodOdb'
+        hash[:konec_prij] = konec_prij.to_h_with_attrs if has? 'KonecPrij'
         hash[:typ_transakce] = typ_transakce if has? 'TypTransakce'
         hash[:dodaci_podm] = dodaci_podm if has? 'DodaciPodm'
         hash[:druh_dopravy] = druh_dopravy if has? 'DruhDopravy'
@@ -463,26 +449,21 @@ module MoneyS3
         hash[:vyrizeno] = vyrizeno if has? 'Vyrizeno'
         hash[:i_doklad_id] = i_doklad_id if has? 'iDokladID'
         hash[:i_dokl_agend] = i_dokl_agend if has? 'iDoklAgend'
-        hash[:pojisteno] = pojisteno if has? 'Pojisteno'
-        hash[:celkem] = celkem if has? 'Celkem'
-        hash[:valuty] = valuty.to_h_with_attrs if has? 'Valuty'
-        hash[:dod_odb] = dod_odb.to_h_with_attrs if has? 'DodOdb'
-        hash[:konec_prij] = konec_prij.to_h_with_attrs if has? 'KonecPrij'
         hash[:import] = import.to_h_with_attrs if has? 'Import'
         hash[:eshop] = eshop.to_h_with_attrs if has? 'eshop'
+        hash[:pojisteno] = pojisteno if has? 'Pojisteno'
         hash[:prepravce] = prepravce.to_h_with_attrs if has? 'Prepravce'
         hash[:typ_zasillky] = typ_zasillky.to_h_with_attrs if has? 'TypZasillky'
         hash[:prepr_vyplatne] = prepr_vyplatne.to_h_with_attrs if has? 'Prepr_Vyplatne'
         hash[:prepr_uhrada_dobirky] = prepr_uhrada_dobirky.to_h_with_attrs if has? 'Prepr_UhradaDobirky'
         hash[:prepr_trida] = prepr_trida.to_h_with_attrs if has? 'Prepr_Trida'
-        hash[:moje_firma] = moje_firma.to_h_with_attrs if has? 'MojeFirma'
-        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
-        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
         hash[:prepr_seznam_sluzeb] = prepr_seznam_sluzeb.map(&:to_h_with_attrs) if has? 'Prepr_SeznamSluzeb'
         hash[:seznam_polozek] = seznam_polozek.map(&:to_h_with_attrs) if has? 'SeznamPolozek'
         hash[:seznam_zal_polozek] = seznam_zal_polozek.map(&:to_h_with_attrs) if has? 'SeznamZalPolozek'
         hash[:seznam_uhrad] = seznam_uhrad.map(&:to_h_with_attrs) if has? 'SeznamUhrad'
+        hash[:moje_firma] = moje_firma.to_h_with_attrs if has? 'MojeFirma'
         hash[:seznam_nep_plateb] = seznam_nep_plateb.map(&:to_h_with_attrs) if has? 'SeznamNepPlateb'
+        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
         hash[:seznam_vazeb] = seznam_vazeb.map(&:to_h_with_attrs) if has? 'SeznamVazeb'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 

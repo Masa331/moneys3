@@ -1,9 +1,6 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/eet_type'
-
 module MoneyS3
   module Builders
-    class DokladHraz
+    class DokladHraz < DoklRefType
       include BaseBuilder
 
       def builder
@@ -12,14 +9,11 @@ module MoneyS3
           data.attributes.each { |k, v| root[k] = v }
         end
 
-        root << build_element('IDDokladu', data[:id_dokladu]) if data.key? :id_dokladu
-        root << build_element('CisloDokladu', data[:cislo_dokladu]) if data.key? :cislo_dokladu
-        root << build_element('DruhDokladu', data[:druh_dokladu]) if data.key? :druh_dokladu
-        root << build_element('Rok', data[:rok]) if data.key? :rok
-
-        if data.key? :eet
-          root << EETType.new('EET', data[:eet]).builder
+        super.nodes.each do |n|
+          root << n
         end
+
+
 
         root
       end

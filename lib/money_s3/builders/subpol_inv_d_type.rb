@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/pol_inv_dokl_type'
-
 module MoneyS3
   module Builders
     class SubpolInvDType
@@ -13,7 +10,6 @@ module MoneyS3
         end
 
         root << build_element('MnSada', data[:mn_sada]) if data.key? :mn_sada
-
         if data.key? :polozka
           root << PolInvDoklType.new('Polozka', data[:polozka]).builder
         end

@@ -1,30 +1,31 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/mena_type'
-require 'money_s3/parsers/souhrn_dph_type'
-
 module MoneyS3
   module Parsers
     class Valuty
       include BaseParser
 
-      def celkem
-        at 'Celkem'
+      def zaklad_mj
+        at 'Zaklad_MJ'
       end
 
-      def mena
-        submodel_at(MenaType, 'Mena')
+      def dph_mj
+        at 'DPH_MJ'
       end
 
-      def souhrn_dph
-        submodel_at(SouhrnDPHType, 'SouhrnDPH')
+      def zaklad
+        at 'Zaklad'
+      end
+
+      def dph
+        at 'DPH'
       end
 
       def to_h_with_attrs
         hash = HashWithAttributes.new({}, attributes)
 
-        hash[:celkem] = celkem if has? 'Celkem'
-        hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
-        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
+        hash[:zaklad_mj] = zaklad_mj if has? 'Zaklad_MJ'
+        hash[:dph_mj] = dph_mj if has? 'DPH_MJ'
+        hash[:zaklad] = zaklad if has? 'Zaklad'
+        hash[:dph] = dph if has? 'DPH'
 
         hash
       end

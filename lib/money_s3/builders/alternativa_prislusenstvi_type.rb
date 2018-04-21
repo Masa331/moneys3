@@ -1,7 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/km_karta_type'
-require 'money_s3/builders/sklad_type'
-
 module MoneyS3
   module Builders
     class AlternativaPrislusenstviType
@@ -18,11 +14,9 @@ module MoneyS3
         root << build_element('Poradi', data[:poradi]) if data.key? :poradi
         root << build_element('DruhKomp', data[:druh_komp]) if data.key? :druh_komp
         root << build_element('Symetric', data[:symetric]) if data.key? :symetric
-
         if data.key? :km_karta
           root << KmKartaType.new('KmKarta', data[:km_karta]).builder
         end
-
         if data.key? :sklad
           root << SkladType.new('Sklad', data[:sklad]).builder
         end

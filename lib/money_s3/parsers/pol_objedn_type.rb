@@ -1,11 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/souhrn_dph_pol_type'
-require 'money_s3/parsers/sklad_type'
-require 'money_s3/parsers/km_karta_type'
-require 'money_s3/parsers/neskl_polozka'
-require 'money_s3/parsers/vyrobni_cislo_type'
-require 'money_s3/parsers/sub_pol_obj_type'
-
 module MoneyS3
   module Parsers
     class PolObjednType
@@ -29,6 +21,10 @@ module MoneyS3
 
       def cena
         at 'Cena'
+      end
+
+      def souhrn_dph
+        submodel_at(SouhrnDPHPolType, 'SouhrnDPH')
       end
 
       def sazba_dph
@@ -115,10 +111,6 @@ module MoneyS3
         at 'PredPC'
       end
 
-      def souhrn_dph
-        submodel_at(SouhrnDPHPolType, 'SouhrnDPH')
-      end
-
       def sklad
         submodel_at(SkladType, 'Sklad')
       end
@@ -128,7 +120,7 @@ module MoneyS3
       end
 
       def neskl_polozka
-        submodel_at(NesklPolozka, 'NesklPolozka')
+        submodel_at(NesklPolozka2, 'NesklPolozka')
       end
 
       def seznam_vc
@@ -147,6 +139,7 @@ module MoneyS3
         hash[:pocet_mj] = pocet_mj if has? 'PocetMJ'
         hash[:zbyva_mj] = zbyva_mj if has? 'ZbyvaMJ'
         hash[:cena] = cena if has? 'Cena'
+        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
         hash[:sazba_dph] = sazba_dph if has? 'SazbaDPH'
         hash[:typ_ceny] = typ_ceny if has? 'TypCeny'
         hash[:sleva] = sleva if has? 'Sleva'
@@ -168,7 +161,6 @@ module MoneyS3
         hash[:zvl_dph] = zvl_dph if has? 'ZvlDPH'
         hash[:rezim_eet] = rezim_eet if has? 'RezimEET'
         hash[:pred_pc] = pred_pc if has? 'PredPC'
-        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
         hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
         hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
         hash[:neskl_polozka] = neskl_polozka.to_h_with_attrs if has? 'NesklPolozka'

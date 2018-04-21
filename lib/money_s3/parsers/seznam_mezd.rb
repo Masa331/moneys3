@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/mzda_type'
-
 module MoneyS3
   module Parsers
-    class SeznamMezd
+    class SeznamMezd < SeznamType
       include BaseParser
 
       def mzda
@@ -16,6 +13,7 @@ module MoneyS3
         hash[:mzda] = mzda.map(&:to_h_with_attrs) if has? 'Mzda'
 
         hash
+        super.merge(hash)
       end
     end
   end

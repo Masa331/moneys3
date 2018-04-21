@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/skupina_kusovnik_type'
-
 module MoneyS3
   module Builders
     class HeaderKusovnikType
@@ -15,6 +12,9 @@ module MoneyS3
         root << build_element('Cislo', data[:cislo]) if data.key? :cislo
         root << build_element('Druh', data[:druh]) if data.key? :druh
         root << build_element('Typ', data[:typ]) if data.key? :typ
+        if data.key? :skupina
+          root << SkupinaKusovnikType.new('Skupina', data[:skupina]).builder
+        end
         root << build_element('CisKarty', data[:cis_karty]) if data.key? :cis_karty
         root << build_element('Zkratka', data[:zkratka]) if data.key? :zkratka
         root << build_element('Popis', data[:popis]) if data.key? :popis
@@ -31,10 +31,6 @@ module MoneyS3
         root << build_element('IDUziv', data[:id_uziv]) if data.key? :id_uziv
         root << build_element('DatumZmeny', data[:datum_zmeny]) if data.key? :datum_zmeny
         root << build_element('CasZmeny', data[:cas_zmeny]) if data.key? :cas_zmeny
-
-        if data.key? :skupina
-          root << SkupinaKusovnikType.new('Skupina', data[:skupina]).builder
-        end
 
         root
       end

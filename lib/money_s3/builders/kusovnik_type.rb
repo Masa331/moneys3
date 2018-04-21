@@ -1,8 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/header_kusovnik_type'
-require 'money_s3/builders/child_kusovnik_type'
-require 'money_s3/builders/komponenta_kusovnik_type'
-
 module MoneyS3
   module Builders
     class KusovnikType
@@ -17,11 +12,9 @@ module MoneyS3
         if data.key? :header
           root << HeaderKusovnikType.new('Header', data[:header]).builder
         end
-
         if data.key? :child
           root << ChildKusovnikType.new('Child', data[:child]).builder
         end
-
         if data.key? :seznam_komponent
           element = Ox::Element.new('SeznamKomponent')
           data[:seznam_komponent].each { |i| element << KomponentaKusovnikType.new('Komponenta', i).builder }

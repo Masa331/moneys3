@@ -1,5 +1,3 @@
-require 'money_s3/builders/base_builder'
-
 module MoneyS3
   module Builders
     class Eshop
@@ -13,14 +11,11 @@ module MoneyS3
 
         root << build_element('IN_Export', data[:in_export]) if data.key? :in_export
         root << build_element('IN_Changed', data[:in_changed]) if data.key? :in_changed
-        root << build_element('IN_Id', data[:in_id]) if data.key? :in_id
-        root << build_element('IN_Jmeno', data[:in_jmeno]) if data.key? :in_jmeno
-        root << build_element('IN_Heslo', data[:in_heslo]) if data.key? :in_heslo
-        root << build_element('IN_Dealer', data[:in_dealer]) if data.key? :in_dealer
-        root << build_element('IN_DSkup', data[:in_d_skup]) if data.key? :in_d_skup
-        root << build_element('IN_IndSlev', data[:in_ind_slev]) if data.key? :in_ind_slev
-        root << build_element('IN_Soukrom', data[:in_soukrom]) if data.key? :in_soukrom
-        root << build_element('IN_DSkupZkratka', data[:in_d_skup_zkratka]) if data.key? :in_d_skup_zkratka
+        root << build_element('IN_FakCis', data[:in_fak_cis]) if data.key? :in_fak_cis
+        root << build_element('IN_ReqStor', data[:in_req_stor]) if data.key? :in_req_stor
+        root << build_element('IN_YesStor', data[:in_yes_stor]) if data.key? :in_yes_stor
+        root << build_element('IN_ShopID', data[:in_shop_id]) if data.key? :in_shop_id
+        root << build_element('IN_Poznamk', data[:in_poznamk]) if data.key? :in_poznamk
 
         root
       end

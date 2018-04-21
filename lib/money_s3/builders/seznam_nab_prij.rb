@@ -1,15 +1,16 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/nab_prij'
-
 module MoneyS3
   module Builders
-    class SeznamNabPrij
+    class SeznamNabPrij < SeznamType
       include BaseBuilder
 
       def builder
         root = Ox::Element.new(name)
         if data.respond_to? :attributes
           data.attributes.each { |k, v| root[k] = v }
+        end
+
+        super.nodes.each do |n|
+          root << n
         end
 
         if data.key? :nab_prij

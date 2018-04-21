@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/vazba_type'
-
 module MoneyS3
   module Builders
     class SeznamVazeb

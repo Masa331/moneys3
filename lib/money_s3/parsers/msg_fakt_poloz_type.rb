@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/msg_poloz_type'
-
 module MoneyS3
   module Parsers
-    class MsgFaktPolozType
+    class MsgFaktPolozType < MessageType
       include BaseParser
 
       def skl_polozka
@@ -16,6 +13,7 @@ module MoneyS3
         hash[:skl_polozka] = skl_polozka.to_h_with_attrs if has? 'SklPolozka'
 
         hash
+        super.merge(hash)
       end
     end
   end

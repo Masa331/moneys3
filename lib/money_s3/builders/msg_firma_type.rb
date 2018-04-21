@@ -1,10 +1,6 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/firma_type'
-require 'money_s3/builders/message_type'
-
 module MoneyS3
   module Builders
-    class MsgFirmaType
+    class MsgFirmaType < MessageType
       include BaseBuilder
 
       def builder
@@ -13,12 +9,15 @@ module MoneyS3
           data.attributes.each { |k, v| root[k] = v }
         end
 
-        if data.key? :data
-          root << FirmaType.new('Data', data[:data]).builder
+        super.nodes.each do |n|
+          root << n
         end
 
         if data.key? :osoba
           data[:osoba].each { |i| root << MessageType.new('Osoba', i).builder }
+        end
+        if data.key? :data
+          root << FirmaType.new('Data', data[:data]).builder
         end
 
         root

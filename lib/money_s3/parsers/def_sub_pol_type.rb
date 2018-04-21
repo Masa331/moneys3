@@ -1,6 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/pol_skl_dokl_type'
-
 module MoneyS3
   module Parsers
     class DefSubPolType

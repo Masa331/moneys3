@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/sklad_type'
-
 module MoneyS3
   module Builders
     class ChildKusovnikType
@@ -31,14 +28,13 @@ module MoneyS3
         root << build_element('LastTime', data[:last_time]) if data.key? :last_time
         root << build_element('StartOper', data[:start_oper]) if data.key? :start_oper
         root << build_element('PodilCeny', data[:podil_ceny]) if data.key? :podil_ceny
+        if data.key? :sklad
+          root << SkladType.new('Sklad', data[:sklad]).builder
+        end
         root << build_element('PoziceVykr', data[:pozice_vykr]) if data.key? :pozice_vykr
         root << build_element('Zakazka', data[:zakazka]) if data.key? :zakazka
         root << build_element('Stav', data[:stav]) if data.key? :stav
         root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
-
-        if data.key? :sklad
-          root << SkladType.new('Sklad', data[:sklad]).builder
-        end
 
         root
       end

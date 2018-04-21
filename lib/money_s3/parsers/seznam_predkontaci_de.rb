@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/predkontace_de_type'
-
 module MoneyS3
   module Parsers
-    class SeznamPredkontaciDE
+    class SeznamPredkontaciDE < SeznamType
       include BaseParser
 
       def predkontace_de
@@ -16,6 +13,7 @@ module MoneyS3
         hash[:predkontace_de] = predkontace_de.map(&:to_h_with_attrs) if has? 'PredkontaceDE'
 
         hash
+        super.merge(hash)
       end
     end
   end

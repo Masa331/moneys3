@@ -1,6 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/obdobi_dph'
-
 module MoneyS3
   module Parsers
     class ZauctovaniDPHDetype
@@ -31,7 +28,7 @@ module MoneyS3
       end
 
       def seznam_obdobi_dph
-        array_of_at(ObdobiDPH, ['SeznamObdobiDPH', 'ObdobiDPH'])
+        array_of_at(ObdobiDPH2, ['SeznamObdobiDPH', 'ObdobiDPH'])
       end
 
       def to_h_with_attrs

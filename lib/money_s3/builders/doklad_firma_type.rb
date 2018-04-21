@@ -1,9 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/adresa_type'
-require 'money_s3/builders/telefon_type'
-require 'money_s3/builders/isdoc'
-require 'money_s3/builders/eshop'
-
 module MoneyS3
   module Builders
     class DokladFirmaType
@@ -16,12 +10,30 @@ module MoneyS3
         end
 
         root << build_element('ObchNazev', data[:obch_nazev]) if data.key? :obch_nazev
+        if data.key? :obch_adresa
+          root << AdresaType.new('ObchAdresa', data[:obch_adresa]).builder
+        end
         root << build_element('FaktNazev', data[:fakt_nazev]) if data.key? :fakt_nazev
         root << build_element('ICO', data[:ico]) if data.key? :ico
         root << build_element('DIC', data[:dic]) if data.key? :dic
         root << build_element('DICSK', data[:dicsk]) if data.key? :dicsk
+        if data.key? :fakt_adresa
+          root << AdresaType.new('FaktAdresa', data[:fakt_adresa]).builder
+        end
         root << build_element('GUID', data[:guid]) if data.key? :guid
         root << build_element('Nazev', data[:nazev]) if data.key? :nazev
+        if data.key? :adresa
+          root << AdresaType.new('Adresa', data[:adresa]).builder
+        end
+        if data.key? :tel
+          root << TelefonType.new('Tel', data[:tel]).builder
+        end
+        if data.key? :fax
+          root << TelefonType.new('Fax', data[:fax]).builder
+        end
+        if data.key? :mobil
+          root << TelefonType.new('Mobil', data[:mobil]).builder
+        end
         root << build_element('EMail', data[:e_mail]) if data.key? :e_mail
         root << build_element('WWW', data[:www]) if data.key? :www
         root << build_element('PlatceDPH', data[:platce_dph]) if data.key? :platce_dph
@@ -32,37 +44,9 @@ module MoneyS3
         root << build_element('VSymb', data[:v_symb]) if data.key? :v_symb
         root << build_element('SpecSym', data[:spec_sym]) if data.key? :spec_sym
         root << build_element('KodPartn', data[:kod_partn]) if data.key? :kod_partn
-
-        if data.key? :obch_adresa
-          root << AdresaType.new('ObchAdresa', data[:obch_adresa]).builder
-        end
-
-        if data.key? :fakt_adresa
-          root << AdresaType.new('FaktAdresa', data[:fakt_adresa]).builder
-        end
-
-        if data.key? :adresa
-          root << AdresaType.new('Adresa', data[:adresa]).builder
-        end
-
-        if data.key? :tel
-          root << TelefonType.new('Tel', data[:tel]).builder
-        end
-
-        if data.key? :fax
-          root << TelefonType.new('Fax', data[:fax]).builder
-        end
-
-        if data.key? :mobil
-          root << TelefonType.new('Mobil', data[:mobil]).builder
-        end
-
-        if data.key? :isdoc
-          root << ISDOC.new('ISDOC', data[:isdoc]).builder
-        end
-
+        root << build_element('ISDOC', data[:isdoc]) if data.key? :isdoc
         if data.key? :eshop
-          root << Eshop.new('eshop', data[:eshop]).builder
+          root << Eshop2.new('eshop', data[:eshop]).builder
         end
 
         root

@@ -1,10 +1,9 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/ucty_pohybu_type'
-
 module MoneyS3
   module Parsers
     class SkladType
       include BaseParser
+      include Groups::Konfigurace
+      include Groups::DefiniceCeny
 
       def nazev
         at 'Nazev'
@@ -62,6 +61,18 @@ module MoneyS3
         at 'Ceny'
       end
 
+      def uc_pohyb_m
+        submodel_at(UctyPohybuType, 'UcPohybM')
+      end
+
+      def uc_pohyb_z
+        submodel_at(UctyPohybuType, 'UcPohybZ')
+      end
+
+      def uc_pohyb_v
+        submodel_at(UctyPohybuType, 'UcPohybV')
+      end
+
       def uc_vyrobk_vv
         at 'UcVyrobkVV'
       end
@@ -76,18 +87,6 @@ module MoneyS3
 
       def p_dod_lst_vz
         at 'PDodLstVz'
-      end
-
-      def uc_pohyb_m
-        submodel_at(UctyPohybuType, 'UcPohybM')
-      end
-
-      def uc_pohyb_z
-        submodel_at(UctyPohybuType, 'UcPohybZ')
-      end
-
-      def uc_pohyb_v
-        submodel_at(UctyPohybuType, 'UcPohybV')
       end
 
       def to_h_with_attrs
@@ -107,15 +106,15 @@ module MoneyS3
         hash[:prod_ceny_d] = prod_ceny_d if has? 'ProdCenyD'
         hash[:prepocet] = prepocet if has? 'Prepocet'
         hash[:ceny] = ceny if has? 'Ceny'
+        hash[:uc_pohyb_m] = uc_pohyb_m.to_h_with_attrs if has? 'UcPohybM'
+        hash[:uc_pohyb_z] = uc_pohyb_z.to_h_with_attrs if has? 'UcPohybZ'
+        hash[:uc_pohyb_v] = uc_pohyb_v.to_h_with_attrs if has? 'UcPohybV'
         hash[:uc_vyrobk_vv] = uc_vyrobk_vv if has? 'UcVyrobkVV'
         hash[:prodejk_vz] = prodejk_vz if has? 'ProdejkVz'
         hash[:v_dod_lst_vz] = v_dod_lst_vz if has? 'VDodLstVz'
         hash[:p_dod_lst_vz] = p_dod_lst_vz if has? 'PDodLstVz'
-        hash[:uc_pohyb_m] = uc_pohyb_m.to_h_with_attrs if has? 'UcPohybM'
-        hash[:uc_pohyb_z] = uc_pohyb_z.to_h_with_attrs if has? 'UcPohybZ'
-        hash[:uc_pohyb_v] = uc_pohyb_v.to_h_with_attrs if has? 'UcPohybV'
 
-        hash
+        mega.inject(hash) { |memo, r| memo.merge r }
       end
     end
   end

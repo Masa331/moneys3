@@ -1,6 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/skupina_kusovnik_type'
-
 module MoneyS3
   module Parsers
     class HeaderKusovnikType
@@ -16,6 +13,10 @@ module MoneyS3
 
       def typ
         at 'Typ'
+      end
+
+      def skupina
+        submodel_at(SkupinaKusovnikType, 'Skupina')
       end
 
       def cis_karty
@@ -82,16 +83,13 @@ module MoneyS3
         at 'CasZmeny'
       end
 
-      def skupina
-        submodel_at(SkupinaKusovnikType, 'Skupina')
-      end
-
       def to_h_with_attrs
         hash = HashWithAttributes.new({}, attributes)
 
         hash[:cislo] = cislo if has? 'Cislo'
         hash[:druh] = druh if has? 'Druh'
         hash[:typ] = typ if has? 'Typ'
+        hash[:skupina] = skupina.to_h_with_attrs if has? 'Skupina'
         hash[:cis_karty] = cis_karty if has? 'CisKarty'
         hash[:zkratka] = zkratka if has? 'Zkratka'
         hash[:popis] = popis if has? 'Popis'
@@ -108,7 +106,6 @@ module MoneyS3
         hash[:id_uziv] = id_uziv if has? 'IDUziv'
         hash[:datum_zmeny] = datum_zmeny if has? 'DatumZmeny'
         hash[:cas_zmeny] = cas_zmeny if has? 'CasZmeny'
-        hash[:skupina] = skupina.to_h_with_attrs if has? 'Skupina'
 
         hash
       end

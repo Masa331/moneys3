@@ -1,6 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/prac_pomer'
-
 module MoneyS3
   module Parsers
     class MzdoveObdobiType

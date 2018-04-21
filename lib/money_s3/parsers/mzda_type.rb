@@ -1,12 +1,11 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/zamestnanec_type'
-require 'money_s3/parsers/nepritomnost_type'
-require 'money_s3/parsers/mz_priplatek'
-
 module MoneyS3
   module Parsers
     class MzdaType
       include BaseParser
+
+      def zamestnanec
+        submodel_at(ZamestnanecType, 'Zamestnanec')
+      end
 
       def mesic
         at 'Mesic'
@@ -40,10 +39,6 @@ module MoneyS3
         at 'OdprSvHod'
       end
 
-      def zamestnanec
-        submodel_at(ZamestnanecType, 'Zamestnanec')
-      end
-
       def seznam_nepritomnosti
         array_of_at(NepritomnostType, ['SeznamNepritomnosti', 'Nepritomnost'])
       end
@@ -55,6 +50,7 @@ module MoneyS3
       def to_h_with_attrs
         hash = HashWithAttributes.new({}, attributes)
 
+        hash[:zamestnanec] = zamestnanec.to_h_with_attrs if has? 'Zamestnanec'
         hash[:mesic] = mesic if has? 'Mesic'
         hash[:rok] = rok if has? 'Rok'
         hash[:prac_dnu] = prac_dnu if has? 'PracDnu'
@@ -63,7 +59,6 @@ module MoneyS3
         hash[:odpr_hod] = odpr_hod if has? 'OdprHod'
         hash[:odpr_sv_dnu] = odpr_sv_dnu if has? 'OdprSvDnu'
         hash[:odpr_sv_hod] = odpr_sv_hod if has? 'OdprSvHod'
-        hash[:zamestnanec] = zamestnanec.to_h_with_attrs if has? 'Zamestnanec'
         hash[:seznam_nepritomnosti] = seznam_nepritomnosti.map(&:to_h_with_attrs) if has? 'SeznamNepritomnosti'
         hash[:seznam_mz_priplatku] = seznam_mz_priplatku.map(&:to_h_with_attrs) if has? 'SeznamMzPriplatku'
 

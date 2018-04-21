@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/pol_skl_dokl_type'
-
 module MoneyS3
   module Builders
     class DefSubPolType
@@ -13,7 +10,6 @@ module MoneyS3
         end
 
         root << build_element('MJNaSadu', data[:mj_na_sadu]) if data.key? :mj_na_sadu
-
         if data.key? :polozka
           root << PolSklDoklType.new('Polozka', data[:polozka]).builder
         end

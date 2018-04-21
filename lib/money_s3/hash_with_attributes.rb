@@ -25,6 +25,13 @@ module MoneyS3
       end
     end
 
+    def merge(other)
+      merged_hash = value.merge other.value
+      merged_attrs = attributes.merge other.attributes
+
+      self.class.new(merged_hash, merged_attrs)
+    end
+
     def key?(key)
       value.key? key
     end

@@ -1,6 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/firma_type'
-
 module MoneyS3
   module Parsers
     class NesklPolozka
@@ -70,12 +67,12 @@ module MoneyS3
         at 'DatNakupu'
       end
 
-      def predm_pln
-        at 'PredmPln'
-      end
-
       def dodavatel
         submodel_at(FirmaType, 'Dodavatel')
+      end
+
+      def predm_pln
+        at 'PredmPln'
       end
 
       def to_h_with_attrs
@@ -97,8 +94,8 @@ module MoneyS3
         hash[:vyrobni_cis] = vyrobni_cis if has? 'VyrobniCis'
         hash[:dat_exp] = dat_exp if has? 'DatExp'
         hash[:dat_nakupu] = dat_nakupu if has? 'DatNakupu'
-        hash[:predm_pln] = predm_pln if has? 'PredmPln'
         hash[:dodavatel] = dodavatel.to_h_with_attrs if has? 'Dodavatel'
+        hash[:predm_pln] = predm_pln if has? 'PredmPln'
 
         hash
       end

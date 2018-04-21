@@ -1,7 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/adresa_type'
-require 'money_s3/parsers/telefon_type'
-
 module MoneyS3
   module Parsers
     class MojeFirmaType
@@ -11,12 +7,36 @@ module MoneyS3
         at 'Nazev'
       end
 
+      def adresa
+        submodel_at(AdresaType, 'Adresa')
+      end
+
       def obch_nazev
         at 'ObchNazev'
       end
 
+      def obch_adresa
+        submodel_at(AdresaType, 'ObchAdresa')
+      end
+
       def fakt_nazev
         at 'FaktNazev'
+      end
+
+      def fakt_adresa
+        submodel_at(AdresaType, 'FaktAdresa')
+      end
+
+      def tel
+        submodel_at(TelefonType, 'Tel')
+      end
+
+      def fax
+        submodel_at(TelefonType, 'Fax')
+      end
+
+      def mobil
+        submodel_at(TelefonType, 'Mobil')
       end
 
       def e_mail
@@ -67,36 +87,18 @@ module MoneyS3
         at 'MenaKod'
       end
 
-      def adresa
-        submodel_at(AdresaType, 'Adresa')
-      end
-
-      def obch_adresa
-        submodel_at(AdresaType, 'ObchAdresa')
-      end
-
-      def fakt_adresa
-        submodel_at(AdresaType, 'FaktAdresa')
-      end
-
-      def tel
-        submodel_at(TelefonType, 'Tel')
-      end
-
-      def fax
-        submodel_at(TelefonType, 'Fax')
-      end
-
-      def mobil
-        submodel_at(TelefonType, 'Mobil')
-      end
-
       def to_h_with_attrs
         hash = HashWithAttributes.new({}, attributes)
 
         hash[:nazev] = nazev if has? 'Nazev'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
         hash[:obch_nazev] = obch_nazev if has? 'ObchNazev'
+        hash[:obch_adresa] = obch_adresa.to_h_with_attrs if has? 'ObchAdresa'
         hash[:fakt_nazev] = fakt_nazev if has? 'FaktNazev'
+        hash[:fakt_adresa] = fakt_adresa.to_h_with_attrs if has? 'FaktAdresa'
+        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
+        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
+        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
         hash[:e_mail] = e_mail if has? 'EMail'
         hash[:www] = www if has? 'WWW'
         hash[:ico] = ico if has? 'ICO'
@@ -109,12 +111,6 @@ module MoneyS3
         hash[:fyz_osoba] = fyz_osoba if has? 'FyzOsoba'
         hash[:mena_symb] = mena_symb if has? 'MenaSymb'
         hash[:mena_kod] = mena_kod if has? 'MenaKod'
-        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
-        hash[:obch_adresa] = obch_adresa.to_h_with_attrs if has? 'ObchAdresa'
-        hash[:fakt_adresa] = fakt_adresa.to_h_with_attrs if has? 'FaktAdresa'
-        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
-        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
-        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
 
         hash
       end

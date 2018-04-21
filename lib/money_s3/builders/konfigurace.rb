@@ -1,5 +1,3 @@
-require 'money_s3/builders/base_builder'
-
 module MoneyS3
   module Builders
     class Konfigurace
@@ -10,6 +8,8 @@ module MoneyS3
         if data.respond_to? :attributes
           data.attributes.each { |k, v| root[k] = v }
         end
+
+
 
         root
       end

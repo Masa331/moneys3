@@ -1,7 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/e_shop_info'
-require 'money_s3/parsers/ekategorie_type'
-
 module MoneyS3
   module Parsers
     class EkategorieType

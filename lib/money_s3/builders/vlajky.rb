@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/vlajka_type'
-
 module MoneyS3
   module Builders
     class Vlajky
@@ -15,7 +12,6 @@ module MoneyS3
         if data.key? :global
           root << VlajkaType.new('Global', data[:global]).builder
         end
-
         if data.key? :user
           root << VlajkaType.new('User', data[:user]).builder
         end

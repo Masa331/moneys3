@@ -1,9 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/konfigurace'
-require 'money_s3/builders/definice_ceny'
-require 'money_s3/builders/komponenta_type'
-require 'money_s3/builders/parametr_karta_type'
-
 module MoneyS3
   module Builders
     class KmKartaType
@@ -33,6 +27,12 @@ module MoneyS3
         root << build_element('Obrazek2', data[:obrazek2]) if data.key? :obrazek2
         root << build_element('Zarovnat', data[:zarovnat]) if data.key? :zarovnat
         root << build_element('Zarovnat2', data[:zarovnat2]) if data.key? :zarovnat2
+        if data.key? :konfigurace
+          root << Konfigurace.new('konfigurace', data[:konfigurace]).builder
+        end
+        if data.key? :definice_ceny
+          root << DefiniceCeny.new('definiceCeny', data[:definice_ceny]).builder
+        end
         root << build_element('Ceny', data[:ceny]) if data.key? :ceny
         root << build_element('Nastav', data[:nastav]) if data.key? :nastav
         root << build_element('Popis1', data[:popis1]) if data.key? :popis1
@@ -50,27 +50,16 @@ module MoneyS3
         root << build_element('ZbozKuch', data[:zboz_kuch]) if data.key? :zboz_kuch
         root << build_element('iDoklPol', data[:i_dokl_pol]) if data.key? :i_dokl_pol
         root << build_element('iDoklAgend', data[:i_dokl_agend]) if data.key? :i_dokl_agend
-
-        if data.key? :konfigurace
-          root << Konfigurace.new('konfigurace', data[:konfigurace]).builder
-        end
-
-        if data.key? :definice_ceny
-          root << DefiniceCeny.new('definiceCeny', data[:definice_ceny]).builder
-        end
-
         if data.key? :slozeni
           element = Ox::Element.new('Slozeni')
           data[:slozeni].each { |i| element << KomponentaType.new('Komponenta', i).builder }
           root << element
         end
-
         if data.key? :seznam_parametru_karty
           element = Ox::Element.new('SeznamParametruKarty')
           data[:seznam_parametru_karty].each { |i| element << ParametrKartaType.new('ParametrKarty', i).builder }
           root << element
         end
-
         if data.key? :dokumenty
           element = Ox::Element.new('Dokumenty')
           data[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }

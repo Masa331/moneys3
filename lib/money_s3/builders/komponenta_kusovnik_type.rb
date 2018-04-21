@@ -1,7 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/child_kusovnik_type'
-require 'money_s3/builders/reference'
-
 module MoneyS3
   module Builders
     class KomponentaKusovnikType
@@ -16,7 +12,6 @@ module MoneyS3
         if data.key? :child
           root << ChildKusovnikType.new('Child', data[:child]).builder
         end
-
         if data.key? :reference
           root << Reference.new('Reference', data[:reference]).builder
         end

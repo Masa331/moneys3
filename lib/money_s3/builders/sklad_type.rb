@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/ucty_pohybu_type'
-
 module MoneyS3
   module Builders
     class SkladType
@@ -26,22 +23,19 @@ module MoneyS3
         root << build_element('ProdCenyD', data[:prod_ceny_d]) if data.key? :prod_ceny_d
         root << build_element('Prepocet', data[:prepocet]) if data.key? :prepocet
         root << build_element('Ceny', data[:ceny]) if data.key? :ceny
+        if data.key? :uc_pohyb_m
+          root << UctyPohybuType.new('UcPohybM', data[:uc_pohyb_m]).builder
+        end
+        if data.key? :uc_pohyb_z
+          root << UctyPohybuType.new('UcPohybZ', data[:uc_pohyb_z]).builder
+        end
+        if data.key? :uc_pohyb_v
+          root << UctyPohybuType.new('UcPohybV', data[:uc_pohyb_v]).builder
+        end
         root << build_element('UcVyrobkVV', data[:uc_vyrobk_vv]) if data.key? :uc_vyrobk_vv
         root << build_element('ProdejkVz', data[:prodejk_vz]) if data.key? :prodejk_vz
         root << build_element('VDodLstVz', data[:v_dod_lst_vz]) if data.key? :v_dod_lst_vz
         root << build_element('PDodLstVz', data[:p_dod_lst_vz]) if data.key? :p_dod_lst_vz
-
-        if data.key? :uc_pohyb_m
-          root << UctyPohybuType.new('UcPohybM', data[:uc_pohyb_m]).builder
-        end
-
-        if data.key? :uc_pohyb_z
-          root << UctyPohybuType.new('UcPohybZ', data[:uc_pohyb_z]).builder
-        end
-
-        if data.key? :uc_pohyb_v
-          root << UctyPohybuType.new('UcPohybV', data[:uc_pohyb_v]).builder
-        end
 
         root
       end

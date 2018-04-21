@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/ekategorie_zasoba_type'
-
 module MoneyS3
   module Builders
     class EshopZasobaType
@@ -17,7 +14,6 @@ module MoneyS3
         root << build_element('IN_Deleted', data[:in_deleted]) if data.key? :in_deleted
         root << build_element('CisKarty', data[:cis_karty]) if data.key? :cis_karty
         root << build_element('CisSkladu', data[:cis_skladu]) if data.key? :cis_skladu
-
         if data.key? :e_skup
           data[:e_skup].each { |i| root << EkategorieZasobaType.new('eSkup', i).builder }
         end

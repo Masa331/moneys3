@@ -1,7 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/castky'
-require 'money_s3/builders/vysledek_odesl'
-
 module MoneyS3
   module Builders
     class EETType
@@ -26,17 +22,15 @@ module MoneyS3
         root << build_element('PoradCis', data[:porad_cis]) if data.key? :porad_cis
         root << build_element('DatTrzby', data[:dat_trzby]) if data.key? :dat_trzby
         root << build_element('CasTrzby', data[:cas_trzby]) if data.key? :cas_trzby
+        if data.key? :castky
+          root << Castky.new('Castky', data[:castky]).builder
+        end
         root << build_element('Rezim', data[:rezim]) if data.key? :rezim
         root << build_element('PKP', data[:pkp]) if data.key? :pkp
         root << build_element('BKP', data[:bkp]) if data.key? :bkp
         root << build_element('FIK', data[:fik]) if data.key? :fik
         root << build_element('CertPKP', data[:cert_pkp]) if data.key? :cert_pkp
         root << build_element('CertEET', data[:cert_eet]) if data.key? :cert_eet
-
-        if data.key? :castky
-          root << Castky.new('Castky', data[:castky]).builder
-        end
-
         if data.key? :vysledek_odesl
           root << VysledekOdesl.new('VysledekOdesl', data[:vysledek_odesl]).builder
         end
