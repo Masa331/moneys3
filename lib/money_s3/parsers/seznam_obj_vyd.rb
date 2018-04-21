@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/obj_vyd'
-
 module MoneyS3
   module Parsers
-    class SeznamObjVyd
+    class SeznamObjVyd < SeznamType
       include BaseParser
 
       def obj_vyd
@@ -16,6 +13,7 @@ module MoneyS3
         hash[:obj_vyd] = obj_vyd.map(&:to_h_with_attrs) if has? 'ObjVyd'
 
         hash
+        super.merge(hash)
       end
     end
   end

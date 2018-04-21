@@ -1,8 +1,6 @@
-require 'money_s3/builders/base_builder'
-
 module MoneyS3
   module Builders
-    class Stredisko
+    class Stredisko < StrediskoType
       include BaseBuilder
 
       def builder
@@ -11,9 +9,11 @@ module MoneyS3
           data.attributes.each { |k, v| root[k] = v }
         end
 
-        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
-        root << build_element('Nazev', data[:nazev]) if data.key? :nazev
-        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
+        super.nodes.each do |n|
+          root << n
+        end
+
+
 
         root
       end

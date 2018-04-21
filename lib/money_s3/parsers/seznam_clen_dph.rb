@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/clen_dph'
-
 module MoneyS3
   module Parsers
-    class SeznamClenDPH
+    class SeznamClenDPH < SeznamType
       include BaseParser
 
       def clen_dph
@@ -16,6 +13,7 @@ module MoneyS3
         hash[:clen_dph] = clen_dph.map(&:to_h_with_attrs) if has? 'ClenDPH'
 
         hash
+        super.merge(hash)
       end
     end
   end

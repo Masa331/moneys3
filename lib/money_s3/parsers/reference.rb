@@ -1,7 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/kusovnik_type'
-require 'money_s3/parsers/vzor_komponenta_type'
-
 module MoneyS3
   module Parsers
     class Reference

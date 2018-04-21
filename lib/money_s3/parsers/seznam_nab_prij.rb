@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/nab_prij'
-
 module MoneyS3
   module Parsers
-    class SeznamNabPrij
+    class SeznamNabPrij < SeznamType
       include BaseParser
 
       def nab_prij
@@ -16,6 +13,7 @@ module MoneyS3
         hash[:nab_prij] = nab_prij.map(&:to_h_with_attrs) if has? 'NabPrij'
 
         hash
+        super.merge(hash)
       end
     end
   end

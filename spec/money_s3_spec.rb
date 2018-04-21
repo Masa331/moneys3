@@ -47,7 +47,7 @@ RSpec.describe MoneyS3 do
   end
 
   describe '::build' do
-    it 'creates xml with invoices if proper data given ' do
+    it 'creates xml with invoices if proper data given' do
       xml = MoneyS3.build({ seznam_fakt_vyd: { fakt_vyd: [{ doklad: '123' }] } }).strip
 
       expect(xml).to eq_multiline(%{

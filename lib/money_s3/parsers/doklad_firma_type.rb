@@ -1,9 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/adresa_type'
-require 'money_s3/parsers/telefon_type'
-require 'money_s3/parsers/isdoc'
-require 'money_s3/parsers/eshop'
-
 module MoneyS3
   module Parsers
     class DokladFirmaType
@@ -11,6 +5,10 @@ module MoneyS3
 
       def obch_nazev
         at 'ObchNazev'
+      end
+
+      def obch_adresa
+        submodel_at(AdresaType, 'ObchAdresa')
       end
 
       def fakt_nazev
@@ -29,12 +27,32 @@ module MoneyS3
         at 'DICSK'
       end
 
+      def fakt_adresa
+        submodel_at(AdresaType, 'FaktAdresa')
+      end
+
       def guid
         at 'GUID'
       end
 
       def nazev
         at 'Nazev'
+      end
+
+      def adresa
+        submodel_at(AdresaType, 'Adresa')
+      end
+
+      def tel
+        submodel_at(TelefonType, 'Tel')
+      end
+
+      def fax
+        submodel_at(TelefonType, 'Fax')
+      end
+
+      def mobil
+        submodel_at(TelefonType, 'Mobil')
       end
 
       def e_mail
@@ -77,48 +95,30 @@ module MoneyS3
         at 'KodPartn'
       end
 
-      def obch_adresa
-        submodel_at(AdresaType, 'ObchAdresa')
-      end
-
-      def fakt_adresa
-        submodel_at(AdresaType, 'FaktAdresa')
-      end
-
-      def adresa
-        submodel_at(AdresaType, 'Adresa')
-      end
-
-      def tel
-        submodel_at(TelefonType, 'Tel')
-      end
-
-      def fax
-        submodel_at(TelefonType, 'Fax')
-      end
-
-      def mobil
-        submodel_at(TelefonType, 'Mobil')
-      end
-
       def isdoc
-        submodel_at(ISDOC, 'ISDOC')
+        at 'ISDOC'
       end
 
       def eshop
-        submodel_at(Eshop, 'eshop')
+        submodel_at(Eshop2, 'eshop')
       end
 
       def to_h_with_attrs
         hash = HashWithAttributes.new({}, attributes)
 
         hash[:obch_nazev] = obch_nazev if has? 'ObchNazev'
+        hash[:obch_adresa] = obch_adresa.to_h_with_attrs if has? 'ObchAdresa'
         hash[:fakt_nazev] = fakt_nazev if has? 'FaktNazev'
         hash[:ico] = ico if has? 'ICO'
         hash[:dic] = dic if has? 'DIC'
         hash[:dicsk] = dicsk if has? 'DICSK'
+        hash[:fakt_adresa] = fakt_adresa.to_h_with_attrs if has? 'FaktAdresa'
         hash[:guid] = guid if has? 'GUID'
         hash[:nazev] = nazev if has? 'Nazev'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
+        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
+        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
+        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
         hash[:e_mail] = e_mail if has? 'EMail'
         hash[:www] = www if has? 'WWW'
         hash[:platce_dph] = platce_dph if has? 'PlatceDPH'
@@ -129,13 +129,7 @@ module MoneyS3
         hash[:v_symb] = v_symb if has? 'VSymb'
         hash[:spec_sym] = spec_sym if has? 'SpecSym'
         hash[:kod_partn] = kod_partn if has? 'KodPartn'
-        hash[:obch_adresa] = obch_adresa.to_h_with_attrs if has? 'ObchAdresa'
-        hash[:fakt_adresa] = fakt_adresa.to_h_with_attrs if has? 'FaktAdresa'
-        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
-        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
-        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
-        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
-        hash[:isdoc] = isdoc.to_h_with_attrs if has? 'ISDOC'
+        hash[:isdoc] = isdoc if has? 'ISDOC'
         hash[:eshop] = eshop.to_h_with_attrs if has? 'eshop'
 
         hash

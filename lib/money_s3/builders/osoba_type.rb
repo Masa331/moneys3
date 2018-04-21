@@ -1,7 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/adresa_type'
-require 'money_s3/builders/telefon_type'
-
 module MoneyS3
   module Builders
     class OsobaType
@@ -21,6 +17,18 @@ module MoneyS3
         root << build_element('DatNar', data[:dat_nar]) if data.key? :dat_nar
         root << build_element('Pohlavi', data[:pohlavi]) if data.key? :pohlavi
         root << build_element('Funkce', data[:funkce]) if data.key? :funkce
+        if data.key? :adresa
+          root << AdresaType.new('Adresa', data[:adresa]).builder
+        end
+        if data.key? :tel
+          root << TelefonType.new('Tel', data[:tel]).builder
+        end
+        if data.key? :fax
+          root << TelefonType.new('Fax', data[:fax]).builder
+        end
+        if data.key? :mobil
+          root << TelefonType.new('Mobil', data[:mobil]).builder
+        end
         root << build_element('Spojeni', data[:spojeni]) if data.key? :spojeni
         root << build_element('EMail', data[:e_mail]) if data.key? :e_mail
         root << build_element('Mail', data[:mail]) if data.key? :mail
@@ -29,22 +37,6 @@ module MoneyS3
         root << build_element('KodPartn', data[:kod_partn]) if data.key? :kod_partn
         root << build_element('GUID', data[:guid]) if data.key? :guid
         root << build_element('Jednatel', data[:jednatel]) if data.key? :jednatel
-
-        if data.key? :adresa
-          root << AdresaType.new('Adresa', data[:adresa]).builder
-        end
-
-        if data.key? :tel
-          root << TelefonType.new('Tel', data[:tel]).builder
-        end
-
-        if data.key? :fax
-          root << TelefonType.new('Fax', data[:fax]).builder
-        end
-
-        if data.key? :mobil
-          root << TelefonType.new('Mobil', data[:mobil]).builder
-        end
 
         root
       end

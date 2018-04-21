@@ -1,6 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/mzdove_obdobi_type'
-
 module MoneyS3
   module Parsers
     class ZamestnanecType

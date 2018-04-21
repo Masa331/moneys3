@@ -1,9 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/konfigurace'
-require 'money_s3/parsers/definice_ceny'
-require 'money_s3/parsers/komponenta_type'
-require 'money_s3/parsers/parametr_karta_type'
-
 module MoneyS3
   module Parsers
     class KmKartaType
@@ -81,6 +75,14 @@ module MoneyS3
         at 'Zarovnat2'
       end
 
+      def konfigurace
+        submodel_at(Konfigurace, 'konfigurace')
+      end
+
+      def definice_ceny
+        submodel_at(DefiniceCeny, 'definiceCeny')
+      end
+
       def ceny
         at 'Ceny'
       end
@@ -149,14 +151,6 @@ module MoneyS3
         at 'iDoklAgend'
       end
 
-      def konfigurace
-        submodel_at(Konfigurace, 'konfigurace')
-      end
-
-      def definice_ceny
-        submodel_at(DefiniceCeny, 'definiceCeny')
-      end
-
       def slozeni
         array_of_at(KomponentaType, ['Slozeni', 'Komponenta'])
       end
@@ -190,6 +184,8 @@ module MoneyS3
         hash[:obrazek2] = obrazek2 if has? 'Obrazek2'
         hash[:zarovnat] = zarovnat if has? 'Zarovnat'
         hash[:zarovnat2] = zarovnat2 if has? 'Zarovnat2'
+        hash[:konfigurace] = konfigurace.to_h_with_attrs if has? 'konfigurace'
+        hash[:definice_ceny] = definice_ceny.to_h_with_attrs if has? 'definiceCeny'
         hash[:ceny] = ceny if has? 'Ceny'
         hash[:nastav] = nastav if has? 'Nastav'
         hash[:popis1] = popis1 if has? 'Popis1'
@@ -207,8 +203,6 @@ module MoneyS3
         hash[:zboz_kuch] = zboz_kuch if has? 'ZbozKuch'
         hash[:i_dokl_pol] = i_dokl_pol if has? 'iDoklPol'
         hash[:i_dokl_agend] = i_dokl_agend if has? 'iDoklAgend'
-        hash[:konfigurace] = konfigurace.to_h_with_attrs if has? 'konfigurace'
-        hash[:definice_ceny] = definice_ceny.to_h_with_attrs if has? 'definiceCeny'
         hash[:slozeni] = slozeni.map(&:to_h_with_attrs) if has? 'Slozeni'
         hash[:seznam_parametru_karty] = seznam_parametru_karty.map(&:to_h_with_attrs) if has? 'SeznamParametruKarty'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'

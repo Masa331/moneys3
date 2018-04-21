@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/message_type'
-
 module MoneyS3
   module Parsers
-    class MsgPolozType
+    class MsgPolozType < MessageType
       include BaseParser
 
       def km_karta
@@ -21,6 +18,7 @@ module MoneyS3
         hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
 
         hash
+        super.merge(hash)
       end
     end
   end

@@ -1,7 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/child_kusovnik_type'
-require 'money_s3/parsers/reference'
-
 module MoneyS3
   module Parsers
     class KomponentaKusovnikType

@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/doklad'
-
 module MoneyS3
   module Builders
     class VazbaType
@@ -14,7 +11,6 @@ module MoneyS3
 
         root << build_element('Typ', data[:typ]) if data.key? :typ
         root << build_element('PodTyp', data[:pod_typ]) if data.key? :pod_typ
-
         if data.key? :doklad
           root << Doklad.new('Doklad', data[:doklad]).builder
         end

@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/eet_type'
-
 module MoneyS3
   module Builders
     class DoklRefType
@@ -16,7 +13,6 @@ module MoneyS3
         root << build_element('CisloDokladu', data[:cislo_dokladu]) if data.key? :cislo_dokladu
         root << build_element('DruhDokladu', data[:druh_dokladu]) if data.key? :druh_dokladu
         root << build_element('Rok', data[:rok]) if data.key? :rok
-
         if data.key? :eet
           root << EETType.new('EET', data[:eet]).builder
         end

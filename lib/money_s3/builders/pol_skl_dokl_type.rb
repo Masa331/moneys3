@@ -1,10 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/sklad_type'
-require 'money_s3/builders/km_karta_type'
-require 'money_s3/builders/vyrobni_cislo_type'
-require 'money_s3/builders/dodavka_type'
-require 'money_s3/builders/def_sub_pol_type'
-
 module MoneyS3
   module Builders
     class PolSklDoklType
@@ -39,27 +32,22 @@ module MoneyS3
         root << build_element('ZvlRezim', data[:zvl_rezim]) if data.key? :zvl_rezim
         root << build_element('ZvlDPH', data[:zvl_dph]) if data.key? :zvl_dph
         root << build_element('RezimEET', data[:rezim_eet]) if data.key? :rezim_eet
-
-        if data.key? :sklad
-          root << SkladType.new('Sklad', data[:sklad]).builder
-        end
-
-        if data.key? :km_karta
-          root << KmKartaType.new('KmKarta', data[:km_karta]).builder
-        end
-
         if data.key? :seznam_vc
           element = Ox::Element.new('SeznamVC')
           data[:seznam_vc].each { |i| element << VyrobniCisloType.new('VyrobniCislo', i).builder }
           root << element
         end
-
         if data.key? :seznam_dodavek
           element = Ox::Element.new('SeznamDodavek')
           data[:seznam_dodavek].each { |i| element << DodavkaType.new('Dodavka', i).builder }
           root << element
         end
-
+        if data.key? :sklad
+          root << SkladType.new('Sklad', data[:sklad]).builder
+        end
+        if data.key? :km_karta
+          root << KmKartaType.new('KmKarta', data[:km_karta]).builder
+        end
         if data.key? :slozeni
           element = Ox::Element.new('Slozeni')
           data[:slozeni].each { |i| element << DefSubPolType.new('SubPolozka', i).builder }

@@ -1,9 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/sklad_type'
-require 'money_s3/builders/km_karta_type'
-require 'money_s3/builders/vyrobni_cislo'
-require 'money_s3/builders/subpol_inv_d_type'
-
 module MoneyS3
   module Builders
     class PolInvDoklType
@@ -20,21 +14,17 @@ module MoneyS3
         root << build_element('Slupina', data[:slupina]) if data.key? :slupina
         root << build_element('MJ', data[:mj]) if data.key? :mj
         root << build_element('MnInv', data[:mn_inv]) if data.key? :mn_inv
-
-        if data.key? :sklad
-          root << SkladType.new('Sklad', data[:sklad]).builder
-        end
-
-        if data.key? :km_karta
-          root << KmKartaType.new('KmKarta', data[:km_karta]).builder
-        end
-
         if data.key? :seznam_vc
           element = Ox::Element.new('SeznamVC')
           data[:seznam_vc].each { |i| element << VyrobniCislo.new('VyrobniCislo', i).builder }
           root << element
         end
-
+        if data.key? :sklad
+          root << SkladType.new('Sklad', data[:sklad]).builder
+        end
+        if data.key? :km_karta
+          root << KmKartaType.new('KmKarta', data[:km_karta]).builder
+        end
         if data.key? :slozeni
           element = Ox::Element.new('Slozeni')
           data[:slozeni].each { |i| element << SubpolInvDType.new('SubPolozka', i).builder }

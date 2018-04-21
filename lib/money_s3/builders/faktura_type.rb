@@ -1,22 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/valuty'
-require 'money_s3/builders/doklad_firma_type'
-require 'money_s3/builders/konec_prij_firma_type'
-require 'money_s3/builders/import'
-require 'money_s3/builders/eshop'
-require 'money_s3/builders/prepravce_type'
-require 'money_s3/builders/typ_zasilky_type'
-require 'money_s3/builders/prepr_dopln_udaj_type'
-require 'money_s3/builders/moje_firma_type'
-require 'money_s3/builders/vlajky'
-require 'money_s3/builders/souhrn_dph_type'
-require 'money_s3/builders/prepr_dopln_udaj_type'
-require 'money_s3/builders/pol_faktury_type'
-require 'money_s3/builders/pol_objedn_type'
-require 'money_s3/builders/uhrada_type'
-require 'money_s3/builders/nep_platba_type'
-require 'money_s3/builders/vazba_type'
-
 module MoneyS3
   module Builders
     class FakturaType
@@ -69,6 +50,13 @@ module MoneyS3
         root << build_element('Vyuctovano', data[:vyuctovano]) if data.key? :vyuctovano
         root << build_element('SazbaDPH1', data[:sazba_dph1]) if data.key? :sazba_dph1
         root << build_element('SazbaDPH2', data[:sazba_dph2]) if data.key? :sazba_dph2
+        if data.key? :souhrn_dph
+          root << SouhrnDPHType.new('SouhrnDPH', data[:souhrn_dph]).builder
+        end
+        root << build_element('Celkem', data[:celkem]) if data.key? :celkem
+        if data.key? :valuty
+          root << Valuty2.new('Valuty', data[:valuty]).builder
+        end
         root << build_element('Typ', data[:typ]) if data.key? :typ
         root << build_element('Vystavil', data[:vystavil]) if data.key? :vystavil
         root << build_element('PrikUhrady', data[:prik_uhrady]) if data.key? :prik_uhrady
@@ -85,6 +73,12 @@ module MoneyS3
         root << build_element('ValutyProp', data[:valuty_prop]) if data.key? :valuty_prop
         root << build_element('SumZaloha', data[:sum_zaloha]) if data.key? :sum_zaloha
         root << build_element('SumZalohaC', data[:sum_zaloha_c]) if data.key? :sum_zaloha_c
+        if data.key? :dod_odb
+          root << DokladFirmaType.new('DodOdb', data[:dod_odb]).builder
+        end
+        if data.key? :konec_prij
+          root << KonecPrijFirmaType.new('KonecPrij', data[:konec_prij]).builder
+        end
         root << build_element('TypTransakce', data[:typ_transakce]) if data.key? :typ_transakce
         root << build_element('DodaciPodm', data[:dodaci_podm]) if data.key? :dodaci_podm
         root << build_element('DruhDopravy', data[:druh_dopravy]) if data.key? :druh_dopravy
@@ -98,97 +92,64 @@ module MoneyS3
         root << build_element('Vyrizeno', data[:vyrizeno]) if data.key? :vyrizeno
         root << build_element('iDokladID', data[:i_doklad_id]) if data.key? :i_doklad_id
         root << build_element('iDoklAgend', data[:i_dokl_agend]) if data.key? :i_dokl_agend
-        root << build_element('Pojisteno', data[:pojisteno]) if data.key? :pojisteno
-        root << build_element('Celkem', data[:celkem]) if data.key? :celkem
-
-        if data.key? :valuty
-          root << Valuty.new('Valuty', data[:valuty]).builder
-        end
-
-        if data.key? :dod_odb
-          root << DokladFirmaType.new('DodOdb', data[:dod_odb]).builder
-        end
-
-        if data.key? :konec_prij
-          root << KonecPrijFirmaType.new('KonecPrij', data[:konec_prij]).builder
-        end
-
         if data.key? :import
           root << Import.new('Import', data[:import]).builder
         end
-
         if data.key? :eshop
           root << Eshop.new('eshop', data[:eshop]).builder
         end
-
+        root << build_element('Pojisteno', data[:pojisteno]) if data.key? :pojisteno
         if data.key? :prepravce
           root << PrepravceType.new('Prepravce', data[:prepravce]).builder
         end
-
         if data.key? :typ_zasillky
           root << TypZasilkyType.new('TypZasillky', data[:typ_zasillky]).builder
         end
-
         if data.key? :prepr_vyplatne
           root << PreprDoplnUdajType.new('Prepr_Vyplatne', data[:prepr_vyplatne]).builder
         end
-
         if data.key? :prepr_uhrada_dobirky
           root << PreprDoplnUdajType.new('Prepr_UhradaDobirky', data[:prepr_uhrada_dobirky]).builder
         end
-
         if data.key? :prepr_trida
           root << PreprDoplnUdajType.new('Prepr_Trida', data[:prepr_trida]).builder
         end
-
-        if data.key? :moje_firma
-          root << MojeFirmaType.new('MojeFirma', data[:moje_firma]).builder
-        end
-
-        if data.key? :vlajky
-          root << Vlajky.new('Vlajky', data[:vlajky]).builder
-        end
-
-        if data.key? :souhrn_dph
-          root << SouhrnDPHType.new('SouhrnDPH', data[:souhrn_dph]).builder
-        end
-
         if data.key? :prepr_seznam_sluzeb
           element = Ox::Element.new('Prepr_SeznamSluzeb')
           data[:prepr_seznam_sluzeb].each { |i| element << PreprDoplnUdajType.new('Prepr_Sluzba', i).builder }
           root << element
         end
-
         if data.key? :seznam_polozek
           element = Ox::Element.new('SeznamPolozek')
           data[:seznam_polozek].each { |i| element << PolFakturyType.new('Polozka', i).builder }
           root << element
         end
-
         if data.key? :seznam_zal_polozek
           element = Ox::Element.new('SeznamZalPolozek')
           data[:seznam_zal_polozek].each { |i| element << PolObjednType.new('Polozka', i).builder }
           root << element
         end
-
         if data.key? :seznam_uhrad
           element = Ox::Element.new('SeznamUhrad')
           data[:seznam_uhrad].each { |i| element << UhradaType.new('Uhrada', i).builder }
           root << element
         end
-
+        if data.key? :moje_firma
+          root << MojeFirmaType.new('MojeFirma', data[:moje_firma]).builder
+        end
         if data.key? :seznam_nep_plateb
           element = Ox::Element.new('SeznamNepPlateb')
           data[:seznam_nep_plateb].each { |i| element << NepPlatbaType.new('NepPlatba', i).builder }
           root << element
         end
-
+        if data.key? :vlajky
+          root << Vlajky.new('Vlajky', data[:vlajky]).builder
+        end
         if data.key? :seznam_vazeb
           element = Ox::Element.new('SeznamVazeb')
           data[:seznam_vazeb].each { |i| element << VazbaType.new('Vazba', i).builder }
           root << element
         end
-
         if data.key? :dokumenty
           element = Ox::Element.new('Dokumenty')
           data[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }

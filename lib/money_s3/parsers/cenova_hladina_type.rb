@@ -1,10 +1,8 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/mena_type'
-
 module MoneyS3
   module Parsers
     class CenovaHladinaType
       include BaseParser
+      include Groups::DefiniceCeny
 
       def zkrat
         at 'Zkrat'
@@ -18,6 +16,10 @@ module MoneyS3
         at 'Pozn'
       end
 
+      def mena
+        submodel_at(MenaType, 'Mena')
+      end
+
       def skup
         at 'Skup'
       end
@@ -26,21 +28,17 @@ module MoneyS3
         at 'Ceny'
       end
 
-      def mena
-        submodel_at(MenaType, 'Mena')
-      end
-
       def to_h_with_attrs
         hash = HashWithAttributes.new({}, attributes)
 
         hash[:zkrat] = zkrat if has? 'Zkrat'
         hash[:nazev] = nazev if has? 'Nazev'
         hash[:pozn] = pozn if has? 'Pozn'
+        hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
         hash[:skup] = skup if has? 'Skup'
         hash[:ceny] = ceny if has? 'Ceny'
-        hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
 
-        hash
+        mega.inject(hash) { |memo, r| memo.merge r }
       end
     end
   end

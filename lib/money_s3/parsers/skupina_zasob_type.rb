@@ -1,8 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/konfigurace'
-require 'money_s3/parsers/definice_ceny'
-require 'money_s3/parsers/ucty_pohybu_type'
-
 module MoneyS3
   module Parsers
     class SkupinaZasobType
@@ -48,6 +43,14 @@ module MoneyS3
         at 'Zkratka6'
       end
 
+      def konfigurace
+        submodel_at(Konfigurace, 'konfigurace')
+      end
+
+      def definice_ceny
+        submodel_at(DefiniceCeny, 'definiceCeny')
+      end
+
       def ceny
         at 'Ceny'
       end
@@ -62,6 +65,18 @@ module MoneyS3
 
       def in_cis_odde
         at 'IN_CisOdde'
+      end
+
+      def uc_pohyb_m
+        submodel_at(UctyPohybuType, 'UcPohybM')
+      end
+
+      def uc_pohyb_z
+        submodel_at(UctyPohybuType, 'UcPohybZ')
+      end
+
+      def uc_pohyb_v
+        submodel_at(UctyPohybuType, 'UcPohybV')
       end
 
       def uc_vyrobk_vv
@@ -80,26 +95,6 @@ module MoneyS3
         at 'PDodLstVz'
       end
 
-      def konfigurace
-        submodel_at(Konfigurace, 'konfigurace')
-      end
-
-      def definice_ceny
-        submodel_at(DefiniceCeny, 'definiceCeny')
-      end
-
-      def uc_pohyb_m
-        submodel_at(UctyPohybuType, 'UcPohybM')
-      end
-
-      def uc_pohyb_z
-        submodel_at(UctyPohybuType, 'UcPohybZ')
-      end
-
-      def uc_pohyb_v
-        submodel_at(UctyPohybuType, 'UcPohybV')
-      end
-
       def to_h_with_attrs
         hash = HashWithAttributes.new({}, attributes)
 
@@ -113,19 +108,19 @@ module MoneyS3
         hash[:zkratka4] = zkratka4 if has? 'Zkratka4'
         hash[:zkratka5] = zkratka5 if has? 'Zkratka5'
         hash[:zkratka6] = zkratka6 if has? 'Zkratka6'
+        hash[:konfigurace] = konfigurace.to_h_with_attrs if has? 'konfigurace'
+        hash[:definice_ceny] = definice_ceny.to_h_with_attrs if has? 'definiceCeny'
         hash[:ceny] = ceny if has? 'Ceny'
         hash[:nast_sklad] = nast_sklad if has? 'NastSklad'
         hash[:cis_skup_vpl] = cis_skup_vpl if has? 'CisSkupVPL'
         hash[:in_cis_odde] = in_cis_odde if has? 'IN_CisOdde'
+        hash[:uc_pohyb_m] = uc_pohyb_m.to_h_with_attrs if has? 'UcPohybM'
+        hash[:uc_pohyb_z] = uc_pohyb_z.to_h_with_attrs if has? 'UcPohybZ'
+        hash[:uc_pohyb_v] = uc_pohyb_v.to_h_with_attrs if has? 'UcPohybV'
         hash[:uc_vyrobk_vv] = uc_vyrobk_vv if has? 'UcVyrobkVV'
         hash[:prodejk_vz] = prodejk_vz if has? 'ProdejkVz'
         hash[:v_dod_lst_vz] = v_dod_lst_vz if has? 'VDodLstVz'
         hash[:p_dod_lst_vz] = p_dod_lst_vz if has? 'PDodLstVz'
-        hash[:konfigurace] = konfigurace.to_h_with_attrs if has? 'konfigurace'
-        hash[:definice_ceny] = definice_ceny.to_h_with_attrs if has? 'definiceCeny'
-        hash[:uc_pohyb_m] = uc_pohyb_m.to_h_with_attrs if has? 'UcPohybM'
-        hash[:uc_pohyb_z] = uc_pohyb_z.to_h_with_attrs if has? 'UcPohybZ'
-        hash[:uc_pohyb_v] = uc_pohyb_v.to_h_with_attrs if has? 'UcPohybV'
 
         hash
       end

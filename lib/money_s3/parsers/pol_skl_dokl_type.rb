@@ -1,10 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/sklad_type'
-require 'money_s3/parsers/km_karta_type'
-require 'money_s3/parsers/vyrobni_cislo_type'
-require 'money_s3/parsers/dodavka_type'
-require 'money_s3/parsers/def_sub_pol_type'
-
 module MoneyS3
   module Parsers
     class PolSklDoklType
@@ -102,20 +95,20 @@ module MoneyS3
         at 'RezimEET'
       end
 
-      def sklad
-        submodel_at(SkladType, 'Sklad')
-      end
-
-      def km_karta
-        submodel_at(KmKartaType, 'KmKarta')
-      end
-
       def seznam_vc
         array_of_at(VyrobniCisloType, ['SeznamVC', 'VyrobniCislo'])
       end
 
       def seznam_dodavek
         array_of_at(DodavkaType, ['SeznamDodavek', 'Dodavka'])
+      end
+
+      def sklad
+        submodel_at(SkladType, 'Sklad')
+      end
+
+      def km_karta
+        submodel_at(KmKartaType, 'KmKarta')
       end
 
       def slozeni
@@ -148,10 +141,10 @@ module MoneyS3
         hash[:zvl_rezim] = zvl_rezim if has? 'ZvlRezim'
         hash[:zvl_dph] = zvl_dph if has? 'ZvlDPH'
         hash[:rezim_eet] = rezim_eet if has? 'RezimEET'
-        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
-        hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
         hash[:seznam_vc] = seznam_vc.map(&:to_h_with_attrs) if has? 'SeznamVC'
         hash[:seznam_dodavek] = seznam_dodavek.map(&:to_h_with_attrs) if has? 'SeznamDodavek'
+        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
+        hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
         hash[:slozeni] = slozeni.map(&:to_h_with_attrs) if has? 'Slozeni'
 
         hash

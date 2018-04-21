@@ -1,13 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/adresa_type'
-require 'money_s3/parsers/telefon_type'
-require 'money_s3/parsers/isdoc'
-require 'money_s3/parsers/eshop'
-require 'money_s3/parsers/skupina_firem_type'
-require 'money_s3/parsers/vlajky'
-require 'money_s3/parsers/osoba_type'
-require 'money_s3/parsers/bank_spojeni_type'
-
 module MoneyS3
   module Parsers
     class FirmaType
@@ -25,12 +15,36 @@ module MoneyS3
         at 'SkupinaID'
       end
 
+      def adresa
+        submodel_at(AdresaType, 'Adresa')
+      end
+
       def obch_nazev
         at 'ObchNazev'
       end
 
+      def obch_adresa
+        submodel_at(AdresaType, 'ObchAdresa')
+      end
+
       def fakt_nazev
         at 'FaktNazev'
+      end
+
+      def fakt_adresa
+        submodel_at(AdresaType, 'FaktAdresa')
+      end
+
+      def tel
+        submodel_at(TelefonType, 'Tel')
+      end
+
+      def fax
+        submodel_at(TelefonType, 'Fax')
+      end
+
+      def mobil
+        submodel_at(TelefonType, 'Mobil')
       end
 
       def e_mail
@@ -153,44 +167,12 @@ module MoneyS3
         at 'KodPartn'
       end
 
-      def adresa
-        submodel_at(AdresaType, 'Adresa')
-      end
-
-      def obch_adresa
-        submodel_at(AdresaType, 'ObchAdresa')
-      end
-
-      def fakt_adresa
-        submodel_at(AdresaType, 'FaktAdresa')
-      end
-
-      def tel
-        submodel_at(TelefonType, 'Tel')
-      end
-
-      def fax
-        submodel_at(TelefonType, 'Fax')
-      end
-
-      def mobil
-        submodel_at(TelefonType, 'Mobil')
-      end
-
       def isdoc
-        submodel_at(ISDOC, 'ISDOC')
+        at 'ISDOC'
       end
 
       def eshop
-        submodel_at(Eshop, 'eshop')
-      end
-
-      def skupina
-        submodel_at(SkupinaFiremType, 'Skupina')
-      end
-
-      def vlajky
-        submodel_at(Vlajky, 'Vlajky')
+        submodel_at(Eshop2, 'eshop')
       end
 
       def osoba
@@ -199,6 +181,14 @@ module MoneyS3
 
       def seznam_bank_spojeni
         array_of_at(BankSpojeniType, ['SeznamBankSpojeni', 'BankSpojeni'])
+      end
+
+      def skupina
+        submodel_at(SkupinaFiremType, 'Skupina')
+      end
+
+      def vlajky
+        submodel_at(Vlajky, 'Vlajky')
       end
 
       def dokumenty
@@ -211,8 +201,14 @@ module MoneyS3
         hash[:guid] = guid if has? 'GUID'
         hash[:nazev] = nazev if has? 'Nazev'
         hash[:skupina_id] = skupina_id if has? 'SkupinaID'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
         hash[:obch_nazev] = obch_nazev if has? 'ObchNazev'
+        hash[:obch_adresa] = obch_adresa.to_h_with_attrs if has? 'ObchAdresa'
         hash[:fakt_nazev] = fakt_nazev if has? 'FaktNazev'
+        hash[:fakt_adresa] = fakt_adresa.to_h_with_attrs if has? 'FaktAdresa'
+        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
+        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
+        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
         hash[:e_mail] = e_mail if has? 'EMail'
         hash[:www] = www if has? 'WWW'
         hash[:spojeni] = spojeni if has? 'Spojeni'
@@ -243,18 +239,12 @@ module MoneyS3
         hash[:zprava] = zprava if has? 'Zprava'
         hash[:poznamka] = poznamka if has? 'Poznamka'
         hash[:kod_partn] = kod_partn if has? 'KodPartn'
-        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
-        hash[:obch_adresa] = obch_adresa.to_h_with_attrs if has? 'ObchAdresa'
-        hash[:fakt_adresa] = fakt_adresa.to_h_with_attrs if has? 'FaktAdresa'
-        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
-        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
-        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
-        hash[:isdoc] = isdoc.to_h_with_attrs if has? 'ISDOC'
+        hash[:isdoc] = isdoc if has? 'ISDOC'
         hash[:eshop] = eshop.to_h_with_attrs if has? 'eshop'
-        hash[:skupina] = skupina.to_h_with_attrs if has? 'Skupina'
-        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
         hash[:osoba] = osoba.map(&:to_h_with_attrs) if has? 'Osoba'
         hash[:seznam_bank_spojeni] = seznam_bank_spojeni.map(&:to_h_with_attrs) if has? 'SeznamBankSpojeni'
+        hash[:skupina] = skupina.to_h_with_attrs if has? 'Skupina'
+        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash

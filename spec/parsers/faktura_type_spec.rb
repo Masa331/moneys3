@@ -106,6 +106,9 @@ RSpec.describe MoneyS3::Parsers::FakturaType do
       its('souhrn_dph.seznam_dalsi_sazby.first.hladina_dph') { is_expected.to eq '1' }
       its('souhrn_dph.seznam_dalsi_sazby.first.sazba') { is_expected.to eq '10' }
       its('souhrn_dph.seznam_dalsi_sazby.first.zaklad') { is_expected.to eq '0' }
+    # it 'spec_name' do
+    #   require 'pry'; binding.pry
+    # end
       its('souhrn_dph.seznam_dalsi_sazby.first.dph') { is_expected.to eq '0' }
 
       its('celkem') { is_expected.to eq '569.51' }

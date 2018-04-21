@@ -1,7 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/e_shop_info'
-require 'money_s3/builders/ekategorie_type'
-
 module MoneyS3
   module Builders
     class EkategorieType
@@ -18,11 +14,9 @@ module MoneyS3
         root << build_element('Descript', data[:descript]) if data.key? :descript
         root << build_element('IN_Changed', data[:in_changed]) if data.key? :in_changed
         root << build_element('NoPublic', data[:no_public]) if data.key? :no_public
-
         if data.key? :e_shop_info
           root << EShopInfo.new('eShopInfo', data[:e_shop_info]).builder
         end
-
         if data.key? :seznam_podr_kategorii
           element = Ox::Element.new('SeznamPodrKategorii')
           data[:seznam_podr_kategorii].each { |i| element << EkategorieType.new('eKategorie', i).builder }

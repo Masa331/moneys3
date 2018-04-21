@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/valuty'
-
 module MoneyS3
   module Builders
     class SouhrnDPHPolType
@@ -16,7 +13,6 @@ module MoneyS3
         root << build_element('DPH_MJ', data[:dph_mj]) if data.key? :dph_mj
         root << build_element('Zaklad', data[:zaklad]) if data.key? :zaklad
         root << build_element('DPH', data[:dph]) if data.key? :dph
-
         if data.key? :valuty
           root << Valuty.new('Valuty', data[:valuty]).builder
         end

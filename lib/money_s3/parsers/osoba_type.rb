@@ -1,7 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/adresa_type'
-require 'money_s3/parsers/telefon_type'
-
 module MoneyS3
   module Parsers
     class OsobaType
@@ -39,6 +35,22 @@ module MoneyS3
         at 'Funkce'
       end
 
+      def adresa
+        submodel_at(AdresaType, 'Adresa')
+      end
+
+      def tel
+        submodel_at(TelefonType, 'Tel')
+      end
+
+      def fax
+        submodel_at(TelefonType, 'Fax')
+      end
+
+      def mobil
+        submodel_at(TelefonType, 'Mobil')
+      end
+
       def spojeni
         at 'Spojeni'
       end
@@ -71,22 +83,6 @@ module MoneyS3
         at 'Jednatel'
       end
 
-      def adresa
-        submodel_at(AdresaType, 'Adresa')
-      end
-
-      def tel
-        submodel_at(TelefonType, 'Tel')
-      end
-
-      def fax
-        submodel_at(TelefonType, 'Fax')
-      end
-
-      def mobil
-        submodel_at(TelefonType, 'Mobil')
-      end
-
       def to_h_with_attrs
         hash = HashWithAttributes.new({}, attributes)
 
@@ -98,6 +94,10 @@ module MoneyS3
         hash[:dat_nar] = dat_nar if has? 'DatNar'
         hash[:pohlavi] = pohlavi if has? 'Pohlavi'
         hash[:funkce] = funkce if has? 'Funkce'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
+        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
+        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
+        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
         hash[:spojeni] = spojeni if has? 'Spojeni'
         hash[:e_mail] = e_mail if has? 'EMail'
         hash[:mail] = mail if has? 'Mail'
@@ -106,10 +106,6 @@ module MoneyS3
         hash[:kod_partn] = kod_partn if has? 'KodPartn'
         hash[:guid] = guid if has? 'GUID'
         hash[:jednatel] = jednatel if has? 'Jednatel'
-        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
-        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
-        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
-        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
 
         hash
       end

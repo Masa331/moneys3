@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/firma_type'
-
 module MoneyS3
   module Builders
     class NesklPolozka
@@ -28,11 +25,10 @@ module MoneyS3
         root << build_element('VyrobniCis', data[:vyrobni_cis]) if data.key? :vyrobni_cis
         root << build_element('DatExp', data[:dat_exp]) if data.key? :dat_exp
         root << build_element('DatNakupu', data[:dat_nakupu]) if data.key? :dat_nakupu
-        root << build_element('PredmPln', data[:predm_pln]) if data.key? :predm_pln
-
         if data.key? :dodavatel
           root << FirmaType.new('Dodavatel', data[:dodavatel]).builder
         end
+        root << build_element('PredmPln', data[:predm_pln]) if data.key? :predm_pln
 
         root
       end

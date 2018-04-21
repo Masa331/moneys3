@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/uc_osnova_type'
-
 module MoneyS3
   module Parsers
-    class SeznamUcOsnov
+    class SeznamUcOsnov < SeznamType
       include BaseParser
 
       def uc_osnova
@@ -16,6 +13,7 @@ module MoneyS3
         hash[:uc_osnova] = uc_osnova.map(&:to_h_with_attrs) if has? 'UcOsnova'
 
         hash
+        super.merge(hash)
       end
     end
   end

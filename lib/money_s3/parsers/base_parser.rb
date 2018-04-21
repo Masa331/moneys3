@@ -1,6 +1,7 @@
 module MoneyS3
   module Parsers
     module BaseParser
+      include Mega
       EMPTY_ARRAY = []
 
       attr_accessor :raw
@@ -44,6 +45,13 @@ module MoneyS3
           klass.new(element)
         end
       end
+
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
+
+        hash
+      end
     end
   end
+
 end

@@ -1,5 +1,3 @@
-require 'money_s3/builders/base_builder'
-
 module MoneyS3
   module Builders
     class DodavkaType

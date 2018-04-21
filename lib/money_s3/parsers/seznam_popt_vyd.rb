@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/popt_vyd'
-
 module MoneyS3
   module Parsers
-    class SeznamPoptVyd
+    class SeznamPoptVyd < SeznamType
       include BaseParser
 
       def popt_vyd
@@ -16,6 +13,7 @@ module MoneyS3
         hash[:popt_vyd] = popt_vyd.map(&:to_h_with_attrs) if has? 'PoptVyd'
 
         hash
+        super.merge(hash)
       end
     end
   end

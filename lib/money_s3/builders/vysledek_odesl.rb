@@ -1,5 +1,3 @@
-require 'money_s3/builders/base_builder'
-
 module MoneyS3
   module Builders
     class VysledekOdesl
@@ -12,7 +10,6 @@ module MoneyS3
         end
 
         root << build_element('Chyba', data[:chyba]) if data.key? :chyba
-
         if data.key? :varovani
           data[:varovani].map { |i| Ox::Element.new('Varovani') << i }.each { |i| root << i }
         end

@@ -1,8 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/header_kusovnik_type'
-require 'money_s3/builders/child_kusovnik_type'
-require 'money_s3/builders/km_karta_type'
-
 module MoneyS3
   module Builders
     class VzorKomponentaType
@@ -17,11 +12,9 @@ module MoneyS3
         if data.key? :header
           root << HeaderKusovnikType.new('Header', data[:header]).builder
         end
-
         if data.key? :child
           root << ChildKusovnikType.new('Child', data[:child]).builder
         end
-
         if data.key? :km_karta
           root << KmKartaType.new('KmKarta', data[:km_karta]).builder
         end

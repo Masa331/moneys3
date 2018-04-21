@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/mzdove_obdobi_type'
-
 module MoneyS3
   module Builders
     class ZamestnanecType
@@ -17,7 +14,6 @@ module MoneyS3
         root << build_element('Stredisko', data[:stredisko]) if data.key? :stredisko
         root << build_element('DatNastup', data[:dat_nastup]) if data.key? :dat_nastup
         root << build_element('DatOdchod', data[:dat_odchod]) if data.key? :dat_odchod
-
         if data.key? :seznam_mzdovych_obdobi
           element = Ox::Element.new('SeznamMzdovychObdobi')
           data[:seznam_mzdovych_obdobi].each { |i| element << MzdoveObdobiType.new('MzdoveObdobi', i).builder }

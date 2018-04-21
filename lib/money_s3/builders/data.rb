@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/faktura_type'
-
 module MoneyS3
   module Builders
     class Data
@@ -15,7 +12,6 @@ module MoneyS3
         if data.key? :fakt_vyd
           root << FakturaType.new('FaktVyd', data[:fakt_vyd]).builder
         end
-
         if data.key? :fakt_prij
           root << FakturaType.new('FaktPrij', data[:fakt_prij]).builder
         end

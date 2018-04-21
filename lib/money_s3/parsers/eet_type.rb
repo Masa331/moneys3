@@ -1,7 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/castky'
-require 'money_s3/parsers/vysledek_odesl'
-
 module MoneyS3
   module Parsers
     class EETType
@@ -59,6 +55,10 @@ module MoneyS3
         at 'CasTrzby'
       end
 
+      def castky
+        submodel_at(Castky, 'Castky')
+      end
+
       def rezim
         at 'Rezim'
       end
@@ -83,10 +83,6 @@ module MoneyS3
         at 'CertEET'
       end
 
-      def castky
-        submodel_at(Castky, 'Castky')
-      end
-
       def vysledek_odesl
         submodel_at(VysledekOdesl, 'VysledekOdesl')
       end
@@ -107,13 +103,13 @@ module MoneyS3
         hash[:porad_cis] = porad_cis if has? 'PoradCis'
         hash[:dat_trzby] = dat_trzby if has? 'DatTrzby'
         hash[:cas_trzby] = cas_trzby if has? 'CasTrzby'
+        hash[:castky] = castky.to_h_with_attrs if has? 'Castky'
         hash[:rezim] = rezim if has? 'Rezim'
         hash[:pkp] = pkp if has? 'PKP'
         hash[:bkp] = bkp if has? 'BKP'
         hash[:fik] = fik if has? 'FIK'
         hash[:cert_pkp] = cert_pkp if has? 'CertPKP'
         hash[:cert_eet] = cert_eet if has? 'CertEET'
-        hash[:castky] = castky.to_h_with_attrs if has? 'Castky'
         hash[:vysledek_odesl] = vysledek_odesl.to_h_with_attrs if has? 'VysledekOdesl'
 
         hash

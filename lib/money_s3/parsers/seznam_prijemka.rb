@@ -1,9 +1,6 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/prijemka'
-
 module MoneyS3
   module Parsers
-    class SeznamPrijemka
+    class SeznamPrijemka < SeznamType
       include BaseParser
 
       def prijemka
@@ -16,6 +13,7 @@ module MoneyS3
         hash[:prijemka] = prijemka.map(&:to_h_with_attrs) if has? 'Prijemka'
 
         hash
+        super.merge(hash)
       end
     end
   end

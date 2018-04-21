@@ -1,13 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/adresa_type'
-require 'money_s3/builders/telefon_type'
-require 'money_s3/builders/isdoc'
-require 'money_s3/builders/eshop'
-require 'money_s3/builders/skupina_firem_type'
-require 'money_s3/builders/vlajky'
-require 'money_s3/builders/osoba_type'
-require 'money_s3/builders/bank_spojeni_type'
-
 module MoneyS3
   module Builders
     class FirmaType
@@ -22,8 +12,26 @@ module MoneyS3
         root << build_element('GUID', data[:guid]) if data.key? :guid
         root << build_element('Nazev', data[:nazev]) if data.key? :nazev
         root << build_element('SkupinaID', data[:skupina_id]) if data.key? :skupina_id
+        if data.key? :adresa
+          root << AdresaType.new('Adresa', data[:adresa]).builder
+        end
         root << build_element('ObchNazev', data[:obch_nazev]) if data.key? :obch_nazev
+        if data.key? :obch_adresa
+          root << AdresaType.new('ObchAdresa', data[:obch_adresa]).builder
+        end
         root << build_element('FaktNazev', data[:fakt_nazev]) if data.key? :fakt_nazev
+        if data.key? :fakt_adresa
+          root << AdresaType.new('FaktAdresa', data[:fakt_adresa]).builder
+        end
+        if data.key? :tel
+          root << TelefonType.new('Tel', data[:tel]).builder
+        end
+        if data.key? :fax
+          root << TelefonType.new('Fax', data[:fax]).builder
+        end
+        if data.key? :mobil
+          root << TelefonType.new('Mobil', data[:mobil]).builder
+        end
         root << build_element('EMail', data[:e_mail]) if data.key? :e_mail
         root << build_element('WWW', data[:www]) if data.key? :www
         root << build_element('Spojeni', data[:spojeni]) if data.key? :spojeni
@@ -54,57 +62,24 @@ module MoneyS3
         root << build_element('Zprava', data[:zprava]) if data.key? :zprava
         root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
         root << build_element('KodPartn', data[:kod_partn]) if data.key? :kod_partn
-
-        if data.key? :adresa
-          root << AdresaType.new('Adresa', data[:adresa]).builder
-        end
-
-        if data.key? :obch_adresa
-          root << AdresaType.new('ObchAdresa', data[:obch_adresa]).builder
-        end
-
-        if data.key? :fakt_adresa
-          root << AdresaType.new('FaktAdresa', data[:fakt_adresa]).builder
-        end
-
-        if data.key? :tel
-          root << TelefonType.new('Tel', data[:tel]).builder
-        end
-
-        if data.key? :fax
-          root << TelefonType.new('Fax', data[:fax]).builder
-        end
-
-        if data.key? :mobil
-          root << TelefonType.new('Mobil', data[:mobil]).builder
-        end
-
-        if data.key? :isdoc
-          root << ISDOC.new('ISDOC', data[:isdoc]).builder
-        end
-
+        root << build_element('ISDOC', data[:isdoc]) if data.key? :isdoc
         if data.key? :eshop
-          root << Eshop.new('eshop', data[:eshop]).builder
+          root << Eshop2.new('eshop', data[:eshop]).builder
         end
-
-        if data.key? :skupina
-          root << SkupinaFiremType.new('Skupina', data[:skupina]).builder
-        end
-
-        if data.key? :vlajky
-          root << Vlajky.new('Vlajky', data[:vlajky]).builder
-        end
-
         if data.key? :osoba
           data[:osoba].each { |i| root << OsobaType.new('Osoba', i).builder }
         end
-
         if data.key? :seznam_bank_spojeni
           element = Ox::Element.new('SeznamBankSpojeni')
           data[:seznam_bank_spojeni].each { |i| element << BankSpojeniType.new('BankSpojeni', i).builder }
           root << element
         end
-
+        if data.key? :skupina
+          root << SkupinaFiremType.new('Skupina', data[:skupina]).builder
+        end
+        if data.key? :vlajky
+          root << Vlajky.new('Vlajky', data[:vlajky]).builder
+        end
         if data.key? :dokumenty
           element = Ox::Element.new('Dokumenty')
           data[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }

@@ -1,13 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/eet_type'
-require 'money_s3/parsers/doklad_firma_type'
-require 'money_s3/parsers/valuty'
-require 'money_s3/parsers/moje_firma_type'
-require 'money_s3/parsers/vlajky'
-require 'money_s3/parsers/souhrn_dph_type'
-require 'money_s3/parsers/rozuct_poloz_ud_type'
-require 'money_s3/parsers/norm_poloz_ud_type'
-
 module MoneyS3
   module Parsers
     class PohledavkaType
@@ -19,6 +9,10 @@ module MoneyS3
 
       def ev_cis_dokl
         at 'EvCisDokl'
+      end
+
+      def eet
+        submodel_at(EETType, 'EET')
       end
 
       def zpusob_uctovani
@@ -89,6 +83,10 @@ module MoneyS3
         at 'DobrDUZP'
       end
 
+      def adresa
+        submodel_at(DokladFirmaType, 'Adresa')
+      end
+
       def uc_pokl
         at 'UcPokl'
       end
@@ -131,6 +129,18 @@ module MoneyS3
 
       def z_sazba
         at 'ZSazba'
+      end
+
+      def souhrn_dph
+        submodel_at(SouhrnDPHType, 'SouhrnDPH')
+      end
+
+      def celkem
+        at 'Celkem'
+      end
+
+      def valuty
+        submodel_at(Valuty2, 'Valuty')
       end
 
       def uh_zbyva
@@ -181,20 +191,12 @@ module MoneyS3
         at 'Vyst'
       end
 
-      def celkem
-        at 'Celkem'
+      def seznam_rozuct_polozek
+        array_of_at(RozuctPolozUDType, ['SeznamRozuctPolozek', 'RozuctPolozka'])
       end
 
-      def eet
-        submodel_at(EETType, 'EET')
-      end
-
-      def adresa
-        submodel_at(DokladFirmaType, 'Adresa')
-      end
-
-      def valuty
-        submodel_at(Valuty, 'Valuty')
+      def seznam_norm_polozek
+        array_of_at(NormPolozUDType, ['SeznamNormPolozek', 'NormPolozka'])
       end
 
       def moje_firma
@@ -203,18 +205,6 @@ module MoneyS3
 
       def vlajky
         submodel_at(Vlajky, 'Vlajky')
-      end
-
-      def souhrn_dph
-        submodel_at(SouhrnDPHType, 'SouhrnDPH')
-      end
-
-      def seznam_rozuct_polozek
-        array_of_at(RozuctPolozUDType, ['SeznamRozuctPolozek', 'RozuctPolozka'])
-      end
-
-      def seznam_norm_polozek
-        array_of_at(NormPolozUDType, ['SeznamNormPolozek', 'NormPolozka'])
       end
 
       def dokumenty
@@ -226,6 +216,7 @@ module MoneyS3
 
         hash[:doklad] = doklad if has? 'Doklad'
         hash[:ev_cis_dokl] = ev_cis_dokl if has? 'EvCisDokl'
+        hash[:eet] = eet.to_h_with_attrs if has? 'EET'
         hash[:zpusob_uctovani] = zpusob_uctovani if has? 'ZpusobUctovani'
         hash[:d_rada] = d_rada if has? 'DRada'
         hash[:d_cislo] = d_cislo if has? 'DCislo'
@@ -243,6 +234,7 @@ module MoneyS3
         hash[:doruceno] = doruceno if has? 'Doruceno'
         hash[:dbrpis] = dbrpis if has? 'Dbrpis'
         hash[:dobr_duzp] = dobr_duzp if has? 'DobrDUZP'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
         hash[:uc_pokl] = uc_pokl if has? 'UcPokl'
         hash[:pr_kont] = pr_kont if has? 'PrKont'
         hash[:cleneni] = cleneni if has? 'Cleneni'
@@ -254,6 +246,9 @@ module MoneyS3
         hash[:stat_moss] = stat_moss if has? 'StatMOSS'
         hash[:s_sazba] = s_sazba if has? 'SSazba'
         hash[:z_sazba] = z_sazba if has? 'ZSazba'
+        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
+        hash[:celkem] = celkem if has? 'Celkem'
+        hash[:valuty] = valuty.to_h_with_attrs if has? 'Valuty'
         hash[:uh_zbyva] = uh_zbyva if has? 'UhZbyva'
         hash[:uh_datum] = uh_datum if has? 'UhDatum'
         hash[:uh_dokl] = uh_dokl if has? 'UhDokl'
@@ -266,15 +261,10 @@ module MoneyS3
         hash[:typ_dokl] = typ_dokl if has? 'TypDokl'
         hash[:zjedn_d] = zjedn_d if has? 'ZjednD'
         hash[:vyst] = vyst if has? 'Vyst'
-        hash[:celkem] = celkem if has? 'Celkem'
-        hash[:eet] = eet.to_h_with_attrs if has? 'EET'
-        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
-        hash[:valuty] = valuty.to_h_with_attrs if has? 'Valuty'
-        hash[:moje_firma] = moje_firma.to_h_with_attrs if has? 'MojeFirma'
-        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
-        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
         hash[:seznam_rozuct_polozek] = seznam_rozuct_polozek.map(&:to_h_with_attrs) if has? 'SeznamRozuctPolozek'
         hash[:seznam_norm_polozek] = seznam_norm_polozek.map(&:to_h_with_attrs) if has? 'SeznamNormPolozek'
+        hash[:moje_firma] = moje_firma.to_h_with_attrs if has? 'MojeFirma'
+        hash[:vlajky] = vlajky.to_h_with_attrs if has? 'Vlajky'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 
         hash

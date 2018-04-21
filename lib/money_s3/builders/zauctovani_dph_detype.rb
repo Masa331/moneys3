@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/obdobi_dph'
-
 module MoneyS3
   module Builders
     class ZauctovaniDPHDetype
@@ -18,7 +15,6 @@ module MoneyS3
         root << build_element('PohDSS', data[:poh_dss]) if data.key? :poh_dss
         root << build_element('PohDZS', data[:poh_dzs]) if data.key? :poh_dzs
         root << build_element('Pozn', data[:pozn]) if data.key? :pozn
-
         if data.key? :seznam_obdobi_dph
           element = Ox::Element.new('SeznamObdobiDPH')
           data[:seznam_obdobi_dph].each { |i| element << ObdobiDPH.new('ObdobiDPH', i).builder }

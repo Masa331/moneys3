@@ -1,7 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/adresa_type'
-require 'money_s3/builders/telefon_type'
-
 module MoneyS3
   module Builders
     class MojeFirmaType
@@ -14,8 +10,26 @@ module MoneyS3
         end
 
         root << build_element('Nazev', data[:nazev]) if data.key? :nazev
+        if data.key? :adresa
+          root << AdresaType.new('Adresa', data[:adresa]).builder
+        end
         root << build_element('ObchNazev', data[:obch_nazev]) if data.key? :obch_nazev
+        if data.key? :obch_adresa
+          root << AdresaType.new('ObchAdresa', data[:obch_adresa]).builder
+        end
         root << build_element('FaktNazev', data[:fakt_nazev]) if data.key? :fakt_nazev
+        if data.key? :fakt_adresa
+          root << AdresaType.new('FaktAdresa', data[:fakt_adresa]).builder
+        end
+        if data.key? :tel
+          root << TelefonType.new('Tel', data[:tel]).builder
+        end
+        if data.key? :fax
+          root << TelefonType.new('Fax', data[:fax]).builder
+        end
+        if data.key? :mobil
+          root << TelefonType.new('Mobil', data[:mobil]).builder
+        end
         root << build_element('EMail', data[:e_mail]) if data.key? :e_mail
         root << build_element('WWW', data[:www]) if data.key? :www
         root << build_element('ICO', data[:ico]) if data.key? :ico
@@ -28,30 +42,6 @@ module MoneyS3
         root << build_element('FyzOsoba', data[:fyz_osoba]) if data.key? :fyz_osoba
         root << build_element('MenaSymb', data[:mena_symb]) if data.key? :mena_symb
         root << build_element('MenaKod', data[:mena_kod]) if data.key? :mena_kod
-
-        if data.key? :adresa
-          root << AdresaType.new('Adresa', data[:adresa]).builder
-        end
-
-        if data.key? :obch_adresa
-          root << AdresaType.new('ObchAdresa', data[:obch_adresa]).builder
-        end
-
-        if data.key? :fakt_adresa
-          root << AdresaType.new('FaktAdresa', data[:fakt_adresa]).builder
-        end
-
-        if data.key? :tel
-          root << TelefonType.new('Tel', data[:tel]).builder
-        end
-
-        if data.key? :fax
-          root << TelefonType.new('Fax', data[:fax]).builder
-        end
-
-        if data.key? :mobil
-          root << TelefonType.new('Mobil', data[:mobil]).builder
-        end
 
         root
       end

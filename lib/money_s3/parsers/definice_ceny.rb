@@ -1,9 +1,14 @@
-require 'money_s3/parsers/base_parser'
-
 module MoneyS3
   module Parsers
     class DefiniceCeny
       include BaseParser
+      include Groups::DefiniceCeny
+
+      def to_h_with_attrs
+        hash = HashWithAttributes.new({}, attributes)
+
+        mega.inject(hash) { |memo, r| memo.merge r }
+      end
     end
   end
 end

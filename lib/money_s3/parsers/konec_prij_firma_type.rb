@@ -1,8 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/adresa_type'
-require 'money_s3/parsers/telefon_type'
-require 'money_s3/parsers/eshop'
-
 module MoneyS3
   module Parsers
     class KonecPrijFirmaType
@@ -12,8 +7,24 @@ module MoneyS3
         at 'Nazev'
       end
 
+      def adresa
+        submodel_at(AdresaType, 'Adresa')
+      end
+
       def guid
         at 'GUID'
+      end
+
+      def tel
+        submodel_at(TelefonType, 'Tel')
+      end
+
+      def fax
+        submodel_at(TelefonType, 'Fax')
+      end
+
+      def mobil
+        submodel_at(TelefonType, 'Mobil')
       end
 
       def e_mail
@@ -68,31 +79,19 @@ module MoneyS3
         at 'KodPartn'
       end
 
-      def adresa
-        submodel_at(AdresaType, 'Adresa')
-      end
-
-      def tel
-        submodel_at(TelefonType, 'Tel')
-      end
-
-      def fax
-        submodel_at(TelefonType, 'Fax')
-      end
-
-      def mobil
-        submodel_at(TelefonType, 'Mobil')
-      end
-
       def eshop
-        submodel_at(Eshop, 'eshop')
+        submodel_at(Eshop2, 'eshop')
       end
 
       def to_h_with_attrs
         hash = HashWithAttributes.new({}, attributes)
 
         hash[:nazev] = nazev if has? 'Nazev'
+        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
         hash[:guid] = guid if has? 'GUID'
+        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
+        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
+        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
         hash[:e_mail] = e_mail if has? 'EMail'
         hash[:www] = www if has? 'WWW'
         hash[:ico] = ico if has? 'ICO'
@@ -106,10 +105,6 @@ module MoneyS3
         hash[:v_symb] = v_symb if has? 'VSymb'
         hash[:spec_sym] = spec_sym if has? 'SpecSym'
         hash[:kod_partn] = kod_partn if has? 'KodPartn'
-        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
-        hash[:tel] = tel.to_h_with_attrs if has? 'Tel'
-        hash[:fax] = fax.to_h_with_attrs if has? 'Fax'
-        hash[:mobil] = mobil.to_h_with_attrs if has? 'Mobil'
         hash[:eshop] = eshop.to_h_with_attrs if has? 'eshop'
 
         hash

@@ -1,9 +1,6 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/message_type'
-
 module MoneyS3
   module Builders
-    class MsgPolozType
+    class MsgPolozType < MessageType
       include BaseBuilder
 
       def builder
@@ -12,10 +9,13 @@ module MoneyS3
           data.attributes.each { |k, v| root[k] = v }
         end
 
+        super.nodes.each do |n|
+          root << n
+        end
+
         if data.key? :km_karta
           root << MessageType.new('KmKarta', data[:km_karta]).builder
         end
-
         if data.key? :sklad
           root << MessageType.new('Sklad', data[:sklad]).builder
         end

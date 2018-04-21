@@ -1,6 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/builders/pol_inv_dokl_type'
-
 module MoneyS3
   module Builders
     class InvDoklType
@@ -18,7 +15,6 @@ module MoneyS3
         root << build_element('Prac', data[:prac]) if data.key? :prac
         root << build_element('Kontr', data[:kontr]) if data.key? :kontr
         root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
-
         if data.key? :polozka
           data[:polozka].each { |i| root << PolInvDoklType.new('Polozka', i).builder }
         end

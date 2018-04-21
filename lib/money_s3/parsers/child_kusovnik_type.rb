@@ -1,6 +1,3 @@
-require 'money_s3/parsers/base_parser'
-require 'money_s3/parsers/sklad_type'
-
 module MoneyS3
   module Parsers
     class ChildKusovnikType
@@ -82,6 +79,10 @@ module MoneyS3
         at 'PodilCeny'
       end
 
+      def sklad
+        submodel_at(SkladType, 'Sklad')
+      end
+
       def pozice_vykr
         at 'PoziceVykr'
       end
@@ -96,10 +97,6 @@ module MoneyS3
 
       def poznamka
         at 'Poznamka'
-      end
-
-      def sklad
-        submodel_at(SkladType, 'Sklad')
       end
 
       def to_h_with_attrs
@@ -124,11 +121,11 @@ module MoneyS3
         hash[:last_time] = last_time if has? 'LastTime'
         hash[:start_oper] = start_oper if has? 'StartOper'
         hash[:podil_ceny] = podil_ceny if has? 'PodilCeny'
+        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
         hash[:pozice_vykr] = pozice_vykr if has? 'PoziceVykr'
         hash[:zakazka] = zakazka if has? 'Zakazka'
         hash[:stav] = stav if has? 'Stav'
         hash[:poznamka] = poznamka if has? 'Poznamka'
-        hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'
 
         hash
       end
