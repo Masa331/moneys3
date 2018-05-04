@@ -8,7 +8,7 @@ module MoneyS3
       end
 
       def data
-        submodel_at(Data, 'Data')
+        submodel_at(Data8, 'Data')
       end
 
       def to_h_with_attrs

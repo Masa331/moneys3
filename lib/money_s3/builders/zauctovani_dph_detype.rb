@@ -17,7 +17,7 @@ module MoneyS3
         root << build_element('Pozn', data[:pozn]) if data.key? :pozn
         if data.key? :seznam_obdobi_dph
           element = Ox::Element.new('SeznamObdobiDPH')
-          data[:seznam_obdobi_dph].each { |i| element << ObdobiDPH.new('ObdobiDPH', i).builder }
+          data[:seznam_obdobi_dph].each { |i| element << ObdobiDPH2.new('ObdobiDPH', i).builder }
           root << element
         end
 

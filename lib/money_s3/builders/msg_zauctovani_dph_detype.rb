@@ -14,7 +14,7 @@ module MoneyS3
         end
 
         if data.key? :data
-          root << Data.new('Data', data[:data]).builder
+          root << Data6.new('Data', data[:data]).builder
         end
 
         root

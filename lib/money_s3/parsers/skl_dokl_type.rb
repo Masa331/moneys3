@@ -180,7 +180,7 @@ module MoneyS3
       end
 
       def import
-        submodel_at(Import, 'Import')
+        submodel_at(Import2, 'Import')
       end
 
       def sklad_pro_pr

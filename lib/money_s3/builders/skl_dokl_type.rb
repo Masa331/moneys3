@@ -64,7 +64,7 @@ module MoneyS3
         root << build_element('iDokladID', data[:i_doklad_id]) if data.key? :i_doklad_id
         root << build_element('iDoklAgend', data[:i_dokl_agend]) if data.key? :i_dokl_agend
         if data.key? :import
-          root << Import.new('Import', data[:import]).builder
+          root << Import2.new('Import', data[:import]).builder
         end
         if data.key? :sklad_pro_pr
           root << SkladType.new('SkladProPr', data[:sklad_pro_pr]).builder

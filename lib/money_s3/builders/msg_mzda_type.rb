@@ -17,7 +17,7 @@ module MoneyS3
           data[:nepritomnost].each { |i| root << MessageType.new('Nepritomnost', i).builder }
         end
         if data.key? :data
-          root << Data.new('Data', data[:data]).builder
+          root << Data8.new('Data', data[:data]).builder
         end
 
         root

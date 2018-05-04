@@ -4,7 +4,7 @@ module MoneyS3
       include BaseParser
 
       def data
-        submodel_at(Data, 'Data')
+        submodel_at(Data5, 'Data')
       end
 
       def to_h_with_attrs
