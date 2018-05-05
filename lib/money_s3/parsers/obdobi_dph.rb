@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class ObdobiDPH
-      include BaseParser
+      include ParserCore::BaseParser
 
       def datum_od
         at 'DatumOd'
@@ -56,7 +56,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:datum_od] = datum_od if has? 'DatumOd'
         hash[:uc_md_1] = uc_md_1 if has? 'UcMD_1'

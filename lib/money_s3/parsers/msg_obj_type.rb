@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MsgObjType < MessageType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def dod_odb
         submodel_at(MsgFirmaType, 'DodOdb')
@@ -20,7 +20,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:dod_odb] = dod_odb.to_h_with_attrs if has? 'DodOdb'
         hash[:konec_prij] = konec_prij.to_h_with_attrs if has? 'KonecPrij'

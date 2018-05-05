@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class SkladType
-      include BaseParser
+      include ParserCore::BaseParser
       include Groups::Konfigurace
       include Groups::DefiniceCeny
 
@@ -90,7 +90,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:nazev] = nazev if has? 'Nazev'
         hash[:kod_skladu] = kod_skladu if has? 'KodSkladu'

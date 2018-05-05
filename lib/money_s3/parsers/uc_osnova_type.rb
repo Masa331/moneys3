@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class UcOsnovaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def ucet
         at 'Ucet'
@@ -64,7 +64,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:ucet] = ucet if has? 'Ucet'
         hash[:nazev] = nazev if has? 'Nazev'

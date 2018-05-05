@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class ChildKusovnikType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def cislo
         at 'Cislo'
@@ -100,7 +100,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:cislo] = cislo if has? 'Cislo'
         hash[:typ] = typ if has? 'Typ'

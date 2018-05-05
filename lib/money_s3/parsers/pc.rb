@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class PC < ProdejniCenaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def hladina
         submodel_at(CenovaHladinaType, 'Hladina')
@@ -68,7 +68,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:hladina] = hladina.to_h_with_attrs if has? 'Hladina'
         hash[:dealer_skupina] = dealer_skupina if has? 'DealerSkupina'

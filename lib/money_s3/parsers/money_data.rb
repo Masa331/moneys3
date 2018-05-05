@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MoneyData
-      include BaseParser
+      include ParserCore::BaseParser
 
       def seznam_cinnosti
         submodel_at(SeznamCinnosti, 'SeznamCinnosti')
@@ -192,7 +192,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:seznam_cinnosti] = seznam_cinnosti.to_h_with_attrs if has? 'SeznamCinnosti'
         hash[:seznam_stredisek] = seznam_stredisek.to_h_with_attrs if has? 'SeznamStredisek'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class DefSubPolType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def mj_na_sadu
         at 'MJNaSadu'
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:mj_na_sadu] = mj_na_sadu if has? 'MJNaSadu'
         hash[:polozka] = polozka.to_h_with_attrs if has? 'Polozka'

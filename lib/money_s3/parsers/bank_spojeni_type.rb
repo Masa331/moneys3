@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class BankSpojeniType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def ucet
         at 'Ucet'
@@ -20,7 +20,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:ucet] = ucet if has? 'Ucet'
         hash[:kod_banky] = kod_banky if has? 'KodBanky'

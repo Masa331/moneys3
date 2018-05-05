@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class KomponentaKusovnikType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def child
         submodel_at(ChildKusovnikType, 'Child')
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:child] = child.to_h_with_attrs if has? 'Child'
         hash[:reference] = reference.to_h_with_attrs if has? 'Reference'

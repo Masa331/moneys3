@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class SkupinaZasobType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def zkratka
         at 'Zkratka'
@@ -96,7 +96,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:zkratka] = zkratka if has? 'Zkratka'
         hash[:nazev] = nazev if has? 'Nazev'

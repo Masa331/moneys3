@@ -29,8 +29,8 @@ RSpec.describe MoneyS3::Builders::MoneyData do
     end
 
     it 'outputs xml string with attributes' do
-      str = MoneyS3::StringWithAttributes.new('123', { type: 'cellphone' })
-      hash = MoneyS3::HashWithAttributes.new({ cislo: str }, { version:  '1', license: 'ab123' })
+      str = ParserCore::StringWithAttributes.new('123', { type: 'cellphone' })
+      hash = ParserCore::HashWithAttributes.new({ cislo: str }, { version:  '1', license: 'ab123' })
 
       xml = MoneyS3::Builders::TelefonType.new('Tel', hash).to_xml.strip
 

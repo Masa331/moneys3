@@ -63,7 +63,7 @@ module MoneyS3
         end
 
         def to_h_with_attrs
-          hash = HashWithAttributes.new({}, attributes)
+          hash = ParserCore::HashWithAttributes.new({}, attributes)
 
           hash[:druh_zas] = druh_zas if has? 'Druh_zas'
           hash[:cinnosti] = cinnosti if has? 'Cinnosti'

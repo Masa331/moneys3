@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class UhradaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def doklad_uhr
         submodel_at(DoklRefType, 'DokladUhr')
@@ -60,7 +60,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:doklad_uhr] = doklad_uhr.to_h_with_attrs if has? 'DokladUhr'
         hash[:doklad_hraz] = doklad_hraz.to_h_with_attrs if has? 'DokladHraz'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class VlajkaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def id_user
         at 'IDUser'
@@ -36,7 +36,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:id_user] = id_user if has? 'IDUser'
         hash[:name_user] = name_user if has? 'NameUser'

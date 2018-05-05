@@ -1,14 +1,14 @@
 module MoneyS3
   module Parsers
     class ReferenceType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def id
         array_of_at(String, ['ID'])
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:id] = id if has? 'ID'
 

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class EShopInfo
-      include BaseParser
+      include ParserCore::BaseParser
 
       def e_shop_id
         at 'eShopID'
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:e_shop_id] = e_shop_id if has? 'eShopID'
         hash[:e_shop_name] = e_shop_name if has? 'eShopName'

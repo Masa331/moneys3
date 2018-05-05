@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MsgFirmaType < MessageType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def osoba
         array_of_at(MessageType, ['Osoba'])
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:osoba] = osoba.map(&:to_h_with_attrs) if has? 'Osoba'
         hash[:data] = data.to_h_with_attrs if has? 'Data'

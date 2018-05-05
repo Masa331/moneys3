@@ -1,7 +1,7 @@
 module MoneyS3
   module Builders
     class VariantaKusovnikType
-      include BaseBuilder
+      include ParserCore::BaseBuilder
 
       def builder
         root = Ox::Element.new(name)

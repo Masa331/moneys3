@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class VyrobniCislo
-      include BaseParser
+      include ParserCore::BaseParser
 
       def vyrobni_cis
         at 'VyrobniCis'
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:vyrobni_cis] = vyrobni_cis if has? 'VyrobniCis'
         hash[:dat_vyr] = dat_vyr if has? 'DatVyr'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class ValutyHraz
-      include BaseParser
+      include ParserCore::BaseParser
 
       def mena
         submodel_at(MenaType, 'Mena')
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
         hash[:castka] = castka if has? 'Castka'

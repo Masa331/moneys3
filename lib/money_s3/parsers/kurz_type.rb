@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class KurzType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def banka
         at 'Banka'
@@ -44,7 +44,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:banka] = banka if has? 'Banka'
         hash[:datum] = datum if has? 'Datum'

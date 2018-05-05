@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class UctyPohybuType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def uc_prodejk
         at 'UcProdejk'
@@ -36,7 +36,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:uc_prodejk] = uc_prodejk if has? 'UcProdejk'
         hash[:uc_prijemk] = uc_prijemk if has? 'UcPrijemk'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Builders
     class SeznamCenHladin < SeznamType
-      include BaseBuilder
+      include ParserCore::BaseBuilder
 
       def builder
         root = Ox::Element.new(name)

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class SouhrnDPHType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def zaklad0
         at 'Zaklad0'
@@ -28,7 +28,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:zaklad0] = zaklad0 if has? 'Zaklad0'
         hash[:zaklad5] = zaklad5 if has? 'Zaklad5'

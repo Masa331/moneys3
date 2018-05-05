@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class PolSklDoklType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def nazev
         at 'Nazev'
@@ -116,7 +116,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:nazev] = nazev if has? 'Nazev'
         hash[:pocet_mj] = pocet_mj if has? 'PocetMJ'

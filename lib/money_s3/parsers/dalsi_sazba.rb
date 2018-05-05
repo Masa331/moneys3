@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class DalsiSazba
-      include BaseParser
+      include ParserCore::BaseParser
 
       def popis
         at 'Popis'
@@ -24,7 +24,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:popis] = popis if has? 'Popis'
         hash[:hladina_dph] = hladina_dph if has? 'HladinaDPH'

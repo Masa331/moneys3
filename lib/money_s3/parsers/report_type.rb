@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class ReportType < MessageRootType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def control
         submodel_at(Control, 'Control')
@@ -160,7 +160,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:control] = control.to_h_with_attrs if has? 'Control'
         hash[:seznam_firem] = seznam_firem.map(&:to_h_with_attrs) if has? 'SeznamFirem'

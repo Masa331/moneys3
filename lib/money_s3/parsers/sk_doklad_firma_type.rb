@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class SkDokladFirmaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def obch_nazev
         at 'ObchNazev'
@@ -100,7 +100,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:obch_nazev] = obch_nazev if has? 'ObchNazev'
         hash[:obch_adresa] = obch_adresa.to_h_with_attrs if has? 'ObchAdresa'

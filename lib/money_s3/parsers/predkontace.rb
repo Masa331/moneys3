@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class Predkontace < PredkontaceType
-      include BaseParser
+      include ParserCore::BaseParser
     end
   end
 end

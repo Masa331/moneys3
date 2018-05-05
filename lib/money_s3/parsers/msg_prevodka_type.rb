@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MsgPrevodkaType < MessageType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def sklad_pro_pr
         submodel_at(MessageType, 'SkladProPr')
@@ -24,7 +24,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:sklad_pro_pr] = sklad_pro_pr.to_h_with_attrs if has? 'SkladProPr'
         hash[:dod_odb] = dod_odb.to_h_with_attrs if has? 'DodOdb'

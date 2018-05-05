@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MsgInvDoklType < MessageType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def polozka
         array_of_at(MsgPolozType, ['Polozka'])
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:polozka] = polozka.map(&:to_h_with_attrs) if has? 'Polozka'
         hash[:data] = data.to_h_with_attrs if has? 'Data'

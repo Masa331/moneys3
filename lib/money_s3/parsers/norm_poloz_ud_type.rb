@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class NormPolozUDType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def poradi
         at 'Poradi'
@@ -64,7 +64,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:poradi] = poradi if has? 'Poradi'
         hash[:popis] = popis if has? 'Popis'

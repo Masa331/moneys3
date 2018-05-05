@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MsgPohledavkaType < MessageType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def adresa
         submodel_at(MessageType, 'Adresa')
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
         hash[:polozka] = polozka.map(&:to_h_with_attrs) if has? 'Polozka'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class BankDokl < BanDoklType
-      include BaseParser
+      include ParserCore::BaseParser
     end
   end
 end

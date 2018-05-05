@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class EshopZasobaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def in_export
         at 'IN_Export'
@@ -28,7 +28,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:in_export] = in_export if has? 'IN_Export'
         hash[:in_changed] = in_changed if has? 'IN_Changed'

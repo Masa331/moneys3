@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MessageRootType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def status
         at 'Status'
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:status] = status if has? 'Status'
         hash[:reference] = reference.to_h_with_attrs if has? 'Reference'

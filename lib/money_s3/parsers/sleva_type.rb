@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class SlevaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def limit
         at 'Limit'
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:limit] = limit if has? 'Limit'
         hash[:sleva] = sleva if has? 'Sleva'

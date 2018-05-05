@@ -1,14 +1,14 @@
 module MoneyS3
   module Parsers
     class SeznamSkladu < SeznamType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def sklad
         array_of_at(Sklad, ['Sklad'])
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:sklad] = sklad.map(&:to_h_with_attrs) if has? 'Sklad'
 

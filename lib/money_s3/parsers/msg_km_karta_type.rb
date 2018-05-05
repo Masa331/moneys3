@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MsgKmKartaType < MessageType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def komponenta
         array_of_at(MsgKomponentaType, ['Komponenta'])
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:komponenta] = komponenta.map(&:to_h_with_attrs) if has? 'Komponenta'
         hash[:data] = data.to_h_with_attrs if has? 'Data'

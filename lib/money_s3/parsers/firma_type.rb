@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class FirmaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def guid
         at 'GUID'
@@ -196,7 +196,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:guid] = guid if has? 'GUID'
         hash[:nazev] = nazev if has? 'Nazev'

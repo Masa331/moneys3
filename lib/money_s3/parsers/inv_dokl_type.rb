@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class InvDoklType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def cislo_d
         at 'CisloD'
@@ -32,7 +32,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:cislo_d] = cislo_d if has? 'CisloD'
         hash[:inv_id] = inv_id if has? 'InvID'

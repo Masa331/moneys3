@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class StavZasobyType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def zasoba
         at 'Zasoba'
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:zasoba] = zasoba if has? 'Zasoba'
         hash[:rezervace] = rezervace if has? 'Rezervace'

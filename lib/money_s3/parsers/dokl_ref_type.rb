@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class DoklRefType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def id_dokladu
         at 'IDDokladu'
@@ -24,7 +24,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:id_dokladu] = id_dokladu if has? 'IDDokladu'
         hash[:cislo_dokladu] = cislo_dokladu if has? 'CisloDokladu'

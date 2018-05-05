@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class Reference
-      include BaseParser
+      include ParserCore::BaseParser
 
       def typ_kusovnik
         submodel_at(KusovnikType, 'TypKusovnik')
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:typ_kusovnik] = typ_kusovnik.to_h_with_attrs if has? 'TypKusovnik'
         hash[:vzor] = vzor.to_h_with_attrs if has? 'Vzor'

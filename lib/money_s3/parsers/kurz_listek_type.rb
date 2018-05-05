@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class KurzListekType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def banka
         at 'Banka'
@@ -20,7 +20,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:banka] = banka if has? 'Banka'
         hash[:por_cislo] = por_cislo if has? 'PorCislo'

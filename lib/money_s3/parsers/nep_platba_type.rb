@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class NepPlatbaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def platidlo
         submodel_at(NepPlatidloType, 'Platidlo')
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:platidlo] = platidlo.to_h_with_attrs if has? 'Platidlo'
         hash[:mnozstvi_mj] = mnozstvi_mj if has? 'MnozstviMJ'

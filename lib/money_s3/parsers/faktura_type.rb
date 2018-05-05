@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class FakturaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def doklad
         at 'Doklad'
@@ -372,7 +372,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:doklad] = doklad if has? 'Doklad'
         hash[:ev_cis_dokl] = ev_cis_dokl if has? 'EvCisDokl'

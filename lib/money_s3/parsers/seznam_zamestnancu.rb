@@ -1,14 +1,14 @@
 module MoneyS3
   module Parsers
     class SeznamZamestnancu < SeznamType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def zamestnanec
         array_of_at(ZamestnanecType, ['Zamestnanec'])
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:zamestnanec] = zamestnanec.map(&:to_h_with_attrs) if has? 'Zamestnanec'
 

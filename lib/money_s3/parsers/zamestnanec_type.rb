@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class ZamestnanecType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def os_cislo
         at 'OsCislo'
@@ -28,7 +28,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:os_cislo] = os_cislo if has? 'OsCislo'
         hash[:jmeno] = jmeno if has? 'Jmeno'

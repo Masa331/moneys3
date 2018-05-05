@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class AlternativaPrislusenstviType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def popis
         at 'Popis'
@@ -32,7 +32,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:popis] = popis if has? 'Popis'
         hash[:poc_mj] = poc_mj if has? 'PocMJ'

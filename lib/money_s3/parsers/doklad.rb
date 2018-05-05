@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class Doklad
-      include BaseParser
+      include ParserCore::BaseParser
 
       def druh
         at 'Druh'
@@ -36,7 +36,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:druh] = druh if has? 'Druh'
         hash[:cislo] = cislo if has? 'Cislo'

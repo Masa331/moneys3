@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class ParametrKartaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def parametr
         submodel_at(ParametrType, 'Parametr')
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:parametr] = parametr.to_h_with_attrs if has? 'Parametr'
         hash[:poradi] = poradi if has? 'Poradi'

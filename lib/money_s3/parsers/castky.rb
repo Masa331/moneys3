@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class Castky
-      include BaseParser
+      include ParserCore::BaseParser
 
       def celkem
         at 'Celkem'
@@ -60,7 +60,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:celkem] = celkem if has? 'Celkem'
         hash[:zaklad_0] = zaklad_0 if has? 'Zaklad_0'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Builders
     class KurzListek < KurzListekType
-      include BaseBuilder
+      include ParserCore::BaseBuilder
 
       def builder
         root = Ox::Element.new(name)

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class Data2
-      include BaseParser
+      include ParserCore::BaseParser
 
       def fakt_vyd_dpp
         submodel_at(FakturaType, 'FaktVyd_DPP')
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:fakt_vyd_dpp] = fakt_vyd_dpp.to_h_with_attrs if has? 'FaktVyd_DPP'
         hash[:fakt_prij_dpp] = fakt_prij_dpp.to_h_with_attrs if has? 'FaktPrij_DPP'

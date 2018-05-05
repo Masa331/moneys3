@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MzPriplatek
-      include BaseParser
+      include ParserCore::BaseParser
 
       def typ_priplatku
         submodel_at(TypPriplatkuType, 'TypPriplatku')
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:typ_priplatku] = typ_priplatku.to_h_with_attrs if has? 'TypPriplatku'
         hash[:prip_hodin] = prip_hodin if has? 'PripHodin'

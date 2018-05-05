@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class NepPlatidloType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def kod
         at 'Kod'
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:kod] = kod if has? 'Kod'
         hash[:popis] = popis if has? 'Popis'

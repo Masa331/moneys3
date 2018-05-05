@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class ZavazekType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def doklad
         at 'Doklad'
@@ -204,7 +204,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:doklad] = doklad if has? 'Doklad'
         hash[:zpusob_uctovani] = zpusob_uctovani if has? 'ZpusobUctovani'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class NepritomnostType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def typ
         at 'Typ'
@@ -64,7 +64,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:typ] = typ if has? 'Typ'
         hash[:zacatek] = zacatek if has? 'Zacatek'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class Vlajky
-      include BaseParser
+      include ParserCore::BaseParser
 
       def global
         submodel_at(VlajkaType, 'Global')
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:global] = global.to_h_with_attrs if has? 'Global'
         hash[:user] = user.to_h_with_attrs if has? 'User'

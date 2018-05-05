@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class Stredisko < StrediskoType
-      include BaseParser
+      include ParserCore::BaseParser
     end
   end
 end

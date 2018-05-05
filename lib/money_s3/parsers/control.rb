@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class Control
-      include BaseParser
+      include ParserCore::BaseParser
 
       def cislo_davky
         submodel_at(MessageRootType, 'CisloDavky')
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:cislo_davky] = cislo_davky.to_h_with_attrs if has? 'CisloDavky'
         hash[:kod_agendy] = kod_agendy.to_h_with_attrs if has? 'KodAgendy'

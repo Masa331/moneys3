@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class PokDoklType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def vydej
         at 'Vydej'
@@ -156,7 +156,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:vydej] = vydej if has? 'Vydej'
         hash[:doklad] = doklad if has? 'Doklad'

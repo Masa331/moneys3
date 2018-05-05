@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class CenaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def limit
         at 'Limit'
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:limit] = limit if has? 'Limit'
         hash[:cena] = cena if has? 'Cena'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class KomponentaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def poc_mj
         at 'PocMJ'
@@ -20,7 +20,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:poc_mj] = poc_mj if has? 'PocMJ'
         hash[:stav_zasoby] = stav_zasoby.to_h_with_attrs if has? 'StavZasoby'

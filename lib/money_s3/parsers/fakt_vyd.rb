@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class FaktVyd < FakturaType
-      include BaseParser
+      include ParserCore::BaseParser
     end
   end
 end

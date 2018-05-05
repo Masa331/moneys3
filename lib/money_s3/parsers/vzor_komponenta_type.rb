@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class VzorKomponentaType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def header
         submodel_at(HeaderKusovnikType, 'Header')
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:header] = header.to_h_with_attrs if has? 'Header'
         hash[:child] = child.to_h_with_attrs if has? 'Child'

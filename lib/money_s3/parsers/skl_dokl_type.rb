@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class SklDoklType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def cislo_dokla
         at 'CisloDokla'
@@ -208,7 +208,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:cislo_dokla] = cislo_dokla if has? 'CisloDokla'
         hash[:eet] = eet.to_h_with_attrs if has? 'EET'

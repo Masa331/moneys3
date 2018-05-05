@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class EETType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def eet_odesl
         at 'EETOdesl'
@@ -88,7 +88,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:eet_odesl] = eet_odesl if has? 'EETOdesl'
         hash[:prod_misto] = prod_misto if has? 'ProdMisto'

@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class ErrorInfoType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def error_type_coded
         at 'ErrorTypeCoded'
@@ -20,7 +20,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:error_type_coded] = error_type_coded if has? 'ErrorTypeCoded'
         hash[:error_type_other] = error_type_other if has? 'ErrorTypeOther'

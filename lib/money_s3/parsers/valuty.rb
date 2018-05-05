@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class Valuty
-      include BaseParser
+      include ParserCore::BaseParser
 
       def zaklad_mj
         at 'Zaklad_MJ'
@@ -20,7 +20,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:zaklad_mj] = zaklad_mj if has? 'Zaklad_MJ'
         hash[:dph_mj] = dph_mj if has? 'DPH_MJ'

@@ -76,9 +76,9 @@ RSpec.describe MoneyS3 do
     end
 
     it 'creates xml with attributes if given' do
-      invoice_with_attributes = MoneyS3::HashWithAttributes.new({ doklad: '123' }, { version: '1' })
+      invoice_with_attributes = ParserCore::HashWithAttributes.new({ doklad: '123' }, { version: '1' })
 
-      with_attributes = MoneyS3::HashWithAttributes.new({ fakt_vyd: [invoice_with_attributes] })
+      with_attributes = ParserCore::HashWithAttributes.new({ fakt_vyd: [invoice_with_attributes] })
       xml = MoneyS3.build({ seznam_fakt_vyd: with_attributes }).strip
 
       expect(xml).to eq_multiline(%{

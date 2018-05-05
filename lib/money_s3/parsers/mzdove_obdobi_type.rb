@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MzdoveObdobiType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def mesic
         at 'Mesic'
@@ -20,7 +20,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:mesic] = mesic if has? 'Mesic'
         hash[:rok] = rok if has? 'Rok'

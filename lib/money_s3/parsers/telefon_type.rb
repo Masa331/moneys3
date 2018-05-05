@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class TelefonType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def pred
         at 'Pred'
@@ -16,7 +16,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:pred] = pred if has? 'Pred'
         hash[:cislo] = cislo if has? 'Cislo'

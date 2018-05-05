@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class MsgKomponentaType < MessageType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def km_karta
         submodel_at(MessageType, 'KmKarta')
@@ -12,7 +12,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
         hash[:sklad] = sklad.to_h_with_attrs if has? 'Sklad'

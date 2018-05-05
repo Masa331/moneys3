@@ -1,7 +1,7 @@
 module MoneyS3
   module Parsers
     class EkategorieType
-      include BaseParser
+      include ParserCore::BaseParser
 
       def id
         at 'ID'
@@ -32,7 +32,7 @@ module MoneyS3
       end
 
       def to_h_with_attrs
-        hash = HashWithAttributes.new({}, attributes)
+        hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:id] = id if has? 'ID'
         hash[:name] = name if has? 'Name'

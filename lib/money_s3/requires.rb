@@ -1,5 +1,3 @@
-require 'money_s3/builders/base_builder'
-require 'money_s3/parsers/base_parser'
 require 'money_s3/parsers/groups/konfigurace'
 require 'money_s3/builders/groups/konfigurace'
 require 'money_s3/parsers/groups/definice_ceny'
