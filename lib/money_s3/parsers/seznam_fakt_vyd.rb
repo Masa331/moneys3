@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamFaktVyd < SeznamType
+    class SeznamFaktVyd
       include ParserCore::BaseParser
 
       def fakt_vyd
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:fakt_vyd] = fakt_vyd.map(&:to_h_with_attrs) if has? 'FaktVyd'
 
         hash
-        super.merge(hash)
       end
     end
   end

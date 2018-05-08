@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamKurzListku < SeznamType
+    class SeznamKurzListku
       include ParserCore::BaseParser
 
       def kurz_listek
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:kurz_listek] = kurz_listek.map(&:to_h_with_attrs) if has? 'KurzListek'
 
         hash
-        super.merge(hash)
       end
     end
   end

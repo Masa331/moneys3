@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamInvDokl < SeznamType
+    class SeznamInvDokl
       include ParserCore::BaseParser
 
       def inv_doklad
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:inv_doklad] = inv_doklad.map(&:to_h_with_attrs) if has? 'InvDoklad'
 
         hash
-        super.merge(hash)
       end
     end
   end

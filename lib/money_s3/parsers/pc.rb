@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class PC < ProdejniCenaType
+    class PC
       include ParserCore::BaseParser
 
       def hladina
@@ -88,7 +88,6 @@ module MoneyS3
         hash[:cena5] = cena5.to_h_with_attrs if has? 'Cena5'
 
         hash
-        super.merge(hash)
       end
     end
   end

@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamPokDokl < SeznamType
+    class SeznamPokDokl
       include ParserCore::BaseParser
 
       def pok_dokl
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:pok_dokl] = pok_dokl.map(&:to_h_with_attrs) if has? 'PokDokl'
 
         hash
-        super.merge(hash)
       end
     end
   end

@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamFaktPrij < SeznamType
+    class SeznamFaktPrij
       include ParserCore::BaseParser
 
       def fakt_prij
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:fakt_prij] = fakt_prij.map(&:to_h_with_attrs) if has? 'FaktPrij'
 
         hash
-        super.merge(hash)
       end
     end
   end

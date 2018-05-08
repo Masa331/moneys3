@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamPrevodka < SeznamType
+    class SeznamPrevodka
       include ParserCore::BaseParser
 
       def prevodka
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:prevodka] = prevodka.map(&:to_h_with_attrs) if has? 'Prevodka'
 
         hash
-        super.merge(hash)
       end
     end
   end

@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamKmKarta < SeznamType
+    class SeznamKmKarta
       include ParserCore::BaseParser
 
       def km_karta
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:km_karta] = km_karta.map(&:to_h_with_attrs) if has? 'KmKarta'
 
         hash
-        super.merge(hash)
       end
     end
   end

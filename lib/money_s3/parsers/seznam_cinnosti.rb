@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamCinnosti < SeznamType
+    class SeznamCinnosti
       include ParserCore::BaseParser
 
       def cinnost
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:cinnost] = cinnost.map(&:to_h_with_attrs) if has? 'Cinnost'
 
         hash
-        super.merge(hash)
       end
     end
   end

@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamBankDokl < SeznamType
+    class SeznamBankDokl
       include ParserCore::BaseParser
 
       def bank_dokl
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:bank_dokl] = bank_dokl.map(&:to_h_with_attrs) if has? 'BankDokl'
 
         hash
-        super.merge(hash)
       end
     end
   end

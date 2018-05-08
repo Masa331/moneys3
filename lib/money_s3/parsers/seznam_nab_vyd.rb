@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamNabVyd < SeznamType
+    class SeznamNabVyd
       include ParserCore::BaseParser
 
       def nab_vyd
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:nab_vyd] = nab_vyd.map(&:to_h_with_attrs) if has? 'NabVyd'
 
         hash
-        super.merge(hash)
       end
     end
   end

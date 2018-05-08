@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamFirem < SeznamType
+    class SeznamFirem
       include ParserCore::BaseParser
 
       def firma
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:firma] = firma.map(&:to_h_with_attrs) if has? 'Firma'
 
         hash
-        super.merge(hash)
       end
     end
   end

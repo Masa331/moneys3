@@ -20,3 +20,5 @@ end
 
 # rm lib/money_s3/parsers/* -rf; rm lib/money_s3/builders/* -rf
 # cp ~/pracovni/imagine/dame_data/moneys3_xsd/tmp/parsers/* lib/money_s3/parsers/ -r; cp ~/pracovni/imagine/dame_data/moneys3_xsd/tmp/builders/* lib/money_s3/builders/ -r; cp ~/pracovni/imagine/dame_data/moneys3_xsd/tmp/requires.rb lib/money_s3/;
+
+#rm lib/money_s3/parsers/* -rf; rm lib/money_s3/builders/* -rf; cp ~/pracovni/imagine/dame_data/moneys3_xsd/tmp/parsers/* lib/money_s3/parsers/ -r; cp ~/pracovni/imagine/dame_data/moneys3_xsd/tmp/builders/* lib/money_s3/builders/ -r; cp ~/pracovni/imagine/dame_data/moneys3_xsd/tmp/requires.rb lib/money_s3/;

@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamDLPrij < SeznamType
+    class SeznamDLPrij
       include ParserCore::BaseParser
 
       def dl_prij
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:dl_prij] = dl_prij.map(&:to_h_with_attrs) if has? 'DLPrij'
 
         hash
-        super.merge(hash)
       end
     end
   end

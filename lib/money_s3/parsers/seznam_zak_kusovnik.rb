@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamZakKusovnik < SeznamType
+    class SeznamZakKusovnik
       include ParserCore::BaseParser
 
       def zak_kusovnik
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:zak_kusovnik] = zak_kusovnik.map(&:to_h_with_attrs) if has? 'ZakKusovnik'
 
         hash
-        super.merge(hash)
       end
     end
   end

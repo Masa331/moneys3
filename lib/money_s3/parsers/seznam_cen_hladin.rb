@@ -1,6 +1,6 @@
 module MoneyS3
   module Parsers
-    class SeznamCenHladin < SeznamType
+    class SeznamCenHladin
       include ParserCore::BaseParser
 
       def cenova_hladina
@@ -13,7 +13,6 @@ module MoneyS3
         hash[:cenova_hladina] = cenova_hladina.map(&:to_h_with_attrs) if has? 'CenovaHladina'
 
         hash
-        super.merge(hash)
       end
     end
   end
