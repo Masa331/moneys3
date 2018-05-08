@@ -8,7 +8,7 @@ RSpec.describe MoneyS3 do
       let(:parsed) { MoneyS3.parse(raw) }
 
       it 'is parsed correctly' do
-        expect(parsed.seznam_fakt_vyd.fakt_vyd.last.doklad).to eq '171372'
+        expect(parsed.seznam_fakt_vyd.last.doklad).to eq '171372'
         expect(parsed.seznam_fakt_vyd_dpp.last.doklad).to eq '118008'
       end
     end
@@ -18,7 +18,7 @@ RSpec.describe MoneyS3 do
       let(:parsed) { MoneyS3.parse(raw) }
 
       it 'is parsed correctly' do
-        expect(parsed.seznam_fakt_vyd).to eq nil
+        expect(parsed.seznam_fakt_vyd).to eq []
         expect(parsed.seznam_fakt_vyd_dpp).to eq []
       end
     end
@@ -28,13 +28,13 @@ RSpec.describe MoneyS3 do
       let(:parsed) { MoneyS3.parse(raw) }
 
       it 'is parsed correctly' do
-        expect(parsed.seznam_fakt_vyd.fakt_vyd.size).to eq 2
+        expect(parsed.seznam_fakt_vyd.size).to eq 2
 
-        expect(parsed.seznam_fakt_vyd.fakt_vyd.first.attributes).to eq({ version: '1' })
-        expect(parsed.seznam_fakt_vyd.fakt_vyd.first.doklad).to eq('123')
+        expect(parsed.seznam_fakt_vyd.first.attributes).to eq({ version: '1' })
+        expect(parsed.seznam_fakt_vyd.first.doklad).to eq('123')
 
-        expect(parsed.seznam_fakt_vyd.fakt_vyd.last.attributes).to eq({ version: '2' })
-        expect(parsed.seznam_fakt_vyd.fakt_vyd.last.doklad).to eq('456')
+        expect(parsed.seznam_fakt_vyd.last.attributes).to eq({ version: '2' })
+        expect(parsed.seznam_fakt_vyd.last.doklad).to eq('456')
       end
     end
 
@@ -42,13 +42,13 @@ RSpec.describe MoneyS3 do
       raw = File.read('./spec/fixtures/with_whitespace.xml')
       parsed =  MoneyS3.parse(raw)
 
-      expect(parsed.seznam_fakt_vyd.fakt_vyd.last.doklad).to eq '171372   abc'
+      expect(parsed.seznam_fakt_vyd.last.doklad).to eq '171372   abc'
     end
   end
 
   describe '::build' do
     it 'creates xml with invoices if proper data given' do
-      xml = MoneyS3.build({ seznam_fakt_vyd: { fakt_vyd: [{ doklad: '123' }] } }).strip
+      xml = MoneyS3.build({ seznam_fakt_vyd: [{ doklad: '123' }] }).strip
 
       expect(xml).to eq_multiline(%{
         |<?xml version="1.0"?>
@@ -62,7 +62,7 @@ RSpec.describe MoneyS3 do
     end
 
     it 'created xml in given encoding with proper header' do
-      xml = MoneyS3.build({ seznam_fakt_vyd: { fakt_vyd: [{ doklad: '123 ěšč' }] } }, { encoding: 'UTF-8' }).strip
+      xml = MoneyS3.build({ seznam_fakt_vyd: [{ doklad: '123 ěšč' }] }, { encoding: 'UTF-8' }).strip
 
       expect(xml).to eq_multiline(%{
         |<?xml version="1.0" encoding="UTF-8"?>
@@ -78,8 +78,7 @@ RSpec.describe MoneyS3 do
     it 'creates xml with attributes if given' do
       invoice_with_attributes = ParserCore::HashWithAttributes.new({ doklad: '123' }, { version: '1' })
 
-      with_attributes = ParserCore::HashWithAttributes.new({ fakt_vyd: [invoice_with_attributes] })
-      xml = MoneyS3.build({ seznam_fakt_vyd: with_attributes }).strip
+      xml = MoneyS3.build({ seznam_fakt_vyd: [invoice_with_attributes] }).strip
 
       expect(xml).to eq_multiline(%{
         |<?xml version="1.0"?>

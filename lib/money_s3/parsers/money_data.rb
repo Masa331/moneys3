@@ -4,19 +4,19 @@ module MoneyS3
       include ParserCore::BaseParser
 
       def seznam_cinnosti
-        submodel_at(SeznamCinnosti, 'SeznamCinnosti')
+        array_of_at(Cinnost, ['SeznamCinnosti', 'Cinnost'])
       end
 
       def seznam_stredisek
-        submodel_at(SeznamStredisek, 'SeznamStredisek')
+        array_of_at(Stredisko, ['SeznamStredisek', 'Stredisko'])
       end
 
       def seznam_clen_dph
-        submodel_at(SeznamClenDPH, 'SeznamClenDPH')
+        array_of_at(ClenDPH, ['SeznamClenDPH', 'ClenDPH'])
       end
 
       def seznam_uc_osnov
-        submodel_at(SeznamUcOsnov, 'SeznamUcOsnov')
+        array_of_at(UcOsnovaType, ['SeznamUcOsnov', 'UcOsnova'])
       end
 
       def seznam_uc_pohybu
@@ -32,15 +32,15 @@ module MoneyS3
       end
 
       def seznam_predkontaci
-        submodel_at(SeznamPredkontaci, 'SeznamPredkontaci')
+        array_of_at(Predkontace, ['SeznamPredkontaci', 'Predkontace'])
       end
 
       def seznam_predkontaci_de
-        submodel_at(SeznamPredkontaciDE, 'SeznamPredkontaciDE')
+        array_of_at(PredkontaceDEType, ['SeznamPredkontaciDE', 'PredkontaceDE'])
       end
 
       def seznam_kurz_listku
-        submodel_at(SeznamKurzListku, 'SeznamKurzListku')
+        array_of_at(KurzListek, ['SeznamKurzListku', 'KurzListek'])
       end
 
       def seznam_parametru
@@ -60,47 +60,47 @@ module MoneyS3
       end
 
       def seznam_cen_hladin
-        submodel_at(SeznamCenHladin, 'SeznamCenHladin')
+        array_of_at(CenovaHladina, ['SeznamCenHladin', 'CenovaHladina'])
       end
 
       def seznam_firem
-        submodel_at(SeznamFirem, 'SeznamFirem')
+        array_of_at(Firma, ['SeznamFirem', 'Firma'])
       end
 
       def seznam_km_karta
-        submodel_at(SeznamKmKarta, 'SeznamKmKarta')
+        array_of_at(KmKarta, ['SeznamKmKarta', 'KmKarta'])
       end
 
       def seznam_zasoba
-        submodel_at(SeznamZasoba, 'SeznamZasoba')
+        array_of_at(Zasoba, ['SeznamZasoba', 'Zasoba'])
       end
 
       def seznam_skladu
-        submodel_at(SeznamSkladu, 'SeznamSkladu')
+        array_of_at(Sklad, ['SeznamSkladu', 'Sklad'])
       end
 
       def seznam_typ_kusovnik
-        submodel_at(SeznamTypKusovnik, 'SeznamTypKusovnik')
+        array_of_at(KusovnikType, ['SeznamTypKusovnik', 'TypKusovnik'])
       end
 
       def seznam_zak_kusovnik
-        submodel_at(SeznamZakKusovnik, 'SeznamZakKusovnik')
+        array_of_at(KusovnikType, ['SeznamZakKusovnik', 'ZakKusovnik'])
       end
 
       def seznam_zamestnancu
-        submodel_at(SeznamZamestnancu, 'SeznamZamestnancu')
+        array_of_at(ZamestnanecType, ['SeznamZamestnancu', 'Zamestnanec'])
       end
 
       def seznam_zakazka
-        submodel_at(SeznamZakazka, 'SeznamZakazka')
+        array_of_at(Zakazka, ['SeznamZakazka', 'Zakazka'])
       end
 
       def seznam_fakt_prij
-        submodel_at(SeznamFaktPrij, 'SeznamFaktPrij')
+        array_of_at(FaktPrij, ['SeznamFaktPrij', 'FaktPrij'])
       end
 
       def seznam_fakt_vyd
-        submodel_at(SeznamFaktVyd, 'SeznamFaktVyd')
+        array_of_at(FaktVyd, ['SeznamFaktVyd', 'FaktVyd'])
       end
 
       def seznam_pohledavek
@@ -112,15 +112,15 @@ module MoneyS3
       end
 
       def seznam_int_dokl
-        submodel_at(SeznamIntDokl, 'SeznamIntDokl')
+        array_of_at(IntDokl, ['SeznamIntDokl', 'IntDokl'])
       end
 
       def seznam_pok_dokl
-        submodel_at(SeznamPokDokl, 'SeznamPokDokl')
+        array_of_at(PokDokl, ['SeznamPokDokl', 'PokDokl'])
       end
 
       def seznam_bank_dokl
-        submodel_at(SeznamBankDokl, 'SeznamBankDokl')
+        array_of_at(BankDokl, ['SeznamBankDokl', 'BankDokl'])
       end
 
       def seznam_fakt_prij_dpp
@@ -132,115 +132,115 @@ module MoneyS3
       end
 
       def seznam_obj_prij
-        submodel_at(SeznamObjPrij, 'SeznamObjPrij')
+        array_of_at(ObjPrij, ['SeznamObjPrij', 'ObjPrij'])
       end
 
       def seznam_obj_vyd
-        submodel_at(SeznamObjVyd, 'SeznamObjVyd')
+        array_of_at(ObjVyd, ['SeznamObjVyd', 'ObjVyd'])
       end
 
       def seznam_nab_prij
-        submodel_at(SeznamNabPrij, 'SeznamNabPrij')
+        array_of_at(NabPrij, ['SeznamNabPrij', 'NabPrij'])
       end
 
       def seznam_nab_vyd
-        submodel_at(SeznamNabVyd, 'SeznamNabVyd')
+        array_of_at(NabVyd, ['SeznamNabVyd', 'NabVyd'])
       end
 
       def seznam_popt_prij
-        submodel_at(SeznamPoptPrij, 'SeznamPoptPrij')
+        array_of_at(PoptPrij, ['SeznamPoptPrij', 'PoptPrij'])
       end
 
       def seznam_popt_vyd
-        submodel_at(SeznamPoptVyd, 'SeznamPoptVyd')
+        array_of_at(PoptVyd, ['SeznamPoptVyd', 'PoptVyd'])
       end
 
       def seznam_prijemka
-        submodel_at(SeznamPrijemka, 'SeznamPrijemka')
+        array_of_at(Prijemka, ['SeznamPrijemka', 'Prijemka'])
       end
 
       def seznam_vydejka
-        submodel_at(SeznamVydejka, 'SeznamVydejka')
+        array_of_at(Vydejka, ['SeznamVydejka', 'Vydejka'])
       end
 
       def seznam_dl_prij
-        submodel_at(SeznamDLPrij, 'SeznamDLPrij')
+        array_of_at(DLPrij, ['SeznamDLPrij', 'DLPrij'])
       end
 
       def seznam_dl_vyd
-        submodel_at(SeznamDLVyd, 'SeznamDLVyd')
+        array_of_at(DLVyd, ['SeznamDLVyd', 'DLVyd'])
       end
 
       def seznam_prodejka
-        submodel_at(SeznamProdejka, 'SeznamProdejka')
+        array_of_at(Prodejka, ['SeznamProdejka', 'Prodejka'])
       end
 
       def seznam_prevodka
-        submodel_at(SeznamPrevodka, 'SeznamPrevodka')
+        array_of_at(Prevodka, ['SeznamPrevodka', 'Prevodka'])
       end
 
       def seznam_vyrobka
-        submodel_at(SeznamVyrobka, 'SeznamVyrobka')
+        array_of_at(Vyrobka, ['SeznamVyrobka', 'Vyrobka'])
       end
 
       def seznam_inv_dokl
-        submodel_at(SeznamInvDokl, 'SeznamInvDokl')
+        array_of_at(InvDoklType, ['SeznamInvDokl', 'InvDoklad'])
       end
 
       def seznam_mezd
-        submodel_at(SeznamMezd, 'SeznamMezd')
+        array_of_at(MzdaType, ['SeznamMezd', 'Mzda'])
       end
 
       def to_h_with_attrs
         hash = ParserCore::HashWithAttributes.new({}, attributes)
 
-        hash[:seznam_cinnosti] = seznam_cinnosti.to_h_with_attrs if has? 'SeznamCinnosti'
-        hash[:seznam_stredisek] = seznam_stredisek.to_h_with_attrs if has? 'SeznamStredisek'
-        hash[:seznam_clen_dph] = seznam_clen_dph.to_h_with_attrs if has? 'SeznamClenDPH'
-        hash[:seznam_uc_osnov] = seznam_uc_osnov.to_h_with_attrs if has? 'SeznamUcOsnov'
+        hash[:seznam_cinnosti] = seznam_cinnosti.map(&:to_h_with_attrs) if has? 'SeznamCinnosti'
+        hash[:seznam_stredisek] = seznam_stredisek.map(&:to_h_with_attrs) if has? 'SeznamStredisek'
+        hash[:seznam_clen_dph] = seznam_clen_dph.map(&:to_h_with_attrs) if has? 'SeznamClenDPH'
+        hash[:seznam_uc_osnov] = seznam_uc_osnov.map(&:to_h_with_attrs) if has? 'SeznamUcOsnov'
         hash[:seznam_uc_pohybu] = seznam_uc_pohybu.map(&:to_h_with_attrs) if has? 'SeznamUcPohybu'
         hash[:seznam_zauctovani_dph] = seznam_zauctovani_dph.map(&:to_h_with_attrs) if has? 'SeznamZauctovaniDPH'
         hash[:seznam_zauctovani_dph_de] = seznam_zauctovani_dph_de.map(&:to_h_with_attrs) if has? 'SeznamZauctovaniDPH_DE'
-        hash[:seznam_predkontaci] = seznam_predkontaci.to_h_with_attrs if has? 'SeznamPredkontaci'
-        hash[:seznam_predkontaci_de] = seznam_predkontaci_de.to_h_with_attrs if has? 'SeznamPredkontaciDE'
-        hash[:seznam_kurz_listku] = seznam_kurz_listku.to_h_with_attrs if has? 'SeznamKurzListku'
+        hash[:seznam_predkontaci] = seznam_predkontaci.map(&:to_h_with_attrs) if has? 'SeznamPredkontaci'
+        hash[:seznam_predkontaci_de] = seznam_predkontaci_de.map(&:to_h_with_attrs) if has? 'SeznamPredkontaciDE'
+        hash[:seznam_kurz_listku] = seznam_kurz_listku.map(&:to_h_with_attrs) if has? 'SeznamKurzListku'
         hash[:seznam_parametru] = seznam_parametru.map(&:to_h_with_attrs) if has? 'SeznamParametru'
         hash[:seznam_kategorii] = seznam_kategorii.map(&:to_h_with_attrs) if has? 'SeznamKategorii'
         hash[:seznam_bank_uctu_pokladen] = seznam_bank_uctu_pokladen.map(&:to_h_with_attrs) if has? 'SeznamBankUctuPokladen'
         hash[:seznam_typu_priplatku] = seznam_typu_priplatku.map(&:to_h_with_attrs) if has? 'SeznamTypuPriplatku'
-        hash[:seznam_cen_hladin] = seznam_cen_hladin.to_h_with_attrs if has? 'SeznamCenHladin'
-        hash[:seznam_firem] = seznam_firem.to_h_with_attrs if has? 'SeznamFirem'
-        hash[:seznam_km_karta] = seznam_km_karta.to_h_with_attrs if has? 'SeznamKmKarta'
-        hash[:seznam_zasoba] = seznam_zasoba.to_h_with_attrs if has? 'SeznamZasoba'
-        hash[:seznam_skladu] = seznam_skladu.to_h_with_attrs if has? 'SeznamSkladu'
-        hash[:seznam_typ_kusovnik] = seznam_typ_kusovnik.to_h_with_attrs if has? 'SeznamTypKusovnik'
-        hash[:seznam_zak_kusovnik] = seznam_zak_kusovnik.to_h_with_attrs if has? 'SeznamZakKusovnik'
-        hash[:seznam_zamestnancu] = seznam_zamestnancu.to_h_with_attrs if has? 'SeznamZamestnancu'
-        hash[:seznam_zakazka] = seznam_zakazka.to_h_with_attrs if has? 'SeznamZakazka'
-        hash[:seznam_fakt_prij] = seznam_fakt_prij.to_h_with_attrs if has? 'SeznamFaktPrij'
-        hash[:seznam_fakt_vyd] = seznam_fakt_vyd.to_h_with_attrs if has? 'SeznamFaktVyd'
+        hash[:seznam_cen_hladin] = seznam_cen_hladin.map(&:to_h_with_attrs) if has? 'SeznamCenHladin'
+        hash[:seznam_firem] = seznam_firem.map(&:to_h_with_attrs) if has? 'SeznamFirem'
+        hash[:seznam_km_karta] = seznam_km_karta.map(&:to_h_with_attrs) if has? 'SeznamKmKarta'
+        hash[:seznam_zasoba] = seznam_zasoba.map(&:to_h_with_attrs) if has? 'SeznamZasoba'
+        hash[:seznam_skladu] = seznam_skladu.map(&:to_h_with_attrs) if has? 'SeznamSkladu'
+        hash[:seznam_typ_kusovnik] = seznam_typ_kusovnik.map(&:to_h_with_attrs) if has? 'SeznamTypKusovnik'
+        hash[:seznam_zak_kusovnik] = seznam_zak_kusovnik.map(&:to_h_with_attrs) if has? 'SeznamZakKusovnik'
+        hash[:seznam_zamestnancu] = seznam_zamestnancu.map(&:to_h_with_attrs) if has? 'SeznamZamestnancu'
+        hash[:seznam_zakazka] = seznam_zakazka.map(&:to_h_with_attrs) if has? 'SeznamZakazka'
+        hash[:seznam_fakt_prij] = seznam_fakt_prij.map(&:to_h_with_attrs) if has? 'SeznamFaktPrij'
+        hash[:seznam_fakt_vyd] = seznam_fakt_vyd.map(&:to_h_with_attrs) if has? 'SeznamFaktVyd'
         hash[:seznam_pohledavek] = seznam_pohledavek.map(&:to_h_with_attrs) if has? 'SeznamPohledavek'
         hash[:seznam_zavazku] = seznam_zavazku.map(&:to_h_with_attrs) if has? 'SeznamZavazku'
-        hash[:seznam_int_dokl] = seznam_int_dokl.to_h_with_attrs if has? 'SeznamIntDokl'
-        hash[:seznam_pok_dokl] = seznam_pok_dokl.to_h_with_attrs if has? 'SeznamPokDokl'
-        hash[:seznam_bank_dokl] = seznam_bank_dokl.to_h_with_attrs if has? 'SeznamBankDokl'
+        hash[:seznam_int_dokl] = seznam_int_dokl.map(&:to_h_with_attrs) if has? 'SeznamIntDokl'
+        hash[:seznam_pok_dokl] = seznam_pok_dokl.map(&:to_h_with_attrs) if has? 'SeznamPokDokl'
+        hash[:seznam_bank_dokl] = seznam_bank_dokl.map(&:to_h_with_attrs) if has? 'SeznamBankDokl'
         hash[:seznam_fakt_prij_dpp] = seznam_fakt_prij_dpp.map(&:to_h_with_attrs) if has? 'SeznamFaktPrij_DPP'
         hash[:seznam_fakt_vyd_dpp] = seznam_fakt_vyd_dpp.map(&:to_h_with_attrs) if has? 'SeznamFaktVyd_DPP'
-        hash[:seznam_obj_prij] = seznam_obj_prij.to_h_with_attrs if has? 'SeznamObjPrij'
-        hash[:seznam_obj_vyd] = seznam_obj_vyd.to_h_with_attrs if has? 'SeznamObjVyd'
-        hash[:seznam_nab_prij] = seznam_nab_prij.to_h_with_attrs if has? 'SeznamNabPrij'
-        hash[:seznam_nab_vyd] = seznam_nab_vyd.to_h_with_attrs if has? 'SeznamNabVyd'
-        hash[:seznam_popt_prij] = seznam_popt_prij.to_h_with_attrs if has? 'SeznamPoptPrij'
-        hash[:seznam_popt_vyd] = seznam_popt_vyd.to_h_with_attrs if has? 'SeznamPoptVyd'
-        hash[:seznam_prijemka] = seznam_prijemka.to_h_with_attrs if has? 'SeznamPrijemka'
-        hash[:seznam_vydejka] = seznam_vydejka.to_h_with_attrs if has? 'SeznamVydejka'
-        hash[:seznam_dl_prij] = seznam_dl_prij.to_h_with_attrs if has? 'SeznamDLPrij'
-        hash[:seznam_dl_vyd] = seznam_dl_vyd.to_h_with_attrs if has? 'SeznamDLVyd'
-        hash[:seznam_prodejka] = seznam_prodejka.to_h_with_attrs if has? 'SeznamProdejka'
-        hash[:seznam_prevodka] = seznam_prevodka.to_h_with_attrs if has? 'SeznamPrevodka'
-        hash[:seznam_vyrobka] = seznam_vyrobka.to_h_with_attrs if has? 'SeznamVyrobka'
-        hash[:seznam_inv_dokl] = seznam_inv_dokl.to_h_with_attrs if has? 'SeznamInvDokl'
-        hash[:seznam_mezd] = seznam_mezd.to_h_with_attrs if has? 'SeznamMezd'
+        hash[:seznam_obj_prij] = seznam_obj_prij.map(&:to_h_with_attrs) if has? 'SeznamObjPrij'
+        hash[:seznam_obj_vyd] = seznam_obj_vyd.map(&:to_h_with_attrs) if has? 'SeznamObjVyd'
+        hash[:seznam_nab_prij] = seznam_nab_prij.map(&:to_h_with_attrs) if has? 'SeznamNabPrij'
+        hash[:seznam_nab_vyd] = seznam_nab_vyd.map(&:to_h_with_attrs) if has? 'SeznamNabVyd'
+        hash[:seznam_popt_prij] = seznam_popt_prij.map(&:to_h_with_attrs) if has? 'SeznamPoptPrij'
+        hash[:seznam_popt_vyd] = seznam_popt_vyd.map(&:to_h_with_attrs) if has? 'SeznamPoptVyd'
+        hash[:seznam_prijemka] = seznam_prijemka.map(&:to_h_with_attrs) if has? 'SeznamPrijemka'
+        hash[:seznam_vydejka] = seznam_vydejka.map(&:to_h_with_attrs) if has? 'SeznamVydejka'
+        hash[:seznam_dl_prij] = seznam_dl_prij.map(&:to_h_with_attrs) if has? 'SeznamDLPrij'
+        hash[:seznam_dl_vyd] = seznam_dl_vyd.map(&:to_h_with_attrs) if has? 'SeznamDLVyd'
+        hash[:seznam_prodejka] = seznam_prodejka.map(&:to_h_with_attrs) if has? 'SeznamProdejka'
+        hash[:seznam_prevodka] = seznam_prevodka.map(&:to_h_with_attrs) if has? 'SeznamPrevodka'
+        hash[:seznam_vyrobka] = seznam_vyrobka.map(&:to_h_with_attrs) if has? 'SeznamVyrobka'
+        hash[:seznam_inv_dokl] = seznam_inv_dokl.map(&:to_h_with_attrs) if has? 'SeznamInvDokl'
+        hash[:seznam_mezd] = seznam_mezd.map(&:to_h_with_attrs) if has? 'SeznamMezd'
 
         hash
       end

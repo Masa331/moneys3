@@ -8,7 +8,7 @@ module MoneyS3
       end
 
       def reference
-        submodel_at(ReferenceType, 'Reference')
+        array_of_at(String, ['Reference', 'ID'])
       end
 
       def error_info
@@ -19,7 +19,7 @@ module MoneyS3
         hash = ParserCore::HashWithAttributes.new({}, attributes)
 
         hash[:status] = status if has? 'Status'
-        hash[:reference] = reference.to_h_with_attrs if has? 'Reference'
+        hash[:reference] = reference if has? 'Reference'
         hash[:error_info] = error_info.map(&:to_h_with_attrs) if has? 'ErrorInfo'
 
         hash

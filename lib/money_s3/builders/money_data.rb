@@ -10,16 +10,24 @@ module MoneyS3
         end
 
         if data.key? :seznam_cinnosti
-          root << SeznamCinnosti.new('SeznamCinnosti', data[:seznam_cinnosti]).builder
+          element = Ox::Element.new('SeznamCinnosti')
+          data[:seznam_cinnosti].each { |i| element << Cinnost.new('Cinnost', i).builder }
+          root << element
         end
         if data.key? :seznam_stredisek
-          root << SeznamStredisek.new('SeznamStredisek', data[:seznam_stredisek]).builder
+          element = Ox::Element.new('SeznamStredisek')
+          data[:seznam_stredisek].each { |i| element << Stredisko.new('Stredisko', i).builder }
+          root << element
         end
         if data.key? :seznam_clen_dph
-          root << SeznamClenDPH.new('SeznamClenDPH', data[:seznam_clen_dph]).builder
+          element = Ox::Element.new('SeznamClenDPH')
+          data[:seznam_clen_dph].each { |i| element << ClenDPH.new('ClenDPH', i).builder }
+          root << element
         end
         if data.key? :seznam_uc_osnov
-          root << SeznamUcOsnov.new('SeznamUcOsnov', data[:seznam_uc_osnov]).builder
+          element = Ox::Element.new('SeznamUcOsnov')
+          data[:seznam_uc_osnov].each { |i| element << UcOsnovaType.new('UcOsnova', i).builder }
+          root << element
         end
         if data.key? :seznam_uc_pohybu
           element = Ox::Element.new('SeznamUcPohybu')
@@ -37,13 +45,19 @@ module MoneyS3
           root << element
         end
         if data.key? :seznam_predkontaci
-          root << SeznamPredkontaci.new('SeznamPredkontaci', data[:seznam_predkontaci]).builder
+          element = Ox::Element.new('SeznamPredkontaci')
+          data[:seznam_predkontaci].each { |i| element << Predkontace.new('Predkontace', i).builder }
+          root << element
         end
         if data.key? :seznam_predkontaci_de
-          root << SeznamPredkontaciDE.new('SeznamPredkontaciDE', data[:seznam_predkontaci_de]).builder
+          element = Ox::Element.new('SeznamPredkontaciDE')
+          data[:seznam_predkontaci_de].each { |i| element << PredkontaceDEType.new('PredkontaceDE', i).builder }
+          root << element
         end
         if data.key? :seznam_kurz_listku
-          root << SeznamKurzListku.new('SeznamKurzListku', data[:seznam_kurz_listku]).builder
+          element = Ox::Element.new('SeznamKurzListku')
+          data[:seznam_kurz_listku].each { |i| element << KurzListek.new('KurzListek', i).builder }
+          root << element
         end
         if data.key? :seznam_parametru
           element = Ox::Element.new('SeznamParametru')
@@ -66,37 +80,59 @@ module MoneyS3
           root << element
         end
         if data.key? :seznam_cen_hladin
-          root << SeznamCenHladin.new('SeznamCenHladin', data[:seznam_cen_hladin]).builder
+          element = Ox::Element.new('SeznamCenHladin')
+          data[:seznam_cen_hladin].each { |i| element << CenovaHladina.new('CenovaHladina', i).builder }
+          root << element
         end
         if data.key? :seznam_firem
-          root << SeznamFirem.new('SeznamFirem', data[:seznam_firem]).builder
+          element = Ox::Element.new('SeznamFirem')
+          data[:seznam_firem].each { |i| element << Firma.new('Firma', i).builder }
+          root << element
         end
         if data.key? :seznam_km_karta
-          root << SeznamKmKarta.new('SeznamKmKarta', data[:seznam_km_karta]).builder
+          element = Ox::Element.new('SeznamKmKarta')
+          data[:seznam_km_karta].each { |i| element << KmKarta.new('KmKarta', i).builder }
+          root << element
         end
         if data.key? :seznam_zasoba
-          root << SeznamZasoba.new('SeznamZasoba', data[:seznam_zasoba]).builder
+          element = Ox::Element.new('SeznamZasoba')
+          data[:seznam_zasoba].each { |i| element << Zasoba.new('Zasoba', i).builder }
+          root << element
         end
         if data.key? :seznam_skladu
-          root << SeznamSkladu.new('SeznamSkladu', data[:seznam_skladu]).builder
+          element = Ox::Element.new('SeznamSkladu')
+          data[:seznam_skladu].each { |i| element << Sklad.new('Sklad', i).builder }
+          root << element
         end
         if data.key? :seznam_typ_kusovnik
-          root << SeznamTypKusovnik.new('SeznamTypKusovnik', data[:seznam_typ_kusovnik]).builder
+          element = Ox::Element.new('SeznamTypKusovnik')
+          data[:seznam_typ_kusovnik].each { |i| element << KusovnikType.new('TypKusovnik', i).builder }
+          root << element
         end
         if data.key? :seznam_zak_kusovnik
-          root << SeznamZakKusovnik.new('SeznamZakKusovnik', data[:seznam_zak_kusovnik]).builder
+          element = Ox::Element.new('SeznamZakKusovnik')
+          data[:seznam_zak_kusovnik].each { |i| element << KusovnikType.new('ZakKusovnik', i).builder }
+          root << element
         end
         if data.key? :seznam_zamestnancu
-          root << SeznamZamestnancu.new('SeznamZamestnancu', data[:seznam_zamestnancu]).builder
+          element = Ox::Element.new('SeznamZamestnancu')
+          data[:seznam_zamestnancu].each { |i| element << ZamestnanecType.new('Zamestnanec', i).builder }
+          root << element
         end
         if data.key? :seznam_zakazka
-          root << SeznamZakazka.new('SeznamZakazka', data[:seznam_zakazka]).builder
+          element = Ox::Element.new('SeznamZakazka')
+          data[:seznam_zakazka].each { |i| element << Zakazka.new('Zakazka', i).builder }
+          root << element
         end
         if data.key? :seznam_fakt_prij
-          root << SeznamFaktPrij.new('SeznamFaktPrij', data[:seznam_fakt_prij]).builder
+          element = Ox::Element.new('SeznamFaktPrij')
+          data[:seznam_fakt_prij].each { |i| element << FaktPrij.new('FaktPrij', i).builder }
+          root << element
         end
         if data.key? :seznam_fakt_vyd
-          root << SeznamFaktVyd.new('SeznamFaktVyd', data[:seznam_fakt_vyd]).builder
+          element = Ox::Element.new('SeznamFaktVyd')
+          data[:seznam_fakt_vyd].each { |i| element << FaktVyd.new('FaktVyd', i).builder }
+          root << element
         end
         if data.key? :seznam_pohledavek
           element = Ox::Element.new('SeznamPohledavek')
@@ -109,13 +145,19 @@ module MoneyS3
           root << element
         end
         if data.key? :seznam_int_dokl
-          root << SeznamIntDokl.new('SeznamIntDokl', data[:seznam_int_dokl]).builder
+          element = Ox::Element.new('SeznamIntDokl')
+          data[:seznam_int_dokl].each { |i| element << IntDokl.new('IntDokl', i).builder }
+          root << element
         end
         if data.key? :seznam_pok_dokl
-          root << SeznamPokDokl.new('SeznamPokDokl', data[:seznam_pok_dokl]).builder
+          element = Ox::Element.new('SeznamPokDokl')
+          data[:seznam_pok_dokl].each { |i| element << PokDokl.new('PokDokl', i).builder }
+          root << element
         end
         if data.key? :seznam_bank_dokl
-          root << SeznamBankDokl.new('SeznamBankDokl', data[:seznam_bank_dokl]).builder
+          element = Ox::Element.new('SeznamBankDokl')
+          data[:seznam_bank_dokl].each { |i| element << BankDokl.new('BankDokl', i).builder }
+          root << element
         end
         if data.key? :seznam_fakt_prij_dpp
           element = Ox::Element.new('SeznamFaktPrij_DPP')
@@ -128,49 +170,79 @@ module MoneyS3
           root << element
         end
         if data.key? :seznam_obj_prij
-          root << SeznamObjPrij.new('SeznamObjPrij', data[:seznam_obj_prij]).builder
+          element = Ox::Element.new('SeznamObjPrij')
+          data[:seznam_obj_prij].each { |i| element << ObjPrij.new('ObjPrij', i).builder }
+          root << element
         end
         if data.key? :seznam_obj_vyd
-          root << SeznamObjVyd.new('SeznamObjVyd', data[:seznam_obj_vyd]).builder
+          element = Ox::Element.new('SeznamObjVyd')
+          data[:seznam_obj_vyd].each { |i| element << ObjVyd.new('ObjVyd', i).builder }
+          root << element
         end
         if data.key? :seznam_nab_prij
-          root << SeznamNabPrij.new('SeznamNabPrij', data[:seznam_nab_prij]).builder
+          element = Ox::Element.new('SeznamNabPrij')
+          data[:seznam_nab_prij].each { |i| element << NabPrij.new('NabPrij', i).builder }
+          root << element
         end
         if data.key? :seznam_nab_vyd
-          root << SeznamNabVyd.new('SeznamNabVyd', data[:seznam_nab_vyd]).builder
+          element = Ox::Element.new('SeznamNabVyd')
+          data[:seznam_nab_vyd].each { |i| element << NabVyd.new('NabVyd', i).builder }
+          root << element
         end
         if data.key? :seznam_popt_prij
-          root << SeznamPoptPrij.new('SeznamPoptPrij', data[:seznam_popt_prij]).builder
+          element = Ox::Element.new('SeznamPoptPrij')
+          data[:seznam_popt_prij].each { |i| element << PoptPrij.new('PoptPrij', i).builder }
+          root << element
         end
         if data.key? :seznam_popt_vyd
-          root << SeznamPoptVyd.new('SeznamPoptVyd', data[:seznam_popt_vyd]).builder
+          element = Ox::Element.new('SeznamPoptVyd')
+          data[:seznam_popt_vyd].each { |i| element << PoptVyd.new('PoptVyd', i).builder }
+          root << element
         end
         if data.key? :seznam_prijemka
-          root << SeznamPrijemka.new('SeznamPrijemka', data[:seznam_prijemka]).builder
+          element = Ox::Element.new('SeznamPrijemka')
+          data[:seznam_prijemka].each { |i| element << Prijemka.new('Prijemka', i).builder }
+          root << element
         end
         if data.key? :seznam_vydejka
-          root << SeznamVydejka.new('SeznamVydejka', data[:seznam_vydejka]).builder
+          element = Ox::Element.new('SeznamVydejka')
+          data[:seznam_vydejka].each { |i| element << Vydejka.new('Vydejka', i).builder }
+          root << element
         end
         if data.key? :seznam_dl_prij
-          root << SeznamDLPrij.new('SeznamDLPrij', data[:seznam_dl_prij]).builder
+          element = Ox::Element.new('SeznamDLPrij')
+          data[:seznam_dl_prij].each { |i| element << DLPrij.new('DLPrij', i).builder }
+          root << element
         end
         if data.key? :seznam_dl_vyd
-          root << SeznamDLVyd.new('SeznamDLVyd', data[:seznam_dl_vyd]).builder
+          element = Ox::Element.new('SeznamDLVyd')
+          data[:seznam_dl_vyd].each { |i| element << DLVyd.new('DLVyd', i).builder }
+          root << element
         end
         if data.key? :seznam_prodejka
-          root << SeznamProdejka.new('SeznamProdejka', data[:seznam_prodejka]).builder
+          element = Ox::Element.new('SeznamProdejka')
+          data[:seznam_prodejka].each { |i| element << Prodejka.new('Prodejka', i).builder }
+          root << element
         end
         if data.key? :seznam_prevodka
-          root << SeznamPrevodka.new('SeznamPrevodka', data[:seznam_prevodka]).builder
+          element = Ox::Element.new('SeznamPrevodka')
+          data[:seznam_prevodka].each { |i| element << Prevodka.new('Prevodka', i).builder }
+          root << element
         end
         if data.key? :seznam_vyrobka
-          root << SeznamVyrobka.new('SeznamVyrobka', data[:seznam_vyrobka]).builder
+          element = Ox::Element.new('SeznamVyrobka')
+          data[:seznam_vyrobka].each { |i| element << Vyrobka.new('Vyrobka', i).builder }
+          root << element
         end
         if data.key? :seznam_inv_dokl
-          root << SeznamInvDokl.new('SeznamInvDokl', data[:seznam_inv_dokl]).builder
+          element = Ox::Element.new('SeznamInvDokl')
+          data[:seznam_inv_dokl].each { |i| element << InvDoklType.new('InvDoklad', i).builder }
+          root << element
         end
         if data.key? :seznam_mezd
-          root << SeznamMezd.new('SeznamMezd', data[:seznam_mezd]).builder
+          element = Ox::Element.new('SeznamMezd')
+          data[:seznam_mezd].each { |i| element << MzdaType.new('Mzda', i).builder }
+          root << element
         end
 
         root

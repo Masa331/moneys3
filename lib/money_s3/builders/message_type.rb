@@ -11,7 +11,9 @@ module MoneyS3
 
         root << build_element('Status', data[:status]) if data.key? :status
         if data.key? :reference
-          root << ReferenceType.new('Reference', data[:reference]).builder
+          element = Ox::Element.new('Reference')
+          data[:reference].map { |i| Ox::Element.new('ID') << i }.each { |i| element << i }
+          root << element
         end
         if data.key? :error_info
           data[:error_info].each { |i| root << ErrorInfoType.new('ErrorInfo', i).builder }
