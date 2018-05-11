@@ -2,6 +2,7 @@ module MoneyS3
   module Builders
     class CenovaHladinaType
       include ParserCore::BaseBuilder
+      include Groups::DefiniceCeny
 
       def builder
         root = Ox::Element.new(name)
@@ -17,6 +18,10 @@ module MoneyS3
         end
         root << build_element('Skup', data[:skup]) if data.key? :skup
         root << build_element('Ceny', data[:ceny]) if data.key? :ceny
+
+        mega.each do |r|
+          r.nodes.each { |n| root << n }
+        end
 
         root
       end

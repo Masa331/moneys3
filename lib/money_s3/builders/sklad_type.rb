@@ -2,6 +2,8 @@ module MoneyS3
   module Builders
     class SkladType
       include ParserCore::BaseBuilder
+      include Groups::Konfigurace
+      include Groups::DefiniceCeny
 
       def builder
         root = Ox::Element.new(name)
@@ -36,6 +38,10 @@ module MoneyS3
         root << build_element('ProdejkVz', data[:prodejk_vz]) if data.key? :prodejk_vz
         root << build_element('VDodLstVz', data[:v_dod_lst_vz]) if data.key? :v_dod_lst_vz
         root << build_element('PDodLstVz', data[:p_dod_lst_vz]) if data.key? :p_dod_lst_vz
+
+        mega.each do |r|
+          r.nodes.each { |n| root << n }
+        end
 
         root
       end

@@ -13,8 +13,6 @@ module MoneyS3
           root << n
         end
 
-
-
         root
       end
     end
