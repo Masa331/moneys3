@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'money_s3'
-  spec.version       = '0.11.0'
+  spec.version       = '0.12.0'
   spec.authors       = ['Premysl Donat']
   spec.email         = ['pdonat@seznam.cz']
 
@@ -21,11 +21,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ox'
   spec.add_dependency 'damedata_parser_core'
 
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "rspec-its"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "saharspec"
-  spec.add_development_dependency "nokogiri"
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rspec-its'
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'saharspec'
+  spec.add_development_dependency 'nokogiri'
 end
