@@ -11,11 +11,12 @@ module MoneyS3
         submodel_at(FirmaType, 'Data')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:osoba] = osoba.map(&:to_h_with_attrs) if has? 'Osoba'
-        hash[:data] = data.to_h_with_attrs if has? 'Data'
+        hash[:osoba] = osoba.map(&:to_h) if has? 'Osoba'
+        hash[:data] = data.to_h if has? 'Data'
 
         hash
         super.merge(hash)

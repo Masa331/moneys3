@@ -19,13 +19,14 @@ module MoneyS3
         submodel_at(PokDoklType, 'Data')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:adresa] = adresa.to_h_with_attrs if has? 'Adresa'
-        hash[:polozka] = polozka.map(&:to_h_with_attrs) if has? 'Polozka'
-        hash[:uhrada] = uhrada.map(&:to_h_with_attrs) if has? 'Uhrada'
-        hash[:data] = data.to_h_with_attrs if has? 'Data'
+        hash[:adresa] = adresa.to_h if has? 'Adresa'
+        hash[:polozka] = polozka.map(&:to_h) if has? 'Polozka'
+        hash[:uhrada] = uhrada.map(&:to_h) if has? 'Uhrada'
+        hash[:data] = data.to_h if has? 'Data'
 
         hash
         super.merge(hash)

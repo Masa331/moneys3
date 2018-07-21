@@ -5,8 +5,8 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
         if data.key? :mena
@@ -15,7 +15,7 @@ module MoneyS3
         if data.key? :souhrn_dph
           root << SouhrnDPHType.new('SouhrnDPH', data[:souhrn_dph]).builder
         end
-        root << build_element('Celkem', data[:celkem]) if data.key? :celkem
+        root << build_element('Celkem', data[:celkem], data[:celkem_attributes]) if data.key? :celkem
 
         root
       end

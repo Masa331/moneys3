@@ -5,20 +5,20 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
-        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
-        root << build_element('DatumOd', data[:datum_od]) if data.key? :datum_od
-        root << build_element('Popis', data[:popis]) if data.key? :popis
-        root << build_element('Typ', data[:typ]) if data.key? :typ
-        root << build_element('Kolonka', data[:kolonka]) if data.key? :kolonka
-        root << build_element('KodPlneni', data[:kod_plneni]) if data.key? :kod_plneni
-        root << build_element('BezOdpoctu', data[:bez_odpoctu]) if data.key? :bez_odpoctu
-        root << build_element('NoKoef', data[:no_koef]) if data.key? :no_koef
-        root << build_element('Majetek', data[:majetek]) if data.key? :majetek
-        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
+        root << build_element('Zkrat', data[:zkrat], data[:zkrat_attributes]) if data.key? :zkrat
+        root << build_element('DatumOd', data[:datum_od], data[:datum_od_attributes]) if data.key? :datum_od
+        root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
+        root << build_element('Typ', data[:typ], data[:typ_attributes]) if data.key? :typ
+        root << build_element('Kolonka', data[:kolonka], data[:kolonka_attributes]) if data.key? :kolonka
+        root << build_element('KodPlneni', data[:kod_plneni], data[:kod_plneni_attributes]) if data.key? :kod_plneni
+        root << build_element('BezOdpoctu', data[:bez_odpoctu], data[:bez_odpoctu_attributes]) if data.key? :bez_odpoctu
+        root << build_element('NoKoef', data[:no_koef], data[:no_koef_attributes]) if data.key? :no_koef
+        root << build_element('Majetek', data[:majetek], data[:majetek_attributes]) if data.key? :majetek
+        root << build_element('Pozn', data[:pozn], data[:pozn_attributes]) if data.key? :pozn
 
         root
       end

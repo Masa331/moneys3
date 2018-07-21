@@ -5,17 +5,17 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
-        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
-        root << build_element('Popis', data[:popis]) if data.key? :popis
-        root << build_element('Typ', data[:typ]) if data.key? :typ
-        root << build_element('PohZak', data[:poh_zak]) if data.key? :poh_zak
-        root << build_element('ZauctDPH', data[:zauct_dph]) if data.key? :zauct_dph
-        root << build_element('Cleneni', data[:cleneni]) if data.key? :cleneni
-        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
+        root << build_element('Zkrat', data[:zkrat], data[:zkrat_attributes]) if data.key? :zkrat
+        root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
+        root << build_element('Typ', data[:typ], data[:typ_attributes]) if data.key? :typ
+        root << build_element('PohZak', data[:poh_zak], data[:poh_zak_attributes]) if data.key? :poh_zak
+        root << build_element('ZauctDPH', data[:zauct_dph], data[:zauct_dph_attributes]) if data.key? :zauct_dph
+        root << build_element('Cleneni', data[:cleneni], data[:cleneni_attributes]) if data.key? :cleneni
+        root << build_element('Pozn', data[:pozn], data[:pozn_attributes]) if data.key? :pozn
 
         root
       end

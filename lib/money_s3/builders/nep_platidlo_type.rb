@@ -5,13 +5,13 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
-        root << build_element('Kod', data[:kod]) if data.key? :kod
-        root << build_element('Popis', data[:popis]) if data.key? :popis
-        root << build_element('VarSymb', data[:var_symb]) if data.key? :var_symb
+        root << build_element('Kod', data[:kod], data[:kod_attributes]) if data.key? :kod
+        root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
+        root << build_element('VarSymb', data[:var_symb], data[:var_symb_attributes]) if data.key? :var_symb
 
         root
       end

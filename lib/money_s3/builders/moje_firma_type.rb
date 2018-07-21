@@ -5,19 +5,19 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
-        root << build_element('Nazev', data[:nazev]) if data.key? :nazev
+        root << build_element('Nazev', data[:nazev], data[:nazev_attributes]) if data.key? :nazev
         if data.key? :adresa
           root << AdresaType.new('Adresa', data[:adresa]).builder
         end
-        root << build_element('ObchNazev', data[:obch_nazev]) if data.key? :obch_nazev
+        root << build_element('ObchNazev', data[:obch_nazev], data[:obch_nazev_attributes]) if data.key? :obch_nazev
         if data.key? :obch_adresa
           root << AdresaType.new('ObchAdresa', data[:obch_adresa]).builder
         end
-        root << build_element('FaktNazev', data[:fakt_nazev]) if data.key? :fakt_nazev
+        root << build_element('FaktNazev', data[:fakt_nazev], data[:fakt_nazev_attributes]) if data.key? :fakt_nazev
         if data.key? :fakt_adresa
           root << AdresaType.new('FaktAdresa', data[:fakt_adresa]).builder
         end
@@ -30,18 +30,18 @@ module MoneyS3
         if data.key? :mobil
           root << TelefonType.new('Mobil', data[:mobil]).builder
         end
-        root << build_element('EMail', data[:e_mail]) if data.key? :e_mail
-        root << build_element('WWW', data[:www]) if data.key? :www
-        root << build_element('ICO', data[:ico]) if data.key? :ico
-        root << build_element('DIC', data[:dic]) if data.key? :dic
-        root << build_element('DICSK', data[:dicsk]) if data.key? :dicsk
-        root << build_element('Banka', data[:banka]) if data.key? :banka
-        root << build_element('Ucet', data[:ucet]) if data.key? :ucet
-        root << build_element('KodBanky', data[:kod_banky]) if data.key? :kod_banky
-        root << build_element('KodPartn', data[:kod_partn]) if data.key? :kod_partn
-        root << build_element('FyzOsoba', data[:fyz_osoba]) if data.key? :fyz_osoba
-        root << build_element('MenaSymb', data[:mena_symb]) if data.key? :mena_symb
-        root << build_element('MenaKod', data[:mena_kod]) if data.key? :mena_kod
+        root << build_element('EMail', data[:e_mail], data[:e_mail_attributes]) if data.key? :e_mail
+        root << build_element('WWW', data[:www], data[:www_attributes]) if data.key? :www
+        root << build_element('ICO', data[:ico], data[:ico_attributes]) if data.key? :ico
+        root << build_element('DIC', data[:dic], data[:dic_attributes]) if data.key? :dic
+        root << build_element('DICSK', data[:dicsk], data[:dicsk_attributes]) if data.key? :dicsk
+        root << build_element('Banka', data[:banka], data[:banka_attributes]) if data.key? :banka
+        root << build_element('Ucet', data[:ucet], data[:ucet_attributes]) if data.key? :ucet
+        root << build_element('KodBanky', data[:kod_banky], data[:kod_banky_attributes]) if data.key? :kod_banky
+        root << build_element('KodPartn', data[:kod_partn], data[:kod_partn_attributes]) if data.key? :kod_partn
+        root << build_element('FyzOsoba', data[:fyz_osoba], data[:fyz_osoba_attributes]) if data.key? :fyz_osoba
+        root << build_element('MenaSymb', data[:mena_symb], data[:mena_symb_attributes]) if data.key? :mena_symb
+        root << build_element('MenaKod', data[:mena_kod], data[:mena_kod_attributes]) if data.key? :mena_kod
 
         root
       end

@@ -5,11 +5,11 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
-        root << build_element('Status', data[:status]) if data.key? :status
+        root << build_element('Status', data[:status], data[:status_attributes]) if data.key? :status
         if data.key? :reference
           element = Ox::Element.new('Reference')
           data[:reference].map { |i| Ox::Element.new('ID') << i }.each { |i| element << i }

@@ -7,10 +7,11 @@ module MoneyS3
         array_of_at(Vydejka, ['Vydejka'])
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:vydejka] = vydejka.map(&:to_h_with_attrs) if has? 'Vydejka'
+        hash[:vydejka] = vydejka.map(&:to_h) if has? 'Vydejka'
 
         hash
       end

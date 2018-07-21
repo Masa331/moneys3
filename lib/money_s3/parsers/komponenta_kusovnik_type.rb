@@ -11,11 +11,12 @@ module MoneyS3
         submodel_at(Reference, 'Reference')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:child] = child.to_h_with_attrs if has? 'Child'
-        hash[:reference] = reference.to_h_with_attrs if has? 'Reference'
+        hash[:child] = child.to_h if has? 'Child'
+        hash[:reference] = reference.to_h if has? 'Reference'
 
         hash
       end

@@ -15,12 +15,13 @@ module MoneyS3
         array_of_at(KomponentaKusovnikType, ['SeznamKomponent', 'Komponenta'])
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:header] = header.to_h_with_attrs if has? 'Header'
-        hash[:child] = child.to_h_with_attrs if has? 'Child'
-        hash[:seznam_komponent] = seznam_komponent.map(&:to_h_with_attrs) if has? 'SeznamKomponent'
+        hash[:header] = header.to_h if has? 'Header'
+        hash[:child] = child.to_h if has? 'Child'
+        hash[:seznam_komponent] = seznam_komponent.map(&:to_h) if has? 'SeznamKomponent'
 
         hash
       end

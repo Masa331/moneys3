@@ -5,65 +5,65 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
-        root << build_element('Doklad', data[:doklad]) if data.key? :doklad
-        root << build_element('Popis', data[:popis]) if data.key? :popis
-        root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
-        root << build_element('TextPredPo', data[:text_pred_po]) if data.key? :text_pred_po
-        root << build_element('TextZaPol', data[:text_za_pol]) if data.key? :text_za_pol
-        root << build_element('Vystaveno', data[:vystaveno]) if data.key? :vystaveno
-        root << build_element('Vyridit_do', data[:vyridit_do]) if data.key? :vyridit_do
-        root << build_element('Vyrizeno', data[:vyrizeno]) if data.key? :vyrizeno
+        root << build_element('Doklad', data[:doklad], data[:doklad_attributes]) if data.key? :doklad
+        root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
+        root << build_element('Poznamka', data[:poznamka], data[:poznamka_attributes]) if data.key? :poznamka
+        root << build_element('TextPredPo', data[:text_pred_po], data[:text_pred_po_attributes]) if data.key? :text_pred_po
+        root << build_element('TextZaPol', data[:text_za_pol], data[:text_za_pol_attributes]) if data.key? :text_za_pol
+        root << build_element('Vystaveno', data[:vystaveno], data[:vystaveno_attributes]) if data.key? :vystaveno
+        root << build_element('Vyridit_do', data[:vyridit_do], data[:vyridit_do_attributes]) if data.key? :vyridit_do
+        root << build_element('Vyrizeno', data[:vyrizeno], data[:vyrizeno_attributes]) if data.key? :vyrizeno
         if data.key? :dod_odb
           root << DokladFirmaType.new('DodOdb', data[:dod_odb]).builder
         end
         if data.key? :konec_prij
           root << KonecPrijFirmaType.new('KonecPrij', data[:konec_prij]).builder
         end
-        root << build_element('KPFromOdb', data[:kp_from_odb]) if data.key? :kp_from_odb
-        root << build_element('SazbaDPH1', data[:sazba_dph1]) if data.key? :sazba_dph1
-        root << build_element('SazbaDPH2', data[:sazba_dph2]) if data.key? :sazba_dph2
+        root << build_element('KPFromOdb', data[:kp_from_odb], data[:kp_from_odb_attributes]) if data.key? :kp_from_odb
+        root << build_element('SazbaDPH1', data[:sazba_dph1], data[:sazba_dph1_attributes]) if data.key? :sazba_dph1
+        root << build_element('SazbaDPH2', data[:sazba_dph2], data[:sazba_dph2_attributes]) if data.key? :sazba_dph2
         if data.key? :souhrn_dph
           root << SouhrnDPHType.new('SouhrnDPH', data[:souhrn_dph]).builder
         end
-        root << build_element('Celkem', data[:celkem]) if data.key? :celkem
+        root << build_element('Celkem', data[:celkem], data[:celkem_attributes]) if data.key? :celkem
         if data.key? :valuty
           root << Valuty2.new('Valuty', data[:valuty]).builder
         end
-        root << build_element('DRada', data[:d_rada]) if data.key? :d_rada
-        root << build_element('DCislo', data[:d_cislo]) if data.key? :d_cislo
-        root << build_element('Stredisko', data[:stredisko]) if data.key? :stredisko
-        root << build_element('Zakazka', data[:zakazka]) if data.key? :zakazka
-        root << build_element('Cinnost', data[:cinnost]) if data.key? :cinnost
-        root << build_element('Vystavil', data[:vystavil]) if data.key? :vystavil
-        root << build_element('NeRezervov', data[:ne_rezervov]) if data.key? :ne_rezervov
-        root << build_element('PevneCeny', data[:pevne_ceny]) if data.key? :pevne_ceny
-        root << build_element('PlatPodm', data[:plat_podm]) if data.key? :plat_podm
-        root << build_element('Doprava', data[:doprava]) if data.key? :doprava
-        root << build_element('CasVystave', data[:cas_vystave]) if data.key? :cas_vystave
-        root << build_element('DatumVysta', data[:datum_vysta]) if data.key? :datum_vysta
-        root << build_element('Nadpis', data[:nadpis]) if data.key? :nadpis
-        root << build_element('VyriditNej', data[:vyridit_nej]) if data.key? :vyridit_nej
-        root << build_element('ZkratkaTyp', data[:zkratka_typ]) if data.key? :zkratka_typ
-        root << build_element('PrimDoklad', data[:prim_doklad]) if data.key? :prim_doklad
-        root << build_element('VarSymbol', data[:var_symbol]) if data.key? :var_symbol
-        root << build_element('NeVyrizova', data[:ne_vyrizova]) if data.key? :ne_vyrizova
-        root << build_element('SizDecDPH', data[:siz_dec_dph]) if data.key? :siz_dec_dph
-        root << build_element('SizDecCelk', data[:siz_dec_celk]) if data.key? :siz_dec_celk
-        root << build_element('ZobrPoznVy', data[:zobr_pozn_vy]) if data.key? :zobr_pozn_vy
-        root << build_element('StatMOSS', data[:stat_moss]) if data.key? :stat_moss
-        root << build_element('TypTransakce', data[:typ_transakce]) if data.key? :typ_transakce
-        root << build_element('DodaciPodm', data[:dodaci_podm]) if data.key? :dodaci_podm
-        root << build_element('DruhDopravy', data[:druh_dopravy]) if data.key? :druh_dopravy
-        root << build_element('StOdeslUrc', data[:st_odesl_urc]) if data.key? :st_odesl_urc
-        root << build_element('Sleva', data[:sleva]) if data.key? :sleva
+        root << build_element('DRada', data[:d_rada], data[:d_rada_attributes]) if data.key? :d_rada
+        root << build_element('DCislo', data[:d_cislo], data[:d_cislo_attributes]) if data.key? :d_cislo
+        root << build_element('Stredisko', data[:stredisko], data[:stredisko_attributes]) if data.key? :stredisko
+        root << build_element('Zakazka', data[:zakazka], data[:zakazka_attributes]) if data.key? :zakazka
+        root << build_element('Cinnost', data[:cinnost], data[:cinnost_attributes]) if data.key? :cinnost
+        root << build_element('Vystavil', data[:vystavil], data[:vystavil_attributes]) if data.key? :vystavil
+        root << build_element('NeRezervov', data[:ne_rezervov], data[:ne_rezervov_attributes]) if data.key? :ne_rezervov
+        root << build_element('PevneCeny', data[:pevne_ceny], data[:pevne_ceny_attributes]) if data.key? :pevne_ceny
+        root << build_element('PlatPodm', data[:plat_podm], data[:plat_podm_attributes]) if data.key? :plat_podm
+        root << build_element('Doprava', data[:doprava], data[:doprava_attributes]) if data.key? :doprava
+        root << build_element('CasVystave', data[:cas_vystave], data[:cas_vystave_attributes]) if data.key? :cas_vystave
+        root << build_element('DatumVysta', data[:datum_vysta], data[:datum_vysta_attributes]) if data.key? :datum_vysta
+        root << build_element('Nadpis', data[:nadpis], data[:nadpis_attributes]) if data.key? :nadpis
+        root << build_element('VyriditNej', data[:vyridit_nej], data[:vyridit_nej_attributes]) if data.key? :vyridit_nej
+        root << build_element('ZkratkaTyp', data[:zkratka_typ], data[:zkratka_typ_attributes]) if data.key? :zkratka_typ
+        root << build_element('PrimDoklad', data[:prim_doklad], data[:prim_doklad_attributes]) if data.key? :prim_doklad
+        root << build_element('VarSymbol', data[:var_symbol], data[:var_symbol_attributes]) if data.key? :var_symbol
+        root << build_element('NeVyrizova', data[:ne_vyrizova], data[:ne_vyrizova_attributes]) if data.key? :ne_vyrizova
+        root << build_element('SizDecDPH', data[:siz_dec_dph], data[:siz_dec_dph_attributes]) if data.key? :siz_dec_dph
+        root << build_element('SizDecCelk', data[:siz_dec_celk], data[:siz_dec_celk_attributes]) if data.key? :siz_dec_celk
+        root << build_element('ZobrPoznVy', data[:zobr_pozn_vy], data[:zobr_pozn_vy_attributes]) if data.key? :zobr_pozn_vy
+        root << build_element('StatMOSS', data[:stat_moss], data[:stat_moss_attributes]) if data.key? :stat_moss
+        root << build_element('TypTransakce', data[:typ_transakce], data[:typ_transakce_attributes]) if data.key? :typ_transakce
+        root << build_element('DodaciPodm', data[:dodaci_podm], data[:dodaci_podm_attributes]) if data.key? :dodaci_podm
+        root << build_element('DruhDopravy', data[:druh_dopravy], data[:druh_dopravy_attributes]) if data.key? :druh_dopravy
+        root << build_element('StOdeslUrc', data[:st_odesl_urc], data[:st_odesl_urc_attributes]) if data.key? :st_odesl_urc
+        root << build_element('Sleva', data[:sleva], data[:sleva_attributes]) if data.key? :sleva
         if data.key? :eshop
           root << Eshop3.new('eshop', data[:eshop]).builder
         end
-        root << build_element('Pojisteno', data[:pojisteno]) if data.key? :pojisteno
+        root << build_element('Pojisteno', data[:pojisteno], data[:pojisteno_attributes]) if data.key? :pojisteno
         if data.key? :prepravce
           root << PrepravceType.new('Prepravce', data[:prepravce]).builder
         end

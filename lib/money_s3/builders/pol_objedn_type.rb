@@ -5,39 +5,39 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
-        root << build_element('Popis', data[:popis]) if data.key? :popis
-        root << build_element('Poznamka', data[:poznamka]) if data.key? :poznamka
-        root << build_element('PocetMJ', data[:pocet_mj]) if data.key? :pocet_mj
-        root << build_element('ZbyvaMJ', data[:zbyva_mj]) if data.key? :zbyva_mj
-        root << build_element('Cena', data[:cena]) if data.key? :cena
+        root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
+        root << build_element('Poznamka', data[:poznamka], data[:poznamka_attributes]) if data.key? :poznamka
+        root << build_element('PocetMJ', data[:pocet_mj], data[:pocet_mj_attributes]) if data.key? :pocet_mj
+        root << build_element('ZbyvaMJ', data[:zbyva_mj], data[:zbyva_mj_attributes]) if data.key? :zbyva_mj
+        root << build_element('Cena', data[:cena], data[:cena_attributes]) if data.key? :cena
         if data.key? :souhrn_dph
           root << SouhrnDPHPolType.new('SouhrnDPH', data[:souhrn_dph]).builder
         end
-        root << build_element('SazbaDPH', data[:sazba_dph]) if data.key? :sazba_dph
-        root << build_element('TypCeny', data[:typ_ceny]) if data.key? :typ_ceny
-        root << build_element('Sleva', data[:sleva]) if data.key? :sleva
-        root << build_element('Vystaveno', data[:vystaveno]) if data.key? :vystaveno
-        root << build_element('VyriditNej', data[:vyridit_nej]) if data.key? :vyridit_nej
-        root << build_element('Vyridit_do', data[:vyridit_do]) if data.key? :vyridit_do
-        root << build_element('Vyrizeno', data[:vyrizeno]) if data.key? :vyrizeno
-        root << build_element('Poradi', data[:poradi]) if data.key? :poradi
-        root << build_element('Stredisko', data[:stredisko]) if data.key? :stredisko
-        root << build_element('Zakazka', data[:zakazka]) if data.key? :zakazka
-        root << build_element('Cinnost', data[:cinnost]) if data.key? :cinnost
-        root << build_element('CenovaHlad', data[:cenova_hlad]) if data.key? :cenova_hlad
-        root << build_element('Valuty', data[:valuty]) if data.key? :valuty
-        root << build_element('KodStatuPuv', data[:kod_statu_puv]) if data.key? :kod_statu_puv
-        root << build_element('TypTransakce', data[:typ_transakce]) if data.key? :typ_transakce
-        root << build_element('Hmotnost', data[:hmotnost]) if data.key? :hmotnost
-        root << build_element('CenaPoSleve', data[:cena_po_sleve]) if data.key? :cena_po_sleve
-        root << build_element('ZvlRezim', data[:zvl_rezim]) if data.key? :zvl_rezim
-        root << build_element('ZvlDPH', data[:zvl_dph]) if data.key? :zvl_dph
-        root << build_element('RezimEET', data[:rezim_eet]) if data.key? :rezim_eet
-        root << build_element('PredPC', data[:pred_pc]) if data.key? :pred_pc
+        root << build_element('SazbaDPH', data[:sazba_dph], data[:sazba_dph_attributes]) if data.key? :sazba_dph
+        root << build_element('TypCeny', data[:typ_ceny], data[:typ_ceny_attributes]) if data.key? :typ_ceny
+        root << build_element('Sleva', data[:sleva], data[:sleva_attributes]) if data.key? :sleva
+        root << build_element('Vystaveno', data[:vystaveno], data[:vystaveno_attributes]) if data.key? :vystaveno
+        root << build_element('VyriditNej', data[:vyridit_nej], data[:vyridit_nej_attributes]) if data.key? :vyridit_nej
+        root << build_element('Vyridit_do', data[:vyridit_do], data[:vyridit_do_attributes]) if data.key? :vyridit_do
+        root << build_element('Vyrizeno', data[:vyrizeno], data[:vyrizeno_attributes]) if data.key? :vyrizeno
+        root << build_element('Poradi', data[:poradi], data[:poradi_attributes]) if data.key? :poradi
+        root << build_element('Stredisko', data[:stredisko], data[:stredisko_attributes]) if data.key? :stredisko
+        root << build_element('Zakazka', data[:zakazka], data[:zakazka_attributes]) if data.key? :zakazka
+        root << build_element('Cinnost', data[:cinnost], data[:cinnost_attributes]) if data.key? :cinnost
+        root << build_element('CenovaHlad', data[:cenova_hlad], data[:cenova_hlad_attributes]) if data.key? :cenova_hlad
+        root << build_element('Valuty', data[:valuty], data[:valuty_attributes]) if data.key? :valuty
+        root << build_element('KodStatuPuv', data[:kod_statu_puv], data[:kod_statu_puv_attributes]) if data.key? :kod_statu_puv
+        root << build_element('TypTransakce', data[:typ_transakce], data[:typ_transakce_attributes]) if data.key? :typ_transakce
+        root << build_element('Hmotnost', data[:hmotnost], data[:hmotnost_attributes]) if data.key? :hmotnost
+        root << build_element('CenaPoSleve', data[:cena_po_sleve], data[:cena_po_sleve_attributes]) if data.key? :cena_po_sleve
+        root << build_element('ZvlRezim', data[:zvl_rezim], data[:zvl_rezim_attributes]) if data.key? :zvl_rezim
+        root << build_element('ZvlDPH', data[:zvl_dph], data[:zvl_dph_attributes]) if data.key? :zvl_dph
+        root << build_element('RezimEET', data[:rezim_eet], data[:rezim_eet_attributes]) if data.key? :rezim_eet
+        root << build_element('PredPC', data[:pred_pc], data[:pred_pc_attributes]) if data.key? :pred_pc
         if data.key? :sklad
           root << SkladType.new('Sklad', data[:sklad]).builder
         end

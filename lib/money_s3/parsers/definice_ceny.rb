@@ -4,8 +4,9 @@ module MoneyS3
       include ParserCore::BaseParser
       include Groups::DefiniceCeny
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
         mega.inject(hash) { |memo, r| memo.merge r }
       end

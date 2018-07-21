@@ -23,14 +23,15 @@ module MoneyS3
         submodel_at(SklDoklType, 'Data')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:sklad_pro_pr] = sklad_pro_pr.to_h_with_attrs if has? 'SkladProPr'
-        hash[:dod_odb] = dod_odb.to_h_with_attrs if has? 'DodOdb'
-        hash[:konec_prij] = konec_prij.to_h_with_attrs if has? 'KonecPrij'
-        hash[:polozka] = polozka.map(&:to_h_with_attrs) if has? 'Polozka'
-        hash[:data] = data.to_h_with_attrs if has? 'Data'
+        hash[:sklad_pro_pr] = sklad_pro_pr.to_h if has? 'SkladProPr'
+        hash[:dod_odb] = dod_odb.to_h if has? 'DodOdb'
+        hash[:konec_prij] = konec_prij.to_h if has? 'KonecPrij'
+        hash[:polozka] = polozka.map(&:to_h) if has? 'Polozka'
+        hash[:data] = data.to_h if has? 'Data'
 
         hash
         super.merge(hash)

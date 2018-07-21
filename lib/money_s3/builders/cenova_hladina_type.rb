@@ -6,18 +6,18 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
-        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
-        root << build_element('Nazev', data[:nazev]) if data.key? :nazev
-        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
+        root << build_element('Zkrat', data[:zkrat], data[:zkrat_attributes]) if data.key? :zkrat
+        root << build_element('Nazev', data[:nazev], data[:nazev_attributes]) if data.key? :nazev
+        root << build_element('Pozn', data[:pozn], data[:pozn_attributes]) if data.key? :pozn
         if data.key? :mena
           root << MenaType.new('Mena', data[:mena]).builder
         end
-        root << build_element('Skup', data[:skup]) if data.key? :skup
-        root << build_element('Ceny', data[:ceny]) if data.key? :ceny
+        root << build_element('Skup', data[:skup], data[:skup_attributes]) if data.key? :skup
+        root << build_element('Ceny', data[:ceny], data[:ceny_attributes]) if data.key? :ceny
 
         mega.each do |r|
           r.nodes.each { |n| root << n }

@@ -7,10 +7,11 @@ module MoneyS3
         submodel_at(ZauctovaniDPHType, 'ZauctovaniDPH')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:zauctovani_dph] = zauctovani_dph.to_h_with_attrs if has? 'ZauctovaniDPH'
+        hash[:zauctovani_dph] = zauctovani_dph.to_h if has? 'ZauctovaniDPH'
 
         hash
       end

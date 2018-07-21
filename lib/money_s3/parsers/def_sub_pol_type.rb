@@ -7,15 +7,21 @@ module MoneyS3
         at 'MJNaSadu'
       end
 
+      def mj_na_sadu_attributes
+        attributes_at 'MJNaSadu'
+      end
+
       def polozka
         submodel_at(PolSklDoklType, 'Polozka')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
         hash[:mj_na_sadu] = mj_na_sadu if has? 'MJNaSadu'
-        hash[:polozka] = polozka.to_h_with_attrs if has? 'Polozka'
+        hash[:mj_na_sadu_attributes] = mj_na_sadu_attributes if has? 'MJNaSadu'
+        hash[:polozka] = polozka.to_h if has? 'Polozka'
 
         hash
       end

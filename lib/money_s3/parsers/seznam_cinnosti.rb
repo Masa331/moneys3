@@ -7,10 +7,11 @@ module MoneyS3
         array_of_at(Cinnost, ['Cinnost'])
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:cinnost] = cinnost.map(&:to_h_with_attrs) if has? 'Cinnost'
+        hash[:cinnost] = cinnost.map(&:to_h) if has? 'Cinnost'
 
         hash
       end

@@ -7,10 +7,11 @@ module MoneyS3
         submodel_at(PredkontaceDEType, 'PredkontaceDE')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:predkontace_de] = predkontace_de.to_h_with_attrs if has? 'PredkontaceDE'
+        hash[:predkontace_de] = predkontace_de.to_h if has? 'PredkontaceDE'
 
         hash
       end

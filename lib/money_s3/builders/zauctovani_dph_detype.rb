@@ -5,16 +5,16 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.respond_to? :attributes
-          data.attributes.each { |k, v| root[k] = v }
+        if data.key? :attributes
+          data[:attributes].each { |k, v| root[k] = v }
         end
 
-        root << build_element('Zkrat', data[:zkrat]) if data.key? :zkrat
-        root << build_element('Typ', data[:typ]) if data.key? :typ
-        root << build_element('Popis', data[:popis]) if data.key? :popis
-        root << build_element('PohDSS', data[:poh_dss]) if data.key? :poh_dss
-        root << build_element('PohDZS', data[:poh_dzs]) if data.key? :poh_dzs
-        root << build_element('Pozn', data[:pozn]) if data.key? :pozn
+        root << build_element('Zkrat', data[:zkrat], data[:zkrat_attributes]) if data.key? :zkrat
+        root << build_element('Typ', data[:typ], data[:typ_attributes]) if data.key? :typ
+        root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
+        root << build_element('PohDSS', data[:poh_dss], data[:poh_dss_attributes]) if data.key? :poh_dss
+        root << build_element('PohDZS', data[:poh_dzs], data[:poh_dzs_attributes]) if data.key? :poh_dzs
+        root << build_element('Pozn', data[:pozn], data[:pozn_attributes]) if data.key? :pozn
         if data.key? :seznam_obdobi_dph
           element = Ox::Element.new('SeznamObdobiDPH')
           data[:seznam_obdobi_dph].each { |i| element << ObdobiDPH2.new('ObdobiDPH', i).builder }

@@ -6,7 +6,7 @@ RSpec.describe MoneyS3::Builders::MoneyData do
     ox = Ox.load(raw).locate('Tel').first
     parsed = MoneyS3::Parsers::TelefonType.new(ox)
 
-    xml = MoneyS3::Builders::TelefonType.new('Tel', parsed.to_h_with_attrs).to_xml.strip
+    xml = MoneyS3::Builders::TelefonType.new('Tel', parsed.to_h).to_xml.strip
 
     expect(xml).to eq_multiline(%{
       |<?xml version="1.0"?>
@@ -29,10 +29,11 @@ RSpec.describe MoneyS3::Builders::MoneyData do
     end
 
     it 'outputs xml string with attributes' do
-      str = ParserCore::StringWithAttributes.new('123', { type: 'cellphone' })
-      hash = ParserCore::HashWithAttributes.new({ cislo: str }, { version:  '1', license: 'ab123' })
+      data = { cislo: '123',
+               cislo_attributes: { type: 'cellphone' },
+               attributes: { version:  '1', license: 'ab123' } }
 
-      xml = MoneyS3::Builders::TelefonType.new('Tel', hash).to_xml.strip
+      xml = MoneyS3::Builders::TelefonType.new('Tel', data).to_xml.strip
 
       expect(xml).to eq_multiline(%{
         |<?xml version="1.0"?>

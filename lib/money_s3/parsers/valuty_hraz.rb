@@ -11,11 +11,17 @@ module MoneyS3
         at 'Castka'
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def castka_attributes
+        attributes_at 'Castka'
+      end
 
-        hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
+
+        hash[:mena] = mena.to_h if has? 'Mena'
         hash[:castka] = castka if has? 'Castka'
+        hash[:castka_attributes] = castka_attributes if has? 'Castka'
 
         hash
       end

@@ -11,11 +11,12 @@ module MoneyS3
         submodel_at(FakturaType, 'FaktPrij')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:fakt_vyd] = fakt_vyd.to_h_with_attrs if has? 'FaktVyd'
-        hash[:fakt_prij] = fakt_prij.to_h_with_attrs if has? 'FaktPrij'
+        hash[:fakt_vyd] = fakt_vyd.to_h if has? 'FaktVyd'
+        hash[:fakt_prij] = fakt_prij.to_h if has? 'FaktPrij'
 
         hash
       end

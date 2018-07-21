@@ -12,7 +12,7 @@ RSpec.describe MoneyS3::Parsers::FakturaType do
         expect(subject.attributes).to eq({ version: '1' })
       end
       it 'parses attributes on value elements' do
-        expect(subject.doklad.attributes).to eq({ type: 'ordered' })
+        expect(subject.doklad_attributes).to eq({ type: 'ordered' })
       end
     end
 

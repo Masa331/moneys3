@@ -7,14 +7,20 @@ module MoneyS3
         at 'Chyba'
       end
 
+      def chyba_attributes
+        attributes_at 'Chyba'
+      end
+
       def varovani
         array_of_at(String, ['Varovani'])
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
         hash[:chyba] = chyba if has? 'Chyba'
+        hash[:chyba_attributes] = chyba_attributes if has? 'Chyba'
         hash[:varovani] = varovani if has? 'Varovani'
 
         hash

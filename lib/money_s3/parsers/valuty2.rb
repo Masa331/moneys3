@@ -15,12 +15,18 @@ module MoneyS3
         at 'Celkem'
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def celkem_attributes
+        attributes_at 'Celkem'
+      end
 
-        hash[:mena] = mena.to_h_with_attrs if has? 'Mena'
-        hash[:souhrn_dph] = souhrn_dph.to_h_with_attrs if has? 'SouhrnDPH'
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
+
+        hash[:mena] = mena.to_h if has? 'Mena'
+        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
         hash[:celkem] = celkem if has? 'Celkem'
+        hash[:celkem_attributes] = celkem_attributes if has? 'Celkem'
 
         hash
       end

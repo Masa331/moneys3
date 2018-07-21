@@ -11,11 +11,12 @@ module MoneyS3
         submodel_at(VlajkaType, 'User')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:global] = global.to_h_with_attrs if has? 'Global'
-        hash[:user] = user.to_h_with_attrs if has? 'User'
+        hash[:global] = global.to_h if has? 'Global'
+        hash[:user] = user.to_h if has? 'User'
 
         hash
       end

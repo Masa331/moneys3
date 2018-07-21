@@ -15,12 +15,13 @@ module MoneyS3
         submodel_at(MessageRootType, 'HospRok')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:cislo_davky] = cislo_davky.to_h_with_attrs if has? 'CisloDavky'
-        hash[:kod_agendy] = kod_agendy.to_h_with_attrs if has? 'KodAgendy'
-        hash[:hosp_rok] = hosp_rok.to_h_with_attrs if has? 'HospRok'
+        hash[:cislo_davky] = cislo_davky.to_h if has? 'CisloDavky'
+        hash[:kod_agendy] = kod_agendy.to_h if has? 'KodAgendy'
+        hash[:hosp_rok] = hosp_rok.to_h if has? 'HospRok'
 
         hash
       end

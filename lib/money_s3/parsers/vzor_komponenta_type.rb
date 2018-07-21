@@ -15,12 +15,13 @@ module MoneyS3
         submodel_at(KmKartaType, 'KmKarta')
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
-        hash[:header] = header.to_h_with_attrs if has? 'Header'
-        hash[:child] = child.to_h_with_attrs if has? 'Child'
-        hash[:km_karta] = km_karta.to_h_with_attrs if has? 'KmKarta'
+        hash[:header] = header.to_h if has? 'Header'
+        hash[:child] = child.to_h if has? 'Child'
+        hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
 
         hash
       end

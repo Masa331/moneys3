@@ -8,13 +8,13 @@ module MoneyS3
             data.attributes.each { |k, v| root[k] = v }
           end
 
-          root << build_element('SDPH', data[:sdph]) if data.key? :sdph
-          root << build_element('Zaok', data[:zaok]) if data.key? :zaok
-          root << build_element('ZpusobZao', data[:zpusob_zao]) if data.key? :zpusob_zao
-          root << build_element('VychA', data[:vych_a]) if data.key? :vych_a
-          root << build_element('ZpusobZmA', data[:zpusob_zm_a]) if data.key? :zpusob_zm_a
-          root << build_element('VychB', data[:vych_b]) if data.key? :vych_b
-          root << build_element('ZpusobZmB', data[:zpusob_zm_b]) if data.key? :zpusob_zm_b
+          root << build_element('SDPH', data[:sdph], data[:sdph_attributes]) if data.key? :sdph
+          root << build_element('Zaok', data[:zaok], data[:zaok_attributes]) if data.key? :zaok
+          root << build_element('ZpusobZao', data[:zpusob_zao], data[:zpusob_zao_attributes]) if data.key? :zpusob_zao
+          root << build_element('VychA', data[:vych_a], data[:vych_a_attributes]) if data.key? :vych_a
+          root << build_element('ZpusobZmA', data[:zpusob_zm_a], data[:zpusob_zm_a_attributes]) if data.key? :zpusob_zm_a
+          root << build_element('VychB', data[:vych_b], data[:vych_b_attributes]) if data.key? :vych_b
+          root << build_element('ZpusobZmB', data[:zpusob_zm_b], data[:zpusob_zm_b_attributes]) if data.key? :zpusob_zm_b
           if data.key? :sleva1
             root << SlevaType.new('Sleva1', data[:sleva1]).builder
           end

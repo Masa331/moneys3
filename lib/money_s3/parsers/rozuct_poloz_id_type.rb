@@ -7,65 +7,126 @@ module MoneyS3
         at 'Popis'
       end
 
+      def popis_attributes
+        attributes_at 'Popis'
+      end
+
       def uc_md
         at 'UcMD'
+      end
+
+      def uc_md_attributes
+        attributes_at 'UcMD'
       end
 
       def uc_d
         at 'UcD'
       end
 
+      def uc_d_attributes
+        attributes_at 'UcD'
+      end
+
       def castka
         at 'Castka'
+      end
+
+      def castka_attributes
+        attributes_at 'Castka'
       end
 
       def stred
         at 'Stred'
       end
 
+      def stred_attributes
+        attributes_at 'Stred'
+      end
+
       def zakazka
         at 'Zakazka'
+      end
+
+      def zakazka_attributes
+        attributes_at 'Zakazka'
       end
 
       def cinnost
         at 'Cinnost'
       end
 
+      def cinnost_attributes
+        attributes_at 'Cinnost'
+      end
+
       def par_sym
         at 'ParSym'
+      end
+
+      def par_sym_attributes
+        attributes_at 'ParSym'
       end
 
       def par_ico
         at 'ParICO'
       end
 
+      def par_ico_attributes
+        attributes_at 'ParICO'
+      end
+
       def pozn
         at 'Pozn'
+      end
+
+      def pozn_attributes
+        attributes_at 'Pozn'
       end
 
       def typ_cena
         at 'TypCena'
       end
 
+      def typ_cena_attributes
+        attributes_at 'TypCena'
+      end
+
       def sazba_dph
         at 'SazbaDPH'
       end
 
-      def to_h_with_attrs
-        hash = ParserCore::HashWithAttributes.new({}, attributes)
+      def sazba_dph_attributes
+        attributes_at 'SazbaDPH'
+      end
+
+      def to_h
+        hash = {}
+        hash[:attributes] = attributes
 
         hash[:popis] = popis if has? 'Popis'
+        hash[:popis_attributes] = popis_attributes if has? 'Popis'
         hash[:uc_md] = uc_md if has? 'UcMD'
+        hash[:uc_md_attributes] = uc_md_attributes if has? 'UcMD'
         hash[:uc_d] = uc_d if has? 'UcD'
+        hash[:uc_d_attributes] = uc_d_attributes if has? 'UcD'
         hash[:castka] = castka if has? 'Castka'
+        hash[:castka_attributes] = castka_attributes if has? 'Castka'
         hash[:stred] = stred if has? 'Stred'
+        hash[:stred_attributes] = stred_attributes if has? 'Stred'
         hash[:zakazka] = zakazka if has? 'Zakazka'
+        hash[:zakazka_attributes] = zakazka_attributes if has? 'Zakazka'
         hash[:cinnost] = cinnost if has? 'Cinnost'
+        hash[:cinnost_attributes] = cinnost_attributes if has? 'Cinnost'
         hash[:par_sym] = par_sym if has? 'ParSym'
+        hash[:par_sym_attributes] = par_sym_attributes if has? 'ParSym'
         hash[:par_ico] = par_ico if has? 'ParICO'
+        hash[:par_ico_attributes] = par_ico_attributes if has? 'ParICO'
         hash[:pozn] = pozn if has? 'Pozn'
+        hash[:pozn_attributes] = pozn_attributes if has? 'Pozn'
         hash[:typ_cena] = typ_cena if has? 'TypCena'
+        hash[:typ_cena_attributes] = typ_cena_attributes if has? 'TypCena'
         hash[:sazba_dph] = sazba_dph if has? 'SazbaDPH'
+        hash[:sazba_dph_attributes] = sazba_dph_attributes if has? 'SazbaDPH'
 
         hash
       end
