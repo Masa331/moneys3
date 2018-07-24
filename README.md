@@ -1,7 +1,7 @@
 # MoneyS3
 
-Unstable until 1.0.0
+This gem allows to parse and build any Money S3 entity defined in theirs XML schemas. However i didn't yet have a time to document it.
 
-## License
+But it works pretty much the same as [pohoda](https://github.com/Masa331/pohoda) so if you are desperate, look there, the principle is the same.
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+Premysl Donat
