@@ -19,6 +19,14 @@ module MoneyS3
         array_of_at(ErrorInfoType, ['ErrorInfo'])
       end
 
+      def data
+        at 'Data'
+      end
+
+      def data_attributes
+        attributes_at 'Data'
+      end
+
       def to_h
         hash = {}
         hash[:attributes] = attributes
@@ -27,6 +35,8 @@ module MoneyS3
         hash[:status_attributes] = status_attributes if has? 'Status'
         hash[:reference] = reference if has? 'Reference'
         hash[:error_info] = error_info.map(&:to_h) if has? 'ErrorInfo'
+        hash[:data] = data if has? 'Data'
+        hash[:data_attributes] = data_attributes if has? 'Data'
 
         hash
       end

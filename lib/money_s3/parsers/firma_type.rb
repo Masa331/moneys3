@@ -75,6 +75,22 @@ module MoneyS3
         attributes_at 'EMail'
       end
 
+      def e_mail_kopie
+        at 'EMailKopie'
+      end
+
+      def e_mail_kopie_attributes
+        attributes_at 'EMailKopie'
+      end
+
+      def e_mail_skryt
+        at 'EMailSkryt'
+      end
+
+      def e_mail_skryt_attributes
+        attributes_at 'EMailSkryt'
+      end
+
       def www
         at 'WWW'
       end
@@ -259,6 +275,14 @@ module MoneyS3
         attributes_at 'SplZavDni'
       end
 
+      def odesl_upom
+        at 'OdeslUpom'
+      end
+
+      def odesl_upom_attributes
+        attributes_at 'OdeslUpom'
+      end
+
       def sleva
         at 'Sleva'
       end
@@ -361,6 +385,10 @@ module MoneyS3
         hash[:mobil] = mobil.to_h if has? 'Mobil'
         hash[:e_mail] = e_mail if has? 'EMail'
         hash[:e_mail_attributes] = e_mail_attributes if has? 'EMail'
+        hash[:e_mail_kopie] = e_mail_kopie if has? 'EMailKopie'
+        hash[:e_mail_kopie_attributes] = e_mail_kopie_attributes if has? 'EMailKopie'
+        hash[:e_mail_skryt] = e_mail_skryt if has? 'EMailSkryt'
+        hash[:e_mail_skryt_attributes] = e_mail_skryt_attributes if has? 'EMailSkryt'
         hash[:www] = www if has? 'WWW'
         hash[:www_attributes] = www_attributes if has? 'WWW'
         hash[:spojeni] = spojeni if has? 'Spojeni'
@@ -407,6 +435,8 @@ module MoneyS3
         hash[:spl_poh_dni_attributes] = spl_poh_dni_attributes if has? 'SplPohDni'
         hash[:spl_zav_dni] = spl_zav_dni if has? 'SplZavDni'
         hash[:spl_zav_dni_attributes] = spl_zav_dni_attributes if has? 'SplZavDni'
+        hash[:odesl_upom] = odesl_upom if has? 'OdeslUpom'
+        hash[:odesl_upom_attributes] = odesl_upom_attributes if has? 'OdeslUpom'
         hash[:sleva] = sleva if has? 'Sleva'
         hash[:sleva_attributes] = sleva_attributes if has? 'Sleva'
         hash[:flag_sleva] = flag_sleva if has? 'FlagSleva'

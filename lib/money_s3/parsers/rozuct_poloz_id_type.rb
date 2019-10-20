@@ -99,6 +99,10 @@ module MoneyS3
         attributes_at 'SazbaDPH'
       end
 
+      def adresa
+        submodel_at(FirmaType, 'Adresa')
+      end
+
       def to_h
         hash = {}
         hash[:attributes] = attributes
@@ -127,6 +131,7 @@ module MoneyS3
         hash[:typ_cena_attributes] = typ_cena_attributes if has? 'TypCena'
         hash[:sazba_dph] = sazba_dph if has? 'SazbaDPH'
         hash[:sazba_dph_attributes] = sazba_dph_attributes if has? 'SazbaDPH'
+        hash[:adresa] = adresa.to_h if has? 'Adresa'
 
         hash
       end

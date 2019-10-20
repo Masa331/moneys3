@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
         root << build_element('Zkrat', data[:zkrat], data[:zkrat_attributes]) if data.key? :zkrat
@@ -20,13 +18,11 @@ module MoneyS3
         root << build_element('BCTyp', data[:bc_typ], data[:bc_typ_attributes]) if data.key? :bc_typ
         root << build_element('TypZarDoby', data[:typ_zar_doby], data[:typ_zar_doby_attributes]) if data.key? :typ_zar_doby
         root << build_element('ZarDoba', data[:zar_doba], data[:zar_doba_attributes]) if data.key? :zar_doba
-        root << build_element('EvDruhy', data[:ev_druhy], data[:ev_druhy_attributes]) if data.key? :ev_druhy
+        root << build_element('ZbozKuch', data[:zboz_kuch], data[:zboz_kuch_attributes]) if data.key? :zboz_kuch
         root << build_element('EvVyrCis', data[:ev_vyr_cis], data[:ev_vyr_cis_attributes]) if data.key? :ev_vyr_cis
         root << build_element('DesMist', data[:des_mist], data[:des_mist_attributes]) if data.key? :des_mist
         root << build_element('Obrazek', data[:obrazek], data[:obrazek_attributes]) if data.key? :obrazek
         root << build_element('Obrazek2', data[:obrazek2], data[:obrazek2_attributes]) if data.key? :obrazek2
-        root << build_element('Zarovnat', data[:zarovnat], data[:zarovnat_attributes]) if data.key? :zarovnat
-        root << build_element('Zarovnat2', data[:zarovnat2], data[:zarovnat2_attributes]) if data.key? :zarovnat2
         if data.key? :konfigurace
           root << Konfigurace.new('konfigurace', data[:konfigurace]).builder
         end
@@ -47,7 +43,6 @@ module MoneyS3
         root << build_element('PredmPln', data[:predm_pln], data[:predm_pln_attributes]) if data.key? :predm_pln
         root << build_element('KodStatu', data[:kod_statu], data[:kod_statu_attributes]) if data.key? :kod_statu
         root << build_element('TypKarty', data[:typ_karty], data[:typ_karty_attributes]) if data.key? :typ_karty
-        root << build_element('ZbozKuch', data[:zboz_kuch], data[:zboz_kuch_attributes]) if data.key? :zboz_kuch
         root << build_element('iDoklPol', data[:i_dokl_pol], data[:i_dokl_pol_attributes]) if data.key? :i_dokl_pol
         root << build_element('iDoklAgend', data[:i_dokl_agend], data[:i_dokl_agend_attributes]) if data.key? :i_dokl_agend
         if data.key? :slozeni

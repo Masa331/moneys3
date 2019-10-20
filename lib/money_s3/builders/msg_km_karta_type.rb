@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         super.nodes.each do |n|
           root << n
@@ -15,9 +13,6 @@ module MoneyS3
 
         if data.key? :komponenta
           data[:komponenta].each { |i| root << MsgKomponentaType.new('Komponenta', i).builder }
-        end
-        if data.key? :data
-          root << KmKartaType.new('Data', data[:data]).builder
         end
 
         root

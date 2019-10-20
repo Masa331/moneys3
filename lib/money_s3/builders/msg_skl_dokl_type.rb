@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         super.nodes.each do |n|
           root << n
@@ -24,9 +22,6 @@ module MoneyS3
         end
         if data.key? :nep_platba
           data[:nep_platba].each { |i| root << MessageType.new('NepPlatba', i).builder }
-        end
-        if data.key? :data
-          root << SklDoklType.new('Data', data[:data]).builder
         end
 
         root

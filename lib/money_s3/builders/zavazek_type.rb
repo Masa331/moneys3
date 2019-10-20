@@ -5,12 +5,12 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Doklad', data[:doklad], data[:doklad_attributes]) if data.key? :doklad
         root << build_element('ZpusobUctovani', data[:zpusob_uctovani], data[:zpusob_uctovani_attributes]) if data.key? :zpusob_uctovani
+        root << build_element('Storno', data[:storno], data[:storno_attributes]) if data.key? :storno
+        root << build_element('Del', data[:del], data[:del_attributes]) if data.key? :del
         root << build_element('DRada', data[:d_rada], data[:d_rada_attributes]) if data.key? :d_rada
         root << build_element('DCislo', data[:d_cislo], data[:d_cislo_attributes]) if data.key? :d_cislo
         root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
@@ -39,6 +39,7 @@ module MoneyS3
         root << build_element('PlnenDPH', data[:plnen_dph], data[:plnen_dph_attributes]) if data.key? :plnen_dph
         root << build_element('UcelZdPl', data[:ucel_zd_pl], data[:ucel_zd_pl_attributes]) if data.key? :ucel_zd_pl
         root << build_element('Pozn', data[:pozn], data[:pozn_attributes]) if data.key? :pozn
+        root << build_element('ZpVypDPH', data[:zp_vyp_dph], data[:zp_vyp_dph_attributes]) if data.key? :zp_vyp_dph
         root << build_element('SSazba', data[:s_sazba], data[:s_sazba_attributes]) if data.key? :s_sazba
         root << build_element('ZSazba', data[:z_sazba], data[:z_sazba_attributes]) if data.key? :z_sazba
         if data.key? :souhrn_dph

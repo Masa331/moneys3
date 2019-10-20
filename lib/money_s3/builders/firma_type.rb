@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('GUID', data[:guid], data[:guid_attributes]) if data.key? :guid
         root << build_element('Nazev', data[:nazev], data[:nazev_attributes]) if data.key? :nazev
@@ -33,6 +31,8 @@ module MoneyS3
           root << TelefonType.new('Mobil', data[:mobil]).builder
         end
         root << build_element('EMail', data[:e_mail], data[:e_mail_attributes]) if data.key? :e_mail
+        root << build_element('EMailKopie', data[:e_mail_kopie], data[:e_mail_kopie_attributes]) if data.key? :e_mail_kopie
+        root << build_element('EMailSkryt', data[:e_mail_skryt], data[:e_mail_skryt_attributes]) if data.key? :e_mail_skryt
         root << build_element('WWW', data[:www], data[:www_attributes]) if data.key? :www
         root << build_element('Spojeni', data[:spojeni], data[:spojeni_attributes]) if data.key? :spojeni
         root << build_element('ICO', data[:ico], data[:ico_attributes]) if data.key? :ico
@@ -56,6 +56,7 @@ module MoneyS3
         root << build_element('SplatZav', data[:splat_zav], data[:splat_zav_attributes]) if data.key? :splat_zav
         root << build_element('SplPohDni', data[:spl_poh_dni], data[:spl_poh_dni_attributes]) if data.key? :spl_poh_dni
         root << build_element('SplZavDni', data[:spl_zav_dni], data[:spl_zav_dni_attributes]) if data.key? :spl_zav_dni
+        root << build_element('OdeslUpom', data[:odesl_upom], data[:odesl_upom_attributes]) if data.key? :odesl_upom
         root << build_element('Sleva', data[:sleva], data[:sleva_attributes]) if data.key? :sleva
         root << build_element('FlagSleva', data[:flag_sleva], data[:flag_sleva_attributes]) if data.key? :flag_sleva
         root << build_element('Mail', data[:mail], data[:mail_attributes]) if data.key? :mail

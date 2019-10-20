@@ -2,13 +2,10 @@ module MoneyS3
   module Builders
     class CenovaHladinaType
       include ParserCore::BaseBuilder
-      include Groups::DefiniceCeny
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Zkrat', data[:zkrat], data[:zkrat_attributes]) if data.key? :zkrat
         root << build_element('Nazev', data[:nazev], data[:nazev_attributes]) if data.key? :nazev
@@ -18,9 +15,8 @@ module MoneyS3
         end
         root << build_element('Skup', data[:skup], data[:skup_attributes]) if data.key? :skup
         root << build_element('Ceny', data[:ceny], data[:ceny_attributes]) if data.key? :ceny
-
-        mega.each do |r|
-          r.nodes.each { |n| root << n }
+        if data.key? :definice_ceny
+          root << DefiniceCeny.new('definiceCeny', data[:definice_ceny]).builder
         end
 
         root

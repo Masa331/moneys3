@@ -5,13 +5,13 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Doklad', data[:doklad], data[:doklad_attributes]) if data.key? :doklad
         root << build_element('EvCisDokl', data[:ev_cis_dokl], data[:ev_cis_dokl_attributes]) if data.key? :ev_cis_dokl
         root << build_element('ZpusobUctovani', data[:zpusob_uctovani], data[:zpusob_uctovani_attributes]) if data.key? :zpusob_uctovani
+        root << build_element('Storno', data[:storno], data[:storno_attributes]) if data.key? :storno
+        root << build_element('Del', data[:del], data[:del_attributes]) if data.key? :del
         root << build_element('GUID', data[:guid], data[:guid_attributes]) if data.key? :guid
         root << build_element('Rada', data[:rada], data[:rada_attributes]) if data.key? :rada
         root << build_element('CisRada', data[:cis_rada], data[:cis_rada_attributes]) if data.key? :cis_rada
@@ -24,6 +24,7 @@ module MoneyS3
         root << build_element('Uhrazeno', data[:uhrazeno], data[:uhrazeno_attributes]) if data.key? :uhrazeno
         root << build_element('Doruceno', data[:doruceno], data[:doruceno_attributes]) if data.key? :doruceno
         root << build_element('DatSkPoh', data[:dat_sk_poh], data[:dat_sk_poh_attributes]) if data.key? :dat_sk_poh
+        root << build_element('DobrDUZP', data[:dobr_duzp], data[:dobr_duzp_attributes]) if data.key? :dobr_duzp
         root << build_element('KonstSym', data[:konst_sym], data[:konst_sym_attributes]) if data.key? :konst_sym
         root << build_element('KodDPH', data[:kod_dph], data[:kod_dph_attributes]) if data.key? :kod_dph
         root << build_element('UcelZdPl', data[:ucel_zd_pl], data[:ucel_zd_pl_attributes]) if data.key? :ucel_zd_pl
@@ -39,17 +40,16 @@ module MoneyS3
         root << build_element('Ucet', data[:ucet], data[:ucet_attributes]) if data.key? :ucet
         root << build_element('Druh', data[:druh], data[:druh_attributes]) if data.key? :druh
         root << build_element('Dobropis', data[:dobropis], data[:dobropis_attributes]) if data.key? :dobropis
-        root << build_element('DobrDUZP', data[:dobr_duzp], data[:dobr_duzp_attributes]) if data.key? :dobr_duzp
         root << build_element('ZpDopravy', data[:zp_dopravy], data[:zp_dopravy_attributes]) if data.key? :zp_dopravy
         root << build_element('Uhrada', data[:uhrada], data[:uhrada_attributes]) if data.key? :uhrada
         root << build_element('PredKontac', data[:pred_kontac], data[:pred_kontac_attributes]) if data.key? :pred_kontac
         root << build_element('Cinnost', data[:cinnost], data[:cinnost_attributes]) if data.key? :cinnost
         root << build_element('StatMOSS', data[:stat_moss], data[:stat_moss_attributes]) if data.key? :stat_moss
         root << build_element('ZpVypDPH', data[:zp_vyp_dph], data[:zp_vyp_dph_attributes]) if data.key? :zp_vyp_dph
-        root << build_element('Proplatit', data[:proplatit], data[:proplatit_attributes]) if data.key? :proplatit
-        root << build_element('Vyuctovano', data[:vyuctovano], data[:vyuctovano_attributes]) if data.key? :vyuctovano
         root << build_element('SazbaDPH1', data[:sazba_dph1], data[:sazba_dph1_attributes]) if data.key? :sazba_dph1
         root << build_element('SazbaDPH2', data[:sazba_dph2], data[:sazba_dph2_attributes]) if data.key? :sazba_dph2
+        root << build_element('Proplatit', data[:proplatit], data[:proplatit_attributes]) if data.key? :proplatit
+        root << build_element('Vyuctovano', data[:vyuctovano], data[:vyuctovano_attributes]) if data.key? :vyuctovano
         if data.key? :souhrn_dph
           root << SouhrnDPHType.new('SouhrnDPH', data[:souhrn_dph]).builder
         end
@@ -63,13 +63,13 @@ module MoneyS3
         root << build_element('PriUhrZbyv', data[:pri_uhr_zbyv], data[:pri_uhr_zbyv_attributes]) if data.key? :pri_uhr_zbyv
         root << build_element('Poznamka', data[:poznamka], data[:poznamka_attributes]) if data.key? :poznamka
         root << build_element('Stredisko', data[:stredisko], data[:stredisko_attributes]) if data.key? :stredisko
+        root << build_element('DateUpom1', data[:date_upom1], data[:date_upom1_attributes]) if data.key? :date_upom1
+        root << build_element('DateUpom2', data[:date_upom2], data[:date_upom2_attributes]) if data.key? :date_upom2
+        root << build_element('DateUpomL', data[:date_upom_l], data[:date_upom_l_attributes]) if data.key? :date_upom_l
         root << build_element('TextPredFa', data[:text_pred_fa], data[:text_pred_fa_attributes]) if data.key? :text_pred_fa
         root << build_element('TextZaFa', data[:text_za_fa], data[:text_za_fa_attributes]) if data.key? :text_za_fa
         root << build_element('TextPredDL', data[:text_pred_dl], data[:text_pred_dl_attributes]) if data.key? :text_pred_dl
         root << build_element('TextZaDL', data[:text_za_dl], data[:text_za_dl_attributes]) if data.key? :text_za_dl
-        root << build_element('DateUpom1', data[:date_upom1], data[:date_upom1_attributes]) if data.key? :date_upom1
-        root << build_element('DateUpom2', data[:date_upom2], data[:date_upom2_attributes]) if data.key? :date_upom2
-        root << build_element('DateUpomL', data[:date_upom_l], data[:date_upom_l_attributes]) if data.key? :date_upom_l
         root << build_element('ValutyProp', data[:valuty_prop], data[:valuty_prop_attributes]) if data.key? :valuty_prop
         root << build_element('SumZaloha', data[:sum_zaloha], data[:sum_zaloha_attributes]) if data.key? :sum_zaloha
         root << build_element('SumZalohaC', data[:sum_zaloha_c], data[:sum_zaloha_c_attributes]) if data.key? :sum_zaloha_c
@@ -155,6 +155,7 @@ module MoneyS3
           data[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
           root << element
         end
+        root << build_element('UzivatelskaPole', data[:uzivatelska_pole], data[:uzivatelska_pole_attributes]) if data.key? :uzivatelska_pole
 
         root
       end

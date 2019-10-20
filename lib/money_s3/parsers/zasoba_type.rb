@@ -255,6 +255,14 @@ module MoneyS3
         array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
+      def uzivatelska_pole
+        at 'UzivatelskaPole'
+      end
+
+      def uzivatelska_pole_attributes
+        attributes_at 'UzivatelskaPole'
+      end
+
       def to_h
         hash = {}
         hash[:attributes] = attributes
@@ -322,6 +330,8 @@ module MoneyS3
         hash[:seznam_prislusenstvi] = seznam_prislusenstvi.map(&:to_h) if has? 'SeznamPrislusenstvi'
         hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
+        hash[:uzivatelska_pole] = uzivatelska_pole if has? 'UzivatelskaPole'
+        hash[:uzivatelska_pole_attributes] = uzivatelska_pole_attributes if has? 'UzivatelskaPole'
 
         hash
       end

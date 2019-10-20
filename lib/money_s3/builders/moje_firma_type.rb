@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Nazev', data[:nazev], data[:nazev_attributes]) if data.key? :nazev
         if data.key? :adresa
@@ -40,8 +38,14 @@ module MoneyS3
         root << build_element('KodBanky', data[:kod_banky], data[:kod_banky_attributes]) if data.key? :kod_banky
         root << build_element('KodPartn', data[:kod_partn], data[:kod_partn_attributes]) if data.key? :kod_partn
         root << build_element('FyzOsoba', data[:fyz_osoba], data[:fyz_osoba_attributes]) if data.key? :fyz_osoba
+        root << build_element('SpisovaZnacka', data[:spisova_znacka], data[:spisova_znacka_attributes]) if data.key? :spisova_znacka
         root << build_element('MenaSymb', data[:mena_symb], data[:mena_symb_attributes]) if data.key? :mena_symb
         root << build_element('MenaKod', data[:mena_kod], data[:mena_kod_attributes]) if data.key? :mena_kod
+        if data.key? :seznam_bank_spojeni
+          element = Ox::Element.new('SeznamBankSpojeni')
+          data[:seznam_bank_spojeni].each { |i| element << BankSpojeniType.new('BankSpojeni', i).builder }
+          root << element
+        end
 
         root
       end

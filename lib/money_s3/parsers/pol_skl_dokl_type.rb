@@ -155,14 +155,6 @@ module MoneyS3
         attributes_at 'PorizCena'
       end
 
-      def cena_po_sleve
-        at 'CenaPoSleve'
-      end
-
-      def cena_po_sleve_attributes
-        attributes_at 'CenaPoSleve'
-      end
-
       def zvl_rezim
         at 'ZvlRezim'
       end
@@ -187,6 +179,14 @@ module MoneyS3
         attributes_at 'RezimEET'
       end
 
+      def cena_po_sleve
+        at 'CenaPoSleve'
+      end
+
+      def cena_po_sleve_attributes
+        attributes_at 'CenaPoSleve'
+      end
+
       def seznam_vc
         array_of_at(VyrobniCisloType, ['SeznamVC', 'VyrobniCislo'])
       end
@@ -205,6 +205,14 @@ module MoneyS3
 
       def slozeni
         array_of_at(DefSubPolType, ['Slozeni', 'SubPolozka'])
+      end
+
+      def uzivatelska_pole
+        at 'UzivatelskaPole'
+      end
+
+      def uzivatelska_pole_attributes
+        attributes_at 'UzivatelskaPole'
       end
 
       def to_h
@@ -249,19 +257,21 @@ module MoneyS3
         hash[:hmotnost_attributes] = hmotnost_attributes if has? 'Hmotnost'
         hash[:poriz_cena] = poriz_cena if has? 'PorizCena'
         hash[:poriz_cena_attributes] = poriz_cena_attributes if has? 'PorizCena'
-        hash[:cena_po_sleve] = cena_po_sleve if has? 'CenaPoSleve'
-        hash[:cena_po_sleve_attributes] = cena_po_sleve_attributes if has? 'CenaPoSleve'
         hash[:zvl_rezim] = zvl_rezim if has? 'ZvlRezim'
         hash[:zvl_rezim_attributes] = zvl_rezim_attributes if has? 'ZvlRezim'
         hash[:zvl_dph] = zvl_dph if has? 'ZvlDPH'
         hash[:zvl_dph_attributes] = zvl_dph_attributes if has? 'ZvlDPH'
         hash[:rezim_eet] = rezim_eet if has? 'RezimEET'
         hash[:rezim_eet_attributes] = rezim_eet_attributes if has? 'RezimEET'
+        hash[:cena_po_sleve] = cena_po_sleve if has? 'CenaPoSleve'
+        hash[:cena_po_sleve_attributes] = cena_po_sleve_attributes if has? 'CenaPoSleve'
         hash[:seznam_vc] = seznam_vc.map(&:to_h) if has? 'SeznamVC'
         hash[:seznam_dodavek] = seznam_dodavek.map(&:to_h) if has? 'SeznamDodavek'
         hash[:sklad] = sklad.to_h if has? 'Sklad'
         hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
         hash[:slozeni] = slozeni.map(&:to_h) if has? 'Slozeni'
+        hash[:uzivatelska_pole] = uzivatelska_pole if has? 'UzivatelskaPole'
+        hash[:uzivatelska_pole_attributes] = uzivatelska_pole_attributes if has? 'UzivatelskaPole'
 
         hash
       end

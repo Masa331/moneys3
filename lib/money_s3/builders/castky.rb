@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Celkem', data[:celkem], data[:celkem_attributes]) if data.key? :celkem
         root << build_element('Zaklad_0', data[:zaklad_0], data[:zaklad_0_attributes]) if data.key? :zaklad_0
@@ -18,6 +16,8 @@ module MoneyS3
         root << build_element('DPH_2', data[:dph_2], data[:dph_2_attributes]) if data.key? :dph_2
         root << build_element('DPH_3', data[:dph_3], data[:dph_3_attributes]) if data.key? :dph_3
         root << build_element('CestSluzba', data[:cest_sluzba], data[:cest_sluzba_attributes]) if data.key? :cest_sluzba
+        root << build_element('PouzZbozi', data[:pouz_zbozi], data[:pouz_zbozi_attributes]) if data.key? :pouz_zbozi
+        root << build_element('PouzZb_0', data[:pouz_zb_0], data[:pouz_zb_0_attributes]) if data.key? :pouz_zb_0
         root << build_element('PouzZb_1', data[:pouz_zb_1], data[:pouz_zb_1_attributes]) if data.key? :pouz_zb_1
         root << build_element('PouzZb_2', data[:pouz_zb_2], data[:pouz_zb_2_attributes]) if data.key? :pouz_zb_2
         root << build_element('PouzZb_3', data[:pouz_zb_3], data[:pouz_zb_3_attributes]) if data.key? :pouz_zb_3

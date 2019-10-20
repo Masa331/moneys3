@@ -2,8 +2,6 @@ module MoneyS3
   module Parsers
     class SkladType
       include ParserCore::BaseParser
-      include Groups::Konfigurace
-      include Groups::DefiniceCeny
 
       def nazev
         at 'Nazev'
@@ -109,6 +107,14 @@ module MoneyS3
         attributes_at 'Prepocet'
       end
 
+      def konfigurace
+        submodel_at(Konfigurace, 'konfigurace')
+      end
+
+      def definice_ceny
+        submodel_at(DefiniceCeny, 'definiceCeny')
+      end
+
       def ceny
         at 'Ceny'
       end
@@ -191,6 +197,8 @@ module MoneyS3
         hash[:prod_ceny_d_attributes] = prod_ceny_d_attributes if has? 'ProdCenyD'
         hash[:prepocet] = prepocet if has? 'Prepocet'
         hash[:prepocet_attributes] = prepocet_attributes if has? 'Prepocet'
+        hash[:konfigurace] = konfigurace.to_h if has? 'konfigurace'
+        hash[:definice_ceny] = definice_ceny.to_h if has? 'definiceCeny'
         hash[:ceny] = ceny if has? 'Ceny'
         hash[:ceny_attributes] = ceny_attributes if has? 'Ceny'
         hash[:uc_pohyb_m] = uc_pohyb_m.to_h if has? 'UcPohybM'
@@ -205,7 +213,7 @@ module MoneyS3
         hash[:p_dod_lst_vz] = p_dod_lst_vz if has? 'PDodLstVz'
         hash[:p_dod_lst_vz_attributes] = p_dod_lst_vz_attributes if has? 'PDodLstVz'
 
-        mega.inject(hash) { |memo, r| memo.merge r }
+        hash
       end
     end
   end

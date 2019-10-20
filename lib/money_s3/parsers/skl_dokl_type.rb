@@ -47,12 +47,16 @@ module MoneyS3
         attributes_at 'Datum'
       end
 
-      def sleva
-        at 'Sleva'
+      def souhrn_dph
+        submodel_at(SouhrnDPHType, 'SouhrnDPH')
       end
 
-      def sleva_attributes
-        attributes_at 'Sleva'
+      def celkem
+        at 'Celkem'
+      end
+
+      def celkem_attributes
+        attributes_at 'Celkem'
       end
 
       def d_rada
@@ -191,6 +195,14 @@ module MoneyS3
         attributes_at 'StatMOSS'
       end
 
+      def zp_vyp_dph
+        at 'ZpVypDPH'
+      end
+
+      def zp_vyp_dph_attributes
+        attributes_at 'ZpVypDPH'
+      end
+
       def sazba_dph1
         at 'SazbaDPH1'
       end
@@ -205,22 +217,6 @@ module MoneyS3
 
       def sazba_dph2_attributes
         attributes_at 'SazbaDPH2'
-      end
-
-      def souhrn_dph
-        submodel_at(SouhrnDPHType, 'SouhrnDPH')
-      end
-
-      def celkem
-        at 'Celkem'
-      end
-
-      def celkem_attributes
-        attributes_at 'Celkem'
-      end
-
-      def valuty
-        submodel_at(Valuty2, 'Valuty')
       end
 
       def prim_doklad
@@ -311,6 +307,18 @@ module MoneyS3
         attributes_at 'DatumITS'
       end
 
+      def sleva
+        at 'Sleva'
+      end
+
+      def sleva_attributes
+        attributes_at 'Sleva'
+      end
+
+      def valuty
+        submodel_at(Valuty2, 'Valuty')
+      end
+
       def i_doklad_id
         at 'iDokladID'
       end
@@ -355,6 +363,14 @@ module MoneyS3
         array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
+      def uzivatelska_pole
+        at 'UzivatelskaPole'
+      end
+
+      def uzivatelska_pole_attributes
+        attributes_at 'UzivatelskaPole'
+      end
+
       def to_h
         hash = {}
         hash[:attributes] = attributes
@@ -370,8 +386,9 @@ module MoneyS3
         hash[:kp_from_odb_attributes] = kp_from_odb_attributes if has? 'KPFromOdb'
         hash[:datum] = datum if has? 'Datum'
         hash[:datum_attributes] = datum_attributes if has? 'Datum'
-        hash[:sleva] = sleva if has? 'Sleva'
-        hash[:sleva_attributes] = sleva_attributes if has? 'Sleva'
+        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
+        hash[:celkem] = celkem if has? 'Celkem'
+        hash[:celkem_attributes] = celkem_attributes if has? 'Celkem'
         hash[:d_rada] = d_rada if has? 'DRada'
         hash[:d_rada_attributes] = d_rada_attributes if has? 'DRada'
         hash[:stredisko] = stredisko if has? 'Stredisko'
@@ -406,14 +423,12 @@ module MoneyS3
         hash[:dat_sk_poh_attributes] = dat_sk_poh_attributes if has? 'DatSkPoh'
         hash[:stat_moss] = stat_moss if has? 'StatMOSS'
         hash[:stat_moss_attributes] = stat_moss_attributes if has? 'StatMOSS'
+        hash[:zp_vyp_dph] = zp_vyp_dph if has? 'ZpVypDPH'
+        hash[:zp_vyp_dph_attributes] = zp_vyp_dph_attributes if has? 'ZpVypDPH'
         hash[:sazba_dph1] = sazba_dph1 if has? 'SazbaDPH1'
         hash[:sazba_dph1_attributes] = sazba_dph1_attributes if has? 'SazbaDPH1'
         hash[:sazba_dph2] = sazba_dph2 if has? 'SazbaDPH2'
         hash[:sazba_dph2_attributes] = sazba_dph2_attributes if has? 'SazbaDPH2'
-        hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
-        hash[:celkem] = celkem if has? 'Celkem'
-        hash[:celkem_attributes] = celkem_attributes if has? 'Celkem'
-        hash[:valuty] = valuty.to_h if has? 'Valuty'
         hash[:prim_doklad] = prim_doklad if has? 'PrimDoklad'
         hash[:prim_doklad_attributes] = prim_doklad_attributes if has? 'PrimDoklad'
         hash[:var_symbol] = var_symbol if has? 'VarSymbol'
@@ -436,6 +451,9 @@ module MoneyS3
         hash[:doprav_zahr_attributes] = doprav_zahr_attributes if has? 'DopravZahr'
         hash[:datum_its] = datum_its if has? 'DatumITS'
         hash[:datum_its_attributes] = datum_its_attributes if has? 'DatumITS'
+        hash[:sleva] = sleva if has? 'Sleva'
+        hash[:sleva_attributes] = sleva_attributes if has? 'Sleva'
+        hash[:valuty] = valuty.to_h if has? 'Valuty'
         hash[:i_doklad_id] = i_doklad_id if has? 'iDokladID'
         hash[:i_doklad_id_attributes] = i_doklad_id_attributes if has? 'iDokladID'
         hash[:i_dokl_agend] = i_dokl_agend if has? 'iDoklAgend'
@@ -447,6 +465,8 @@ module MoneyS3
         hash[:seznam_nep_plateb] = seznam_nep_plateb.map(&:to_h) if has? 'SeznamNepPlateb'
         hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
+        hash[:uzivatelska_pole] = uzivatelska_pole if has? 'UzivatelskaPole'
+        hash[:uzivatelska_pole_attributes] = uzivatelska_pole_attributes if has? 'UzivatelskaPole'
 
         hash
       end

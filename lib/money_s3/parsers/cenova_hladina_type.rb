@@ -2,7 +2,6 @@ module MoneyS3
   module Parsers
     class CenovaHladinaType
       include ParserCore::BaseParser
-      include Groups::DefiniceCeny
 
       def zkrat
         at 'Zkrat'
@@ -48,6 +47,10 @@ module MoneyS3
         attributes_at 'Ceny'
       end
 
+      def definice_ceny
+        submodel_at(DefiniceCeny, 'definiceCeny')
+      end
+
       def to_h
         hash = {}
         hash[:attributes] = attributes
@@ -63,8 +66,9 @@ module MoneyS3
         hash[:skup_attributes] = skup_attributes if has? 'Skup'
         hash[:ceny] = ceny if has? 'Ceny'
         hash[:ceny_attributes] = ceny_attributes if has? 'Ceny'
+        hash[:definice_ceny] = definice_ceny.to_h if has? 'definiceCeny'
 
-        mega.inject(hash) { |memo, r| memo.merge r }
+        hash
       end
     end
   end

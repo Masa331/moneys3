@@ -19,10 +19,6 @@ module MoneyS3
         array_of_at(MessageType, ['Uhrada'])
       end
 
-      def data
-        submodel_at(Data, 'Data')
-      end
-
       def to_h
         hash = {}
         hash[:attributes] = attributes
@@ -31,7 +27,6 @@ module MoneyS3
         hash[:konec_prij] = konec_prij.to_h if has? 'KonecPrij'
         hash[:polozka] = polozka.map(&:to_h) if has? 'Polozka'
         hash[:uhrada] = uhrada.map(&:to_h) if has? 'Uhrada'
-        hash[:data] = data.to_h if has? 'Data'
 
         hash
         super.merge(hash)

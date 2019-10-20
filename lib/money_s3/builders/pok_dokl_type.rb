@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Vydej', data[:vydej], data[:vydej_attributes]) if data.key? :vydej
         root << build_element('Doklad', data[:doklad], data[:doklad_attributes]) if data.key? :doklad
@@ -16,6 +14,8 @@ module MoneyS3
           root << EETType.new('EET', data[:eet]).builder
         end
         root << build_element('ZpusobUctovani', data[:zpusob_uctovani], data[:zpusob_uctovani_attributes]) if data.key? :zpusob_uctovani
+        root << build_element('Storno', data[:storno], data[:storno_attributes]) if data.key? :storno
+        root << build_element('Del', data[:del], data[:del_attributes]) if data.key? :del
         root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
         root << build_element('DatUcPr', data[:dat_uc_pr], data[:dat_uc_pr_attributes]) if data.key? :dat_uc_pr
         root << build_element('DatVyst', data[:dat_vyst], data[:dat_vyst_attributes]) if data.key? :dat_vyst
@@ -34,6 +34,7 @@ module MoneyS3
         root << build_element('Stred', data[:stred], data[:stred_attributes]) if data.key? :stred
         root << build_element('Zakazka', data[:zakazka], data[:zakazka_attributes]) if data.key? :zakazka
         root << build_element('Cinnost', data[:cinnost], data[:cinnost_attributes]) if data.key? :cinnost
+        root << build_element('ZpVypDPH', data[:zp_vyp_dph], data[:zp_vyp_dph_attributes]) if data.key? :zp_vyp_dph
         root << build_element('SSazba', data[:s_sazba], data[:s_sazba_attributes]) if data.key? :s_sazba
         root << build_element('ZSazba', data[:z_sazba], data[:z_sazba_attributes]) if data.key? :z_sazba
         if data.key? :souhrn_dph

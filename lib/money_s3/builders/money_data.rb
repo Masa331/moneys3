@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         if data.key? :seznam_cinnosti
           element = Ox::Element.new('SeznamCinnosti')
@@ -104,16 +102,6 @@ module MoneyS3
           data[:seznam_skladu].each { |i| element << Sklad.new('Sklad', i).builder }
           root << element
         end
-        if data.key? :seznam_typ_kusovnik
-          element = Ox::Element.new('SeznamTypKusovnik')
-          data[:seznam_typ_kusovnik].each { |i| element << KusovnikType.new('TypKusovnik', i).builder }
-          root << element
-        end
-        if data.key? :seznam_zak_kusovnik
-          element = Ox::Element.new('SeznamZakKusovnik')
-          data[:seznam_zak_kusovnik].each { |i| element << KusovnikType.new('ZakKusovnik', i).builder }
-          root << element
-        end
         if data.key? :seznam_zamestnancu
           element = Ox::Element.new('SeznamZamestnancu')
           data[:seznam_zamestnancu].each { |i| element << ZamestnanecType.new('Zamestnanec', i).builder }
@@ -132,16 +120,6 @@ module MoneyS3
         if data.key? :seznam_fakt_vyd
           element = Ox::Element.new('SeznamFaktVyd')
           data[:seznam_fakt_vyd].each { |i| element << FaktVyd.new('FaktVyd', i).builder }
-          root << element
-        end
-        if data.key? :seznam_pohledavek
-          element = Ox::Element.new('SeznamPohledavek')
-          data[:seznam_pohledavek].each { |i| element << PohledavkaType.new('Pohledavka', i).builder }
-          root << element
-        end
-        if data.key? :seznam_zavazku
-          element = Ox::Element.new('SeznamZavazku')
-          data[:seznam_zavazku].each { |i| element << ZavazekType.new('Zavazek', i).builder }
           root << element
         end
         if data.key? :seznam_int_dokl
@@ -167,6 +145,16 @@ module MoneyS3
         if data.key? :seznam_fakt_vyd_dpp
           element = Ox::Element.new('SeznamFaktVyd_DPP')
           data[:seznam_fakt_vyd_dpp].each { |i| element << FakturaType.new('FaktVyd_DPP', i).builder }
+          root << element
+        end
+        if data.key? :seznam_pohledavek
+          element = Ox::Element.new('SeznamPohledavek')
+          data[:seznam_pohledavek].each { |i| element << PohledavkaType.new('Pohledavka', i).builder }
+          root << element
+        end
+        if data.key? :seznam_zavazku
+          element = Ox::Element.new('SeznamZavazku')
+          data[:seznam_zavazku].each { |i| element << ZavazekType.new('Zavazek', i).builder }
           root << element
         end
         if data.key? :seznam_obj_prij

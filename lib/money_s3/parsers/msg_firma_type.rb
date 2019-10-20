@@ -7,16 +7,11 @@ module MoneyS3
         array_of_at(MessageType, ['Osoba'])
       end
 
-      def data
-        submodel_at(FirmaType, 'Data')
-      end
-
       def to_h
         hash = {}
         hash[:attributes] = attributes
 
         hash[:osoba] = osoba.map(&:to_h) if has? 'Osoba'
-        hash[:data] = data.to_h if has? 'Data'
 
         hash
         super.merge(hash)

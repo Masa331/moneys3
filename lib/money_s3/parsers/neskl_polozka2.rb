@@ -59,6 +59,14 @@ module MoneyS3
         attributes_at 'ZarDoba'
       end
 
+      def pred_pc
+        at 'PredPC'
+      end
+
+      def pred_pc_attributes
+        attributes_at 'PredPC'
+      end
+
       def vyrobni_cis
         at 'VyrobniCis'
       end
@@ -105,6 +113,8 @@ module MoneyS3
         hash[:typ_zar_doby_attributes] = typ_zar_doby_attributes if has? 'TypZarDoby'
         hash[:zar_doba] = zar_doba if has? 'ZarDoba'
         hash[:zar_doba_attributes] = zar_doba_attributes if has? 'ZarDoba'
+        hash[:pred_pc] = pred_pc if has? 'PredPC'
+        hash[:pred_pc_attributes] = pred_pc_attributes if has? 'PredPC'
         hash[:vyrobni_cis] = vyrobni_cis if has? 'VyrobniCis'
         hash[:vyrobni_cis_attributes] = vyrobni_cis_attributes if has? 'VyrobniCis'
         hash[:dat_exp] = dat_exp if has? 'DatExp'

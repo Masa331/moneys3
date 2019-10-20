@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Doklad', data[:doklad], data[:doklad_attributes]) if data.key? :doklad
         root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
@@ -24,15 +22,10 @@ module MoneyS3
           root << KonecPrijFirmaType.new('KonecPrij', data[:konec_prij]).builder
         end
         root << build_element('KPFromOdb', data[:kp_from_odb], data[:kp_from_odb_attributes]) if data.key? :kp_from_odb
-        root << build_element('SazbaDPH1', data[:sazba_dph1], data[:sazba_dph1_attributes]) if data.key? :sazba_dph1
-        root << build_element('SazbaDPH2', data[:sazba_dph2], data[:sazba_dph2_attributes]) if data.key? :sazba_dph2
         if data.key? :souhrn_dph
           root << SouhrnDPHType.new('SouhrnDPH', data[:souhrn_dph]).builder
         end
         root << build_element('Celkem', data[:celkem], data[:celkem_attributes]) if data.key? :celkem
-        if data.key? :valuty
-          root << Valuty2.new('Valuty', data[:valuty]).builder
-        end
         root << build_element('DRada', data[:d_rada], data[:d_rada_attributes]) if data.key? :d_rada
         root << build_element('DCislo', data[:d_cislo], data[:d_cislo_attributes]) if data.key? :d_cislo
         root << build_element('Stredisko', data[:stredisko], data[:stredisko_attributes]) if data.key? :stredisko
@@ -59,6 +52,12 @@ module MoneyS3
         root << build_element('DodaciPodm', data[:dodaci_podm], data[:dodaci_podm_attributes]) if data.key? :dodaci_podm
         root << build_element('DruhDopravy', data[:druh_dopravy], data[:druh_dopravy_attributes]) if data.key? :druh_dopravy
         root << build_element('StOdeslUrc', data[:st_odesl_urc], data[:st_odesl_urc_attributes]) if data.key? :st_odesl_urc
+        if data.key? :valuty
+          root << Valuty2.new('Valuty', data[:valuty]).builder
+        end
+        root << build_element('ZpVypDPH', data[:zp_vyp_dph], data[:zp_vyp_dph_attributes]) if data.key? :zp_vyp_dph
+        root << build_element('SazbaDPH1', data[:sazba_dph1], data[:sazba_dph1_attributes]) if data.key? :sazba_dph1
+        root << build_element('SazbaDPH2', data[:sazba_dph2], data[:sazba_dph2_attributes]) if data.key? :sazba_dph2
         root << build_element('Sleva', data[:sleva], data[:sleva_attributes]) if data.key? :sleva
         if data.key? :eshop
           root << Eshop3.new('eshop', data[:eshop]).builder
@@ -98,6 +97,7 @@ module MoneyS3
           data[:dokumenty].map { |i| Ox::Element.new('Dokument') << i }.each { |i| element << i }
           root << element
         end
+        root << build_element('UzivatelskaPole', data[:uzivatelska_pole], data[:uzivatelska_pole_attributes]) if data.key? :uzivatelska_pole
 
         root
       end

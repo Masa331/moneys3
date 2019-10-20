@@ -2,14 +2,10 @@ module MoneyS3
   module Builders
     class SkladType
       include ParserCore::BaseBuilder
-      include Groups::Konfigurace
-      include Groups::DefiniceCeny
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Nazev', data[:nazev], data[:nazev_attributes]) if data.key? :nazev
         root << build_element('KodSkladu', data[:kod_skladu], data[:kod_skladu_attributes]) if data.key? :kod_skladu
@@ -24,6 +20,12 @@ module MoneyS3
         root << build_element('Zpusob', data[:zpusob], data[:zpusob_attributes]) if data.key? :zpusob
         root << build_element('ProdCenyD', data[:prod_ceny_d], data[:prod_ceny_d_attributes]) if data.key? :prod_ceny_d
         root << build_element('Prepocet', data[:prepocet], data[:prepocet_attributes]) if data.key? :prepocet
+        if data.key? :konfigurace
+          root << Konfigurace.new('konfigurace', data[:konfigurace]).builder
+        end
+        if data.key? :definice_ceny
+          root << DefiniceCeny.new('definiceCeny', data[:definice_ceny]).builder
+        end
         root << build_element('Ceny', data[:ceny], data[:ceny_attributes]) if data.key? :ceny
         if data.key? :uc_pohyb_m
           root << UctyPohybuType.new('UcPohybM', data[:uc_pohyb_m]).builder
@@ -38,10 +40,6 @@ module MoneyS3
         root << build_element('ProdejkVz', data[:prodejk_vz], data[:prodejk_vz_attributes]) if data.key? :prodejk_vz
         root << build_element('VDodLstVz', data[:v_dod_lst_vz], data[:v_dod_lst_vz_attributes]) if data.key? :v_dod_lst_vz
         root << build_element('PDodLstVz', data[:p_dod_lst_vz], data[:p_dod_lst_vz_attributes]) if data.key? :p_dod_lst_vz
-
-        mega.each do |r|
-          r.nodes.each { |n| root << n }
-        end
 
         root
       end

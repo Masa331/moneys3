@@ -131,6 +131,14 @@ module MoneyS3
         attributes_at 'FyzOsoba'
       end
 
+      def spisova_znacka
+        at 'SpisovaZnacka'
+      end
+
+      def spisova_znacka_attributes
+        attributes_at 'SpisovaZnacka'
+      end
+
       def mena_symb
         at 'MenaSymb'
       end
@@ -145,6 +153,10 @@ module MoneyS3
 
       def mena_kod_attributes
         attributes_at 'MenaKod'
+      end
+
+      def seznam_bank_spojeni
+        array_of_at(BankSpojeniType, ['SeznamBankSpojeni', 'BankSpojeni'])
       end
 
       def to_h
@@ -183,10 +195,13 @@ module MoneyS3
         hash[:kod_partn_attributes] = kod_partn_attributes if has? 'KodPartn'
         hash[:fyz_osoba] = fyz_osoba if has? 'FyzOsoba'
         hash[:fyz_osoba_attributes] = fyz_osoba_attributes if has? 'FyzOsoba'
+        hash[:spisova_znacka] = spisova_znacka if has? 'SpisovaZnacka'
+        hash[:spisova_znacka_attributes] = spisova_znacka_attributes if has? 'SpisovaZnacka'
         hash[:mena_symb] = mena_symb if has? 'MenaSymb'
         hash[:mena_symb_attributes] = mena_symb_attributes if has? 'MenaSymb'
         hash[:mena_kod] = mena_kod if has? 'MenaKod'
         hash[:mena_kod_attributes] = mena_kod_attributes if has? 'MenaKod'
+        hash[:seznam_bank_spojeni] = seznam_bank_spojeni.map(&:to_h) if has? 'SeznamBankSpojeni'
 
         hash
       end

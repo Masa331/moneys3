@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Nazev', data[:nazev], data[:nazev_attributes]) if data.key? :nazev
         if data.key? :adresa
@@ -24,6 +22,8 @@ module MoneyS3
           root << TelefonType.new('Mobil', data[:mobil]).builder
         end
         root << build_element('EMail', data[:e_mail], data[:e_mail_attributes]) if data.key? :e_mail
+        root << build_element('EMailKopie', data[:e_mail_kopie], data[:e_mail_kopie_attributes]) if data.key? :e_mail_kopie
+        root << build_element('EMailSkryt', data[:e_mail_skryt], data[:e_mail_skryt_attributes]) if data.key? :e_mail_skryt
         root << build_element('WWW', data[:www], data[:www_attributes]) if data.key? :www
         root << build_element('ICO', data[:ico], data[:ico_attributes]) if data.key? :ico
         root << build_element('DIC', data[:dic], data[:dic_attributes]) if data.key? :dic
@@ -36,8 +36,17 @@ module MoneyS3
         root << build_element('VSymb', data[:v_symb], data[:v_symb_attributes]) if data.key? :v_symb
         root << build_element('SpecSym', data[:spec_sym], data[:spec_sym_attributes]) if data.key? :spec_sym
         root << build_element('KodPartn', data[:kod_partn], data[:kod_partn_attributes]) if data.key? :kod_partn
+        root << build_element('ISDOC', data[:isdoc], data[:isdoc_attributes]) if data.key? :isdoc
         if data.key? :eshop
           root << Eshop2.new('eshop', data[:eshop]).builder
+        end
+        if data.key? :seznam_bank_spojeni
+          element = Ox::Element.new('SeznamBankSpojeni')
+          data[:seznam_bank_spojeni].each { |i| element << BankSpojeniType.new('BankSpojeni', i).builder }
+          root << element
+        end
+        if data.key? :vlajky
+          root << Vlajky.new('Vlajky', data[:vlajky]).builder
         end
 
         root

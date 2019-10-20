@@ -99,10 +99,6 @@ module MoneyS3
         attributes_at 'ICO'
       end
 
-      def adresa
-        submodel_at(FirmaType, 'Adresa')
-      end
-
       def pozn
         at 'Pozn'
       end
@@ -125,6 +121,10 @@ module MoneyS3
 
       def sazba_dph_attributes
         attributes_at 'SazbaDPH'
+      end
+
+      def adresa
+        submodel_at(FirmaType, 'Adresa')
       end
 
       def to_h
@@ -155,13 +155,13 @@ module MoneyS3
         hash[:par_ico_attributes] = par_ico_attributes if has? 'ParICO'
         hash[:ico] = ico if has? 'ICO'
         hash[:ico_attributes] = ico_attributes if has? 'ICO'
-        hash[:adresa] = adresa.to_h if has? 'Adresa'
         hash[:pozn] = pozn if has? 'Pozn'
         hash[:pozn_attributes] = pozn_attributes if has? 'Pozn'
         hash[:typ_cena] = typ_cena if has? 'TypCena'
         hash[:typ_cena_attributes] = typ_cena_attributes if has? 'TypCena'
         hash[:sazba_dph] = sazba_dph if has? 'SazbaDPH'
         hash[:sazba_dph_attributes] = sazba_dph_attributes if has? 'SazbaDPH'
+        hash[:adresa] = adresa.to_h if has? 'Adresa'
 
         hash
       end

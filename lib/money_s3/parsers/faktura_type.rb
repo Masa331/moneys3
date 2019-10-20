@@ -27,6 +27,22 @@ module MoneyS3
         attributes_at 'ZpusobUctovani'
       end
 
+      def storno
+        at 'Storno'
+      end
+
+      def storno_attributes
+        attributes_at 'Storno'
+      end
+
+      def del
+        at 'Del'
+      end
+
+      def del_attributes
+        attributes_at 'Del'
+      end
+
       def guid
         at 'GUID'
       end
@@ -121,6 +137,14 @@ module MoneyS3
 
       def dat_sk_poh_attributes
         attributes_at 'DatSkPoh'
+      end
+
+      def dobr_duzp
+        at 'DobrDUZP'
+      end
+
+      def dobr_duzp_attributes
+        attributes_at 'DobrDUZP'
       end
 
       def konst_sym
@@ -243,14 +267,6 @@ module MoneyS3
         attributes_at 'Dobropis'
       end
 
-      def dobr_duzp
-        at 'DobrDUZP'
-      end
-
-      def dobr_duzp_attributes
-        attributes_at 'DobrDUZP'
-      end
-
       def zp_dopravy
         at 'ZpDopravy'
       end
@@ -299,22 +315,6 @@ module MoneyS3
         attributes_at 'ZpVypDPH'
       end
 
-      def proplatit
-        at 'Proplatit'
-      end
-
-      def proplatit_attributes
-        attributes_at 'Proplatit'
-      end
-
-      def vyuctovano
-        at 'Vyuctovano'
-      end
-
-      def vyuctovano_attributes
-        attributes_at 'Vyuctovano'
-      end
-
       def sazba_dph1
         at 'SazbaDPH1'
       end
@@ -329,6 +329,22 @@ module MoneyS3
 
       def sazba_dph2_attributes
         attributes_at 'SazbaDPH2'
+      end
+
+      def proplatit
+        at 'Proplatit'
+      end
+
+      def proplatit_attributes
+        attributes_at 'Proplatit'
+      end
+
+      def vyuctovano
+        at 'Vyuctovano'
+      end
+
+      def vyuctovano_attributes
+        attributes_at 'Vyuctovano'
       end
 
       def souhrn_dph
@@ -395,6 +411,30 @@ module MoneyS3
         attributes_at 'Stredisko'
       end
 
+      def date_upom1
+        at 'DateUpom1'
+      end
+
+      def date_upom1_attributes
+        attributes_at 'DateUpom1'
+      end
+
+      def date_upom2
+        at 'DateUpom2'
+      end
+
+      def date_upom2_attributes
+        attributes_at 'DateUpom2'
+      end
+
+      def date_upom_l
+        at 'DateUpomL'
+      end
+
+      def date_upom_l_attributes
+        attributes_at 'DateUpomL'
+      end
+
       def text_pred_fa
         at 'TextPredFa'
       end
@@ -425,30 +465,6 @@ module MoneyS3
 
       def text_za_dl_attributes
         attributes_at 'TextZaDL'
-      end
-
-      def date_upom1
-        at 'DateUpom1'
-      end
-
-      def date_upom1_attributes
-        attributes_at 'DateUpom1'
-      end
-
-      def date_upom2
-        at 'DateUpom2'
-      end
-
-      def date_upom2_attributes
-        attributes_at 'DateUpom2'
-      end
-
-      def date_upom_l
-        at 'DateUpomL'
-      end
-
-      def date_upom_l_attributes
-        attributes_at 'DateUpomL'
       end
 
       def valuty_prop
@@ -659,6 +675,14 @@ module MoneyS3
         array_of_at(String, ['Dokumenty', 'Dokument'])
       end
 
+      def uzivatelska_pole
+        at 'UzivatelskaPole'
+      end
+
+      def uzivatelska_pole_attributes
+        attributes_at 'UzivatelskaPole'
+      end
+
       def to_h
         hash = {}
         hash[:attributes] = attributes
@@ -669,6 +693,10 @@ module MoneyS3
         hash[:ev_cis_dokl_attributes] = ev_cis_dokl_attributes if has? 'EvCisDokl'
         hash[:zpusob_uctovani] = zpusob_uctovani if has? 'ZpusobUctovani'
         hash[:zpusob_uctovani_attributes] = zpusob_uctovani_attributes if has? 'ZpusobUctovani'
+        hash[:storno] = storno if has? 'Storno'
+        hash[:storno_attributes] = storno_attributes if has? 'Storno'
+        hash[:del] = del if has? 'Del'
+        hash[:del_attributes] = del_attributes if has? 'Del'
         hash[:guid] = guid if has? 'GUID'
         hash[:guid_attributes] = guid_attributes if has? 'GUID'
         hash[:rada] = rada if has? 'Rada'
@@ -693,6 +721,8 @@ module MoneyS3
         hash[:doruceno_attributes] = doruceno_attributes if has? 'Doruceno'
         hash[:dat_sk_poh] = dat_sk_poh if has? 'DatSkPoh'
         hash[:dat_sk_poh_attributes] = dat_sk_poh_attributes if has? 'DatSkPoh'
+        hash[:dobr_duzp] = dobr_duzp if has? 'DobrDUZP'
+        hash[:dobr_duzp_attributes] = dobr_duzp_attributes if has? 'DobrDUZP'
         hash[:konst_sym] = konst_sym if has? 'KonstSym'
         hash[:konst_sym_attributes] = konst_sym_attributes if has? 'KonstSym'
         hash[:kod_dph] = kod_dph if has? 'KodDPH'
@@ -723,8 +753,6 @@ module MoneyS3
         hash[:druh_attributes] = druh_attributes if has? 'Druh'
         hash[:dobropis] = dobropis if has? 'Dobropis'
         hash[:dobropis_attributes] = dobropis_attributes if has? 'Dobropis'
-        hash[:dobr_duzp] = dobr_duzp if has? 'DobrDUZP'
-        hash[:dobr_duzp_attributes] = dobr_duzp_attributes if has? 'DobrDUZP'
         hash[:zp_dopravy] = zp_dopravy if has? 'ZpDopravy'
         hash[:zp_dopravy_attributes] = zp_dopravy_attributes if has? 'ZpDopravy'
         hash[:uhrada] = uhrada if has? 'Uhrada'
@@ -737,14 +765,14 @@ module MoneyS3
         hash[:stat_moss_attributes] = stat_moss_attributes if has? 'StatMOSS'
         hash[:zp_vyp_dph] = zp_vyp_dph if has? 'ZpVypDPH'
         hash[:zp_vyp_dph_attributes] = zp_vyp_dph_attributes if has? 'ZpVypDPH'
-        hash[:proplatit] = proplatit if has? 'Proplatit'
-        hash[:proplatit_attributes] = proplatit_attributes if has? 'Proplatit'
-        hash[:vyuctovano] = vyuctovano if has? 'Vyuctovano'
-        hash[:vyuctovano_attributes] = vyuctovano_attributes if has? 'Vyuctovano'
         hash[:sazba_dph1] = sazba_dph1 if has? 'SazbaDPH1'
         hash[:sazba_dph1_attributes] = sazba_dph1_attributes if has? 'SazbaDPH1'
         hash[:sazba_dph2] = sazba_dph2 if has? 'SazbaDPH2'
         hash[:sazba_dph2_attributes] = sazba_dph2_attributes if has? 'SazbaDPH2'
+        hash[:proplatit] = proplatit if has? 'Proplatit'
+        hash[:proplatit_attributes] = proplatit_attributes if has? 'Proplatit'
+        hash[:vyuctovano] = vyuctovano if has? 'Vyuctovano'
+        hash[:vyuctovano_attributes] = vyuctovano_attributes if has? 'Vyuctovano'
         hash[:souhrn_dph] = souhrn_dph.to_h if has? 'SouhrnDPH'
         hash[:celkem] = celkem if has? 'Celkem'
         hash[:celkem_attributes] = celkem_attributes if has? 'Celkem'
@@ -761,6 +789,12 @@ module MoneyS3
         hash[:poznamka_attributes] = poznamka_attributes if has? 'Poznamka'
         hash[:stredisko] = stredisko if has? 'Stredisko'
         hash[:stredisko_attributes] = stredisko_attributes if has? 'Stredisko'
+        hash[:date_upom1] = date_upom1 if has? 'DateUpom1'
+        hash[:date_upom1_attributes] = date_upom1_attributes if has? 'DateUpom1'
+        hash[:date_upom2] = date_upom2 if has? 'DateUpom2'
+        hash[:date_upom2_attributes] = date_upom2_attributes if has? 'DateUpom2'
+        hash[:date_upom_l] = date_upom_l if has? 'DateUpomL'
+        hash[:date_upom_l_attributes] = date_upom_l_attributes if has? 'DateUpomL'
         hash[:text_pred_fa] = text_pred_fa if has? 'TextPredFa'
         hash[:text_pred_fa_attributes] = text_pred_fa_attributes if has? 'TextPredFa'
         hash[:text_za_fa] = text_za_fa if has? 'TextZaFa'
@@ -769,12 +803,6 @@ module MoneyS3
         hash[:text_pred_dl_attributes] = text_pred_dl_attributes if has? 'TextPredDL'
         hash[:text_za_dl] = text_za_dl if has? 'TextZaDL'
         hash[:text_za_dl_attributes] = text_za_dl_attributes if has? 'TextZaDL'
-        hash[:date_upom1] = date_upom1 if has? 'DateUpom1'
-        hash[:date_upom1_attributes] = date_upom1_attributes if has? 'DateUpom1'
-        hash[:date_upom2] = date_upom2 if has? 'DateUpom2'
-        hash[:date_upom2_attributes] = date_upom2_attributes if has? 'DateUpom2'
-        hash[:date_upom_l] = date_upom_l if has? 'DateUpomL'
-        hash[:date_upom_l_attributes] = date_upom_l_attributes if has? 'DateUpomL'
         hash[:valuty_prop] = valuty_prop if has? 'ValutyProp'
         hash[:valuty_prop_attributes] = valuty_prop_attributes if has? 'ValutyProp'
         hash[:sum_zaloha] = sum_zaloha if has? 'SumZaloha'
@@ -827,6 +855,8 @@ module MoneyS3
         hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
         hash[:seznam_vazeb] = seznam_vazeb.map(&:to_h) if has? 'SeznamVazeb'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
+        hash[:uzivatelska_pole] = uzivatelska_pole if has? 'UzivatelskaPole'
+        hash[:uzivatelska_pole_attributes] = uzivatelska_pole_attributes if has? 'UzivatelskaPole'
 
         hash
       end

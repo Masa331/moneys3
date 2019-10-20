@@ -91,12 +91,12 @@ module MoneyS3
         attributes_at 'ZarDoba'
       end
 
-      def ev_druhy
-        at 'EvDruhy'
+      def zboz_kuch
+        at 'ZbozKuch'
       end
 
-      def ev_druhy_attributes
-        attributes_at 'EvDruhy'
+      def zboz_kuch_attributes
+        attributes_at 'ZbozKuch'
       end
 
       def ev_vyr_cis
@@ -129,22 +129,6 @@ module MoneyS3
 
       def obrazek2_attributes
         attributes_at 'Obrazek2'
-      end
-
-      def zarovnat
-        at 'Zarovnat'
-      end
-
-      def zarovnat_attributes
-        attributes_at 'Zarovnat'
-      end
-
-      def zarovnat2
-        at 'Zarovnat2'
-      end
-
-      def zarovnat2_attributes
-        attributes_at 'Zarovnat2'
       end
 
       def konfigurace
@@ -267,14 +251,6 @@ module MoneyS3
         attributes_at 'TypKarty'
       end
 
-      def zboz_kuch
-        at 'ZbozKuch'
-      end
-
-      def zboz_kuch_attributes
-        attributes_at 'ZbozKuch'
-      end
-
       def i_dokl_pol
         at 'iDoklPol'
       end
@@ -329,8 +305,8 @@ module MoneyS3
         hash[:typ_zar_doby_attributes] = typ_zar_doby_attributes if has? 'TypZarDoby'
         hash[:zar_doba] = zar_doba if has? 'ZarDoba'
         hash[:zar_doba_attributes] = zar_doba_attributes if has? 'ZarDoba'
-        hash[:ev_druhy] = ev_druhy if has? 'EvDruhy'
-        hash[:ev_druhy_attributes] = ev_druhy_attributes if has? 'EvDruhy'
+        hash[:zboz_kuch] = zboz_kuch if has? 'ZbozKuch'
+        hash[:zboz_kuch_attributes] = zboz_kuch_attributes if has? 'ZbozKuch'
         hash[:ev_vyr_cis] = ev_vyr_cis if has? 'EvVyrCis'
         hash[:ev_vyr_cis_attributes] = ev_vyr_cis_attributes if has? 'EvVyrCis'
         hash[:des_mist] = des_mist if has? 'DesMist'
@@ -339,10 +315,6 @@ module MoneyS3
         hash[:obrazek_attributes] = obrazek_attributes if has? 'Obrazek'
         hash[:obrazek2] = obrazek2 if has? 'Obrazek2'
         hash[:obrazek2_attributes] = obrazek2_attributes if has? 'Obrazek2'
-        hash[:zarovnat] = zarovnat if has? 'Zarovnat'
-        hash[:zarovnat_attributes] = zarovnat_attributes if has? 'Zarovnat'
-        hash[:zarovnat2] = zarovnat2 if has? 'Zarovnat2'
-        hash[:zarovnat2_attributes] = zarovnat2_attributes if has? 'Zarovnat2'
         hash[:konfigurace] = konfigurace.to_h if has? 'konfigurace'
         hash[:definice_ceny] = definice_ceny.to_h if has? 'definiceCeny'
         hash[:ceny] = ceny if has? 'Ceny'
@@ -373,8 +345,6 @@ module MoneyS3
         hash[:kod_statu_attributes] = kod_statu_attributes if has? 'KodStatu'
         hash[:typ_karty] = typ_karty if has? 'TypKarty'
         hash[:typ_karty_attributes] = typ_karty_attributes if has? 'TypKarty'
-        hash[:zboz_kuch] = zboz_kuch if has? 'ZbozKuch'
-        hash[:zboz_kuch_attributes] = zboz_kuch_attributes if has? 'ZbozKuch'
         hash[:i_dokl_pol] = i_dokl_pol if has? 'iDoklPol'
         hash[:i_dokl_pol_attributes] = i_dokl_pol_attributes if has? 'iDoklPol'
         hash[:i_dokl_agend] = i_dokl_agend if has? 'iDoklAgend'

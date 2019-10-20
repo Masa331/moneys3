@@ -79,14 +79,6 @@ module MoneyS3
         array_of_at(Sklad, ['SeznamSkladu', 'Sklad'])
       end
 
-      def seznam_typ_kusovnik
-        array_of_at(KusovnikType, ['SeznamTypKusovnik', 'TypKusovnik'])
-      end
-
-      def seznam_zak_kusovnik
-        array_of_at(KusovnikType, ['SeznamZakKusovnik', 'ZakKusovnik'])
-      end
-
       def seznam_zamestnancu
         array_of_at(ZamestnanecType, ['SeznamZamestnancu', 'Zamestnanec'])
       end
@@ -101,14 +93,6 @@ module MoneyS3
 
       def seznam_fakt_vyd
         array_of_at(FaktVyd, ['SeznamFaktVyd', 'FaktVyd'])
-      end
-
-      def seznam_pohledavek
-        array_of_at(PohledavkaType, ['SeznamPohledavek', 'Pohledavka'])
-      end
-
-      def seznam_zavazku
-        array_of_at(ZavazekType, ['SeznamZavazku', 'Zavazek'])
       end
 
       def seznam_int_dokl
@@ -129,6 +113,14 @@ module MoneyS3
 
       def seznam_fakt_vyd_dpp
         array_of_at(FakturaType, ['SeznamFaktVyd_DPP', 'FaktVyd_DPP'])
+      end
+
+      def seznam_pohledavek
+        array_of_at(PohledavkaType, ['SeznamPohledavek', 'Pohledavka'])
+      end
+
+      def seznam_zavazku
+        array_of_at(ZavazekType, ['SeznamZavazku', 'Zavazek'])
       end
 
       def seznam_obj_prij
@@ -214,19 +206,17 @@ module MoneyS3
         hash[:seznam_km_karta] = seznam_km_karta.map(&:to_h) if has? 'SeznamKmKarta'
         hash[:seznam_zasoba] = seznam_zasoba.map(&:to_h) if has? 'SeznamZasoba'
         hash[:seznam_skladu] = seznam_skladu.map(&:to_h) if has? 'SeznamSkladu'
-        hash[:seznam_typ_kusovnik] = seznam_typ_kusovnik.map(&:to_h) if has? 'SeznamTypKusovnik'
-        hash[:seznam_zak_kusovnik] = seznam_zak_kusovnik.map(&:to_h) if has? 'SeznamZakKusovnik'
         hash[:seznam_zamestnancu] = seznam_zamestnancu.map(&:to_h) if has? 'SeznamZamestnancu'
         hash[:seznam_zakazka] = seznam_zakazka.map(&:to_h) if has? 'SeznamZakazka'
         hash[:seznam_fakt_prij] = seznam_fakt_prij.map(&:to_h) if has? 'SeznamFaktPrij'
         hash[:seznam_fakt_vyd] = seznam_fakt_vyd.map(&:to_h) if has? 'SeznamFaktVyd'
-        hash[:seznam_pohledavek] = seznam_pohledavek.map(&:to_h) if has? 'SeznamPohledavek'
-        hash[:seznam_zavazku] = seznam_zavazku.map(&:to_h) if has? 'SeznamZavazku'
         hash[:seznam_int_dokl] = seznam_int_dokl.map(&:to_h) if has? 'SeznamIntDokl'
         hash[:seznam_pok_dokl] = seznam_pok_dokl.map(&:to_h) if has? 'SeznamPokDokl'
         hash[:seznam_bank_dokl] = seznam_bank_dokl.map(&:to_h) if has? 'SeznamBankDokl'
         hash[:seznam_fakt_prij_dpp] = seznam_fakt_prij_dpp.map(&:to_h) if has? 'SeznamFaktPrij_DPP'
         hash[:seznam_fakt_vyd_dpp] = seznam_fakt_vyd_dpp.map(&:to_h) if has? 'SeznamFaktVyd_DPP'
+        hash[:seznam_pohledavek] = seznam_pohledavek.map(&:to_h) if has? 'SeznamPohledavek'
+        hash[:seznam_zavazku] = seznam_zavazku.map(&:to_h) if has? 'SeznamZavazku'
         hash[:seznam_obj_prij] = seznam_obj_prij.map(&:to_h) if has? 'SeznamObjPrij'
         hash[:seznam_obj_vyd] = seznam_obj_vyd.map(&:to_h) if has? 'SeznamObjVyd'
         hash[:seznam_nab_prij] = seznam_nab_prij.map(&:to_h) if has? 'SeznamNabPrij'

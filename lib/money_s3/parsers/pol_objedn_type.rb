@@ -175,14 +175,6 @@ module MoneyS3
         attributes_at 'Hmotnost'
       end
 
-      def cena_po_sleve
-        at 'CenaPoSleve'
-      end
-
-      def cena_po_sleve_attributes
-        attributes_at 'CenaPoSleve'
-      end
-
       def zvl_rezim
         at 'ZvlRezim'
       end
@@ -215,6 +207,22 @@ module MoneyS3
         attributes_at 'PredPC'
       end
 
+      def predm_pln
+        at 'PredmPln'
+      end
+
+      def predm_pln_attributes
+        attributes_at 'PredmPln'
+      end
+
+      def cena_po_sleve
+        at 'CenaPoSleve'
+      end
+
+      def cena_po_sleve_attributes
+        attributes_at 'CenaPoSleve'
+      end
+
       def sklad
         submodel_at(SkladType, 'Sklad')
       end
@@ -223,16 +231,24 @@ module MoneyS3
         submodel_at(KmKartaType, 'KmKarta')
       end
 
-      def neskl_polozka
-        submodel_at(NesklPolozka2, 'NesklPolozka')
-      end
-
       def seznam_vc
         array_of_at(VyrobniCisloType, ['SeznamVC', 'VyrobniCislo'])
       end
 
       def slozeni
         array_of_at(SubPolObjType, ['Slozeni', 'SubPolozka'])
+      end
+
+      def neskl_polozka
+        submodel_at(NesklPolozka2, 'NesklPolozka')
+      end
+
+      def uzivatelska_pole
+        at 'UzivatelskaPole'
+      end
+
+      def uzivatelska_pole_attributes
+        attributes_at 'UzivatelskaPole'
       end
 
       def to_h
@@ -282,8 +298,6 @@ module MoneyS3
         hash[:typ_transakce_attributes] = typ_transakce_attributes if has? 'TypTransakce'
         hash[:hmotnost] = hmotnost if has? 'Hmotnost'
         hash[:hmotnost_attributes] = hmotnost_attributes if has? 'Hmotnost'
-        hash[:cena_po_sleve] = cena_po_sleve if has? 'CenaPoSleve'
-        hash[:cena_po_sleve_attributes] = cena_po_sleve_attributes if has? 'CenaPoSleve'
         hash[:zvl_rezim] = zvl_rezim if has? 'ZvlRezim'
         hash[:zvl_rezim_attributes] = zvl_rezim_attributes if has? 'ZvlRezim'
         hash[:zvl_dph] = zvl_dph if has? 'ZvlDPH'
@@ -292,11 +306,17 @@ module MoneyS3
         hash[:rezim_eet_attributes] = rezim_eet_attributes if has? 'RezimEET'
         hash[:pred_pc] = pred_pc if has? 'PredPC'
         hash[:pred_pc_attributes] = pred_pc_attributes if has? 'PredPC'
+        hash[:predm_pln] = predm_pln if has? 'PredmPln'
+        hash[:predm_pln_attributes] = predm_pln_attributes if has? 'PredmPln'
+        hash[:cena_po_sleve] = cena_po_sleve if has? 'CenaPoSleve'
+        hash[:cena_po_sleve_attributes] = cena_po_sleve_attributes if has? 'CenaPoSleve'
         hash[:sklad] = sklad.to_h if has? 'Sklad'
         hash[:km_karta] = km_karta.to_h if has? 'KmKarta'
-        hash[:neskl_polozka] = neskl_polozka.to_h if has? 'NesklPolozka'
         hash[:seznam_vc] = seznam_vc.map(&:to_h) if has? 'SeznamVC'
         hash[:slozeni] = slozeni.map(&:to_h) if has? 'Slozeni'
+        hash[:neskl_polozka] = neskl_polozka.to_h if has? 'NesklPolozka'
+        hash[:uzivatelska_pole] = uzivatelska_pole if has? 'UzivatelskaPole'
+        hash[:uzivatelska_pole_attributes] = uzivatelska_pole_attributes if has? 'UzivatelskaPole'
 
         hash
       end

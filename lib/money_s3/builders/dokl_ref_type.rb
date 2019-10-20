@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('IDDokladu', data[:id_dokladu], data[:id_dokladu_attributes]) if data.key? :id_dokladu
         root << build_element('CisloDokladu', data[:cislo_dokladu], data[:cislo_dokladu_attributes]) if data.key? :cislo_dokladu

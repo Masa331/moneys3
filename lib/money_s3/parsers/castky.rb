@@ -75,6 +75,22 @@ module MoneyS3
         attributes_at 'CestSluzba'
       end
 
+      def pouz_zbozi
+        at 'PouzZbozi'
+      end
+
+      def pouz_zbozi_attributes
+        attributes_at 'PouzZbozi'
+      end
+
+      def pouz_zb_0
+        at 'PouzZb_0'
+      end
+
+      def pouz_zb_0_attributes
+        attributes_at 'PouzZb_0'
+      end
+
       def pouz_zb_1
         at 'PouzZb_1'
       end
@@ -137,6 +153,10 @@ module MoneyS3
         hash[:dph_3_attributes] = dph_3_attributes if has? 'DPH_3'
         hash[:cest_sluzba] = cest_sluzba if has? 'CestSluzba'
         hash[:cest_sluzba_attributes] = cest_sluzba_attributes if has? 'CestSluzba'
+        hash[:pouz_zbozi] = pouz_zbozi if has? 'PouzZbozi'
+        hash[:pouz_zbozi_attributes] = pouz_zbozi_attributes if has? 'PouzZbozi'
+        hash[:pouz_zb_0] = pouz_zb_0 if has? 'PouzZb_0'
+        hash[:pouz_zb_0_attributes] = pouz_zb_0_attributes if has? 'PouzZb_0'
         hash[:pouz_zb_1] = pouz_zb_1 if has? 'PouzZb_1'
         hash[:pouz_zb_1_attributes] = pouz_zb_1_attributes if has? 'PouzZb_1'
         hash[:pouz_zb_2] = pouz_zb_2 if has? 'PouzZb_2'

@@ -91,14 +91,6 @@ module MoneyS3
         attributes_at 'DruhZak'
       end
 
-      def typ_zak
-        at 'TypZak'
-      end
-
-      def typ_zak_attributes
-        attributes_at 'TypZak'
-      end
-
       def stav_zak
         at 'StavZak'
       end
@@ -132,11 +124,7 @@ module MoneyS3
       end
 
       def dod_odb
-        submodel_at(FirmaType, 'DodOdb')
-      end
-
-      def seznam_zakazkovy_kusovnik
-        array_of_at(KusovnikType, ['SeznamZakazkovyKusovnik', 'ZakazkovyKusovnik'])
+        submodel_at(DokladFirmaType, 'DodOdb')
       end
 
       def vlajky
@@ -173,8 +161,6 @@ module MoneyS3
         hash[:odp_os_attributes] = odp_os_attributes if has? 'OdpOs'
         hash[:druh_zak] = druh_zak if has? 'DruhZak'
         hash[:druh_zak_attributes] = druh_zak_attributes if has? 'DruhZak'
-        hash[:typ_zak] = typ_zak if has? 'TypZak'
-        hash[:typ_zak_attributes] = typ_zak_attributes if has? 'TypZak'
         hash[:stav_zak] = stav_zak if has? 'StavZak'
         hash[:stav_zak_attributes] = stav_zak_attributes if has? 'StavZak'
         hash[:hodnoceni] = hodnoceni if has? 'Hodnoceni'
@@ -184,7 +170,6 @@ module MoneyS3
         hash[:vystavil] = vystavil if has? 'Vystavil'
         hash[:vystavil_attributes] = vystavil_attributes if has? 'Vystavil'
         hash[:dod_odb] = dod_odb.to_h if has? 'DodOdb'
-        hash[:seznam_zakazkovy_kusovnik] = seznam_zakazkovy_kusovnik.map(&:to_h) if has? 'SeznamZakazkovyKusovnik'
         hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
         hash[:dokumenty] = dokumenty if has? 'Dokumenty'
 

@@ -91,6 +91,22 @@ module MoneyS3
         attributes_at 'EMail'
       end
 
+      def e_mail_kopie
+        at 'EMailKopie'
+      end
+
+      def e_mail_kopie_attributes
+        attributes_at 'EMailKopie'
+      end
+
+      def e_mail_skryt
+        at 'EMailSkryt'
+      end
+
+      def e_mail_skryt_attributes
+        attributes_at 'EMailSkryt'
+      end
+
       def www
         at 'WWW'
       end
@@ -175,6 +191,14 @@ module MoneyS3
         submodel_at(Eshop2, 'eshop')
       end
 
+      def seznam_bank_spojeni
+        array_of_at(BankSpojeniType, ['SeznamBankSpojeni', 'BankSpojeni'])
+      end
+
+      def vlajky
+        submodel_at(Vlajky, 'Vlajky')
+      end
+
       def to_h
         hash = {}
         hash[:attributes] = attributes
@@ -201,6 +225,10 @@ module MoneyS3
         hash[:mobil] = mobil.to_h if has? 'Mobil'
         hash[:e_mail] = e_mail if has? 'EMail'
         hash[:e_mail_attributes] = e_mail_attributes if has? 'EMail'
+        hash[:e_mail_kopie] = e_mail_kopie if has? 'EMailKopie'
+        hash[:e_mail_kopie_attributes] = e_mail_kopie_attributes if has? 'EMailKopie'
+        hash[:e_mail_skryt] = e_mail_skryt if has? 'EMailSkryt'
+        hash[:e_mail_skryt_attributes] = e_mail_skryt_attributes if has? 'EMailSkryt'
         hash[:www] = www if has? 'WWW'
         hash[:www_attributes] = www_attributes if has? 'WWW'
         hash[:platce_dph] = platce_dph if has? 'PlatceDPH'
@@ -222,6 +250,8 @@ module MoneyS3
         hash[:isdoc] = isdoc if has? 'ISDOC'
         hash[:isdoc_attributes] = isdoc_attributes if has? 'ISDOC'
         hash[:eshop] = eshop.to_h if has? 'eshop'
+        hash[:seznam_bank_spojeni] = seznam_bank_spojeni.map(&:to_h) if has? 'SeznamBankSpojeni'
+        hash[:vlajky] = vlajky.to_h if has? 'Vlajky'
 
         hash
       end

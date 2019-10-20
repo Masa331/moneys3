@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Nazev', data[:nazev], data[:nazev_attributes]) if data.key? :nazev
         root << build_element('PocetMJ', data[:pocet_mj], data[:pocet_mj_attributes]) if data.key? :pocet_mj
@@ -28,10 +26,10 @@ module MoneyS3
         root << build_element('TypTransakce', data[:typ_transakce], data[:typ_transakce_attributes]) if data.key? :typ_transakce
         root << build_element('Hmotnost', data[:hmotnost], data[:hmotnost_attributes]) if data.key? :hmotnost
         root << build_element('PorizCena', data[:poriz_cena], data[:poriz_cena_attributes]) if data.key? :poriz_cena
-        root << build_element('CenaPoSleve', data[:cena_po_sleve], data[:cena_po_sleve_attributes]) if data.key? :cena_po_sleve
         root << build_element('ZvlRezim', data[:zvl_rezim], data[:zvl_rezim_attributes]) if data.key? :zvl_rezim
         root << build_element('ZvlDPH', data[:zvl_dph], data[:zvl_dph_attributes]) if data.key? :zvl_dph
         root << build_element('RezimEET', data[:rezim_eet], data[:rezim_eet_attributes]) if data.key? :rezim_eet
+        root << build_element('CenaPoSleve', data[:cena_po_sleve], data[:cena_po_sleve_attributes]) if data.key? :cena_po_sleve
         if data.key? :seznam_vc
           element = Ox::Element.new('SeznamVC')
           data[:seznam_vc].each { |i| element << VyrobniCisloType.new('VyrobniCislo', i).builder }
@@ -53,6 +51,7 @@ module MoneyS3
           data[:slozeni].each { |i| element << DefSubPolType.new('SubPolozka', i).builder }
           root << element
         end
+        root << build_element('UzivatelskaPole', data[:uzivatelska_pole], data[:uzivatelska_pole_attributes]) if data.key? :uzivatelska_pole
 
         root
       end

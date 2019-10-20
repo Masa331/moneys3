@@ -31,6 +31,22 @@ module MoneyS3
         attributes_at 'ZpusobUctovani'
       end
 
+      def storno
+        at 'Storno'
+      end
+
+      def storno_attributes
+        attributes_at 'Storno'
+      end
+
+      def del
+        at 'Del'
+      end
+
+      def del_attributes
+        attributes_at 'Del'
+      end
+
       def d_rada
         at 'DRada'
       end
@@ -235,6 +251,14 @@ module MoneyS3
         attributes_at 'StatMOSS'
       end
 
+      def zp_vyp_dph
+        at 'ZpVypDPH'
+      end
+
+      def zp_vyp_dph_attributes
+        attributes_at 'ZpVypDPH'
+      end
+
       def s_sazba
         at 'SSazba'
       end
@@ -394,6 +418,10 @@ module MoneyS3
         hash[:eet] = eet.to_h if has? 'EET'
         hash[:zpusob_uctovani] = zpusob_uctovani if has? 'ZpusobUctovani'
         hash[:zpusob_uctovani_attributes] = zpusob_uctovani_attributes if has? 'ZpusobUctovani'
+        hash[:storno] = storno if has? 'Storno'
+        hash[:storno_attributes] = storno_attributes if has? 'Storno'
+        hash[:del] = del if has? 'Del'
+        hash[:del_attributes] = del_attributes if has? 'Del'
         hash[:d_rada] = d_rada if has? 'DRada'
         hash[:d_rada_attributes] = d_rada_attributes if has? 'DRada'
         hash[:d_cislo] = d_cislo if has? 'DCislo'
@@ -445,6 +473,8 @@ module MoneyS3
         hash[:pozn_attributes] = pozn_attributes if has? 'Pozn'
         hash[:stat_moss] = stat_moss if has? 'StatMOSS'
         hash[:stat_moss_attributes] = stat_moss_attributes if has? 'StatMOSS'
+        hash[:zp_vyp_dph] = zp_vyp_dph if has? 'ZpVypDPH'
+        hash[:zp_vyp_dph_attributes] = zp_vyp_dph_attributes if has? 'ZpVypDPH'
         hash[:s_sazba] = s_sazba if has? 'SSazba'
         hash[:s_sazba_attributes] = s_sazba_attributes if has? 'SSazba'
         hash[:z_sazba] = z_sazba if has? 'ZSazba'

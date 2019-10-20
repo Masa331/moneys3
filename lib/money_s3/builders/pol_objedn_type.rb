@@ -5,9 +5,7 @@ module MoneyS3
 
       def builder
         root = Ox::Element.new(name)
-        if data.key? :attributes
-          data[:attributes].each { |k, v| root[k] = v }
-        end
+        root = add_attributes_and_namespaces(root)
 
         root << build_element('Popis', data[:popis], data[:popis_attributes]) if data.key? :popis
         root << build_element('Poznamka', data[:poznamka], data[:poznamka_attributes]) if data.key? :poznamka
@@ -33,19 +31,17 @@ module MoneyS3
         root << build_element('KodStatuPuv', data[:kod_statu_puv], data[:kod_statu_puv_attributes]) if data.key? :kod_statu_puv
         root << build_element('TypTransakce', data[:typ_transakce], data[:typ_transakce_attributes]) if data.key? :typ_transakce
         root << build_element('Hmotnost', data[:hmotnost], data[:hmotnost_attributes]) if data.key? :hmotnost
-        root << build_element('CenaPoSleve', data[:cena_po_sleve], data[:cena_po_sleve_attributes]) if data.key? :cena_po_sleve
         root << build_element('ZvlRezim', data[:zvl_rezim], data[:zvl_rezim_attributes]) if data.key? :zvl_rezim
         root << build_element('ZvlDPH', data[:zvl_dph], data[:zvl_dph_attributes]) if data.key? :zvl_dph
         root << build_element('RezimEET', data[:rezim_eet], data[:rezim_eet_attributes]) if data.key? :rezim_eet
         root << build_element('PredPC', data[:pred_pc], data[:pred_pc_attributes]) if data.key? :pred_pc
+        root << build_element('PredmPln', data[:predm_pln], data[:predm_pln_attributes]) if data.key? :predm_pln
+        root << build_element('CenaPoSleve', data[:cena_po_sleve], data[:cena_po_sleve_attributes]) if data.key? :cena_po_sleve
         if data.key? :sklad
           root << SkladType.new('Sklad', data[:sklad]).builder
         end
         if data.key? :km_karta
           root << KmKartaType.new('KmKarta', data[:km_karta]).builder
-        end
-        if data.key? :neskl_polozka
-          root << NesklPolozka2.new('NesklPolozka', data[:neskl_polozka]).builder
         end
         if data.key? :seznam_vc
           element = Ox::Element.new('SeznamVC')
@@ -57,6 +53,10 @@ module MoneyS3
           data[:slozeni].each { |i| element << SubPolObjType.new('SubPolozka', i).builder }
           root << element
         end
+        if data.key? :neskl_polozka
+          root << NesklPolozka2.new('NesklPolozka', data[:neskl_polozka]).builder
+        end
+        root << build_element('UzivatelskaPole', data[:uzivatelska_pole], data[:uzivatelska_pole_attributes]) if data.key? :uzivatelska_pole
 
         root
       end
