@@ -75,7 +75,7 @@ File.open("statements.xml", 'wb') { |f| f.write statements_string }
 
 ## Changelog
 
-### 23.02.2020
+### 23.02.2020 - v2.1.0
 
 Add utility class for bank statements generation.
 
