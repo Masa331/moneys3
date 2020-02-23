@@ -5,6 +5,8 @@ require 'money_s3/requires'
 require 'money_s3/parsers/money_data'
 require 'money_s3/builders/money_data'
 
+require 'money_s3/utils/bank_statements'
+
 module MoneyS3
   def self.parse(raw)
     parsed = Ox.load(raw, skip: :skip_none)
