@@ -56,6 +56,7 @@ Then call `#to_xml` on the generator and pass it an array containing hashes with
 transactions = [
   { :date => #<Date: 2019-12-05 ((2458823j,0s,0n),+0s,2299161j)>,
     :transaction_id => "121205SI201442",
+    :my_bank_account_id => "ACC1", # if given it overwrites the one from configuration
     :amount => 8500.0,
     :statement_id => "012/00001",
     :variable_symbol => "0000112019",

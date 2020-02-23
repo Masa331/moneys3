@@ -28,7 +28,7 @@ module MoneyS3
             dat_pln: item[:date],
             vypis: item[:statement_id],
             celkem: amount,
-            ucet: { zkrat: @my_bank_account_id },
+            ucet: { zkrat: item.fetch(:my_bank_account_id, @my_bank_account_id) },
             popis: item[:description],
             pozn: item[:note],
             var_sym: item[:variable_symbol],
