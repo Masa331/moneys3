@@ -21,25 +21,35 @@ module MoneyS3
           amount = item.fetch :amount
 
           data = {
-            id_polozky: item[:transaction_id],
-            dat_uc_pr: item[:date],
-            dat_vyst: item[:date],
-            dat_plat: item[:date],
-            dat_pln: item[:date],
-            vypis: item[:statement_id],
-            celkem: amount,
+            id_polozky: item[:transaction_id].to_s,
+            dat_uc_pr: item[:date].to_s,
+            dat_vyst: item[:date].to_s,
+            dat_plat: item[:date].to_s,
+            dat_pln: item[:date].to_s,
+            vypis: item[:statement_id].to_s,
             ucet: { zkrat: item.fetch(:my_bank_account_id, @my_bank_account_id) },
-            popis: item[:description],
-            pozn: item[:note],
-            var_sym: item[:variable_symbol],
-            spec_sym: item[:specific_symbol],
-            kon_sym: item[:constant_symbol],
-            ad_ucet: item[:counterparty_account],
-            ad_kod: item[:counterparty_bank_code],
-            souhrn_dph: {
-              zaklad0: amount
-            }
+            popis: item[:description].to_s,
+            pozn: item[:note].to_s,
+            var_sym: item[:variable_symbol].to_s,
+            spec_sym: item[:specific_symbol].to_s,
+            kon_sym: item[:constant_symbol].to_s,
+            ad_ucet: item[:counterparty_account].to_s,
+            ad_kod: item[:counterparty_bank_code].to_s
           }
+
+          if item[:foreign_currency_code]
+            data.merge!({
+              valuty: {
+                mena: { kod: item[:foreign_currency_code].to_s, celkem: amount.to_s },
+                souhrn_dph: { zaklad0: amount.to_s }
+              }
+            })
+          else
+            data.merge!({
+              celkem: amount.to_s,
+              souhrn_dph: { zaklad0: amount.to_s }
+            })
+          end
 
           transaction_type = item.fetch :type
           fail "Unknown transaction type: #{transaction_type}" unless TRANSACTION_TYPES.include? transaction_type
@@ -61,13 +71,6 @@ module MoneyS3
           end
 
           data.delete_if { |_, v| v.nil? || v == '' }
-          data.transform_values! do |value|
-            if value.is_a? Hash
-              value.transform_values! { |value| value.to_s }
-            else
-              value.to_s
-            end
-          end
 
           data
         end
