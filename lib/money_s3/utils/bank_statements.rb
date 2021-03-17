@@ -37,6 +37,14 @@ module MoneyS3
             ad_kod: item[:counterparty_bank_code].to_s
           }
 
+          if item[:rule]
+            data.merge!({ pr_kont: item[:rule] })
+          end
+
+          if item[:vat_rule]
+            data.merge!({ cleneni: item[:vat_rule] })
+          end
+
           if item[:foreign_currency_code]
             data.merge!({
               valuty: {
@@ -55,19 +63,23 @@ module MoneyS3
           fail "Unknown transaction type: #{transaction_type}" unless TRANSACTION_TYPES.include? transaction_type
 
           if transaction_type == :credit
-            data.merge!({
+            defaults = {
               vydej: '0',
               pr_kont: @credit_transactions_rule,
               cleneni: @credit_transactions_vat_rule,
               d_rada: @credit_transactions_series
-            })
+            }
+
+            data = defaults.merge(data)
           else
-            data.merge!({
+            defaults = {
               vydej: '1',
               pr_kont: @debit_transactions_rule,
               cleneni: @debit_transactions_vat_rule,
               d_rada: @debit_transactions_series
-            })
+            }
+
+            data = defaults.merge(data)
           end
 
           data.delete_if { |_, v| v.nil? || v == '' }
